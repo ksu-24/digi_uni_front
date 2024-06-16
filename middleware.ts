@@ -7,6 +7,7 @@ export default createMiddleware({
 });
 
 
+
 export const config = {
-    matcher:  ['/', `/(${locales.join('|')})/:path*`]
+    matcher:  ["/((?!api|public|.*\\..*|_next|favicon.ico|robots.txt).*)"]
 };

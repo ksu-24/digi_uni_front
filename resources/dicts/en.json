@@ -1,3 +1,13 @@
 {
-  "Hello": "Hello"
+    "links": {
+        "Main": "Main",
+        "About": "About",
+        "Programs": "Programs",
+        "News": "News",
+        "Contacts": "Contacts"
+    },
+    "main": {
+        "Digital university": "Digital university -\nOpen ukrainian initiative",
+        "Creating first": "Creating first ukrainian digital university together"
+    }
 }

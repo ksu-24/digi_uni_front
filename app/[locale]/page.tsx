@@ -1,10 +1,14 @@
-"use client"
+import {Stack} from "@mui/material";
+import Slogan from "@/app/[locale]/_slogan/slogan";
+import {unstable_setRequestLocale} from "next-intl/server";
+import Tiles from "@/app/[locale]/tiles";
 
-import {useTranslations} from "next-intl";
-
-export default function Main() {
-    const translations = useTranslations();
+export default function Main(params: { locale: string }) {
+    unstable_setRequestLocale(params.locale);
     return (
-        <p>{translations("Hello")}</p>
+        <Stack className="h-full w-full">
+            <Slogan/>
+            <Tiles/>
+        </Stack>
     );
 }
