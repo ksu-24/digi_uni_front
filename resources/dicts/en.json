@@ -29,6 +29,11 @@
                 "subTitle": "KNU",
                 "content": "Kyiv National University named after Taras Shevchenko (Ukraine)"
             }
+        },
+        "mission": {
+            "enumerationCaption": "Mission (Goal)",
+            "goal": "Goal",
+            "content": "Creation of a highly effective digital educational ecosystem in Ukraine to ensure continuous, high-quality, inclusive and transparent education, regardless of the student's location, using existing digital innovations in the field of education and a clear paradigm for attracting future innovations."
         }
     }
 }

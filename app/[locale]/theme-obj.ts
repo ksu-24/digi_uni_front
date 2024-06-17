@@ -34,8 +34,21 @@ const themeObj = {
         },
         h3: {
             fontFamily: headerFont,
-            fontSize: 32,
-            fontWeight: 500
+            fontSize: 16,
+            "@media (min-width:600px)": {
+                fontSize: 20,
+                lineHeight: "36px"
+            },
+            "@media (min-width:960px)": {
+                fontSize: 24,
+                lineHeight: "40px"
+            },
+            "@media (min-width:1280px)": {
+                fontSize: 32,
+                lineHeight: "45px"
+            },
+            fontWeight: 500,
+            lineHeight: "28px"
         },
         h4: {
             fontFamily: headerFont

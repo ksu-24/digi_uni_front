@@ -12,7 +12,8 @@ const config: Config = {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-                "digipattern": "url('/images/main/digi-pattern.png')",
+                "digipattern-secondary": "url('/images/main/digi-pattern-secondary.png')",
+                "digipattern-info": "url('/images/main/digi-pattern-info.png')",
             },
         },
     },

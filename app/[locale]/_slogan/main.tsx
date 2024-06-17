@@ -9,7 +9,7 @@ export default async function Main() {
                className="items-center justify-center h-full w-full pt-[2%]">
             <Stack direction="row"
                    className="items-center justify-around h-full w-full
-                   bg-digipattern bg-contain bg-no-repeat ml-[3%] pr-[4%] lg:gap-[2%]"
+                   bg-digipattern-secondary bg-contain bg-no-repeat ml-[3%] pr-[4%] lg:gap-[2%]"
                    sx={{
                        backgroundPosition: "95% 95%"
                    }}>
