@@ -4,7 +4,7 @@ import Image from "next/image";
 import fundedByEU from "@/public/images/main/funded-by-eu.png";
 
 export async function TextAndFunded() {
-    const translation = await getTranslations("main");
+    const translation = await getTranslations("main.slogan");
     return (
         <Stack gap="40px" className="justify-center items-start h-4/5 w-3/5 min-w-1/2 mt-[-6%]">
             <Typography variant="body1" className="text-wrap whitespace-pre-line">

@@ -7,7 +7,29 @@
         "Contacts": "Contacts"
     },
     "main": {
-        "Digital university": "Digital university -\nOpen ukrainian initiative",
-        "Creating first": "Creating first ukrainian digital university together"
+        "slogan": {
+            "Digital university": "Digital university -\nOpen ukrainian initiative",
+            "Creating first": "Creating first ukrainian digital university together"
+        },
+        "about": {
+            "enumerationCaption": "About project",
+            "title": "Erasmus+ program. KA2 Developing the potential of higher education.",
+            "content": "The Erasmus+ CBHE DigiUni project, with the full name \"Digital University - Open Ukrainian Initiative\", is an important initiative aimed at supporting higher education in Ukraine in the conditions of martial law and post-war reconstruction. Currently, this is the largest Erasmus+ project ever implemented in Ukraine.\n\nThis project was developed in response to the unprecedented challenges associated with the full-scale invasion of Russia in Ukraine, and aims to harmonize the processes of digital transformation in education, creating a single digital educational ecosystem to ensure continuous, high-quality, inclusive and transparent education​​​​ . The project emphasizes the importance of digitization for the continuity and success of educational institutions in Ukraine. It aims to use the experience of European universities in the development of integrated digital solutions and to promote cooperation between Ukrainian and European partners."
+        },
+        "boxes": {
+            "program": {
+                "title": "Program",
+                "content": "Strand 3: Structural reform projects (Erasmus+ - Development of higher education potential - Strand 3: Structural reform projects)"
+            },
+            "duration": {
+                "title": "Duration"
+            },
+            "coordinator": {
+                "title": "Coordinator",
+                "subTitle": "KNU",
+                "content": "Kyiv National University named after Taras Shevchenko (Ukraine)"
+            }
+        }
     }
 }
+
