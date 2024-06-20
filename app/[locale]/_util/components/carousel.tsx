@@ -26,7 +26,7 @@ function WindowContainer(props: {
 }) {
     return (
         <Stack direction="row"
-               className={`w-full h-full items-center ${props.translateClass}`}
+               className={`w-full h-full items-center ${props.translateClass} gap-10 p-2 justify-center`}
                ref={props.ref1}>
             {props.children}
         </Stack>
@@ -38,58 +38,72 @@ let key = -Number.MAX_VALUE;
 export default function Carousel(
     {
         children,
-        window
+        windowSizes
     }: {
         children: React.ReactNode,
-        window: number
+        windowSizes: { breakpoint: { max: number, min: number }, items: number }[]
     }
 ) {
     let childrenArray = React.Children.toArray(children);
+    const [windowSize, setWindowSize] = React.useState(windowSizes[windowSizes.length-1].items);
+    const firstRenderCallback = React.useRef<() => void>(() => {});
 
-    if (childrenArray.length < window * 2 - 1) {
+
+    useEffect(() => {
+        setWindowSize(windowSizes.find((size) =>
+            window.innerWidth <= size.breakpoint.max && window.innerWidth >= size.breakpoint.min)?.items
+            || windowSizes[windowSizes.length-1].items);
+    }, []);
+
+    useEffect(() => {
+        firstRenderCallback.current();
+    }, [firstRenderCallback.current]);
+
+    if (childrenArray.length < windowSize * 2 - 1) {
         childrenArray = childrenArray.concat(childrenArray);
     }
 
-    const [visibleIndexesBounds, setVisibleIndexesBounds] = React.useState([0, window]);
+    const [visibleIndexesBounds, setVisibleIndexesBounds] = React.useState([0, windowSize]);
     const [prevVisible, setPrevVisible] = React.useState(null as React.ReactNode[] | null);
     const visibleIndexes = [] as number[];
     const windowRef = React.useRef<HTMLDivElement | null>(null);
     const prevWindowRef = React.useRef<HTMLDivElement | null>(null);
     const [currentWindowAnimation, setCurrentWindowAnimation] = React.useState("");
 
-    for (let i = visibleIndexesBounds[0]; visibleIndexes.length < window; i++) {
+    for (let i = visibleIndexesBounds[0]; visibleIndexes.length < windowSize; i++) {
         visibleIndexes.push(i % childrenArray.length)
         if (i === childrenArray.length - 1) {
             i = -1;
         }
     }
 
-    function subtractCyclic(value: number, window: number, inclusive = false) {
-        const result = (value - window + childrenArray.length) % (childrenArray.length);
+    function subtractCyclic(value: number, windowSize: number, inclusive = false) {
+        const result = (value - windowSize + childrenArray.length) % (childrenArray.length);
         if (inclusive && result === 0) {
             return childrenArray.length;
         }
         return result;
     }
 
+    const timeoutRef = React.useRef<any | null>(null);
+
     useEffect(() => {
         const prevWindow = prevWindowRef.current;
-        setTimeout(() => {
-            prevWindow?.classList.add("hidden");
+        timeoutRef.current = setTimeout(() => {
             setCurrentWindowAnimation("");
         }, 700);
     }, [visibleIndexesBounds]);
 
-    console.log(visibleIndexes)
-    console.log(visibleIndexesBounds)
-
     return (
-        <Stack direction="row" className="w-full h-full items-center overflow-x-clip">
+        <Stack direction="row" className="w-full h-full items-center overflow-x-clip justify-center">
             <NavButton iconRotation={270} onClick={() => {
-                setCurrentWindowAnimation("animate-slide-in-left");
-                setVisibleIndexesBounds([subtractCyclic(visibleIndexesBounds[0], window),
-                    visibleIndexesBounds[0] === 0 ? childrenArray.length : visibleIndexesBounds[0]]);
-                setPrevVisible(visibleIndexes.map((index) => childrenArray[index]))
+                firstRenderCallback.current = () => {
+                    setCurrentWindowAnimation("animate-slide-in-left");
+                    setVisibleIndexesBounds([visibleIndexesBounds[1] % childrenArray.length, subtractCyclic(visibleIndexesBounds[1], -windowSize, true)])
+                    setPrevVisible(visibleIndexes.map((index) => childrenArray[index]))
+                }
+                clearTimeout(timeoutRef.current);
+                setCurrentWindowAnimation(currentWindowAnimation === "" ? "a" : "");
             }}/>
             {prevVisible && currentWindowAnimation === "animate-slide-in-right" &&
                 <WindowContainer translateClass={"animate-slide-out-left"} ref1={prevWindowRef} key={key++}>
@@ -113,9 +127,13 @@ export default function Carousel(
                 </WindowContainer>
             }
             <NavButton iconRotation={90} onClick={() => {
-                setCurrentWindowAnimation("animate-slide-in-right");
-                setVisibleIndexesBounds([visibleIndexesBounds[1] % childrenArray.length, subtractCyclic(visibleIndexesBounds[1], -window, true)])
-                setPrevVisible(visibleIndexes.map((index) => childrenArray[index]))
+                firstRenderCallback.current = () => {
+                    setCurrentWindowAnimation("animate-slide-in-right");
+                    setVisibleIndexesBounds([visibleIndexesBounds[1] % childrenArray.length, subtractCyclic(visibleIndexesBounds[1], -windowSize, true)])
+                    setPrevVisible(visibleIndexes.map((index) => childrenArray[index]))
+                }
+                clearTimeout(timeoutRef.current);
+                setCurrentWindowAnimation(currentWindowAnimation === "" ? "a" : "");
             }}/>
         </Stack>
     )
