@@ -1,7 +1,7 @@
 import {getTranslations} from "next-intl/server";
 import {Box, Stack, Typography} from "@mui/material";
 import Image from "next/image";
-import fundedByEU from "@/public/images/main/funded-by-eu.png";
+import fundedByEU from "@/public/images/main/slogan/funded-by-eu.png";
 
 export async function TextAndFunded() {
     const translation = await getTranslations("main.slogan");

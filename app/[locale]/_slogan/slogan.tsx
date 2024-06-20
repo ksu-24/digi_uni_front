@@ -1,9 +1,9 @@
 import {Box, Stack} from "@mui/material";
 import Image from "next/image";
-import verticalLogo from "@/public/images/main/digiuni-vertical.png";
+import verticalLogo from "@/public/images/main/slogan/digiuni-vertical.png";
 import Header from "@/app/[locale]/_slogan/header";
 import Main from "@/app/[locale]/_slogan/main";
-import ellipse from "@/public/images/main/ellipse.png";
+import ellipse from "@/public/images/main/slogan/ellipse.png";
 
 export default async function Slogan() {
     return (

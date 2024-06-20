@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-.rowrow {
-    flex-direction: row;
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100dvw);
+        width: 0;
+    }
+    100% {
+        transform: translateX(0);
+        width: 100%;
+    }
 }
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100dvw);
+        width: 0;
+    }
+    100% {
+        transform: translateX(0);
+        width: 100%;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        transform: translateX(0);
+        width: 100%;
+    }
+    100% {
+        transform: translateX(-100dvw);
+        width: 0;
+        display: none;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        width: 100%;
+    }
+    100% {
+        transform: translateX(100dvw);
+        width: 0;
+        display: none;
+    }
+}
+

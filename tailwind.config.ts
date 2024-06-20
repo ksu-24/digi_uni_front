@@ -1,4 +1,5 @@
 import type {Config} from "tailwindcss";
+import colors from "./resources/colors.json";
 
 const config: Config = {
     content: [
@@ -12,8 +13,19 @@ const config: Config = {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-                "digipattern-secondary": "url('/images/main/digi-pattern-secondary.png')",
-                "digipattern-info": "url('/images/main/digi-pattern-info.png')",
+                "digipattern-secondary": "url('/images/digi-pattern-secondary.png')",
+                "digipattern-info": "url('/images/digi-pattern-info.png')",
+            },
+            animation: {
+                "slide-in-left": "0.7s ease-out 0s 1 slideInFromLeft",
+                "slide-in-right": "0.7s ease-out 0s 1 slideInFromRight",
+                "slide-out-left": "0.7s ease-out 0s 1 slideOutToLeft",
+                "slide-out-right": "0.7s ease-out 0s 1 slideOutToRight",
+            },
+            backgroundColor: {
+                "primary": colors.primary.main,
+                "secondary": colors.secondary.main,
+                "info": colors.info.main,
             },
         },
     },

@@ -1,8 +1,8 @@
 import {Box, Stack} from "@mui/material";
 import Image from "next/image";
-import uaPartners from "@/public/images/main/ua-partners.png";
-import euPartners from "@/public/images/main/eu-partners.png";
-import digiuniLoading from "@/public/images/main/digiuni-loading.png";
+import uaPartners from "@/public/images/main/slogan/ua-partners.png";
+import euPartners from "@/public/images/main/slogan/eu-partners.png";
+import digiuniLoading from "@/public/images/main/slogan/digiuni-loading.png";
 
 function Folders() {
     return (

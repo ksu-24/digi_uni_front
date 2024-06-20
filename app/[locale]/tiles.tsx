@@ -1,4 +1,4 @@
-import tiles from "@/public/images/main/tiles.png";
+import tiles from "@/public/images/main/slogan/tiles.png";
 import {Box} from "@mui/material";
 import Image from "next/image";
 

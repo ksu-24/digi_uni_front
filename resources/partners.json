@@ -1,0 +1,44 @@
+[
+    {
+        "translationKey": "ksu",
+        "logo": "/images/main/partners/ksu.png",
+        "link": "https://www.kspu.edu/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "title": "Rector",
+                "name": "Olena Koval",
+                "email": "olena.kival@gmail.com"
+            },
+            {
+                "title": "Vice-Rector",
+                "name": "Abubachir Trahov",
+                "email": "abubachir.trahov@gmail.com"
+            }
+        ]
+    },
+    {
+        "translationKey": "lu",
+        "logo": "/images/main/partners/lu.png",
+        "link": "https://www.lnu.edu.ua",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "mariupol",
+        "logo": "/images/main/partners/mariupol.png",
+        "link": "https://en.mdu.in.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "moeu",
+        "logo": "/images/main/partners/moeu.png",
+        "link": "https://www.mon.gov.ua",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "khpi",
+        "logo": "/images/main/partners/khpi.png",
+        "link": "https://www.kpi.kharkov.ua",
+        "country": "Ukraine"
+    }
+]

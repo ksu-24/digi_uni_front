@@ -1,8 +1,8 @@
-import folders from "@/public/images/main/folders.png";
-import clock from "@/public/images/main/clock.png";
-import durationTime from "@/public/images/main/duration-time.svg";
-import tuner from "@/public/images/main/tuner.png";
-import knu from "@/public/images/main/knu.png";
+import folders from "@/public/images/main/about/folders.png";
+import clock from "@/public/images/main/about/clock.png";
+import durationTime from "@/public/images/main/about/duration-time.svg";
+import tuner from "@/public/images/main/about/tuner.png";
+import knu from "@/public/images/main/about/knu.png";
 import {Box, Stack, Typography} from "@mui/material";
 import Image, {StaticImageData} from "next/image";
 import React from "react";

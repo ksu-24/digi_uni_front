@@ -1,19 +1,11 @@
+import colors from "@/resources/colors.json"
+
 const headerFont = "IBM Plex Serif";
 const body1Font = "IBM Plex Mono";
 const body2Font = "Inter";
 
 const themeObj = {
-    palette: {
-        primary: {
-            main: "#000000",
-        },
-        secondary: {
-            main: "#FEFFE6"
-        },
-        info: {
-            main: "#D5DAFF"
-        }
-    },
+    palette: colors,
     typography: {
         h1: {
             fontFamily: headerFont

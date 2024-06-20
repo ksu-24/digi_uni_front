@@ -1,8 +1,10 @@
 "use client";
 
-import React, {useEffect} from "react";
-import {IconButton, Stack} from "@mui/material";
+import React from "react";
+import {Box, IconButton, Stack} from "@mui/material";
 import {KeyboardArrowUp} from "@mui/icons-material";
+import Grid2 from "@mui/material/Unstable_Grid2";
+import themeObj from "@/app/[locale]/theme-obj";
 
 function NavButton(
     {
@@ -13,127 +15,76 @@ function NavButton(
         onClick: () => void
     }) {
     return (
-        <IconButton>
+        <IconButton className="z-10 bg-secondary" sx={{
+            "&:hover": {
+                backgroundColor: themeObj.palette.info.main
+            }
+        }}>
             <KeyboardArrowUp sx={{transform: `rotate(${iconRotation}deg)`}} onClick={onClick}/>
         </IconButton>
     )
 }
 
-function WindowContainer(props: {
-    translateClass: string,
-    ref1: React.MutableRefObject<HTMLDivElement | null>,
-    children?: React.ReactNode,
-}) {
-    return (
-        <Stack direction="row"
-               className={`w-full h-full items-center ${props.translateClass} gap-10 p-2 justify-center`}
-               ref={props.ref1}>
-            {props.children}
-        </Stack>
-    );
-}
-
-let key = -Number.MAX_VALUE;
-
 export default function Carousel(
     {
         children,
-        windowSizes
     }: {
-        children: React.ReactNode,
-        windowSizes: { breakpoint: { max: number, min: number }, items: number }[]
+        children: React.ReactNode
     }
 ) {
-    let childrenArray = React.Children.toArray(children);
-    const [windowSize, setWindowSize] = React.useState(windowSizes[windowSizes.length-1].items);
-    const firstRenderCallback = React.useRef<() => void>(() => {});
+    const initialChildren = React.Children.toArray(children);
+    const [rightChildrenArray, setRightChildrenArray] = React.useState(React.Children.toArray(initialChildren));
+    const [leftChildrenArray, setLeftChildrenArray] = React.useState(React.Children.toArray(initialChildren));
+    const windowRef = React.useRef<HTMLDivElement>(null);
+    const leftRef = React.useRef<HTMLDivElement>(null);
+    const rightRef = React.useRef<HTMLDivElement>(null);
+    const [translate, setTranslate] = React.useState(0);
 
-
-    useEffect(() => {
-        setWindowSize(windowSizes.find((size) =>
-            window.innerWidth <= size.breakpoint.max && window.innerWidth >= size.breakpoint.min)?.items
-            || windowSizes[windowSizes.length-1].items);
-    }, []);
-
-    useEffect(() => {
-        firstRenderCallback.current();
-    }, [firstRenderCallback.current]);
-
-    if (childrenArray.length < windowSize * 2 - 1) {
-        childrenArray = childrenArray.concat(childrenArray);
+    const expandLeft = () => {
+        setLeftChildrenArray(leftChildrenArray.concat(initialChildren));
     }
 
-    const [visibleIndexesBounds, setVisibleIndexesBounds] = React.useState([0, windowSize]);
-    const [prevVisible, setPrevVisible] = React.useState(null as React.ReactNode[] | null);
-    const visibleIndexes = [] as number[];
-    const windowRef = React.useRef<HTMLDivElement | null>(null);
-    const prevWindowRef = React.useRef<HTMLDivElement | null>(null);
-    const [currentWindowAnimation, setCurrentWindowAnimation] = React.useState("");
-
-    for (let i = visibleIndexesBounds[0]; visibleIndexes.length < windowSize; i++) {
-        visibleIndexes.push(i % childrenArray.length)
-        if (i === childrenArray.length - 1) {
-            i = -1;
-        }
+    const expandRight = () => {
+        setRightChildrenArray(rightChildrenArray.concat(initialChildren));
     }
-
-    function subtractCyclic(value: number, windowSize: number, inclusive = false) {
-        const result = (value - windowSize + childrenArray.length) % (childrenArray.length);
-        if (inclusive && result === 0) {
-            return childrenArray.length;
-        }
-        return result;
-    }
-
-    const timeoutRef = React.useRef<any | null>(null);
-
-    useEffect(() => {
-        const prevWindow = prevWindowRef.current;
-        timeoutRef.current = setTimeout(() => {
-            setCurrentWindowAnimation("");
-        }, 700);
-    }, [visibleIndexesBounds]);
 
     return (
-        <Stack direction="row" className="w-full h-full items-center overflow-x-clip justify-center">
+        <Stack direction="row" className="w-full h-full items-center overflow-x-clip px-4">
             <NavButton iconRotation={270} onClick={() => {
-                firstRenderCallback.current = () => {
-                    setCurrentWindowAnimation("animate-slide-in-left");
-                    setVisibleIndexesBounds([visibleIndexesBounds[1] % childrenArray.length, subtractCyclic(visibleIndexesBounds[1], -windowSize, true)])
-                    setPrevVisible(visibleIndexes.map((index) => childrenArray[index]))
+                setTranslate(translate + 100);
+                if ((leftRef.current?.getBoundingClientRect().left ?? 0) > -window.innerWidth * 3) {
+                    expandLeft();
                 }
-                clearTimeout(timeoutRef.current);
-                setCurrentWindowAnimation(currentWindowAnimation === "" ? "a" : "");
             }}/>
-            {prevVisible && currentWindowAnimation === "animate-slide-in-right" &&
-                <WindowContainer translateClass={"animate-slide-out-left"} ref1={prevWindowRef} key={key++}>
-                    {prevVisible}
-                </WindowContainer>
-            }
-            <WindowContainer translateClass={currentWindowAnimation} ref1={windowRef}>
-                {
-                    visibleIndexes.map((index) => {
-                        return (
-                            <React.Fragment key={index}>
-                                {childrenArray[index]}
-                            </React.Fragment>
-                        )
-                    })
-                }
-            </WindowContainer>
-            {prevVisible && currentWindowAnimation === "animate-slide-in-left" &&
-                <WindowContainer translateClass={"animate-slide-out-right"} ref1={prevWindowRef} key={key++}>
-                    {prevVisible}
-                </WindowContainer>
-            }
+            <Grid2 container ref={windowRef} className="w-full h-full items-center
+            transition-transform duration-700 justify-center gap-4"
+                   style={{transform: `translateX(${translate}dvw)`}}>
+                <Grid2 xs component={Box} className="flex justify-end h-full w-fit">
+                    <Stack ref={leftRef} className="gap-4 justify-end items-center min-w-fit h-full" direction="row">
+                        {leftChildrenArray.map((child, index) => (
+                                <React.Fragment key={index}>
+                                    {child}
+                                </React.Fragment>
+                            )
+                        )}
+                    </Stack>
+                </Grid2>
+                <Grid2 xs component={Box} className="flex justify-start h-full w-fit">
+                    <Stack ref={rightRef} direction="row" className="gap-4 justify-start items-center min-w-fit h-full">
+                        {rightChildrenArray.map((child, index) => (
+                                <React.Fragment key={index}>
+                                    {child}
+                                </React.Fragment>
+                            )
+                        )}
+                    </Stack>
+                </Grid2>
+            </Grid2>
             <NavButton iconRotation={90} onClick={() => {
-                firstRenderCallback.current = () => {
-                    setCurrentWindowAnimation("animate-slide-in-right");
-                    setVisibleIndexesBounds([visibleIndexesBounds[1] % childrenArray.length, subtractCyclic(visibleIndexesBounds[1], -windowSize, true)])
-                    setPrevVisible(visibleIndexes.map((index) => childrenArray[index]))
+                setTranslate(translate - 100);
+                if ((rightRef.current?.getBoundingClientRect().right ?? 0) < window.innerWidth * 3) {
+                    expandRight();
                 }
-                clearTimeout(timeoutRef.current);
-                setCurrentWindowAnimation(currentWindowAnimation === "" ? "a" : "");
             }}/>
         </Stack>
     )
