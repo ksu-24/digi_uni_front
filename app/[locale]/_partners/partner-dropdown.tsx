@@ -2,10 +2,29 @@
 
 import React from "react";
 import {useTranslations} from "next-intl";
-import {Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Stack, Typography} from "@mui/material";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Box,
+    IconButton,
+    Skeleton,
+    Stack,
+    Typography
+} from "@mui/material";
 import {Partner, Person} from "@/app/[locale]/_partners/partner-details";
 import {KeyboardArrowDown} from "@mui/icons-material";
 import Link from "next/link";
+
+function PersonPlaceholder() {
+    return (
+        <Stack className="gap-1 w-full">
+            <Skeleton variant="text" width="100%"/>
+            <Skeleton variant="text" width="100%" className="mt-3"/>
+            <Skeleton variant="text" width="100%"/>
+        </Stack>
+    )
+}
 
 export default function PartnerDropdown(
     {
@@ -25,11 +44,12 @@ export default function PartnerDropdown(
             borderTop: 0,
             "::before": {
                 display: "none"
-            }
-        }} >
+            },
+            margin: "0 !important"
+        }}>
             <AccordionSummary sx={{
                 "& .MuiAccordionSummary-content": {
-                    margin: "0.75rem 0 0.25rem 0"
+                    margin: "0 !important"
                 }
             }}>
                 <Stack direction="row" className="items-center justify-between w-full h-fit" onClick={() => {
@@ -61,9 +81,12 @@ export default function PartnerDropdown(
                         </Link>
                         <Stack direction="row" className="gap-[5%] w-full">
                             {
-                                partner.people?.map((person, index) => (
-                                    <PersonInfo key={index} person={person}/>
-                                ))
+                                partner.people ? partner.people.map((person, index) => (
+                                        <PersonInfo key={index} person={person}/>
+                                    ))
+                                    : <>
+                                        <PersonPlaceholder/> <PersonPlaceholder/>
+                                    </>
                             }
                         </Stack>
                     </Stack>

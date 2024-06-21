@@ -14,12 +14,12 @@ export type Partner = {
     country: string;
     logo: string;
     link: string;
-    people: Person[];
+    people?: Person[];
 };
 
 export async function PartnerDetails() {
     return (
-        <DefaultContainer classes="gap-0">
+        <DefaultContainer classes="!gap-0 mb-[20dvh]">
             {
                 partners.map((partner, index) => (
                     <PartnerDropdown key={index} index={index+1} partner={partner}/>
