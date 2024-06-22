@@ -55,6 +55,11 @@
                     "title": "Mariupol State University"
                 }
             }
+        },
+        "news": {
+            "enumerationCaption": "Projects news",
+            "title": "Latest news",
+            "all": "All news"
         }
     },
     "countries": {

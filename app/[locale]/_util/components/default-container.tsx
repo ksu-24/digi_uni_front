@@ -8,7 +8,7 @@ export function DefaultContainer(
         children,
         classes
     }: {
-        children: React.ReactNode,
+        children?: React.ReactNode,
         classes?: string
     }
 ) {

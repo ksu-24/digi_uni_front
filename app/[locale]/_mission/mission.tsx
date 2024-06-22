@@ -1,7 +1,7 @@
 import {Box, Stack} from "@mui/material";
 import Text from "@/app/[locale]/_mission/text";
 import Tiles from "@/app/[locale]/_mission/tiles";
-import {SectionTitle} from "@/app/[locale]/util-components";
+import {SectionTitle} from "@/app/[locale]/_util/components/section-title";
 import {DefaultContainer} from "@/app/[locale]/_util/components/default-container";
 
 export default async function Mission() {

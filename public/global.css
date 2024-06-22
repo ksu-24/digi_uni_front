@@ -48,3 +48,22 @@
     }
 }
 
+html {
+    scrollbar-track-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-thumb {
+    visibility: visible;
+    background: lightgray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+

@@ -24,11 +24,11 @@ export default async function LocaleLayout(
     const dicts = await getMessages();
 
     return (
-        <html lang={locale}>
+        <html lang={locale} className="w-dvw overflow-x-clip bg-transparent">
         <head>
             <Fonts/>
         </head>
-        <body>
+        <body className="w-full">
         <NextIntlClientProvider messages={dicts}>
             <StyledEngineProvider injectFirst>
                 <AppRouterCacheProvider options={{

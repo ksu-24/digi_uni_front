@@ -48,10 +48,14 @@ const themeObj = {
         h5: {
             fontFamily: headerFont,
             fontSize: 24,
-            fontWeight: 500
+            fontWeight: 500,
+            lineHeight: "33px"
         },
         h6: {
-            fontFamily: headerFont
+            fontFamily: headerFont,
+            fontSize: 20,
+            fontWeight: 500,
+            lineHeight: "28px"
         },
         body1: {
             fontFamily: body1Font,

@@ -7,5 +7,8 @@
     },
     "info": {
         "main": "#D5DAFF"
+    },
+    "extra": {
+        "gray": "#F7F7F7"
     }
 }

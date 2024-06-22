@@ -26,6 +26,7 @@ const config: Config = {
                 "primary": colors.primary.main,
                 "secondary": colors.secondary.main,
                 "info": colors.info.main,
+                "themed-gray": colors.extra.gray
             },
         },
     },

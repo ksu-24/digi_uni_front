@@ -1,7 +1,7 @@
 import {Stack} from "@mui/material";
 import Text from "@/app/[locale]/_erasmus/text";
 import Cards from "@/app/[locale]/_erasmus/cards";
-import {SectionTitle} from "@/app/[locale]/util-components";
+import {SectionTitle} from "@/app/[locale]/_util/components/section-title";
 import {DefaultContainer} from "@/app/[locale]/_util/components/default-container";
 
 export default async function Erasmus() {

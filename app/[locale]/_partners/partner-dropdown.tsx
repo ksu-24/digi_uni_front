@@ -19,9 +19,9 @@ import Link from "next/link";
 function PersonPlaceholder() {
     return (
         <Stack className="gap-1 w-full">
-            <Skeleton variant="text" width="100%"/>
-            <Skeleton variant="text" width="100%" className="mt-3"/>
-            <Skeleton variant="text" width="100%"/>
+            <Skeleton variant="text" width="200px"/>
+            <Skeleton variant="text" width="200px" className="mt-3"/>
+            <Skeleton variant="text" width="200px"/>
         </Stack>
     )
 }
@@ -70,7 +70,7 @@ export default function PartnerDropdown(
                 </Stack>
             </AccordionSummary>
             <AccordionDetails>
-                <Stack direction="row" className="w-fill h-[20dvh] items-center gap-[5%] bg-[#F7F7F7]">
+                <Stack direction="row" className="w-fill h-[20dvh] items-center gap-[5%] bg-themed-gray p-[2%]">
                     <Box className="relative w-fit h-full" key={partner.translationKey}>
                         <img src={partner.logo} alt={partner.translationKey}
                              className="max-w-[25dvw] w-auto h-full object-contain"/>
@@ -79,7 +79,7 @@ export default function PartnerDropdown(
                         <Link href={partner.link}>
                             <Typography variant="body2" className="text-[#012AFF]">{partner.link}</Typography>
                         </Link>
-                        <Stack direction="row" className="gap-[5%] w-full">
+                        <Stack direction="row" className="gap-[25%] w-fit">
                             {
                                 partner.people ? partner.people.map((person, index) => (
                                         <PersonInfo key={index} person={person}/>
