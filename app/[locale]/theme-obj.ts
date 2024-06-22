@@ -96,7 +96,8 @@ const themeObj = {
                 root: {
                     fontFamily: body2Font,
                     borderRadius: Number.MAX_VALUE,
-                    padding: "14px 32px 14px 32px"
+                    padding: "14px 32px 14px 32px",
+                    textTransform: "capitalize",
                 }
             }
         },

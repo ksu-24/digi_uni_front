@@ -13,7 +13,7 @@
     },
     "button": {
         "primary": "#C6FB50",
-        "secondary": "black",
+        "secondary": "#16161D",
         "tertiary": "white"
     }
 }

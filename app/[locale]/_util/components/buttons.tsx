@@ -1,5 +1,6 @@
-import {ReactNode} from "react";
+import {CSSProperties, ReactNode} from "react";
 import {Button, ButtonProps} from "@mui/material";
+import colors from "@/resources/colors.json";
 
 export function PrimaryButton(
     {
@@ -20,20 +21,25 @@ export function PrimaryButton(
 export function SecondaryButton(
     {
         children,
-        className,
-        type,
+        styles,
         props
     }: {
         children?: ReactNode,
-        className?: string,
-        type?: "button" | "submit" | "reset",
+        styles?: CSSProperties,
         props?: ButtonProps
     }) {
     props = props ?? {};
     return (
         <Button {...props}
-                type={type}
-                className={`bg-button-secondary capitalize text-white hover:bg-button-primary hover:text-black ${className}`}>
+                sx={{
+                    "&:hover": {
+                        backgroundColor: colors.button.primary + ' !important',
+                        color: "black"
+                    },
+                    backgroundColor: colors.button.secondary + ' !important',
+                    color: "white",
+                    ...styles
+                }}>
             {children}
         </Button>
     )
