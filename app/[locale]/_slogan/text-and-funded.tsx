@@ -10,7 +10,7 @@ export async function TextAndFunded() {
             <Typography variant="body1" className="text-wrap whitespace-pre-line">
                 {translation("Digital university")}
             </Typography>
-            <Typography variant="h2">
+            <Typography variant="h1">
                 {translation("Creating first")}
             </Typography>
             <Box className="relative w-1/2 h-[10%]">

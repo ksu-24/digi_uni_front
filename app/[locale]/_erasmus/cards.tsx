@@ -12,7 +12,7 @@ import themeObj from "@/app/[locale]/theme-obj";
 const borders = "border-[1px] border-[#DEE1FC]";
 
 function CardTitle(props: { translations: (key: "title") => string }) {
-    return <Typography variant="h5" style={{
+    return <Typography variant="h4" style={{
         backgroundColor: themeObj.palette.secondary.main
     }} className="w-fit">
         {props.translations("title") + ":"}

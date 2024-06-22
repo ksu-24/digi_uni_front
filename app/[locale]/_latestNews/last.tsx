@@ -17,7 +17,7 @@ export default function Last(
             </Box>
             <Stack className="h-fit w-full gap-7 mt-2">
                 <Timestamp date={news.date}/>
-                <Typography variant="h5">{news.title}</Typography>
+                <Typography variant="h4">{news.title}</Typography>
             </Stack>
         </Stack>
     )

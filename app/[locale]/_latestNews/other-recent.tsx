@@ -57,7 +57,7 @@ function NewsVisualization(
         <Stack className="w-full h-full border-t-[1px] border-[#AAAAAD] gap-5 pt-5 hover:scale-105" direction="column">
             <Link href={`/news/${news.id}`} className="w-full h-full">
                 <Timestamp date={news.date}/>
-                <Typography variant="h6">{news.title}</Typography>
+                <Typography variant="h5">{news.title}</Typography>
             </Link>
         </Stack>
     )
