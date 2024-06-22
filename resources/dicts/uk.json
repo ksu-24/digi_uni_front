@@ -60,11 +60,23 @@
             "enumerationCaption": "Новини проекту",
             "title": "Останні новини",
             "all": "Всі новини"
+        },
+        "feedback": {
+            "enumerationCaption": "Контакти"
         }
     },
     "countries": {
         "Ukraine": "Україна",
         "Poland": "Польща",
         "Germany": "Німеччина"
+    },
+    "feedbackForm": {
+        "title": "Ваші питання або пропозіцї надсилайте координаторам проекту:",
+        "name": "Ім'я",
+        "email": "Email",
+        "message": "Повідомлення",
+        "send": "Відправити",
+        "oleh": "Олег Бронін",
+        "kseniia": "Ксенія Смирнова"
     }
 }

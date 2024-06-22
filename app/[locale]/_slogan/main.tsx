@@ -1,7 +1,7 @@
 import {Stack} from "@mui/material";
 import {TextAndFunded} from "@/app/[locale]/_slogan/text-and-funded";
 import {DigiuniLoading} from "@/app/[locale]/_slogan/digiuni-loading";
-import {Social} from "@/app/[locale]/_slogan/social";
+import {Social} from "@/app/[locale]/_util/components/social";
 
 export default async function Main() {
     return (

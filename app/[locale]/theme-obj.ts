@@ -1,4 +1,6 @@
 import colors from "@/resources/colors.json"
+import {SvgIconTypeMap, ThemeOptions} from "@mui/material";
+import {DefaultComponentProps} from "@mui/types";
 
 const headerFont = "IBM Plex Serif";
 const body1Font = "IBM Plex Mono";
@@ -86,8 +88,49 @@ const themeObj = {
         },
         caption: {
             fontFamily: body2Font,
-        }
+        },
+    },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    fontFamily: body2Font,
+                    borderRadius: Number.MAX_VALUE,
+                    padding: "14px 32px 14px 32px"
+                }
+            }
+        },
+        MuiFormLabel: {
+            styleOverrides: {
+                root: {
+                    fontFamily: body2Font,
+                    fontSize: 16,
+                    lineHeight: 1.4,
+                    color: "black",
+                    paddingLeft: 10,
+                    "&.Mui-focused": {
+                        paddingLeft: 0
+                    }
+                }
+            }
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    fontFamily: body2Font,
+                    fontSize: 16,
+                    lineHeight: 1.4,
+                    color: "black"
+                }
+            }
+        },
     }
 }
 
 export default themeObj;
+
+export const iconProps = {
+    style: {
+        fontSize: "1.67rem"
+    }
+} as DefaultComponentProps<SvgIconTypeMap<{}, "svg">>

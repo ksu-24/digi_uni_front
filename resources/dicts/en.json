@@ -60,13 +60,24 @@
             "enumerationCaption": "Projects news",
             "title": "Latest news",
             "all": "All news"
+        },
+        "feedback": {
+            "enumerationCaption": "Contacts"
         }
     },
     "countries": {
         "Ukraine": "Ukraine",
         "Germany": "Germany",
         "Poland": "Poland"
+    },
+    "feedbackForm": {
+        "title": "Send your questions or suggestions to the project coordinators:",
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "send": "Send",
+        "oleh": "Oleh Bronin",
+        "kseniia": "Kseniia Smyrnova"
     }
-
 }
 

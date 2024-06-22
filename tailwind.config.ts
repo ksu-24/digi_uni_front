@@ -26,7 +26,10 @@ const config: Config = {
                 "primary": colors.primary.main,
                 "secondary": colors.secondary.main,
                 "info": colors.info.main,
-                "themed-gray": colors.extra.gray
+                "themed-gray": colors.extra.gray,
+                "button-primary": colors.button.primary,
+                "button-secondary": colors.button.secondary,
+                "button-tertiary": colors.button.tertiary,
             },
         },
     },

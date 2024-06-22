@@ -1,11 +1,12 @@
 import {Stack} from "@mui/material";
 import Slogan from "@/app/[locale]/_slogan/slogan";
 import {unstable_setRequestLocale} from "next-intl/server";
-import Tiles from "@/app/[locale]/tiles";
+import {SecondaryTiles, InfoTiles} from "@/app/[locale]/tiles";
 import Erasmus from "@/app/[locale]/_erasmus/erasmus";
 import Mission from "@/app/[locale]/_mission/mission";
 import Partners from "@/app/[locale]/_partners/partners";
 import LatestNews from "@/app/[locale]/_latestNews/latest-news";
+import Feedback from "@/app/[locale]/_feedback/feedback";
 
 export default async function Main(params: { locale: string }) {
     unstable_setRequestLocale(params.locale);
@@ -14,7 +15,7 @@ export default async function Main(params: { locale: string }) {
             <section id="slogan">
                 <Slogan/>
             </section>
-            <Tiles/>
+            <SecondaryTiles/>
             <section id="erasmus">
                 <Erasmus/>
             </section>
@@ -27,6 +28,10 @@ export default async function Main(params: { locale: string }) {
             <section id="latest-news">
                 <LatestNews/>
             </section>
+            <section id="feedback-form">
+                <Feedback/>
+            </section>
+            <InfoTiles/>
         </Stack>
     );
 }

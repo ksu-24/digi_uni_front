@@ -10,5 +10,10 @@
     },
     "extra": {
         "gray": "#F7F7F7"
+    },
+    "button": {
+        "primary": "#C6FB50",
+        "secondary": "black",
+        "tertiary": "white"
     }
 }
