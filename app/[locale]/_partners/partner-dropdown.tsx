@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import {Partner, Person} from "@/app/[locale]/_partners/partner-details";
 import {KeyboardArrowDown} from "@mui/icons-material";
-import Link from "next/link";
+import { Link } from "@/app/_localization/navigation";
 
 function PersonPlaceholder() {
     return (

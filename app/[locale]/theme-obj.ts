@@ -104,7 +104,7 @@ const themeObj = {
         },
         caption: {
             fontFamily: body1Font,
-            fontSize: 16,
+            fontSize: 14,
             whiteSpace: "pre-wrap",
             lineHeight: 1.1,
             letterSpacing: "-0.03rem"

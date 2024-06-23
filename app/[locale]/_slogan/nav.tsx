@@ -1,7 +1,7 @@
 import {getTranslations} from "next-intl/server";
 import {Stack, Typography} from "@mui/material";
 import links from "@/resources/links.json";
-import Link from "next/link";
+import { Link } from "@/app/_localization/navigation";
 
 export default async function Nav() {
     const translations = await getTranslations("nav")

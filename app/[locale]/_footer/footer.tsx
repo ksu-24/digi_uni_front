@@ -22,7 +22,7 @@ export default async function Footer() {
                         <Typography variant="body1" className="text-themed-light-gray"
                                     fontSize="16px">{translations("slogan")}</Typography>
                     </Stack>
-                    <Nav/>
+                    <Nav className="text-white"/>
                 </Stack>
                 <img src={"/images/footer/digiuni-dark-purple.svg"} alt="Digiuni Logo"/>
                 <Typography variant="body2" className="w-full min-h-fit text-themed-darker-gray" fontSize="14px">

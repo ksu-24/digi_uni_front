@@ -1,6 +1,6 @@
 import {Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
-import Link from "next/link";
+import { Link } from "@/app/_localization/navigation";
 
 export default async function Title() {
     const translations = await getTranslations("main.news");

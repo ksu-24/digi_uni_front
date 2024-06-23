@@ -1,10 +1,14 @@
+"use client"
+
 import {Stack, Typography} from "@mui/material";
 import {Link} from "@/app/_localization/navigation";
 import {localeNames, locales} from "@/app/_localization/i18n";
-import {getLocale} from "next-intl/server";
+import {useLocale} from "next-intl";
+import {usePathname} from "@/app/_localization/navigation";
 
-export default async function LanguageToggle({currentPath}: { currentPath: string }) {
-    const currentLocale = await getLocale();
+export default function LanguageToggle() {
+    const currentLocale = useLocale();
+    const currentPath = usePathname();
     return (
         <Stack direction="row" gap="26px" className="pr-[5dvw]">
             {

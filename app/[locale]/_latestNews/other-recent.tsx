@@ -4,7 +4,7 @@ import News from '@/app/_util/news';
 import {Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
 import useWindow from "@/app/_util/use-window";
-import Link from "next/link";
+import { Link } from "@/app/_localization/navigation";
 
 const newsAmount = [
     {
