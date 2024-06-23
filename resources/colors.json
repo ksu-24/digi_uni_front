@@ -9,8 +9,8 @@
         "main": "#D5DAFF"
     },
     "button": {
-        "hover-primary": "white",
-        "hover-secondary": "#C6FB50"
+        "hover-primary": "#C6FB50",
+        "hover-secondary": "white"
     },
     "gray": {
         "darkest": "#16161D",

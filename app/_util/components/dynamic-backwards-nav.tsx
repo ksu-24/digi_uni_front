@@ -14,7 +14,7 @@ export default function DynamicBackwardsNav() {
                 segments.map((segment, index) => {
                     return (
                         <Link href={"/" + segments.slice(0, index + 1).join("/")} key={index}>
-                            <Typography variant="caption" className="text-themed-light-gray">
+                            <Typography variant="caption" className="text-themed-light-gray hover:text-themed-darker-gray" fontWeight={500}>
                                 {translations(segment as never) || segment}
                             </Typography>
                         </Link>

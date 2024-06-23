@@ -2,9 +2,9 @@ import colors from "@/resources/colors.json"
 import {SvgIconTypeMap} from "@mui/material";
 import {DefaultComponentProps} from "@mui/types";
 
-const headerFont = "IBM Plex Serif";
-const body1Font = "IBM Plex Mono";
-const body2Font = "Inter";
+export const headerFont = "IBM Plex Serif";
+export const body1Font = "IBM Plex Mono";
+export const body2Font = "Inter";
 
 const themeObj = {
     palette: colors,

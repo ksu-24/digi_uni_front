@@ -33,10 +33,10 @@ export function SecondaryButton(
         <Button {...props}
                 sx={{
                     "&:hover": {
-                        backgroundColor: colors.button["hover-secondary"] + ' !important',
+                        backgroundColor: colors.button["hover-primary"] + ' !important',
                         color: "black"
                     },
-                    backgroundColor: colors.gray.dark + ' !important',
+                    backgroundColor: colors.gray.darkest + ' !important',
                     color: "white",
                     ...styles
                 }}>
