@@ -3,7 +3,7 @@
 import {Stack, TextField, Typography} from "@mui/material";
 import {useTranslations} from "next-intl";
 import {useState} from "react";
-import {SecondaryButton} from "@/app/[locale]/_util/components/buttons";
+import {SecondaryButton} from "@/app/_util/components/buttons";
 
 export function Form() {
     const translations = useTranslations("feedbackForm");
@@ -35,7 +35,7 @@ export function Form() {
                         {translations("send")}
                     </Typography>
                     <svg width="28" height="14" viewBox="0 0 28 14" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    className={`${invert ? "invert" : ""}`}>
+                         className={`${invert ? "invert" : ""}`}>
                         <path fillRule="evenodd" clipRule="evenodd"
                               d="M26.2931 7.00003L20.6465 12.6485L21.3537 13.3555L27.7071 7.00001L21.3537 0.644792L20.6465 1.3518L26.2931 7.00003Z"
                               fill="white"/>

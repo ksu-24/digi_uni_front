@@ -1,7 +1,7 @@
 import {Box, Stack} from "@mui/material";
 import partners from "@/resources/partners.json";
 import React from "react";
-import Carousel from "@/app/[locale]/_util/components/carousel";
+import Carousel from "@/app/_util/components/carousel";
 
 export default function PartnersWheel() {
     return (
@@ -11,7 +11,8 @@ export default function PartnersWheel() {
                     partners.map((partner) => {
                         return (
                             <Box className="relative w-fit h-full" key={partner.translationKey}>
-                                <img src={partner.logo} alt={partner.translationKey} className="max-w-[25dvw] w-auto h-full object-contain"/>
+                                <img src={partner.logo} alt={partner.translationKey}
+                                     className="max-w-[25dvw] w-auto h-full object-contain"/>
                             </Box>
                         )
                     })

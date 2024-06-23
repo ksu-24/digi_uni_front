@@ -1,15 +1,14 @@
 {
-    "links": {
-        "Main": "Main",
-        "About": "About",
-        "Programs": "Programs",
-        "News": "News",
-        "Contacts": "Contacts"
+    "nav": {
+        "main": "Main",
+        "about": "About",
+        "programs": "Programs",
+        "news": "News",
+        "contacts": "Contacts"
     },
     "main": {
         "slogan": {
-            "Digital university": "Digital university -\nOpen ukrainian initiative",
-            "Creating first": "Creating first ukrainian digital university together"
+            "creatingFirst": "Creating first ukrainian digital university together"
         },
         "about": {
             "enumerationCaption": "About project",
@@ -78,6 +77,10 @@
         "send": "Send",
         "oleh": "Oleh Bronin",
         "kseniia": "Kseniia Smyrnova"
+    },
+    "misc": {
+        "slogan": "Digital university -\nOpen ukrainian initiative",
+        "copyright": "©2024 Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or [name of the granting authority]. Neither the European Union nor the granting authority can be held responsible for them."
     }
 }
 

@@ -1,6 +1,6 @@
 import {Stack} from "@mui/material";
 import Last from "@/app/[locale]/_latestNews/last";
-import {getNews} from "@/app/[locale]/_util/news";
+import {getNews} from "@/app/_util/news";
 import OtherRecent from "@/app/[locale]/_latestNews/other-recent";
 
 export default async function Body() {

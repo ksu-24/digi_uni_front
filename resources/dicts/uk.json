@@ -1,15 +1,14 @@
 {
-    "links": {
-        "Main": "Головна",
-        "About": "Про нас",
-        "Programs": "Програми",
-        "News": "Новини",
-        "Contacts": "Контакти"
+    "nav": {
+        "main": "Головна",
+        "about": "Про нас",
+        "programs": "Програми",
+        "news": "Новини",
+        "contacts": "Контакти"
     },
     "main": {
         "slogan": {
-            "Digital university": "Цифровий університет -\nВідкрита українська ініціатива",
-            "Creating first": "Створюємо перший український цифровий університет разом"
+            "creatingFirst": "Створюємо перший український цифровий університет разом"
         },
         "about": {
             "enumerationCaption": "Про проект",
@@ -78,5 +77,9 @@
         "send": "Відправити",
         "oleh": "Олег Бронін",
         "kseniia": "Ксенія Смирнова"
+    },
+    "misc": {
+        "slogan": "Цифровий університет -\nВідкрита українська ініціатива",
+        "copyright": "©2024 Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or [name of the granting authority]. Neither the European Union nor the granting authority can be held responsible for them."
     }
 }

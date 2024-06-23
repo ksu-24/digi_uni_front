@@ -4,10 +4,11 @@ import React from "react";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import {ThemeProvider} from "@mui/system";
 import theme from "@/app/[locale]/theme";
-import {Fonts} from "@/app/[locale]/_util/components/fonts";
+import {Fonts} from "@/app/_util/components/fonts";
 import {locales} from "@/app/_localization/i18n";
 import {StyledEngineProvider} from "@mui/material";
 import "@/public/global.css"
+import Footer from "@/app/[locale]/_footer/footer";
 
 export default async function LocaleLayout(
     {
@@ -24,8 +25,9 @@ export default async function LocaleLayout(
     const dicts = await getMessages();
 
     return (
-        <html lang={locale} className="w-dvw overflow-x-clip bg-transparent">
+        <html lang={locale} className="min-w-[100dvw]">
         <head>
+            <title>Digiuni</title>
             <Fonts/>
         </head>
         <body className="w-full">
@@ -36,6 +38,7 @@ export default async function LocaleLayout(
                 }}>
                     <ThemeProvider theme={theme}>
                         {children}
+                        <Footer/>
                     </ThemeProvider>
                 </AppRouterCacheProvider>
             </StyledEngineProvider>

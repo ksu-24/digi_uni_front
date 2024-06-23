@@ -1,7 +1,7 @@
 import {Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
-import {Social} from "@/app/[locale]/_util/components/social";
-import {Form} from "@/app/[locale]/_util/components/form";
+import {Social} from "@/app/_util/components/social";
+import {Form} from "@/app/_util/components/form";
 
 
 export default async function FeedbackForm() {

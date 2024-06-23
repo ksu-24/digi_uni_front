@@ -17,7 +17,8 @@ export default function Timestamp(
     };
     return (
         <time dateTime={date.toString()}>
-            <Typography variant="body1" fontSize="14px" lineHeight="15px" {...textProps}>{new Intl.DateTimeFormat('en-GB', format).format(new Date(date))}</Typography>
+            <Typography variant="body1" fontSize="14px"
+                        lineHeight="15px" {...textProps}>{new Intl.DateTimeFormat('en-GB', format).format(new Date(date))}</Typography>
         </time>
     )
 }

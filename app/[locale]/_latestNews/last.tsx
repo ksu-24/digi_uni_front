@@ -1,7 +1,7 @@
 import {Box, Stack, Typography} from "@mui/material";
-import News from "@/app/[locale]/_util/news";
+import News from "@/app/_util/news";
 import Image from "next/image";
-import Timestamp from "@/app/[locale]/_util/components/timestamp";
+import Timestamp from "@/app/_util/components/timestamp";
 
 export default function Last(
     {

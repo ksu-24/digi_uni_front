@@ -1,7 +1,7 @@
 {
-    "Main": "/",
-    "About": "/about",
-    "Programs": "/programs",
-    "News": "/news",
-    "Contacts": "/contacts"
+    "main": "/",
+    "about": "/about",
+    "programs": "/programs",
+    "news": "/news",
+    "contacts": "/contacts"
 }

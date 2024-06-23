@@ -1,6 +1,6 @@
 import {Stack, Typography} from "@mui/material";
 import {Link} from "@/app/_localization/navigation";
-import {locales, localeNames} from "@/app/_localization/i18n";
+import {localeNames, locales} from "@/app/_localization/i18n";
 import {getLocale} from "next-intl/server";
 
 export default async function LanguageToggle({currentPath}: { currentPath: string }) {

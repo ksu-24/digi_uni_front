@@ -5,7 +5,7 @@ import {iconProps} from "@/app/[locale]/theme-obj";
 export function Social(
     {
         direction = "column"
-    } : {
+    }: {
         direction?: "row" | "column"
     }
 ) {

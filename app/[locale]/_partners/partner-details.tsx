@@ -1,7 +1,7 @@
 import React from "react";
 import partners from "@/resources/partners.json";
 import PartnerDropdown from "@/app/[locale]/_partners/partner-dropdown";
-import {DefaultContainer} from "@/app/[locale]/_util/components/default-container";
+import {DefaultContainer} from "@/app/_util/components/default-container";
 
 export type Person = {
     title: string;
@@ -19,10 +19,10 @@ export type Partner = {
 
 export async function PartnerDetails() {
     return (
-        <DefaultContainer classes="!gap-0 mb-[20dvh]">
+        <DefaultContainer className="!gap-0 mb-[20dvh]">
             {
                 partners.map((partner, index) => (
-                    <PartnerDropdown key={index} index={index+1} partner={partner}/>
+                    <PartnerDropdown key={index} index={index + 1} partner={partner}/>
                 ))
             }
         </DefaultContainer>

@@ -1,9 +1,9 @@
 "use client"
 
-import News from '@/app/[locale]/_util/news';
+import News from '@/app/_util/news';
 import {Stack, Typography} from "@mui/material";
-import Timestamp from "@/app/[locale]/_util/components/timestamp";
-import useWindow from "@/app/[locale]/_util/use-window";
+import Timestamp from "@/app/_util/components/timestamp";
+import useWindow from "@/app/_util/use-window";
 import Link from "next/link";
 
 const newsAmount = [

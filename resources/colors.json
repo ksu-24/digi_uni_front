@@ -8,12 +8,14 @@
     "info": {
         "main": "#D5DAFF"
     },
-    "extra": {
-        "gray": "#F7F7F7"
-    },
     "button": {
-        "primary": "#C6FB50",
-        "secondary": "#16161D",
-        "tertiary": "white"
+        "hover-primary": "white",
+        "hover-secondary": "#C6FB50"
+    },
+    "gray": {
+        "darkest": "#16161D",
+        "darker": "#62626A",
+        "default": "#F7F7F7",
+        "light": "#AAAAAD"
     }
 }

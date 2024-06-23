@@ -6,14 +6,16 @@ export const defaultGap = "gap-[6dvh]";
 export function DefaultContainer(
     {
         children,
-        classes
+        component,
+        className
     }: {
         children?: React.ReactNode,
-        classes?: string
+        component?: "div" | "form" | "section" | "article" | "aside" | "header" | "footer" | "main" | "nav",
+        className?: string
     }
 ) {
     return (
-        <Stack className={`${classes} w-full px-[11%] ${defaultGap}`}>
+        <Stack component={component ?? "div"} className={`${className} w-full px-[11%] ${defaultGap}`}>
             {children}
         </Stack>
     );

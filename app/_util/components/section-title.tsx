@@ -6,7 +6,7 @@ export async function SectionTitle(
     {
         number,
         titleTranslationKey,
-    } : {
+    }: {
         number: number,
         titleTranslationKey: string
     }

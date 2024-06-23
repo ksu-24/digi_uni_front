@@ -12,7 +12,7 @@ export function PrimaryButton(
     }) {
     props = props ?? {};
     return (
-        <Button {...props} className="bg-button-primary capitalize hover:bg-button-tertiary">
+        <Button {...props} className="!bg-button-primary !capitalize hover:!bg-button-hover-primary">
             {children}
         </Button>
     )
@@ -33,10 +33,10 @@ export function SecondaryButton(
         <Button {...props}
                 sx={{
                     "&:hover": {
-                        backgroundColor: colors.button.primary + ' !important',
+                        backgroundColor: colors.button["hover-secondary"] + ' !important',
                         color: "black"
                     },
-                    backgroundColor: colors.button.secondary + ' !important',
+                    backgroundColor: colors.gray.dark + ' !important',
                     color: "white",
                     ...styles
                 }}>

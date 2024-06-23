@@ -1,5 +1,5 @@
 import colors from "@/resources/colors.json"
-import {SvgIconTypeMap, ThemeOptions} from "@mui/material";
+import {SvgIconTypeMap} from "@mui/material";
 import {DefaultComponentProps} from "@mui/types";
 
 const headerFont = "IBM Plex Serif";
@@ -22,7 +22,9 @@ const themeObj = {
                 fontSize: 46
             },
             fontWeight: 500,
-            lineHeight: 1.2
+            lineHeight: 1.2,
+            whiteSpace: "pre-wrap",
+            letterSpacing: "-0.02rem"
         },
         h2: {
             fontFamily: headerFont,
@@ -37,7 +39,9 @@ const themeObj = {
                 fontSize: 38
             },
             fontWeight: 500,
-            lineHeight: 1.3
+            lineHeight: 1.3,
+            whiteSpace: "pre-wrap",
+            letterSpacing: "-0.01rem"
         },
         h3: {
             fontFamily: headerFont,
@@ -55,39 +59,55 @@ const themeObj = {
                 lineHeight: "45px"
             },
             fontWeight: 500,
-            lineHeight: 1.3
+            lineHeight: 1.3,
+            whiteSpace: "pre-wrap",
+            letterSpacing: "-0.01rem"
         },
         h4: {
             fontFamily: headerFont,
             fontSize: 24,
             fontWeight: 500,
-            lineHeight: 1.4
+            lineHeight: 1.4,
+            whiteSpace: "pre-wrap",
+            letterSpacing: "-0.01rem"
         },
         h5: {
             fontFamily: headerFont,
             fontSize: 20,
             fontWeight: 500,
-            lineHeight: 1.4
+            lineHeight: 1.4,
+            whiteSpace: "pre-wrap",
+            letterSpacing: "-0.03rem"
         },
         h6: {
             fontFamily: headerFont,
             fontSize: 16,
             fontWeight: 500,
-            lineHeight: 1.1
+            lineHeight: 1.1,
+            whiteSpace: "pre-wrap",
+            letterSpacing: 0
         },
         body1: {
             fontFamily: body1Font,
             lineHeight: 1.5,
             fontSize: 18,
-            fontWeight: 400
+            fontWeight: 400,
+            whiteSpace: "pre-wrap",
+            letterSpacing: 0
         },
         body2: {
             fontFamily: body2Font,
             lineHeight: 1.5,
-            fontSize: 16
+            fontSize: 16,
+            whiteSpace: "pre-wrap",
+            letterSpacing: 0
         },
         caption: {
-            fontFamily: body2Font,
+            fontFamily: body1Font,
+            fontSize: 16,
+            whiteSpace: "pre-wrap",
+            lineHeight: 1.1,
+            letterSpacing: "-0.03rem"
         },
     },
     components: {

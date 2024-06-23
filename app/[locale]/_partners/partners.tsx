@@ -1,6 +1,6 @@
 import {Stack} from "@mui/material";
 import Heading from "@/app/[locale]/_partners/heading";
-import {defaultGap} from "@/app/[locale]/_util/components/default-container";
+import {defaultGap} from "@/app/_util/components/default-container";
 import PartnersWheel from "@/app/[locale]/_partners/partners-wheel";
 import {PartnerDetails} from "@/app/[locale]/_partners/partner-details";
 
