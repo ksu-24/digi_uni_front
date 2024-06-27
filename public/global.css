@@ -48,10 +48,6 @@
     }
 }
 
-html {
-    scrollbar-track-color: transparent;
-}
-
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -72,4 +68,12 @@ html {
 .backwards-nav &:not(:first-child):before {
     content: '|';
     margin-right: 0.5rem;
+}
+
+html, body {
+    width: 100%;
+    width: -webkit-calc(100dvw - 10px);
+    width: -moz-calc(100dvw - 10px);
+    width: calc(100dvw - 10px);
+    max-width: 100%
 }

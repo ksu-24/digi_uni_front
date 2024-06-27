@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@mui/material-nextjs": "^5.15.11",
+    "@smakss/react-scroll-direction": "^4.1.0",
     "cssnano": "^7.0.2",
     "dotenv": "^16.4.5",
     "next": "^14.2.4",

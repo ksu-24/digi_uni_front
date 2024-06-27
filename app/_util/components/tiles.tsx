@@ -1,24 +1,18 @@
-import secondaryTiles from "@/public/images/secondary-tiles.png";
-import infoTiles from "@/public/images/info-tiles.png";
-import {Box} from "@mui/material";
-import Image from "next/image";
 
 export function SecondaryTiles() {
     return (
-        <Box className="relative w-full h-[60dvh]">
-            <Image src={secondaryTiles} alt={"Tiles"} fill style={{
-                objectFit: "cover"
-            }}/>
-        </Box>
+        <img src="/images/secondary-tiles.png" alt="Secondary tiles" className="w-full"/>
     )
 }
 
 export function InfoTiles() {
     return (
-        <Box className="relative w-full h-[55dvh] bg-info">
-            <Image src={infoTiles} alt={"Tiles"} fill style={{
-                objectFit: "cover"
-            }}/>
-        </Box>
+        <img src="/images/info-tiles.png" alt="Info tiles" className="bg-info w-full"/>
+    )
+}
+
+export function BwTiles() {
+    return (
+        <img src="/images/bw-tiles.png" alt="Black and white tiles" className="w-full"/>
     )
 }

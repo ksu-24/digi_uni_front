@@ -6,14 +6,15 @@ import {useTranslations} from "next-intl";
 
 export default function DynamicBackwardsNav() {
     const segments = ["main"].concat(usePathname().split("/").slice(1, -1));
-    console.log(segments);
     const translations = useTranslations("nav");
     return (
         <Stack direction="row" className="backwards-nav">
             {
                 segments.map((segment, index) => {
                     return (
-                        <Link href={"/" + segments.slice(0, index + 1).join("/")} key={index}>
+                        <Link href={"/" + segments.slice(0, index + 1).map(s => {
+                            return s === "main" ? "" : s;
+                        }).join("/")} key={index}>
                             <Typography variant="caption" className="text-themed-light-gray hover:text-themed-darker-gray" fontWeight={500}>
                                 {translations(segment as never) || segment}
                             </Typography>

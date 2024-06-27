@@ -81,5 +81,8 @@
     "misc": {
         "slogan": "Цифровий університет -\nВідкрита українська ініціатива",
         "copyright": "©2024 Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or [name of the granting authority]. Neither the European Union nor the granting authority can be held responsible for them."
+    },
+    "news": {
+        "title": "Новини та події"
     }
 }

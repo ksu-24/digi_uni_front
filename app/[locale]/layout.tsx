@@ -9,6 +9,7 @@ import {locales} from "@/app/_localization/i18n";
 import {StyledEngineProvider} from "@mui/material";
 import "@/public/global.css"
 import Footer from "@/app/[locale]/_footer/footer";
+import {InfoTiles} from "@/app/_util/components/tiles";
 
 export default async function LocaleLayout(
     {
@@ -25,12 +26,12 @@ export default async function LocaleLayout(
     const dicts = await getMessages();
 
     return (
-        <html lang={locale} className="min-w-[100dvw]">
+        <html lang={locale}>
         <head>
             <title>Digiuni</title>
             <Fonts/>
         </head>
-        <body className="w-full">
+        <body>
         <NextIntlClientProvider messages={dicts}>
             <StyledEngineProvider injectFirst>
                 <AppRouterCacheProvider options={{
@@ -38,7 +39,6 @@ export default async function LocaleLayout(
                 }}>
                     <ThemeProvider theme={theme}>
                         {children}
-                        <Footer/>
                     </ThemeProvider>
                 </AppRouterCacheProvider>
             </StyledEngineProvider>

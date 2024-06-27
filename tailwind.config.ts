@@ -1,5 +1,6 @@
 import type {Config} from "tailwindcss";
 import colors from "./resources/colors.json";
+import screens from "./resources/screens.json";
 
 const config: Config = {
     content: [
@@ -46,6 +47,7 @@ const config: Config = {
                 "button-hover-secondary": colors.button["hover-secondary"],
                 "themed-darker-gray": colors.gray.darker,
             },
+            screens: screens
         },
     },
     plugins: [],

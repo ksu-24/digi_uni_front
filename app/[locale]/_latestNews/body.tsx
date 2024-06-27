@@ -1,10 +1,10 @@
 import {Stack} from "@mui/material";
 import Last from "@/app/[locale]/_latestNews/last";
-import {getNews} from "@/app/_util/news";
+import {getNewsPreview} from "@/app/_util/news";
 import OtherRecent from "@/app/[locale]/_latestNews/other-recent";
 
 export default async function Body() {
-    const latest = await getNews();
+    const latest = await getNewsPreview();
     return (
         <Stack className="w-full h-full justify-between gap-[8dvw] pb-[8dvh]" direction="row">
             <Last news={latest[0]}/>
