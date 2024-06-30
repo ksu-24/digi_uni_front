@@ -7,7 +7,7 @@ import {Box, Stack, Typography} from "@mui/material";
 import Image, {StaticImageData} from "next/image";
 import React from "react";
 import {getTranslations} from "next-intl/server";
-import themeObj from "@/app/[locale]/theme-obj";
+import themeObj from "@/app/_theme/theme-obj";
 
 const borders = "border-[1px] border-[#DEE1FC]";
 

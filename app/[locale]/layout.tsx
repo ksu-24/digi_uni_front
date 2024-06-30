@@ -3,13 +3,11 @@ import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import React from "react";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import {ThemeProvider} from "@mui/system";
-import theme from "@/app/[locale]/theme";
+import theme from "@/app/_theme/theme";
 import {Fonts} from "@/app/_util/components/fonts";
 import {locales} from "@/app/_localization/i18n";
 import {StyledEngineProvider} from "@mui/material";
 import "@/public/global.css"
-import Footer from "@/app/[locale]/_footer/footer";
-import {InfoTiles} from "@/app/_util/components/tiles";
 
 export default async function LocaleLayout(
     {

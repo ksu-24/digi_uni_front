@@ -1,6 +1,6 @@
 import {Stack} from "@mui/material";
 import {Facebook, LinkedIn} from "@mui/icons-material";
-import {iconProps} from "@/app/[locale]/theme-obj";
+import {iconProps} from "@/app/_theme/theme-obj";
 
 export function Social(
     {

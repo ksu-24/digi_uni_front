@@ -4,7 +4,6 @@ import React from "react";
 import {Box, IconButton, Stack} from "@mui/material";
 import {KeyboardArrowUp} from "@mui/icons-material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import themeObj from "@/app/[locale]/theme-obj";
 
 function NavButton(
     {
@@ -15,11 +14,7 @@ function NavButton(
         onClick: () => void
     }) {
     return (
-        <IconButton className="z-10 bg-secondary" sx={{
-            "&:hover": {
-                backgroundColor: themeObj.palette.info.main
-            }
-        }}>
+        <IconButton className="z-10 bg-secondary hover:bg-info">
             <KeyboardArrowUp sx={{transform: `rotate(${iconRotation}deg)`}} onClick={onClick}/>
         </IconButton>
     )

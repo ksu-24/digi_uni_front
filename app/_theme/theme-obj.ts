@@ -9,6 +9,7 @@ export const body2Font = "Inter";
 const themeObj = {
     palette: colors,
     typography: {
+        // when changing media queries, also change in @/public.global.css
         h1: {
             fontFamily: headerFont,
             fontSize: 24,
@@ -26,6 +27,7 @@ const themeObj = {
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.02rem"
         },
+        // when changing media queries, also change in @/public.global.css
         h2: {
             fontFamily: headerFont,
             fontSize: 20,
@@ -43,20 +45,18 @@ const themeObj = {
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem"
         },
+        // when changing media queries, also change in @/public.global.css
         h3: {
             fontFamily: headerFont,
             fontSize: 16,
             "@media (min-width:600px)": {
-                fontSize: 20,
-                lineHeight: "36px"
+                fontSize: 20
             },
             "@media (min-width:960px)": {
-                fontSize: 24,
-                lineHeight: "40px"
+                fontSize: 24
             },
             "@media (min-width:1280px)": {
-                fontSize: 32,
-                lineHeight: "45px"
+                fontSize: 32
             },
             fontWeight: 500,
             lineHeight: 1.3,

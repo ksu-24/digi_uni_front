@@ -77,3 +77,71 @@ html, body {
     width: calc(100dvw - 10px);
     max-width: 100%
 }
+
+.underline-strike {
+    text-decoration: underline line-through;
+}
+
+.invisible-selection *::selection {
+    background: transparent;
+}
+
+.h1-media, .h2-media, .h3-media {
+
+}
+
+@media (min-width:600px) {
+    .h1-media {
+        font-size: 28px !important;
+    }
+}
+
+@media (min-width:960px) {
+    .h1-media {
+        font-size: 32px !important;
+    }
+}
+
+@media (min-width:1280px) {
+    .h1-media {
+        font-size: 46px !important;
+    }
+}
+
+@media (min-width:600px) {
+    .h2-media {
+        font-size: 24px !important;
+    }
+}
+
+@media (min-width:960px) {
+    .h2-media {
+        font-size: 30px !important;
+    }
+}
+
+@media (min-width:1280px) {
+    .h2-media {
+        font-size: 38px !important;
+    }
+}
+
+@media (min-width:600px) {
+    .h3-media {
+        font-size: 20px !important;
+    }
+}
+
+@media (min-width:960px) {
+    .h3-media {
+        font-size: 24px !important;
+    }
+}
+
+@media (min-width:1280px) {
+    .h3-media {
+        font-size: 32px !important;
+    }
+}
+
+
