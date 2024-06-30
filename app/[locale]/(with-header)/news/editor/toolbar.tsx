@@ -20,6 +20,7 @@ import {create} from "zustand";
 import {ToolbarItem} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
 import {getCssProp, getCssValue, useToolbarTabs} from "@/app/[locale]/(with-header)/news/editor/toolbar-tabs";
 import ClassnameTextNode, {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/classname-text-node";
+import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 
 const LowPriority = 1;
 
@@ -163,6 +164,8 @@ export default function ToolbarPlugin() {
         setCurrentTab(newValue);
     };
 
+    const removeClass = useEditorClasses((state) => state.removeClass);
+
     return (
         <>
             <Tabs value={currentTab} onChange={handleChange}>
@@ -174,7 +177,7 @@ export default function ToolbarPlugin() {
             </Tabs>
             {
                 <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
-                       id={`tabcontrol-${currentTab}`}>
+                       id={`tabcontrol-${currentTab}`} onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */ }
                     {toolbarTabs[currentTab].tools.map((item, index) =>
                         item.supplier ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
                             <ToolbarItem key={index} {...item} />

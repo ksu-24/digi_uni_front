@@ -168,11 +168,46 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                                     defaultValue: "black"
                                 }}
                                 validator={(value) => /^#[0-9A-F]{6}$/i.test(value)}
+                                valuePreprocessor={(value) => themedColorsMapping.has(value) ? themedColorsMapping.get(value)! : value}
+                            />
+                        )
+                    }
+                },
+                {
+                    // TODO: extract to common color-picker component
+                    supplier: () => {
+                        const themedColorsMapping = new Map(Object.entries({
+                            "primary": themeObj.palette.primary.main,
+                            "secondary": themeObj.palette.secondary.main,
+                            "ternary": themeObj.palette.info.main,
+                            "dark gray": themeObj.palette.gray.darkest,
+                            "darker gray": themeObj.palette.gray.darker,
+                            "gray": themeObj.palette.gray.default,
+                            "light gray": themeObj.palette.gray.light
+                        }));
+                        return (
+                            <AutocompleteToolbarItem
+                                label="Background Color"
+                                cssProperty="background-color"
+                                autocompleteProps={{
+                                    options: [
+                                        "primary", "secondary", "ternary", "dark gray", "darker gray", "gray", "light gray",
+                                        "red", "green", "blue", "black", "white", "yellow", "purple", "orange", "pink", "brown", "gray"
+                                    ],
+                                    groupBy: (option) => themedColorsMapping.has(option) ? "Themed Colors" : "Custom Colors",
+                                    freeSolo: true,
+                                    defaultValue: "white"
+                                }}
+                                validator={(value) => /^#[0-9A-F]{6}$/i.test(value)}
+                                valuePreprocessor={(value) => themedColorsMapping.has(value) ? themedColorsMapping.get(value)! : value}
                             />
                         )
                     }
                 }
             ]
+        }, {
+            title: "Multimedia",
+            tools: []
         }
     ]
 }

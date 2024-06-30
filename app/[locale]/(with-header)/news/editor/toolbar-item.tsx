@@ -35,6 +35,9 @@ export const ToolbarItem = (
     return (
         <Tooltip title={title} placement="top" arrow>
             <IconButton onClick={() => {
+                if (clicked) {
+                    onClick();
+                }
                 setClicked(true);
                 removeClass("invisible-selection");
             }} disabled={disabled} className={active ? 'active' : ''}
