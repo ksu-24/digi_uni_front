@@ -13,7 +13,12 @@ import ClassnameTextNode, {
     $creatClassnameTextNode
 } from "@/app/[locale]/(with-header)/news/editor/classname-text-node";
 import {TextNode} from "lexical";
-import HistoryPlugin from "@/app/[locale]/(with-header)/news/editor/history-plugin";
+import HistoryPlugin, {useHistory} from "@/app/[locale]/(with-header)/news/editor/history-plugin";
+import {AutoLinkNode} from "@lexical/link";
+import {AutoLinkPlugin, createLinkMatcherWithRegExp} from "@lexical/react/LexicalAutoLinkPlugin";
+import SaveStatePlugin from "@/app/[locale]/(with-header)/news/editor/save-state-plugin";
+import {ClearEditorPlugin} from "@lexical/react/LexicalClearEditorPlugin";
+import {useState} from "react";
 
 const theme: InitialConfigType = {
     // @ts-ignore
@@ -23,18 +28,23 @@ const theme: InitialConfigType = {
         strikethrough: 'line-through',
         underlineStrikethrough: 'underline-strike'
     },
-    nodes: [ClassnameTextNode, {
+    nodes: [ClassnameTextNode, AutoLinkNode, {
         replace: TextNode,
         with: (node) => {
-            debugger;
-            return $creatClassnameTextNode(node.getTextContent())
-        }
+            const n = $creatClassnameTextNode(node.getTextContent());
+            n.__parent = node.__parent;
+            return n;
+        },
+        withKlass: ClassnameTextNode
     }]
 }
 
 function onError(error: any) {
     console.error(error);
 }
+
+const URL_MATCHER =
+    /((https?:\/\/(www\.)?)|(www\.))[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&\/=]*)/;
 
 export const useEditorClasses = create<{
     className: string;
@@ -54,9 +64,10 @@ export default function Editor() {
         namespace: 'MyEditor',
         theme,
         onError,
-        nodes: [HeadingNode, QuoteNode, ClassnameTextNode, {
+        nodes: [HeadingNode, QuoteNode, ClassnameTextNode, AutoLinkNode, {
             replace: TextNode,
-            with: (node: TextNode) => $creatClassnameTextNode(node.getTextContent())
+            with: (node: TextNode) => $creatClassnameTextNode(node.getTextContent()),
+            withKlass: ClassnameTextNode
         }]
     };
 
@@ -66,6 +77,13 @@ export default function Editor() {
         <Stack className="gap-6">
             <LexicalComposer initialConfig={initialConfig}>
                 <HistoryPlugin/>
+                {/*<SaveStatePlugin/>*/}
+                <ClearEditorPlugin/>
+                <AutoLinkPlugin matchers={[
+                    createLinkMatcherWithRegExp(URL_MATCHER, (text) => {
+                        return text.startsWith("www.") ? "https://" + text : text;
+                    })
+                ]}/>
                 <ToolbarPlugin/>
                 <RichTextPlugin
                     contentEditable={<ContentEditable className={"w-full h-fit min-h-dvh border-[1px] border-black p-4 " + className}

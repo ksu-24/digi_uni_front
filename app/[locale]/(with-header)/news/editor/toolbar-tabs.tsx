@@ -82,22 +82,30 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                 {
                     title: 'Left Align',
                     icon: <FormatAlignLeft fontSize="small"/>,
-                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left')
+                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left'),
+                    undoOnEmptySelection: true,
+                    disablePreview: true
                 },
                 {
                     title: 'Center Align',
                     icon: <FormatAlignCenter fontSize="small"/>,
-                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center')
+                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center'),
+                    undoOnEmptySelection: true,
+                    disablePreview: true
                 },
                 {
                     title: 'Right Align',
                     icon: <FormatAlignRight fontSize="small"/>,
-                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right')
+                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right'),
+                    undoOnEmptySelection: true,
+                    disablePreview: true
                 },
                 {
                     title: 'Justify Align',
                     icon: <FormatAlignJustify fontSize="small"/>,
-                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify')
+                    onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify'),
+                    undoOnEmptySelection: true,
+                    disablePreview: true
                 },
                 {
                     title: 'Undo',

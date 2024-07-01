@@ -4,23 +4,24 @@ import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {mergeRegister} from '@lexical/utils';
 import {
     $getSelection,
-    $isRangeSelection,
-    CAN_REDO_COMMAND,
-    CAN_UNDO_COMMAND,
+    $isRangeSelection, CAN_UNDO_COMMAND, CLEAR_EDITOR_COMMAND,
     FORMAT_TEXT_COMMAND,
-    LexicalEditor,
+    LexicalEditor, REDO_COMMAND,
     SELECTION_CHANGE_COMMAND,
     UNDO_COMMAND,
 } from 'lexical';
 
 import {$patchStyleText} from '@lexical/selection';
 import React, {useCallback, useEffect, useState} from 'react';
-import {Stack, Tab, Tabs} from "@mui/material";
+import {IconButton, Stack, Tab, Tabs} from "@mui/material";
 import {create} from "zustand";
 import {ToolbarItem} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
 import {getCssProp, getCssValue, useToolbarTabs} from "@/app/[locale]/(with-header)/news/editor/toolbar-tabs";
 import ClassnameTextNode, {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/classname-text-node";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
+import {$isAutoLinkNode} from "@lexical/link";
+import {useHistory} from "@/app/[locale]/(with-header)/news/editor/history-plugin";
+import {Clear} from "@mui/icons-material";
 
 const LowPriority = 1;
 
@@ -62,14 +63,19 @@ export const useToolbarState = create<ToolbarState>((set, getState) => ({
 
 export default function ToolbarPlugin() {
     const [editor] = useLexicalComposerContext();
-    const [canUndo, setCanUndo] = useState(false);
-    const [canRedo, setCanRedo] = useState(false);
     const [isBold, setIsBold] = useState(false);
     const [isItalic, setIsItalic] = useState(false);
     const [isUnderline, setIsUnderline] = useState(false);
     const [isStrikethrough, setIsStrikethrough] = useState(false);
     const [currentTab, setCurrentTab] = useState(0);
     const setToolbarState = useToolbarState((state) => state.setState);
+    const {canUndo, canRedo} = useHistory((state) => {
+        return {
+            canUndo: state.canUndo,
+            canRedo: state.canRedo,
+        };
+    });
+
     useEffect(() => {
         setToolbarState({
             canUndo,
@@ -81,7 +87,6 @@ export default function ToolbarPlugin() {
         });
     }, [canUndo, canRedo, isBold, isItalic, isUnderline, isStrikethrough]);
 
-
     const $updateToolbar = useCallback(() => {
         const selection = $getSelection();
         if ($isRangeSelection(selection)) {
@@ -92,15 +97,6 @@ export default function ToolbarPlugin() {
         }
     }, []);
 
-    useEffect(() => {
-        editor.registerNodeTransform(ClassnameTextNode, (node) => {
-            if ($isClassNameTextNode(node)) {
-                if (!node.getStyle().includes("--level")) {
-                    node.setMediaClass(null);
-                }
-            }
-        });
-    }, []);
 
     useEffect(() => {
         return mergeRegister(
@@ -111,22 +107,6 @@ export default function ToolbarPlugin() {
                 SELECTION_CHANGE_COMMAND,
                 () => {
                     $updateToolbar();
-                    return false;
-                },
-                LowPriority
-            ),
-            editor.registerCommand(
-                CAN_UNDO_COMMAND,
-                (payload) => {
-                    setCanUndo(payload);
-                    return false;
-                },
-                LowPriority
-            ),
-            editor.registerCommand(
-                CAN_REDO_COMMAND,
-                (payload) => {
-                    setCanRedo(payload);
                     return false;
                 },
                 LowPriority
@@ -155,8 +135,34 @@ export default function ToolbarPlugin() {
                 },
                 LowPriority
             ),
-        );
+            editor.registerNodeTransform(ClassnameTextNode, (node) => {
+                if (node.getTextContent().length < 2) {
+                    const previousSibling = node.getPreviousSibling();
+                    if (previousSibling) {
+                        if ($isClassNameTextNode(previousSibling)) {
+                            previousSibling.setTextContent(previousSibling.getTextContent() + node.getTextContent());
+                            node.remove();
+                        } else if ($isAutoLinkNode(previousSibling)) {
+                            const lastChild = previousSibling.getLastChild();
+                            if ($isClassNameTextNode(lastChild) && lastChild.getStyle() !== node.getStyle() && lastChild.classList.toString() !== node.classList.toString()) {
+                                node.setStyle(lastChild.getStyle());
+                                node.classList = lastChild.classList;
+                            }
+                        }
+                    }
+                }
+            }),
+            editor.registerNodeTransform(ClassnameTextNode, (node) => {
+                if (!node.getStyle().includes("--level")) {
+                    node.setMediaClass(null);
+                } else {
+                    const level = node.getStyle().split(";").find((value) => value.includes("--level"))?.split(":")[1].replace(";", "").trim();
+                    node.setMediaClass(level as never);
+                }
+            })
+        )
     }, [$updateToolbar, editor]);
+
 
     const toolbarTabs = useToolbarTabs(editor);
 
@@ -167,24 +173,31 @@ export default function ToolbarPlugin() {
     const removeClass = useEditorClasses((state) => state.removeClass);
 
     return (
-        <>
-            <Tabs value={currentTab} onChange={handleChange}>
+        <Stack direction="row" className="w-full">
+            <Stack className="w-full gap-4">
+                <Tabs value={currentTab} onChange={handleChange}>
+                    {
+                        toolbarTabs.map((tab, index) => (
+                            <Tab key={index} label={tab.title} id={`tab-${index}`}
+                                 aria-controls={`tabcontrol-${index}`}/>
+                        ))
+                    }
+                </Tabs>
                 {
-                    toolbarTabs.map((tab, index) => (
-                        <Tab key={index} label={tab.title} id={`tab-${index}`} aria-controls={`tabcontrol-${index}`}/>
-                    ))
+                    <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
+                           id={`tabcontrol-${currentTab}`} className="w-full h-fit items-center"
+                           onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */}
+                        {toolbarTabs[currentTab].tools.map((item, index) =>
+                            item.supplier ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
+                                <ToolbarItem key={index} {...item} />
+                        )}
+                    </Stack>
                 }
-            </Tabs>
-            {
-                <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
-                       id={`tabcontrol-${currentTab}`} onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */ }
-                    {toolbarTabs[currentTab].tools.map((item, index) =>
-                        item.supplier ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
-                            <ToolbarItem key={index} {...item} />
-                    )}
-                </Stack>
-            }
-        </>
+            </Stack>
+            <IconButton onClick={() => editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined)} className="self-end">
+                <Clear/>
+            </IconButton>
+        </Stack>
     );
 }
 
@@ -199,16 +212,21 @@ export function clearLevel(editor: LexicalEditor) {
     });
 }
 
-export function undoIfNeeded(editor: LexicalEditor, clicked: boolean, setClicked: (value: (((prevState: boolean) => boolean) | boolean)) => void) {
+export function undoIfNeeded(editor: LexicalEditor, clicked: boolean, setClicked: (value: (((prevState: boolean) => boolean) | boolean)) => void, allowEmptySelection = false) {
     let shouldUndo = true;
-    editor.update(() => {
-        const selection = $getSelection();
-        if (selection?.getTextContent().length === 0) {
-            shouldUndo = false;
-        }
-    });
+    const setAwaitEvict = useHistory.getState().setAwaitEvict;
+    if (!allowEmptySelection) {
+        editor.update(() => {
+            const selection = $getSelection();
+            if (selection?.getTextContent().length === 0) {
+                shouldUndo = false;
+            }
+        });
+    }
     if (!clicked && shouldUndo) {
         editor.dispatchCommand(UNDO_COMMAND, undefined);
+        setAwaitEvict(true);
+        editor.dispatchCommand(REDO_COMMAND, undefined);
     }
     setClicked(false);
 }

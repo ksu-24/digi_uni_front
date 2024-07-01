@@ -3,13 +3,14 @@ import {TextLevel} from "@/app/[locale]/(with-header)/news/editor/preset-button"
 
 export default class ClassnameTextNode extends TextNode {
     // first position is reserved for media class
-    private readonly _classList: string[] = [];
+    protected readonly __classList: string[] = [];
 
-    constructor(text: string) {
-        super(text);
+    public constructor(text: string, key?: string, _classList: string[] = []) {
+        super(text, key);
+        this.__classList.push(..._classList);
     }
 
-    static getType() {
+    public static getType() {
         return "custom-text";
     }
 
@@ -17,59 +18,77 @@ export default class ClassnameTextNode extends TextNode {
      * Add a media class of the given level to the node
      * @param level The level of the media class to add or null to remove media class
      */
-    setMediaClass(level: TextLevel | null) {
-        // debugger
-        if ((new RegExp(`(${Object.values(TextLevel).map(v => `(${v})`).join("|")})-media`).test(this._classList[0]))) {
-            this._classList.splice(0, 1);
+    public setMediaClass(level: TextLevel | null) {
+        if ((new RegExp(`(${Object.values(TextLevel).map(v => `(${v})`).join("|")})-media`).test(this.__classList[0]))) {
+            this.__classList.splice(0, 1);
         }
         if (level) {
-            this._classList.splice(0, 0, `${level}-media`);
+            this.__classList.splice(0, 0, `${level}-media`);
         }
+    }
+
+    public get classList() {
+        return this.__classList;
+    }
+
+    public set classList(value: string[]) {
+        this.__classList.splice(0, this.__classList.length, ...value);
     }
 
 
     static clone(node: ClassnameTextNode) {
-        const clone = new ClassnameTextNode(node.getTextContent());
-        clone._classList.push(...node._classList);
-        return clone;
+        return new ClassnameTextNode(node.getTextContent(), node.getKey(), node.__classList);
     }
 
-    updateDOM(prevNode: ClassnameTextNode, dom: HTMLElement, config: EditorConfig): boolean {
-        dom.classList.remove(...prevNode._classList);
-        dom.classList.add(...this._classList);
+    public override updateDOM(prevNode: ClassnameTextNode, dom: HTMLElement, config: EditorConfig): boolean {
+        dom.classList.remove(...prevNode.__classList);
+        dom.classList.add(...this.__classList);
         return super.updateDOM(prevNode, dom, config);
     }
 
-    exportJSON(): SerializedClassnameTextNode {
-        const json = super.exportJSON() as SerializedClassnameTextNode;
-        json._classList = this._classList;
-        return json;
+    public override createDOM(config: EditorConfig, editor?: LexicalEditor): HTMLElement {
+        const result =  super.createDOM(config, editor);
+        result.classList.add(...this.__classList);
+        return result;
+    }
+
+    public override isSimpleText(): boolean {
+        return this.__mode == 0;
+    }
+
+    public override exportJSON(): SerializedClassnameTextNode {
+        return {
+            ...super.exportJSON(),
+            type: ClassnameTextNode.getType(),
+            _classList: this.__classList
+        }
     }
 
 
-    exportDOM(editor: LexicalEditor): DOMExportOutput {
+    public override exportDOM(editor: LexicalEditor): DOMExportOutput {
         const domExport = super.exportDOM(editor) as ClassnameDOMExportOutput;
-        domExport.element.classList.add(...this._classList);
+        domExport.element.classList.add(...this.__classList);
         return domExport;
     }
 
-    static importJSON(json: SerializedClassnameTextNode) {
-        const node = super.importJSON(json);
-        // @ts-ignore
-        node._classList = json._classList;
+    public static importJSON(json: SerializedClassnameTextNode): ClassnameTextNode {
+        const node = super.importJSON(json) as ClassnameTextNode;
+        node.__classList.push(...json._classList);
         return node;
     }
+
+
 }
 
 type ClassnameDOMExportOutput = DOMExportOutput & {
     element: HTMLElement;
 }
 
-type SerializedClassnameTextNode = SerializedTextNode & {
+export type SerializedClassnameTextNode = SerializedTextNode & {
     _classList: string[];
 }
 
-export function $isClassNameTextNode(node: LexicalNode): node is ClassnameTextNode {
+export function $isClassNameTextNode(node: LexicalNode | null): node is ClassnameTextNode {
     return node instanceof ClassnameTextNode;
 }
 

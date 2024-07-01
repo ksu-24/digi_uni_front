@@ -5,7 +5,6 @@ import {$getSelection, $isRangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {undoIfNeeded} from "@/app/[locale]/(with-header)/news/editor/toolbar";
-import {useHistory} from "@/app/[locale]/(with-header)/news/editor/history-plugin";
 
 function PreviewListItem(
     {
@@ -19,13 +18,11 @@ function PreviewListItem(
         cssProperty: string,
         valuePreprocessor: (value: string) => string,
         option: string,
-        afterUpdate?: (evictUndo: () => void) => void
+        afterUpdate?: () => void
     }
 ) {
     const editor = useLexicalComposerContext()[0];
     const [clicked, setClicked] = useState(false);
-    const evictUndo = useHistory((state) => state.evictUndo);
-    const undoStack = useHistory((state) => state.undoStack);
 
     return (
         <ListItem {...props}
@@ -36,11 +33,9 @@ function PreviewListItem(
                           if ($isRangeSelection(selection)) {
                               $patchStyleText(selection, {[cssProperty]: valuePreprocessor(option)});
                           }
-                      }, {
-                          onUpdate: () => console.log(undoStack)
                       });
                       if (afterUpdate) {
-                          afterUpdate(evictUndo);
+                          afterUpdate();
                       }
                   }} onMouseLeave={() => undoIfNeeded(editor, clicked, setClicked)}>
             <Typography noWrap variant="body1">{option}</Typography>
@@ -63,7 +58,7 @@ export const AutocompleteToolbarItem = (
             validator?: (value: string) => boolean,
             valuePreprocessor?: (value: string) => string,
             autocompleteProps: Omit<AutocompleteProps<string, false, true, boolean | undefined>, "renderInput">,
-            afterUpdate?: (evictUndo: () => void) => void
+            afterUpdate?: () => void
         }
 ) => {
     const editor = useLexicalComposerContext()[0];

@@ -78,7 +78,6 @@ export function PresetButton(
 
     }) {
     const editor = useLexicalComposerContext()[0];
-    const evictUndo = useHistory((state) => state.evictUndo);
     const [clicked, setClicked] = useState(false);
     const {addClass, removeClass} = useEditorClasses((state) => {
         return {
