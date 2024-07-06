@@ -7,15 +7,19 @@ export function DefaultContainer(
     {
         children,
         component,
-        className
+        className,
+        innerHtml
     }: {
         children?: React.ReactNode,
         component?: "div" | "form" | "section" | "article" | "aside" | "header" | "footer" | "main" | "nav",
-        className?: string
+        className?: string,
+        innerHtml?: string
     }
 ) {
     return (
-        <Stack component={component ?? "div"} className={`${className} w-full px-[11%] ${defaultGap}`}>
+        <Stack component={component ?? "div"} className={`${className} w-full px-[11%] ${defaultGap}`} dangerouslySetInnerHTML={innerHtml ? {
+            __html: innerHtml
+        } : undefined}>
             {children}
         </Stack>
     );

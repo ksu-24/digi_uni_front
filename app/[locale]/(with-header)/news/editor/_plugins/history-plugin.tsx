@@ -9,7 +9,8 @@ import {mergeRegister} from "@lexical/utils";
 
 export const useHistory = create<
     {
-        readonly editor: LexicalEditor;
+        editor: LexicalEditor;
+        setEditor: (editor: LexicalEditor) => void;
         canUndo: boolean;
         canRedo: boolean;
         readonly awaitEvictHolder: {
@@ -18,22 +19,18 @@ export const useHistory = create<
         readonly setAwaitEvict: (value: boolean) => void;
         readonly setCanUndo: (canUndo: boolean) => void;
         readonly setCanRedo: (canRedo: boolean) => void;
-        readonly evictUndo: () => void;
-        readonly evictRedo: () => void;
     }>((set, getState) => ({
-    editor: null as never,
+    editor: null as any,
+    setEditor: (editor) => {
+        set((state) => {
+            state.editor = editor;
+            return state;
+        });
+    },
     canUndo: false,
     canRedo: false,
     awaitEvictHolder: {
         value: false
-    },
-    evictUndo: () => {
-        getState().setAwaitEvict(true);
-        getState().editor.dispatchCommand(UNDO_COMMAND, undefined);
-    },
-    evictRedo: () => {
-        getState().setAwaitEvict(true);
-        getState().editor.dispatchCommand(REDO_COMMAND, undefined);
     },
     setCanUndo: (canUndo) => {
         set((state) => {
@@ -63,15 +60,21 @@ export default function HistoryPlugin() {
         setCanUndo,
         setCanRedo,
         awaitEvictHolder,
-        setAwaitEvict
+        setAwaitEvict,
+        setEditor
     } = useHistory((state) => {
         return {
             setCanUndo: state.setCanUndo,
             setCanRedo: state.setCanRedo,
             awaitEvictHolder: state.awaitEvictHolder,
-            setAwaitEvict: state.setAwaitEvict
+            setAwaitEvict: state.setAwaitEvict,
+            setEditor: state.setEditor
         };
     });
+
+    useEffect(() => {
+        setEditor(editor);
+    }, [editor]);
 
     useEffect(() => {
         return mergeRegister(

@@ -1,6 +1,6 @@
 import {DefaultContainer} from "@/app/_util/components/default-container";
 import {SectionTitle} from "@/app/_util/components/section-title";
-import FeedbackForm from "@/app/_util/components/feedback-form";
+import FeedbackForm from "@/app/_util/components/feedback/feedback-form";
 
 export default function Feedback() {
     return (

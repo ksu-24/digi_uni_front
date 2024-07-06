@@ -5,9 +5,8 @@ import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import React, {useState} from "react";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {Button, Typography} from "@mui/material";
-import {ToolbarState, undoIfNeeded, useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
-import {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/classname-text-node";
-import {useHistory} from "@/app/[locale]/(with-header)/news/editor/history-plugin";
+import {undoIfNeeded, useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
+import {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
 
 export enum TextLevel {
     H1 = 'h1',
@@ -42,11 +41,7 @@ const $applyTextStyles = (selection: RangeSelection, level: TextLevel) => {
         '--level': level
     });
 };
-export const toCssString = (styles: object) => {
-    return Object.entries(styles).map(([key, value]) => {
-        return `${jsxToCss(key)}: ${typeof value === 'string' || key !== 'fontSize' && !key.startsWith("@") ? value.toString() : value.toString() + "px"};`;
-    }).join(' ');
-};
+
 const textLevelToOption = (level: TextLevel) => {
     switch (level) {
         case TextLevel.H1:

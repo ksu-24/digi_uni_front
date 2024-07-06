@@ -17,11 +17,12 @@ import {IconButton, Stack, Tab, Tabs} from "@mui/material";
 import {create} from "zustand";
 import {ToolbarItem} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
 import {getCssProp, getCssValue, useToolbarTabs} from "@/app/[locale]/(with-header)/news/editor/toolbar-tabs";
-import ClassnameTextNode, {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/classname-text-node";
+import ClassnameTextNode, {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {$isAutoLinkNode} from "@lexical/link";
-import {useHistory} from "@/app/[locale]/(with-header)/news/editor/history-plugin";
+import {useHistory} from "@/app/[locale]/(with-header)/news/editor/_plugins/history-plugin";
 import {Clear} from "@mui/icons-material";
+import {useTranslations} from "next-intl";
 
 const LowPriority = 1;
 
@@ -171,6 +172,7 @@ export default function ToolbarPlugin() {
     };
 
     const removeClass = useEditorClasses((state) => state.removeClass);
+    const translations = useTranslations("editor");
 
     return (
         <Stack direction="row" className="w-full">
@@ -178,7 +180,7 @@ export default function ToolbarPlugin() {
                 <Tabs value={currentTab} onChange={handleChange}>
                     {
                         toolbarTabs.map((tab, index) => (
-                            <Tab key={index} label={tab.title} id={`tab-${index}`}
+                            <Tab key={index} label={translations((tab.title + ".title") as never)} id={`tab-${index}`}
                                  aria-controls={`tabcontrol-${index}`}/>
                         ))
                     }
@@ -188,7 +190,7 @@ export default function ToolbarPlugin() {
                            id={`tabcontrol-${currentTab}`} className="w-full h-fit items-center"
                            onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */}
                         {toolbarTabs[currentTab].tools.map((item, index) =>
-                            item.supplier ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
+                            item.__type__ === "custom" ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
                                 <ToolbarItem key={index} {...item} />
                         )}
                     </Stack>
@@ -218,7 +220,7 @@ export function undoIfNeeded(editor: LexicalEditor, clicked: boolean, setClicked
     if (!allowEmptySelection) {
         editor.update(() => {
             const selection = $getSelection();
-            if (selection?.getTextContent().length === 0) {
+            if (selection?.getTextContent().length === 0 ?? true) {
                 shouldUndo = false;
             }
         });

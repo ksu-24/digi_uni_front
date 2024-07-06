@@ -1,15 +1,7 @@
-import {Typography} from "@mui/material";
+import {Typography, NoSsr} from "@mui/material";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import someTiles from "@/public/images/some-tiles.svg";
-import dynamic from "next/dynamic";
-
-const NewsPanel = dynamic(
-    () => import(`@/app/[locale]/(with-header)/news/news-panel`).then((module) => module.default),
-    {
-        ssr: false,
-        loading: () => <Typography>Loading...</Typography>
-    }
-);
+import NewsPanel from "@/app/[locale]/(with-header)/news/news-panel";
 
 export default async function News(
     {
@@ -24,7 +16,9 @@ export default async function News(
         <>
             <img src={someTiles.src} alt="Some tiles" className="absolute top-0 left-1/2 -translate-x-1/2"/>
             <Typography variant="h1">{translations("title")}:</Typography>
-            <NewsPanel/>
+            <NoSsr>
+                <NewsPanel/>
+            </NoSsr>
         </>
     )
 }

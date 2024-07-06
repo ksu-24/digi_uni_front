@@ -1,6 +1,14 @@
-import {FORMAT_ELEMENT_COMMAND, FORMAT_TEXT_COMMAND, LexicalEditor, REDO_COMMAND, UNDO_COMMAND} from "lexical";
+import {
+    $getSelection,
+    $isRangeSelection,
+    FORMAT_ELEMENT_COMMAND,
+    FORMAT_TEXT_COMMAND,
+    LexicalEditor,
+    REDO_COMMAND,
+    UNDO_COMMAND
+} from "lexical";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
-import {Stack} from "@mui/material";
+import {Backdrop, Box, Stack} from "@mui/material";
 import {PresetButton, TextLevel} from "@/app/[locale]/(with-header)/news/editor/preset-button";
 import {
     FormatAlignCenter,
@@ -9,24 +17,47 @@ import {
     FormatAlignRight,
     FormatBold,
     FormatItalic,
+    FormatQuote,
     FormatUnderlined,
+    ImageRounded,
     Redo,
     StrikethroughS,
     Undo
 } from "@mui/icons-material";
 import {AutocompleteToolbarItem} from "@/app/[locale]/(with-header)/news/editor/autocomplete-toolbarItem";
 import fonts from "@/resources/fonts.json";
-import themeObj from "@/app/_theme/theme-obj";
 import React from "react";
 import {clearLevel, useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
+import {ToolbarItemProps} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
+import {ImageDropzone} from "@/app/_util/components/image-dropzone";
+import {INSERT_IMAGE_COMMAND} from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-plugin";
+import {$setBlocksType} from "@lexical/selection";
+import {$createQuoteNode} from "@lexical/rich-text";
+import {ColorPicker} from "@/app/[locale]/(with-header)/news/editor/color-picker";
 
-export const useToolbarTabs = (editor: LexicalEditor) => {
+export type CustomToolbarItemProps = {
+    __type__: "custom"
+    supplier: () => React.ReactNode
+}
+
+type ToolbarTabType = {
+    title: string,
+    tools: (CustomToolbarItemProps | ToolbarItemProps)[]
+}
+
+export enum OpenBackdrop {
+    IMAGE = "image",
+}
+
+export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
     const state = useToolbarState((state) => state);
+    const [openBackdrop, setOpenBackdrop] = React.useState(null as OpenBackdrop | null);
     return [
         {
-            title: "Presets",
+            title: "presets",
             tools: [
                 {
+                    __type__: "custom",
                     supplier: () => {
                         const removeClass = useEditorClasses((state) => state.removeClass);
                         return (
@@ -45,10 +76,11 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
             ]
         },
         {
-            title: "Text formatting",
+            title: "textFormating",
             tools: [
                 {
-                    title: 'Bold',
+                    __type__: "default",
+                    title: 'textFormating.bold',
                     icon: <FormatBold fontSize="small"/>,
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
@@ -56,7 +88,8 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                     active: state.isBold
                 },
                 {
-                    title: 'Italic',
+                    __type__: "default",
+                    title: 'textFormating.italic',
                     icon: <FormatItalic fontSize="small"/>,
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
@@ -64,7 +97,8 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                     active: state.isItalic
                 },
                 {
-                    title: 'Underline',
+                    __type__: "default",
+                    title: 'textFormating.underline',
                     icon: <FormatUnderlined fontSize="small"/>,
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
@@ -72,7 +106,8 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                     active: state.isUnderline
                 },
                 {
-                    title: 'Strikethrough',
+                    __type__: "default",
+                    title: 'textFormating.strikethrough',
                     icon: <StrikethroughS fontSize="small"/>,
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
@@ -80,51 +115,72 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                     active: state.isStrikethrough
                 },
                 {
-                    title: 'Left Align',
+                    __type__: "default",
+                    title: "textFormating.quote",
+                    icon: <FormatQuote fontSize="small"/>,
+                    onClick: () => {
+                        editor.update(() => {
+                            const selection = $getSelection();
+                            if ($isRangeSelection(selection)) {
+                                $setBlocksType(selection, $createQuoteNode);
+                            }
+                        })
+                    },
+                    active: true
+                },
+                {
+                    __type__: "default",
+                    title: 'textFormating.alignLeft',
                     icon: <FormatAlignLeft fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left'),
                     undoOnEmptySelection: true,
                     disablePreview: true
                 },
                 {
-                    title: 'Center Align',
+                    __type__: "default",
+                    title: 'textFormating.alignCenter',
                     icon: <FormatAlignCenter fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center'),
                     undoOnEmptySelection: true,
                     disablePreview: true
                 },
                 {
-                    title: 'Right Align',
+                    __type__: "default",
+                    title: 'textFormating.alignRight',
                     icon: <FormatAlignRight fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right'),
                     undoOnEmptySelection: true,
                     disablePreview: true
                 },
                 {
-                    title: 'Justify Align',
+                    __type__: "default",
+                    title: 'textFormating.alignJustify',
                     icon: <FormatAlignJustify fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify'),
                     undoOnEmptySelection: true,
                     disablePreview: true
                 },
                 {
-                    title: 'Undo',
+                    __type__: "default",
+                    title: 'textFormating.undo',
                     icon: <Undo fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(UNDO_COMMAND, undefined),
                     onMouseLeave: () => editor.dispatchCommand(REDO_COMMAND, undefined),
                     disabled: !state.canUndo
                 },
                 {
-                    title: 'Redo',
+                    __type__: "default",
+                    title: 'textFormating.redo',
                     icon: <Redo fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(REDO_COMMAND, undefined),
                     onMouseLeave: () => editor.dispatchCommand(UNDO_COMMAND, undefined),
                     disabled: !state.canRedo
                 },
                 {
+                    __type__: "custom",
                     supplier: () => (
                         <AutocompleteToolbarItem
-                            label="Font"
+                            label="textFormating.fontFamily"
                             autocompleteProps={{
                                 options: fonts,
                                 defaultValue: fonts[0]
@@ -134,9 +190,10 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                     )
                 },
                 {
+                    __type__: "custom",
                     supplier: () => (
                         <AutocompleteToolbarItem
-                            label="Text Size"
+                            label="textFormating.fontSize"
                             cssProperty="font-size"
                             autocompleteProps={{
                                 options: ["1", "2", "4", "6", "8", "10", "12", "14", "16", "18",
@@ -152,70 +209,41 @@ export const useToolbarTabs = (editor: LexicalEditor) => {
                     )
                 },
                 {
-                    supplier: () => {
-                        const themedColorsMapping = new Map(Object.entries({
-                            "primary": themeObj.palette.primary.main,
-                            "secondary": themeObj.palette.secondary.main,
-                            "ternary": themeObj.palette.info.main,
-                            "dark gray": themeObj.palette.gray.darkest,
-                            "darker gray": themeObj.palette.gray.darker,
-                            "gray": themeObj.palette.gray.default,
-                            "light gray": themeObj.palette.gray.light
-                        }));
-                        return (
-                            <AutocompleteToolbarItem
-                                label="Text Color"
-                                cssProperty="color"
-                                autocompleteProps={{
-                                    options: [
-                                        "primary", "secondary", "ternary", "dark gray", "darker gray", "gray", "light gray",
-                                        "red", "green", "blue", "black", "white", "yellow", "purple", "orange", "pink", "brown", "gray"
-                                    ],
-                                    groupBy: (option) => themedColorsMapping.has(option) ? "Themed Colors" : "Custom Colors",
-                                    freeSolo: true,
-                                    defaultValue: "black"
-                                }}
-                                validator={(value) => /^#[0-9A-F]{6}$/i.test(value)}
-                                valuePreprocessor={(value) => themedColorsMapping.has(value) ? themedColorsMapping.get(value)! : value}
-                            />
-                        )
-                    }
+                    __type__: "custom",
+                    supplier: () => <ColorPicker styleProp="color"/>
                 },
                 {
-                    // TODO: extract to common color-picker component
-                    supplier: () => {
-                        const themedColorsMapping = new Map(Object.entries({
-                            "primary": themeObj.palette.primary.main,
-                            "secondary": themeObj.palette.secondary.main,
-                            "ternary": themeObj.palette.info.main,
-                            "dark gray": themeObj.palette.gray.darkest,
-                            "darker gray": themeObj.palette.gray.darker,
-                            "gray": themeObj.palette.gray.default,
-                            "light gray": themeObj.palette.gray.light
-                        }));
-                        return (
-                            <AutocompleteToolbarItem
-                                label="Background Color"
-                                cssProperty="background-color"
-                                autocompleteProps={{
-                                    options: [
-                                        "primary", "secondary", "ternary", "dark gray", "darker gray", "gray", "light gray",
-                                        "red", "green", "blue", "black", "white", "yellow", "purple", "orange", "pink", "brown", "gray"
-                                    ],
-                                    groupBy: (option) => themedColorsMapping.has(option) ? "Themed Colors" : "Custom Colors",
-                                    freeSolo: true,
-                                    defaultValue: "white"
-                                }}
-                                validator={(value) => /^#[0-9A-F]{6}$/i.test(value)}
-                                valuePreprocessor={(value) => themedColorsMapping.has(value) ? themedColorsMapping.get(value)! : value}
-                            />
-                        )
-                    }
+                    __type__: "custom",
+                    supplier: () => <ColorPicker styleProp="background-color"/>
                 }
             ]
         }, {
-            title: "Multimedia",
-            tools: []
+            title: "multimedia",
+            tools: [
+                {
+                    __type__: "default",
+                    title: 'multimedia.image',
+                    icon: <ImageRounded fontSize="small"/>,
+                    onClick: () => {
+                        setOpenBackdrop(OpenBackdrop.IMAGE);
+                    },
+                    undoOnEmptySelection: true,
+                    disablePreview: true,
+                    appendAfter: () => {
+                        return (
+                            <Backdrop open={openBackdrop === OpenBackdrop.IMAGE} onClick={() => setOpenBackdrop(null)}>
+                                <Box onClick={(e) => e.stopPropagation()}
+                                     className="w-1/2 h-1/2 bg-white rounded-2xl border-black border-2">
+                                    <ImageDropzone onPictureUpload={(picture) => {
+                                        editor.dispatchCommand(INSERT_IMAGE_COMMAND, {src: picture, altText: "Image"});
+                                        setOpenBackdrop(null);
+                                    }} resetOnUpload/>
+                                </Box>
+                            </Backdrop>
+                        );
+                    }
+                }
+            ]
         }
     ]
 }

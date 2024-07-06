@@ -65,9 +65,10 @@
 
 .backwards-nav {}
 
-.backwards-nav &:not(:first-child):before {
+.backwards-nav > :not(:first-child):before {
     content: '|';
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
 }
 
 html, body {
@@ -143,5 +144,39 @@ html, body {
         font-size: 32px !important;
     }
 }
+
+.styled-autolink > * {
+    color: #0000EE;
+    cursor: pointer;
+}
+
+.styled-autolink:visited > * {
+    color: #551A8B;
+}
+
+.cover-autolink-visited:visited > * {
+    color: #0000EE;
+}
+
+
+.styled-autolink:active > *, .styled-autolink:visited:active > * { color: #FF0000; }
+
+.quote {
+    position: relative;
+}
+
+.quote::before {
+    content : url("/images/quote.svg");
+    display: block;
+    align-self: start;
+}
+
+.quote-border > span:first-child {
+    display: inline-block;
+    padding-left: 2rem;
+    border-left: 1px solid #D5DAFF;
+}
+
+
 
 

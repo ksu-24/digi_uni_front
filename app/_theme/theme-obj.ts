@@ -6,7 +6,7 @@ export const headerFont = "IBM Plex Serif";
 export const body1Font = "IBM Plex Mono";
 export const body2Font = "Inter";
 
-const themeObj = {
+const themeObj= {
     palette: colors,
     typography: {
         // when changing media queries, also change in @/public.global.css
@@ -118,6 +118,7 @@ const themeObj = {
                     borderRadius: Number.MAX_VALUE,
                     padding: "14px 32px 14px 32px",
                     textTransform: "capitalize",
+                    color: (Number(`0x1${colors.primary.main}`) ^ 0xFFFFFF).toString(16).substring(1).toUpperCase()
                 }
             }
         },
@@ -145,8 +146,36 @@ const themeObj = {
                 }
             }
         },
+        MuiInputLabel: {
+            styleOverrides: {
+                asterisk: {
+                    display: "none"
+                },
+                root: {
+                    padding: 0,
+                    "&::after": {
+                        content: "'(optional)'",
+                        marginLeft: "0.5rem",
+                        transition: "opacity 0.25s ease-in-out, width 0s 0.25s ease-in-out",
+                    },
+                    "&.Mui-required": {
+                        "&::after": {
+                            opacity: 0,
+                            width: 0
+                        }
+                    },
+                    "&.Mui-focused": {
+                        "&::after": {
+                            opacity: 0,
+                            width: 0
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
 
 export default themeObj;
 
@@ -154,4 +183,4 @@ export const iconProps = {
     style: {
         fontSize: "1.67rem"
     }
-} as DefaultComponentProps<SvgIconTypeMap<{}, "svg">>
+} as DefaultComponentProps<SvgIconTypeMap>

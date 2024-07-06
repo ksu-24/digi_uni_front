@@ -1,33 +1,11 @@
 "use client"
 
-import News from '@/app/_util/news';
+import News from '@/app/model/news';
 import {Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
 import useWindow from "@/app/_util/use-window";
 import { Link } from "@/app/_localization/navigation";
-
-const newsAmount = [
-    {
-        min: 1,
-        amount: 1
-    },
-    {
-        min: 768,
-        amount: 2
-    },
-    {
-        min: 1500,
-        amount: 3
-    },
-    {
-        min: 2560,
-        amount: 4
-    },
-    {
-        min: 3840,
-        amount: 5
-    }
-].reverse();
+import {useNewsAmount} from "@/app/[locale]/_latestNews/body";
 
 export default function OtherRecent(
     {
@@ -37,10 +15,10 @@ export default function OtherRecent(
     }
 ) {
     const newsArr = JSON.parse(news) as News[];
-    const windowWidth = useWindow().innerWidth;
+    const newsAmount = useNewsAmount();
     return (
         <Stack className="w-2/3 h-full" direction="column">
-            {newsArr.slice(0, newsAmount.find(({min}) => windowWidth >= min)?.amount ?? 2).map((news, index) => (
+            {newsArr.slice(0, newsAmount).map((news, index) => (
                 <NewsVisualization key={index} news={news}/>
             ))}
         </Stack>

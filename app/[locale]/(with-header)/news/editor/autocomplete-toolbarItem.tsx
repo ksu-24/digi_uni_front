@@ -5,6 +5,7 @@ import {$getSelection, $isRangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {undoIfNeeded} from "@/app/[locale]/(with-header)/news/editor/toolbar";
+import {useTranslations} from "next-intl";
 
 function PreviewListItem(
     {
@@ -87,6 +88,7 @@ export const AutocompleteToolbarItem = (
         }
     });
     const [open, setOpen] = useState(false);
+    const translations = useTranslations("editor");
 
     return (
         <Autocomplete
@@ -110,7 +112,7 @@ export const AutocompleteToolbarItem = (
             value={value}
             onChange={handleChange}
             renderInput={(params) => (
-                <TextField {...params} label={label} variant="standard"/>
+                <TextField {...params} label={translations(label as never)} variant="standard" required/>
             )}
             renderOption={(props, option) => (
                 <PreviewListItem

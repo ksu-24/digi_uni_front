@@ -8,14 +8,14 @@ export default function DynamicBackwardsNav() {
     const segments = ["main"].concat(usePathname().split("/").slice(1, -1));
     const translations = useTranslations("nav");
     return (
-        <Stack direction="row" className="backwards-nav">
+        <Stack direction="row" className="backwards-nav text-themed-light-gray">
             {
                 segments.map((segment, index) => {
                     return (
                         <Link href={"/" + segments.slice(0, index + 1).map(s => {
                             return s === "main" ? "" : s;
                         }).join("/")} key={index}>
-                            <Typography variant="caption" className="text-themed-light-gray hover:text-themed-darker-gray" fontWeight={500}>
+                            <Typography variant="caption" className="hover:text-themed-darker-gray" fontWeight={500}>
                                 {translations(segment as never) || segment}
                             </Typography>
                         </Link>
