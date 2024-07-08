@@ -15,7 +15,7 @@
     "gray": {
         "darkest": "#16161D",
         "darker": "#62626A",
-        "default": "#F7F7F7",
-        "light": "#AAAAAD"
+        "default": "#AAAAAD",
+        "light": "#F7F7F7"
     }
 }

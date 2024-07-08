@@ -6,14 +6,16 @@ export async function SectionTitle(
     {
         number,
         titleTranslationKey,
+        typographyProps
     }: {
         number: number,
-        titleTranslationKey: string
+        titleTranslationKey: string,
+        typographyProps?: React.ComponentProps<typeof Typography>,
     }
 ) {
     const translations = await getTranslations();
     return (
-        <Typography variant="body1">{`0${number} ${translations(titleTranslationKey as never)}`}</Typography>
+        <Typography variant="body1" {...typographyProps}>{`0${number} ${translations(titleTranslationKey as never)}`}</Typography>
     );
 }
 

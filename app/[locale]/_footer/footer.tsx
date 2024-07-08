@@ -4,7 +4,6 @@ import Image from "next/image";
 import digiuniBW from "@/public/images/footer/digiuni-bw.svg";
 import {getTranslations} from "next-intl/server";
 import Nav from "@/app/_util/components/nav";
-import {InfoTiles} from "@/app/_util/components/tiles";
 import React from "react";
 
 

@@ -1,15 +1,14 @@
-import folders from "@/public/images/main/about/folders.png";
-import clock from "@/public/images/main/about/clock.png";
+import folders from "@/public/images/about/folders.png";
+import clock from "@/public/images/about/clock.png";
 import durationTime from "@/public/images/main/about/duration-time.svg";
-import tuner from "@/public/images/main/about/tuner.png";
+import tuner from "@/public/images/about/tuner.png";
 import knu from "@/public/images/main/about/knu.png";
 import {Box, Stack, Typography} from "@mui/material";
 import Image, {StaticImageData} from "next/image";
 import React from "react";
 import {getTranslations} from "next-intl/server";
 import themeObj from "@/app/_theme/theme-obj";
-
-const borders = "border-[1px] border-[#DEE1FC]";
+import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";
 
 function CardTitle(props: { translations: (key: "title") => string }) {
     return <Typography variant="h4" style={{
@@ -58,13 +57,16 @@ async function CoordinatorCard() {
 
 export default async function Cards() {
     return (
-        <Stack className={`${borders} w-full h-[50dvh] items-center mb-[22dvh]`}>
-            <Stack direction="row" className="h-full w-[80%]">
-                <ProgramCard/>
-                <DurationCard/>
-                <CoordinatorCard/>
-            </Stack>
-        </Stack>
+        <InfoContainer boxProps={{
+            className: "w-full h-[50dvh] items-center mb-[22dvh]"
+        }} stackProps={{
+            className: "h-full w-[80%]",
+            direction: "row"
+        }}>
+            <ProgramCard/>
+            <DurationCard/>
+            <CoordinatorCard/>
+        </InfoContainer>
     )
 }
 
@@ -80,13 +82,13 @@ async function Card(
     }
 ) {
     return (
-        <Stack className={`h-full w-full ${borders}`}>
+        <InfoContainerItem className={`h-full w-full`}>
             <Box className="absolute w-[57px] h-[57px] -translate-y-1/2 translate-x-[40px]">
                 <Image src={image} alt={imageAlt} fill className="object-cover"/>
             </Box>
             <Stack className="w-full h-full gap-[13%] pt-[15%] px-[11%]">
                 {children}
             </Stack>
-        </Stack>
+        </InfoContainerItem>
     )
 }

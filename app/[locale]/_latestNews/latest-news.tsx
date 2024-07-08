@@ -5,7 +5,7 @@ import Body from "@/app/[locale]/_latestNews/body";
 
 export default async function LatestNews() {
     return (
-        <DefaultContainer className="bg-themed-gray w-full h-[100dvh] pt-[10dvh]">
+        <DefaultContainer className="bg-themed-gray w-full min-h-dvh pt-[10dvh]">
             <SectionTitle number={4} titleTranslationKey="main.news.title"/>
             <Title/>
             <Body/>

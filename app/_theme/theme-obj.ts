@@ -25,7 +25,9 @@ const themeObj= {
             fontWeight: 500,
             lineHeight: 1.2,
             whiteSpace: "pre-wrap",
-            letterSpacing: "-0.02rem"
+            letterSpacing: "-0.02rem",
+            
+            
         },
         // when changing media queries, also change in @/public.global.css
         h2: {
@@ -43,7 +45,9 @@ const themeObj= {
             fontWeight: 500,
             lineHeight: 1.3,
             whiteSpace: "pre-wrap",
-            letterSpacing: "-0.01rem"
+            letterSpacing: "-0.01rem",
+            
+            
         },
         // when changing media queries, also change in @/public.global.css
         h3: {
@@ -61,7 +65,9 @@ const themeObj= {
             fontWeight: 500,
             lineHeight: 1.3,
             whiteSpace: "pre-wrap",
-            letterSpacing: "-0.01rem"
+            letterSpacing: "-0.01rem",
+            
+            
         },
         h4: {
             fontFamily: headerFont,
@@ -69,7 +75,9 @@ const themeObj= {
             fontWeight: 500,
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
-            letterSpacing: "-0.01rem"
+            letterSpacing: "-0.01rem",
+            
+            
         },
         h5: {
             fontFamily: headerFont,
@@ -77,7 +85,9 @@ const themeObj= {
             fontWeight: 500,
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
-            letterSpacing: "-0.03rem"
+            letterSpacing: "-0.03rem",
+            
+            
         },
         h6: {
             fontFamily: headerFont,
@@ -85,7 +95,9 @@ const themeObj= {
             fontWeight: 500,
             lineHeight: 1.1,
             whiteSpace: "pre-wrap",
-            letterSpacing: 0
+            letterSpacing: 0,
+            
+            
         },
         body1: {
             fontFamily: body1Font,
@@ -93,21 +105,27 @@ const themeObj= {
             fontSize: 18,
             fontWeight: 400,
             whiteSpace: "pre-wrap",
-            letterSpacing: 0
+            letterSpacing: 0,
+            
+            
         },
         body2: {
             fontFamily: body2Font,
             lineHeight: 1.5,
             fontSize: 16,
             whiteSpace: "pre-wrap",
-            letterSpacing: 0
+            letterSpacing: 0,
+            
+            
         },
         caption: {
             fontFamily: body1Font,
             fontSize: 14,
             whiteSpace: "pre-wrap",
             lineHeight: 1.1,
-            letterSpacing: "-0.03rem"
+            letterSpacing: "-0.03rem",
+            
+            
         },
     },
     components: {

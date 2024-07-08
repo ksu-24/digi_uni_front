@@ -21,14 +21,14 @@ export class NewsPreview {
     readonly title: string;
     readonly date: Date;
     readonly image?: string;
-    readonly description: string;
+    readonly summary: string;
 
     constructor(id: number, title: string, date: string | Date, description: string, image?: string) {
         this.id = id;
         this.title = title;
         this.date = new Date(date);
         this.image = image;
-        this.description = description;
+        this.summary = description;
     }
 }
 

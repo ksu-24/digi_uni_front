@@ -26,6 +26,7 @@ import SavePlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/save-p
 import SaveStatePlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/save-state-plugin";
 import PreviewForm from "@/app/[locale]/(with-header)/news/editor/preview-form";
 import ClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
+import React from "react";
 
 const theme: InitialConfigType = {
     // @ts-ignore
@@ -100,9 +101,10 @@ export default function Editor(
     };
 
     const className = useEditorClasses((state) => state.className);
+    const formRef = React.useRef<HTMLFormElement | null>(null);
 
     return (
-        <Stack className="gap-6 items-center my-10">
+        <Stack className="gap-6 items-center my-10" component="form">
             <LexicalComposer initialConfig={initialConfig}>
                 {
                     editable && <>
@@ -122,7 +124,7 @@ export default function Editor(
                 <RichTextPlugin
                     contentEditable={<ContentEditable
                         contentEditable={editable}
-                        className={"w-full h-fit min-h-dvh border-[1px] border-black p-4 quote-container -z-10 " + className}
+                        className={"w-full h-fit min-h-dvh border-[1px] border-black p-4 quote-container " + className}
                         style={{
                             ...themeObj.typography.body1
                         }}/>}
@@ -131,8 +133,8 @@ export default function Editor(
                 />
                 {editable &&
                     <>
-                        <PreviewForm/>
-                        <SavePlugin/>
+                        <PreviewForm formRef={formRef}/>
+                        <SavePlugin previewFormRef={formRef}/>
                     </>
                 }
             </LexicalComposer>

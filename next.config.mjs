@@ -7,6 +7,9 @@ const nextConfig = {
     // TODO: remove when app router build bugs are fixed
     typescript: {
         ignoreBuildErrors: true,
+    },
+    images: {
+        domains: [process.env.NEXT_PUBLIC_API_URL, "localhost"]
     }
 };
 

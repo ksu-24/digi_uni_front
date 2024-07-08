@@ -126,6 +126,73 @@
             "title": "Multimedia",
             "image": "Image"
         }
+    },
+    "about": {
+        "title": {
+            "slogan": "Digiuni - the largest project under the Erasmus+ program ever implemented in Ukraine"
+        },
+        "aboutProject": {
+            "1": "About the project",
+            "2": "Project goal",
+            "3": "Specific objectives",
+            "4": "Target groups",
+            "5": "Team",
+            "6": "Partners",
+            "7": "Project timeline",
+            "enumerationCaption": "About project",
+            "title": "About project",
+            "content": "The Erasmus+ CBHE DigiUni project, with the full name \"Digital University - Open Ukrainian Initiative\", is an important initiative aimed at supporting higher education in Ukraine in the conditions of martial law and post-war reconstruction. Currently, this is the largest Erasmus+ project ever implemented in Ukraine.\n\nThis project was developed in response to the unprecedented challenges associated with the full-scale invasion of Russia in Ukraine, and aims to harmonize the processes of digital transformation in education, creating a single digital educational ecosystem to ensure continuous, high-quality, inclusive and transparent education\u200B\u200B\u200B\u200B . The project emphasizes the importance of digitization for the continuity and success of educational institutions in Ukraine. It aims to use the experience of European universities in the development of integrated digital solutions and to promote cooperation between Ukrainian and European partners.\n\nIn 2023, the European Commission opened a special window for Ukraine under the Erasmus+ program in response to the challenges faced by Ukrainian higher education due to the full-scale Russian invasion and its consequences. The Ministry of Education and Science of Ukraine, together with Ukrainian partner universities, worked on a proposal that would combine a systematic approach, broad influence and cooperation of all Ukrainian higher education institutions. According to the results of the selection, the DigiUni project became the winner, and European partners supported it.",
+            "info" : {
+                "duration": {
+                    "title": "Project duration",
+                    "content": "2023 - 2027."
+                },
+                "coordinator": {
+                    "title": "Coordinator",
+                    "content": "Taras Shevchenko National University of Kyiv (Ukraine)."
+                },
+                "firstPresentation": "The project was first presented on October 11, 2023."
+            },
+            "afterInfoRows": "The project is implemented by a consortium of Ukrainian and European universities and institutions (for details, see the Participants and Partners sections).\n\nCompetent national authorities (Ministry of Education and Science of Ukraine, Ministry of Digital Transformation of Ukraine, National Agency for Quality Assurance of Higher Education), higher education institutions, business associations and stakeholders will work together within DigiUni for mutual learning between public authorities with the aim of:,",
+            "goals": {
+                "improvement": {
+                    "left": "Promotion of",
+                    "bold": "systemic improvement",
+                    "right": "and innovations in the higher education sector"
+                },
+                "development": {
+                    "bold": "Development of",
+                    "right": "an inclusive higher education system to ensure adequate conditions for students from different backgrounds and with fewer opportunities for access to education and achieving success in learning"
+                },
+                "modernisation": {
+                    "bold": "Modernisation of",
+                    "right": "the governance and funding of the higher education system in Ukraine"
+                },
+                "potential": {
+                    "bold": "Enhancement of potential",
+                    "right": "of Ukrainian higher education institutions through synergy with current EU initiatives, including Erasmus+"
+                }
+            },
+            "consortiumMembers": "All members of the consortium aim to play their part in creating a highly effective digital education ecosystem that can ensure the continuity and effectiveness of their academic activities to continue to engage all students and increase their employability in the knowledge-based economy."
+        },
+        "goal": {
+            "enumerationCaption": "Project goal",
+            "title": "Project goals, aims",
+            "goalsList": {
+                "1": {
+                    "bold": "The first general goal",
+                    "content": "is the development of a highly effective digital educational ecosystem in Ukraine to ensure continuous, high-quality, inclusive and transparent education, regardless of the location of the student and teacher, using existing digital innovations in the field of education and a clear paradigm for attracting future innovations, developing a holistic and sustainable system of higher education to meet socio-economic needs and high ambitions for a knowledge-based economy."
+                },
+                "2": {
+                    "bold": "The second goal",
+                    "content": "is to digitize teaching and learning methods and provide the infrastructure necessary for online and inclusive education."
+                },
+                "3": {
+                    "bold": "The third goal",
+                    "content": "is to promote the gradual synchronization of Ukrainian and European universities in accordance with the values, standards and priorities of the European Higher Education Area, as well as in the perspective of Ukraine's future accession to the European Union (EU). The project aims to promote bottom-up European solidarity on an inter-institutional and result-oriented basis, in combination with different levels of political decision-making."
+                }
+            }
+        }
     }
 }
 

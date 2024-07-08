@@ -117,6 +117,7 @@ function ResizePoint(
     );
 }
 
+// TODO: revisit anchor points positioning
 function ImageNodeComponent(props: {
     key1: string,
     src: string,

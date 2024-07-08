@@ -2,7 +2,7 @@ import {Stack} from "@mui/material";
 import Slogan from "@/app/[locale]/_slogan/slogan";
 import {unstable_setRequestLocale} from "next-intl/server";
 import {InfoTiles, SecondaryTiles} from "@/app/_util/components/tiles";
-import Erasmus from "@/app/[locale]/_erasmus/erasmus";
+import Erasmus from "@/app/[locale]/_about (main)/erasmus";
 import Mission from "@/app/[locale]/_mission/mission";
 import Partners from "@/app/[locale]/_partners/partners";
 import LatestNews from "@/app/[locale]/_latestNews/latest-news";
