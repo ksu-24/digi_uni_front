@@ -8,7 +8,7 @@ export default function DynamicBackwardsNav() {
     const segments = ["main"].concat(usePathname().split("/").slice(1, -1));
     const translations = useTranslations("nav");
     return (
-        <Stack direction="row" className="backwards-nav text-themed-light-gray">
+        <Stack direction="row" className="backwards-nav text-themed-gray">
             {
                 segments.map((segment, index) => {
                     return (

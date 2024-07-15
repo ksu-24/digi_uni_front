@@ -34,6 +34,7 @@ const config: Config = {
                 "button-hover-primary": colors.button["hover-primary"],
                 "button-hover-secondary": colors.button["hover-secondary"],
                 "themed-darker-gray": colors.gray.darker,
+                "themed-blue": colors.blue
             },
             colors: {
                 "primary": colors.primary.main,
@@ -46,6 +47,7 @@ const config: Config = {
                 "button-hover-primary": colors.button["hover-primary"],
                 "button-hover-secondary": colors.button["hover-secondary"],
                 "themed-darker-gray": colors.gray.darker,
+                "themed-blue": colors.blue
             },
             screens: screens
         },

@@ -4,8 +4,7 @@ import links from '@/resources/links.json'
 import {useTranslations} from "next-intl";
 import {Stack, Typography} from "@mui/material";
 import {Link, usePathname} from "@/app/_localization/navigation";
-
-import {body1Font} from "@/app/_theme/fonts";
+import {body1Font} from "@/app/_theme/theme-obj";
 
 export default function Nav(
     {

@@ -1,0 +1,43 @@
+import {DefaultContainer} from "@/app/_util/components/default-container";
+import {SectionTitle} from "@/app/_util/components/section-title";
+import {Box, Typography} from "@mui/material";
+import {getTranslations} from "next-intl/server";
+import Grid2 from "@mui/material/Unstable_Grid2";
+import partners from "@/resources/partners.json"
+import {Link} from "@/app/_localization/navigation";
+import {InfoContainer} from "@/app/_util/components/info-container";
+
+export default async function Partners() {
+    const translations = await getTranslations("about.partners");
+    const partnerTranslations = await getTranslations("partners");
+    return (
+        <section id="partners">
+            <DefaultContainer withTopPadding className="!p-0">
+                <DefaultContainer>
+                    <SectionTitle number={6} titleTranslationKey="about.partners.enumerationCaption"/>
+                    <Typography variant="h3">{translations("title")}</Typography>
+                </DefaultContainer>
+                <InfoContainer>
+                    <Grid2 container columns={60}>
+                        {
+                            Object.values(partners).map((partner, index) => (
+                                <Grid2 key={index} xs={60} sm={30} lg={20} xl={12} component="li">
+                                    <Box
+                                        className="h-[25dvh] border-[1px] border-collapse border-info">
+                                        <Link
+                                            className="w-full h-full flex items-center justify-center p-9 hover:scale-105"
+                                            href={partner.link}>
+                                            <img src={partner.logo}
+                                                 alt={partnerTranslations(partner.translationKey as never)}
+                                                 className="w-auto max-h-full"/>
+                                        </Link>
+                                    </Box>
+                                </Grid2>
+                            ))
+                        }
+                    </Grid2>
+                </InfoContainer>
+            </DefaultContainer>
+        </section>
+    );
+}

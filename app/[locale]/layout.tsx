@@ -45,20 +45,3 @@ export default async function LocaleLayout(
         </html>
     );
 }
-
-export async function generateStaticParams() {
-    return locales.map(locale => ({
-        locale: locale
-    }));
-}
-
-export async function getStaticPaths() {
-    return {
-        paths: locales.map(locale => ({
-            params: {
-                locale
-            }
-        })),
-        fallback: false
-    };
-}

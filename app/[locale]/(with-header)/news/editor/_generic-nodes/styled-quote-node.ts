@@ -13,9 +13,6 @@ export default class StyledQuoteNode extends QuoteNode {
 
     createDOM(config: EditorConfig): HTMLElement {
         const base = super.createDOM(config);
-        base.style.display = "flex";
-        base.style.gap = "1.5rem";
-        base.style.flexDirection = "column";
         base.classList.add("quote", "quote-border");
         return base;
     }

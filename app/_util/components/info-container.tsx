@@ -2,7 +2,7 @@ import React, {CSSProperties} from "react";
 import {Box, BoxProps, Stack, StackProps} from "@mui/material";
 import {defaultPx} from "@/app/_util/components/default-container";
 import colors from "@/resources/colors.json";
-import {className} from "postcss-selector-parser";
+import screens from "@/resources/screens.json";
 
 const cardsContainerBorders: CSSProperties = {
     border: `1px solid ${colors.info.main}`,
@@ -21,13 +21,20 @@ export function InfoContainer(
     }
 ) {
     return <Box style={{
-        ...cardsContainerBorders
+        ...cardsContainerBorders,
+        borderLeft: 0,
+        borderRight: 0
     }} {...boxProps}>
-        <Stack style={{
+        { /* @ts-ignore */}
+        <Stack sx={{
             ...cardsContainerBorders,
-            marginLeft: defaultPx,
-            marginRight: defaultPx
-        }} {...stackProps} className={`${stackProps.className ?? ''} h-full`}>
+            [`@media (min-width: ${screens.md})`]: {
+                "&.MuiStack-root": {
+                    marginLeft: defaultPx,
+                    marginRight: defaultPx
+                }
+            }
+        }} {...stackProps} className={`${stackProps.className ?? ''} h-fit min-h-full`} component="ul">
             {children}
         </Stack>
     </Box>;
@@ -45,7 +52,7 @@ export function InfoContainerItem(
     return (
         <Stack className={`${className} w-full border-collapse`} style={{
             ...cardsContainerBorders
-        }}>
+        }} component="li">
             {children}
         </Stack>
     )

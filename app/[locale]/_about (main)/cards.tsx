@@ -58,7 +58,7 @@ async function CoordinatorCard() {
 export default async function Cards() {
     return (
         <InfoContainer boxProps={{
-            className: "w-full h-[50dvh] items-center mb-[22dvh]"
+            className: "w-full min-h-[50dvh] h-fit items-center mb-[22dvh]"
         }} stackProps={{
             className: "h-full w-[80%]",
             direction: "row"

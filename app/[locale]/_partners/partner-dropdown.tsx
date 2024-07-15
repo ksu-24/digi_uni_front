@@ -36,7 +36,7 @@ export default function PartnerDropdown(
     }
 ) {
     const [expanded, setExpanded] = React.useState(false);
-    const translations = useTranslations("main.partners.partnersList");
+    const translations = useTranslations("partners");
     const countryTranslations = useTranslations("countries");
     return (
         <Accordion expanded={expanded} elevation={0} sx={{
@@ -70,7 +70,7 @@ export default function PartnerDropdown(
                 </Stack>
             </AccordionSummary>
             <AccordionDetails>
-                <Stack direction="row" className="w-fill h-[20dvh] items-center gap-[5%] bg-themed-gray p-[2%]">
+                <Stack direction="row" className="w-fill h-[20dvh] items-center gap-[5%] bg-themed-lightgray p-[2%]">
                     <Box className="relative w-fit h-full" key={partner.translationKey}>
                         <img src={partner.logo} alt={partner.translationKey}
                              className="max-w-[25dvw] w-auto h-full object-contain"/>

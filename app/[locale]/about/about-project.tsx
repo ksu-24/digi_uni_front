@@ -32,7 +32,7 @@ async function RowContainer(
                 fontSize: themeObj.typography.body2.fontSize,
                 ...typographyStyles
             }
-        }}>
+        }} component="li">
             {children}
         </Stack>
     )
@@ -159,12 +159,14 @@ async function Preamble() {
 
 export default async function AboutProject() {
     return (
-        <DefaultContainer className="!p-0">
-            <Preamble/>
-            <InfoRows/>
-            <AfterInfoRows/>
-            <GoalsSection/>
-            <ConsortiumMembersSection/>
-        </DefaultContainer>
+        <section id="about-project">
+            <DefaultContainer className="!p-0">
+                <Preamble/>
+                <InfoRows/>
+                <AfterInfoRows/>
+                <GoalsSection/>
+                <ConsortiumMembersSection/>
+            </DefaultContainer>
+        </section>
     );
 }

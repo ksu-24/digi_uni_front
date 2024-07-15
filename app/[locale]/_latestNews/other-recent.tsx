@@ -3,8 +3,7 @@
 import News from '@/app/model/news';
 import {Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
-import useWindow from "@/app/_util/use-window";
-import { Link } from "@/app/_localization/navigation";
+import {Link} from "@/app/_localization/navigation";
 import {useNewsAmount} from "@/app/[locale]/_latestNews/body";
 
 export default function OtherRecent(
@@ -32,10 +31,14 @@ function NewsVisualization(
         news: News
     }) {
     return (
-        <Stack className="w-full h-full border-t-[1px] border-[#AAAAAD] gap-5 pt-5 hover:scale-105" direction="column">
+        <Stack className="w-full h-full border-t-[1px] border-[#AAAAAD] gap-5" direction="column" sx={{
+            "&.MuiStack-root::before, &.MuiStack-root::after": {
+                content: "''",
+            }
+        }}>
+            <Timestamp date={news.date}/>
             <Link href={`/news/${news.id}`} className="w-full h-full">
-                <Timestamp date={news.date}/>
-                <Typography variant="h5">{news.title}</Typography>
+                <Typography variant="h5" className="hover:text-themed-blue">{news.title}</Typography>
             </Link>
         </Stack>
     )

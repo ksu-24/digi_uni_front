@@ -4,7 +4,7 @@ import FeedbackForm from "@/app/_util/components/feedback/feedback-form";
 
 export default function Feedback() {
     return (
-        <DefaultContainer className="min-h-dvh bg-info pt-[16dvh]">
+        <DefaultContainer className={`min-h-dvh bg-info`} withTopPadding>
             <SectionTitle number={5} titleTranslationKey="main.feedback.enumerationCaption"/>
             <FeedbackForm/>
         </DefaultContainer>

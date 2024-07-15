@@ -4,9 +4,9 @@ import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {mergeRegister} from '@lexical/utils';
 import {
     $getSelection,
-    $isRangeSelection, CAN_UNDO_COMMAND, CLEAR_EDITOR_COMMAND,
+    $isRangeSelection, $isTextNode, CAN_UNDO_COMMAND, CLEAR_EDITOR_COMMAND,
     FORMAT_TEXT_COMMAND,
-    LexicalEditor, REDO_COMMAND,
+    LexicalEditor, RangeSelection, REDO_COMMAND,
     SELECTION_CHANGE_COMMAND,
     UNDO_COMMAND,
 } from 'lexical';
@@ -35,6 +35,11 @@ export type ToolbarState = {
     isItalic: boolean;
     isUnderline: boolean;
     isStrikethrough: boolean;
+    font: string;
+    fontSize: number;
+    lineHeight: number;
+    color: string;
+    backgroundColor: string;
     sharedSelectionBackgroundTimeout: NodeJS.Timeout | null;
     clearSelectionBackgroundTimeout: () => void;
     setSharedSelectionBackgroundTimeout: (timeout: NodeJS.Timeout) => void;
@@ -48,6 +53,11 @@ export const useToolbarState = create<ToolbarState>((set, getState) => ({
     isItalic: false,
     isUnderline: false,
     isStrikethrough: false,
+    font: "IBM Plex Mono",
+    fontSize: 16,
+    lineHeight: 1.5,
+    color: "#000000",
+    backgroundColor: "#FFFFFF",
     sharedSelectionBackgroundTimeout: null as never,
     setSharedSelectionBackgroundTimeout: (timeout) => {
         getState().clearSelectionBackgroundTimeout();
@@ -62,12 +72,79 @@ export const useToolbarState = create<ToolbarState>((set, getState) => ({
     setState: (state: Omit<ToolbarState, "setState" | "setSharedSelectionBackgroundTimeout" | "sharedSelectionBackgroundTimeout" | "clearSelectionBackgroundTimeout">) => set(state)
 }));
 
+function componentToHex(c: number) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(rgbString: string) {
+    const r = parseInt(rgbString.split(",")[0].split("(")[1]);
+    const g = parseInt(rgbString.split(",")[1]);
+    const b = parseInt(rgbString.split(",")[2].split(")")[0]);
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function getStyleOfSelection(selection: RangeSelection, style: string) {
+    let currentStyle = null as unknown as string;
+    for (const node of selection.getNodes()) {
+        if ($isTextNode(node)) {
+            const regex = new RegExp(`${style}:([^;]+);`);
+            const match = regex.exec(node.getStyle());
+            if (match) {
+                let matchStr = match[1].trim();
+                if (/rgb\((\s*\d+){3}\)/.test(currentStyle)) {
+                    matchStr = rgbToHex(matchStr);
+                }
+                if (currentStyle && matchStr !== currentStyle) {
+                    return null;
+                } else {
+                    currentStyle = matchStr;
+                }
+            } else {
+                if ($isAutoLinkNode(node.getParent())) {
+                    out:
+                    for (const styleSheet of document.styleSheets) {
+                        const rules = styleSheet.cssRules;
+                        for (const rule of rules) {
+                            if (rule.cssText.includes(".styled-autolink > *")) {
+                                const cssText = rule.cssText;
+                                const regex = new RegExp(`${style}:([^;]+);`);
+                                const match = regex.exec(cssText);
+                                if (match) {
+                                    let matchStr = match[1].trim();
+                                    if (/rgb\((\s*\d+){3}\)/.test(currentStyle)) {
+                                        matchStr = rgbToHex(matchStr);
+                                    }
+                                    if (currentStyle && matchStr !== currentStyle) {
+                                        return null;
+                                    } else {
+                                        currentStyle = matchStr;
+                                    }
+                                }
+                                break out;
+                            }
+                        }
+                    }
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+    return currentStyle;
+}
+
 export default function ToolbarPlugin() {
     const [editor] = useLexicalComposerContext();
     const [isBold, setIsBold] = useState(false);
     const [isItalic, setIsItalic] = useState(false);
     const [isUnderline, setIsUnderline] = useState(false);
     const [isStrikethrough, setIsStrikethrough] = useState(false);
+    const [font, setFont] = useState("IBM Plex Mono");
+    const [fontSize, setFontSize] = useState(16);
+    const [lineHeight, setLineHeight] = useState(1.5);
+    const [color, setColor] = useState("black");
+    const [backgroundColor, setBackgroundColor] = useState("white");
     const [currentTab, setCurrentTab] = useState(0);
     const setToolbarState = useToolbarState((state) => state.setState);
     const {canUndo, canRedo} = useHistory((state) => {
@@ -84,9 +161,14 @@ export default function ToolbarPlugin() {
             isBold,
             isItalic,
             isUnderline,
-            isStrikethrough
+            isStrikethrough,
+            font,
+            fontSize,
+            lineHeight,
+            color,
+            backgroundColor
         });
-    }, [canUndo, canRedo, isBold, isItalic, isUnderline, isStrikethrough]);
+    }, [canUndo, canRedo, isBold, isItalic, isUnderline, isStrikethrough, font, fontSize, lineHeight, color, backgroundColor]);
 
     const $updateToolbar = useCallback(() => {
         const selection = $getSelection();
@@ -95,6 +177,21 @@ export default function ToolbarPlugin() {
             setIsItalic(selection.hasFormat('italic'));
             setIsUnderline(selection.hasFormat('underline'));
             setIsStrikethrough(selection.hasFormat('strikethrough'));
+            setFont(getStyleOfSelection(selection, "font-family") ?? "IBM Plex Mono");
+            const fontSize = getStyleOfSelection(selection, "font-size");
+            if (fontSize) {
+                setFontSize(parseInt(fontSize));
+            } else {
+                setFontSize(16);
+            }
+            const lineHeight = getStyleOfSelection(selection, "line-height");
+            if (lineHeight) {
+                setLineHeight(parseFloat(lineHeight) / 100);
+            } else {
+                setLineHeight(1.5);
+            }
+            setColor(getStyleOfSelection(selection, "color") ?? "#000000");
+            setBackgroundColor(getStyleOfSelection(selection, "background-color") ?? "#FFFFFF");
         }
     }, []);
 

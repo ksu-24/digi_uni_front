@@ -10,9 +10,9 @@ export default function PartnersWheel() {
                 {
                     partners.map((partner) => {
                         return (
-                            <Box className="relative w-fit h-full" key={partner.translationKey}>
-                                <img src={partner.logo} alt={partner.translationKey}
-                                     className="max-w-[25dvw] w-auto h-full object-contain"/>
+                            <Box className="relative w-fit h-full max-h-full flex items-center" key={partner.translationKey}>
+                                <img src={partner.logo} alt={partner.translationKey} height="100%"
+                                     className="max-w-[25dvw] object-contain max-h-full"/>
                             </Box>
                         )
                     })

@@ -2,23 +2,26 @@
 
 import React, {Suspense, useEffect, useState} from "react";
 import {NewsPreview} from "@/app/model/news";
-import screens from "@/resources/screens.json";
-import useWindow from "@/app/_util/use-window";
 import {Box, Skeleton, Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
 import Grid from "@mui/material/Unstable_Grid2";
 import {create} from "zustand";
 import {useLocale} from "next-intl";
 import {useGet} from "@/app/_util/fetching-client";
-
-const pageSizeFactors = {
-    xs: 1,
-    sm: 2,
-    xl: 3,
-    "3xl": 4
-};
+import {Link} from "@/app/_localization/navigation";
+import colors from "@/resources/colors.json"
+import screens from "@/resources/screens.json";
+import useWindow from "@/app/_util/use-window";
+import Image from "next/image";
 
 const lcm = 12;
+
+const pageSizeFactors = {
+    xs: lcm,
+    sm: lcm/2,
+    xl: lcm/3,
+    "3xl": lcm/4
+};
 
 const cache = new Map<number, NewsPreview[]>();
 
@@ -56,11 +59,9 @@ export function useNewsPreview(pageSize: number, pageNumber: number): NewsPrevie
 
 function NewsListItem(
     {
-        page,
-        rowSize
+        page
     }: {
         page: number;
-        rowSize: number;
     }
 ) {
 
@@ -69,9 +70,13 @@ function NewsListItem(
 
 
     return (
-        <Grid container columns={lcm} spacing="3%">
+        <Grid container columns={lcm} spacing="3%" sx={{
+            "&.MuiGrid2-container > *": {
+                height: "50dvh"
+            }
+        }}>
             {news.map((news) => (
-                <NewsCard key={news.id} news={news} colspan={lcm / rowSize}/>
+                <NewsCard key={news.id} news={news}/>
             ))}
         </Grid>
     )
@@ -80,57 +85,44 @@ function NewsListItem(
 function NewsCard(
     {
         news,
-        colspan
     }: {
         news: NewsPreview,
-        colspan: number;
     }
 ) {
     return (
-        <Grid xs={colspan}>
-            <Stack className="gap-10">
-                <Box className="w-full h-fit 3xl:h-[25dvh] flex items-center">
-                    <img src={news.image} alt={news.title} width="100%" className="min-w-full"/>
-                </Box>
-                <Stack className="gap-8">
-                    <Typography variant="h4">{news.title}</Typography>
-                    <Typography variant="body1">{news.summary}</Typography>
-                    <Timestamp date={news.date} format={{
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                    }}/>
+        <Grid {...pageSizeFactors} className="h-full">
+            <Link href={`/news/${news.id}`} className="h-full">
+                <Stack className="gap-10 h-full" sx={{
+                    "&.MuiStack-root:hover .MuiTypography-h4": {
+                        color: colors.blue
+                    }
+                }}>
+                    <Box className="w-full h-full relative 3xl:h-[25dvh] flex items-center">
+                        <Image src={news.image} alt={news.title} fill className="object-contain"/>
+                    </Box>
+                    <Stack className="gap-8">
+                        <Timestamp date={news.date}/>
+                        <Typography variant="h4">{news.title}</Typography>
+                    </Stack>
                 </Stack>
-            </Stack>
+            </Link>
         </Grid>
     )
 }
 
-function NewsListItemSkeleton(
-    {
-        rowSize
-    }: {
-        rowSize: number
-    }
-) {
+function NewsListItemSkeleton() {
     return (
         <Grid container columns={lcm} spacing="3%">
             {Array.from({length: lcm}, (_, i) => (
-                <NewsCardSkeleton key={i} colspan={lcm / rowSize}/>
+                <NewsCardSkeleton key={i}/>
             ))}
         </Grid>
     )
 }
 
-function NewsCardSkeleton(
-    {
-        colspan
-    }: {
-        colspan: number
-    }
-) {
+function NewsCardSkeleton() {
     return (
-        <Grid xs={colspan}>
+        <Grid {...pageSizeFactors}>
             <Stack className="gap-10">
                 <Skeleton variant="rectangular" width="100%" height="25vh"/>
                 <Stack className="gap-8">
@@ -219,8 +211,8 @@ export default function NewsPanel() {
         <Stack ref={stackRef}>
             {
                 Array.from({length: pages}, (_, i) => (
-                    <Suspense fallback={<NewsListItemSkeleton rowSize={rowSize}/>} key={i}>
-                        <NewsListItem page={i} rowSize={rowSize}/>
+                    <Suspense fallback={<NewsListItemSkeleton/>} key={i}>
+                        <NewsListItem page={i}/>
                     </Suspense>
                 ))
             }

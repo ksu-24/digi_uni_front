@@ -20,10 +20,10 @@ export class NewsPreview {
     readonly id: number;
     readonly title: string;
     readonly date: Date;
-    readonly image?: string;
+    readonly image: string;
     readonly summary: string;
 
-    constructor(id: number, title: string, date: string | Date, description: string, image?: string) {
+    constructor(id: number, title: string, date: string | Date, description: string, image: string) {
         this.id = id;
         this.title = title;
         this.date = new Date(date);
@@ -32,12 +32,13 @@ export class NewsPreview {
     }
 }
 
-export async function getNewsPreview(pageSize: number, pageNumber: number): Promise<News[]> {
+export async function getNewsPreview(pageSize: number, pageNumber: number): Promise<NewsPreview[]> {
     const locale = await getLocale();
     const response = await get(`/publications/previews`, {
-        pageSize,
-        pageNumber,
+        size: pageSize,
+        page: pageNumber,
         sort: "createdAt",
+        desc: true,
         language: locale.toUpperCase(),
         type: "NEWS"
     });
@@ -47,7 +48,11 @@ export async function getNewsPreview(pageSize: number, pageNumber: number): Prom
         return [];
     }
 
-    const data = await response.json();
+    const data = await response.json() as (Omit<NewsPreview, "image"> & {
+        image: {
+            image: string
+        }
+    })[];
 
-    return data.map((news: any) => new News(news.publicationId, news.title, news.createdAt, news.image, news.content));
+    return data.map((news: any) => new NewsPreview(news.id, news.title, news.createdAt, news.summary, news.image.image));
 }

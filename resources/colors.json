@@ -9,7 +9,7 @@
         "main": "#D5DAFF"
     },
     "button": {
-        "hover-primary": "#C6FB50",
+        "hover-primary": "#2B48FF",
         "hover-secondary": "white"
     },
     "gray": {
@@ -17,5 +17,6 @@
         "darker": "#62626A",
         "default": "#AAAAAD",
         "light": "#F7F7F7"
-    }
+    },
+    "blue": "#2B48FF"
 }

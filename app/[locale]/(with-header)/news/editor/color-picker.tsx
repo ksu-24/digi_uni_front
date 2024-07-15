@@ -1,6 +1,6 @@
 import {useTranslations} from "next-intl";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {$getSelection, $isRangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import themeObj from "@/app/_theme/theme-obj";
@@ -15,6 +15,7 @@ import {
     TextField
 } from "@mui/material";
 import {ChromePicker} from "react-color";
+import {useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
 
 export function ColorPicker(
     {
@@ -26,7 +27,10 @@ export function ColorPicker(
     const translations = useTranslations("editor.textFormating");
     const [editor] = useLexicalComposerContext();
     const [prevColors, setPrevColors] = React.useState<string[]>([]);
-    const [current, setCurrent] = useState("#000000");
+    const stylePropInCamelCase = styleProp.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+    const initialValue = useToolbarState((state) => state[stylePropInCamelCase as never]) as string
+    const [current, setCurrent] = useState(initialValue.toUpperCase());
+
     const setCurrentAndUpdate = (color: string) => {
         setCurrent(color);
         editor.update(() => {
@@ -38,6 +42,11 @@ export function ColorPicker(
             }
         });
     }
+
+    useEffect(() => {
+        setCurrent(initialValue.toUpperCase());
+    }, [initialValue]);
+
     const themedColorsMapping = new Map(Object.entries({
         "primary": themeObj.palette.primary.main,
         "secondary": themeObj.palette.secondary.main,
@@ -77,7 +86,7 @@ export function ColorPicker(
                     alignSelf: "end"
                 }
             }} className="min-h-0 h-full flex flex-col items-center justify-end gap-1 !px-0 mx-4">
-                <FormControl className="w-full !cursor-pointer">
+                <FormControl className="w-fit !cursor-pointer">
                     <InputLabel shrink required htmlFor="textcolor">{translations(styleProp as never)}</InputLabel>
                     <TextField sx={{
                         ".MuiInputBase-root > *": {
@@ -85,9 +94,9 @@ export function ColorPicker(
                             backgroundColor: current,
                             backgroundClip: "content-box",
                             padding: 0,
-                            margin: "16.5px 14px 0 14px"
+                            margin: "16.5px 14px 0 14px",
                         }
-                    }} name="textcolor"/>
+                    }} name="textcolor" className="w-40"/>
                 </FormControl>
             </AccordionSummary>
             <AccordionDetails className="w-fit h-fit">

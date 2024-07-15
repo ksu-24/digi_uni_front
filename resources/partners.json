@@ -1,7 +1,7 @@
 [
     {
         "translationKey": "ksu",
-        "logo": "/images/main/partners/ksu.png",
+        "logo": "/images/partners/ksu.png",
         "link": "https://www.kspu.edu/",
         "country": "Ukraine",
         "people": [
@@ -19,26 +19,134 @@
     },
     {
         "translationKey": "lu",
-        "logo": "/images/main/partners/lu.png",
+        "logo": "/images/partners/lu.png",
         "link": "https://www.lnu.edu.ua",
         "country": "Ukraine"
     },
     {
         "translationKey": "mariupol",
-        "logo": "/images/main/partners/mariupol.png",
+        "logo": "/images/partners/mariupol.png",
         "link": "https://en.mdu.in.ua/",
         "country": "Ukraine"
     },
     {
         "translationKey": "moeu",
-        "logo": "/images/main/partners/moeu.png",
+        "logo": "/images/partners/moeu.png",
         "link": "https://www.mon.gov.ua",
         "country": "Ukraine"
     },
     {
         "translationKey": "khpi",
-        "logo": "/images/main/partners/khpi.png",
+        "logo": "/images/partners/khpi.png",
         "link": "https://www.kpi.kharkov.ua",
         "country": "Ukraine"
+    },
+    {
+        "translationKey": "chnu",
+        "logo": "/images/partners/chnu.png",
+        "link": "https://www.chnu.edu.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "ecti",
+        "logo": "/images/partners/ecti.png",
+        "link": "https://ecti.org/",
+        "country": "France"
+    },
+    {
+        "translationKey": "fauen",
+        "logo": "/images/partners/fauen.png",
+        "link": "https://www.fau.eu/",
+        "country": "Germany"
+    },
+    {
+        "translationKey": "kma",
+        "logo": "/images/partners/kma.png",
+        "link": "https://www.ukma.edu.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "knu",
+        "logo": "/images/partners/knu.png",
+        "link": "https://knu.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "SKkhnu",
+        "logo": "/images/partners/SKkhnu.png",
+        "link": "https://www.hneu.edu.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "luh",
+        "logo": "/images/partners/luh.png",
+        "link": "https://www.uni-hannover.de/",
+        "country": "Germany"
+    },
+    {
+        "translationKey": "modfu",
+        "logo": "/images/partners/modfu.png",
+        "link": "https://thedigital.gov.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "muni",
+        "logo": "/images/partners/muni.png",
+        "link": "https://www.muni.cz/",
+        "country": "Czech Republic"
+    },
+    {
+        "translationKey": "nahe",
+        "logo": "/images/partners/nahe.png",
+        "link": "https://en.naqa.gov.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "sdu",
+        "logo": "/images/partners/sdu.png",
+        "link": "https://sumdu.edu.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "tib",
+        "logo": "/images/partners/tib.png",
+        "link": "https://www.tib.eu/",
+        "country": "Germany"
+    },
+    {
+        "translationKey": "uaip",
+        "logo": "/images/partners/uaip.png",
+        "link": "",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "uam",
+        "logo": "/images/partners/uam.png",
+        "link": "https://amu.edu.pl/",
+        "country": "Poland"
+    },
+    {
+        "translationKey": "uas",
+        "logo": "/images/partners/uas.png",
+        "link": "https://www.uas.ngo/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "ucu",
+        "logo": "/images/partners/ucu.png",
+        "link": "https://ucu.edu.ua/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "uesis",
+        "logo": "/images/partners/uesis.png",
+        "link": "https://usit.eu.org/",
+        "country": "Ukraine"
+    },
+    {
+        "translationKey": "uoc",
+        "logo": "/images/partners/uoc.png",
+        "link": "https://portal.uni-koeln.de/",
+        "country": "Germany"
     }
 ]

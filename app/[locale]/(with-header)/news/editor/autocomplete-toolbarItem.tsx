@@ -1,7 +1,7 @@
 import {Autocomplete, AutocompleteProps, ListItem, TextField, Typography} from "@mui/material";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import React, {useRef, useState} from "react";
-import {$getSelection, $isRangeSelection} from "lexical";
+import React, {useEffect, useRef, useState} from "react";
+import {$getSelection, $isRangeSelection, RangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {undoIfNeeded} from "@/app/[locale]/(with-header)/news/editor/toolbar";
@@ -13,13 +13,17 @@ function PreviewListItem(
         cssProperty,
         valuePreprocessor,
         option,
-        afterUpdate
+        afterUpdate,
+        performOnSelection,
+        undoOnEmptySelection
     }: {
         props: React.HTMLAttributes<HTMLLIElement>,
         cssProperty: string,
         valuePreprocessor: (value: string) => string,
         option: string,
-        afterUpdate?: () => void
+        afterUpdate?: () => void,
+        performOnSelection?: (selection: RangeSelection, value: string) => void,
+        undoOnEmptySelection?: boolean
     }
 ) {
     const editor = useLexicalComposerContext()[0];
@@ -32,13 +36,17 @@ function PreviewListItem(
                       editor.update(() => {
                           const selection = $getSelection();
                           if ($isRangeSelection(selection)) {
-                              $patchStyleText(selection, {[cssProperty]: valuePreprocessor(option)});
+                              if (performOnSelection) {
+                                  performOnSelection(selection, option);
+                              } else {
+                                  $patchStyleText(selection, {[cssProperty]: valuePreprocessor(option)});
+                              }
                           }
                       });
                       if (afterUpdate) {
                           afterUpdate();
                       }
-                  }} onMouseLeave={() => undoIfNeeded(editor, clicked, setClicked)}>
+                  }} onMouseLeave={() => undoIfNeeded(editor, clicked, setClicked, undoOnEmptySelection)}>
             <Typography noWrap variant="body1">{option}</Typography>
         </ListItem>
     );
@@ -51,20 +59,29 @@ export const AutocompleteToolbarItem = (
         autocompleteProps,
         validator,
         valuePreprocessor = (value) => value,
-        afterUpdate
-    }:
-        {
-            label: string,
-            cssProperty: string,
-            validator?: (value: string) => boolean,
-            valuePreprocessor?: (value: string) => string,
-            autocompleteProps: Omit<AutocompleteProps<string, false, true, boolean | undefined>, "renderInput">,
-            afterUpdate?: () => void
-        }
+        afterUpdate,
+        inputType = "number",
+        performOnSelection,
+        undoOnEmptySelection = false
+    }: {
+        label: string,
+        cssProperty: string,
+        validator?: (value: string) => boolean,
+        valuePreprocessor?: (value: string) => string,
+        autocompleteProps: Omit<AutocompleteProps<string, false, true, boolean | undefined>, "renderInput">,
+        afterUpdate?: () => void,
+        inputType?: "text" | "number",
+        performOnSelection?: (selection: RangeSelection, value: string) => void,
+        undoOnEmptySelection?: boolean
+    }
 ) => {
     const editor = useLexicalComposerContext()[0];
     const [value, setValue] = useState(autocompleteProps.defaultValue ?? "");
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        setValue(autocompleteProps.defaultValue ?? "");
+    }, [autocompleteProps.defaultValue]);
 
     const handleChange = (_: React.SyntheticEvent, newValue: string | null) => {
         newValue = newValue ?? "";
@@ -74,8 +91,12 @@ export const AutocompleteToolbarItem = (
         setValue(newValue);
         editor.update(() => {
             const selection = $getSelection();
-            if (selection) {
-                $patchStyleText(selection, {[cssProperty]: valuePreprocessor(newValue)});
+            if ($isRangeSelection(selection)) {
+                if (performOnSelection) {
+                    performOnSelection(selection, newValue);
+                } else {
+                    $patchStyleText(selection, {[cssProperty]: valuePreprocessor(newValue)});
+                }
                 $patchStyleText(selection, {"--level": null});
             }
         });
@@ -89,6 +110,8 @@ export const AutocompleteToolbarItem = (
     });
     const [open, setOpen] = useState(false);
     const translations = useTranslations("editor");
+
+    console.log(value)
 
     return (
         <Autocomplete
@@ -112,7 +135,8 @@ export const AutocompleteToolbarItem = (
             value={value}
             onChange={handleChange}
             renderInput={(params) => (
-                <TextField {...params} label={translations(label as never)} variant="standard" required/>
+                <TextField {...params} label={translations(label as never)} variant="standard" required type={inputType}
+                           value={value}/>
             )}
             renderOption={(props, option) => (
                 <PreviewListItem
@@ -122,6 +146,8 @@ export const AutocompleteToolbarItem = (
                     valuePreprocessor={valuePreprocessor}
                     option={option}
                     afterUpdate={afterUpdate}
+                    performOnSelection={performOnSelection}
+                    undoOnEmptySelection={undoOnEmptySelection}
                 />
             )}
             componentsProps={{

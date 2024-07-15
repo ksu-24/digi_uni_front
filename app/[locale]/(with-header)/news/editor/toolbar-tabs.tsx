@@ -1,9 +1,12 @@
 import {
     $getSelection,
+    $isParagraphNode,
     $isRangeSelection,
+    $isTextNode,
     FORMAT_ELEMENT_COMMAND,
     FORMAT_TEXT_COMMAND,
     LexicalEditor,
+    ParagraphNode,
     REDO_COMMAND,
     UNDO_COMMAND
 } from "lexical";
@@ -31,9 +34,11 @@ import {clearLevel, useToolbarState} from "@/app/[locale]/(with-header)/news/edi
 import {ToolbarItemProps} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
 import {ImageDropzone} from "@/app/_util/components/image-dropzone";
 import {INSERT_IMAGE_COMMAND} from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-plugin";
-import {$setBlocksType} from "@lexical/selection";
-import {$createQuoteNode} from "@lexical/rich-text";
+import {$createQuoteNode, $isQuoteNode, QuoteNode} from "@lexical/rich-text";
 import {ColorPicker} from "@/app/[locale]/(with-header)/news/editor/color-picker";
+import {$createAutoLinkNode, $isAutoLinkNode, AutoLinkNode} from "@lexical/link";
+import {$wrapNodeInElement} from "@lexical/utils";
+import {$creatClassnameTextNode} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
 
 export type CustomToolbarItemProps = {
     __type__: "custom"
@@ -122,11 +127,34 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                         editor.update(() => {
                             const selection = $getSelection();
                             if ($isRangeSelection(selection)) {
-                                $setBlocksType(selection, $createQuoteNode);
+                                const parents = selection.getNodes()
+                                    .map(node => node.getParent())
+                                    .filter(node => $isParagraphNode(node) || $isAutoLinkNode(node) || $isQuoteNode(node)) as (ParagraphNode | AutoLinkNode | QuoteNode)[];
+
+                                const shouldRemoveQuote = parents.every(parent => $isQuoteNode(parent));
+
+                                const parentsSet = new Set(parents);
+
+                                if (shouldRemoveQuote) {
+                                    parentsSet.forEach(parent => {
+                                        const firstChild = parent.getFirstChild()
+
+                                        const replacement = $isAutoLinkNode(firstChild) ?
+                                            $createAutoLinkNode(firstChild.getURL()) :
+                                            $creatClassnameTextNode(firstChild?.getTextContent() ?? "");
+
+                                        parent.replace(replacement, true)
+                                    })
+                                } else {
+                                    parentsSet.forEach(parent => {
+                                        $wrapNodeInElement(parent, $createQuoteNode);
+                                    })
+                                }
                             }
                         })
                     },
-                    active: true
+                    active: true,
+                    undoOnEmptySelection: true
                 },
                 {
                     __type__: "default",
@@ -178,35 +206,77 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                 },
                 {
                     __type__: "custom",
-                    supplier: () => (
-                        <AutocompleteToolbarItem
-                            label="textFormating.fontFamily"
-                            autocompleteProps={{
-                                options: fonts,
-                                defaultValue: fonts[0]
-                            }}
-                            cssProperty="font-family"
-                        />
-                    )
+                    supplier: () => {
+                        const currentLineHeight = useToolbarState((state) => state.lineHeight);
+                        return (
+                            <AutocompleteToolbarItem
+                                label="textFormatting.lineHeight"
+                                cssProperty="line-height"
+                                autocompleteProps={{
+                                    options: ["1", "1.15", "1.5", "2", "2.5", "3"],
+                                    freeSolo: true,
+                                    defaultValue: (+currentLineHeight.toFixed(2)).toString(),
+                                }}
+                                performOnSelection={(selection, value) => {
+                                    const parentBlocks = new Set(
+                                        selection.getNodes().map(node =>
+                                            node.getParent()).filter(node =>
+                                            $isParagraphNode(node) || $isAutoLinkNode(node)) as (ParagraphNode | AutoLinkNode)[]
+                                    );
+                                    for (const block of parentBlocks) {
+                                        block.getChildren().forEach(child => {
+                                            if ($isTextNode(child)) {
+                                                child.setStyle(child.getStyle().replaceAll(/line-height:\s*[\d.]+\s*%?;?/g, ''));
+                                                child.setStyle(child.getStyle() + `line-height: ${parseFloat(value) * 100}%;`);
+                                            }
+                                        })
+                                    }
+                                }}
+                                undoOnEmptySelection={true}
+                                inputType="number"
+                            />
+                        )
+                    }
                 },
                 {
                     __type__: "custom",
-                    supplier: () => (
-                        <AutocompleteToolbarItem
-                            label="textFormating.fontSize"
-                            cssProperty="font-size"
-                            autocompleteProps={{
-                                options: ["1", "2", "4", "6", "8", "10", "12", "14", "16", "18",
-                                    "20", "24", "28", "32", "36", "40", "48", "56", "64", "72"],
-                                freeSolo: true,
-                                defaultValue: "14"
-                            }}
-                            afterUpdate={() => {
-                                clearLevel(editor);
-                            }}
-                            valuePreprocessor={(value) => value + "px"}
-                        />
-                    )
+                    supplier: () => {
+                        const currentFont = useToolbarState((state) => state.font);
+                        return (
+                            <AutocompleteToolbarItem
+                                label="textFormating.fontFamily"
+                                autocompleteProps={{
+                                    options: fonts,
+                                    defaultValue: currentFont,
+                                }}
+                                cssProperty="font-family"
+                                inputType="text"
+                            />
+                        )
+                    }
+                },
+                {
+                    __type__: "custom",
+                    supplier: () => {
+                        const currentFontSize = useToolbarState((state) => state.fontSize);
+                        return (
+                            <AutocompleteToolbarItem
+                                label="textFormating.fontSize"
+                                cssProperty="font-size"
+                                autocompleteProps={{
+                                    options: ["1", "2", "4", "6", "8", "10", "12", "14", "16", "18",
+                                        "20", "24", "28", "32", "36", "40", "48", "56", "64", "72"],
+                                    freeSolo: true,
+                                    defaultValue: currentFontSize.toString(),
+                                }}
+                                afterUpdate={() => {
+                                    clearLevel(editor);
+                                }}
+                                valuePreprocessor={(value) => value + "px"}
+                                inputType="number"
+                            />
+                        )
+                    }
                 },
                 {
                     __type__: "custom",

@@ -1,12 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Input, InputLabel, Tooltip, Typography} from "@mui/material";
 import {CloudUpload} from "@mui/icons-material";
 
-export const toBase64 = (file: Blob): Promise<string | null> => new Promise((resolve, reject) => {
+export const toBase64 = (file: Blob): Promise<string> => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-        resolve(reader.result as string | null)
+        resolve(reader.result as string)
     };
     reader.onerror = reject;
 });
@@ -21,7 +21,9 @@ const handleDrop = async (e: React.DragEvent, setPicture: (value: File | null) =
 };
 const handleChange = async (e: React.ChangeEvent<HTMLInputElement>, setPicture: (value: File | null) => void) => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
-        setPicture(e.currentTarget.files[0]);
+        if (e.currentTarget.files[0].type.startsWith("image")) {
+            setPicture(e.currentTarget.files[0]);
+        }
     }
 };
 
@@ -30,11 +32,13 @@ export const ImageDropzone = (
         onPictureUpload = () => {
         },
         resetOnUpload = false,
-        className = ""
+        className = "",
+        initialPicture = null
     }: {
         onPictureUpload?: (picture: string) => void,
         resetOnUpload?: boolean,
-        className?: string
+        className?: string,
+        initialPicture?: string | null
     }) => {
     const [picture, setPicture] = React.useState(null as File | null);
 
@@ -54,7 +58,15 @@ export const ImageDropzone = (
         }
     }, [picture]);
 
-    const url = picture ? URL.createObjectURL(picture) : undefined;
+    function evaluateURL() {
+        return picture ? URL.createObjectURL(picture) : initialPicture ? initialPicture : undefined;
+    }
+
+    const [url, setUrl] =useState(evaluateURL());
+
+    useEffect(() => {
+        setUrl(evaluateURL());
+    }, [picture, initialPicture]);
 
     return (
         <Tooltip
@@ -70,7 +82,7 @@ export const ImageDropzone = (
             }}
         >
             <Box className={`w-full h-full flex items-center justify-center ${className}`} style={
-                picture ? {
+                url ? {
                     backgroundImage: `url(${url})`,
                     backgroundSize: "contain",
                     backgroundPosition: "center",

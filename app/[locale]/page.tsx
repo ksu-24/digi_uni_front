@@ -9,7 +9,10 @@ import LatestNews from "@/app/[locale]/_latestNews/latest-news";
 import Feedback from "@/app/[locale]/_feedback/feedback";
 import Footer from "@/app/[locale]/_footer/footer";
 import React from "react";
+import {locales} from "@/app/_localization/i18n";
 
+
+// TODO move sections into components
 export default async function Main(params: { locale: string }) {
     unstable_setRequestLocale(params.locale);
     return (
@@ -22,7 +25,7 @@ export default async function Main(params: { locale: string }) {
                 <section id="erasmus">
                     <Erasmus/>
                 </section>
-                <section id="mession">
+                <section id="mission">
                     <Mission/>
                 </section>
                 <section id="partners">

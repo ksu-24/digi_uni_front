@@ -1,47 +1,60 @@
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {Button, Typography} from "@mui/material";
 import {post} from "@/app/_util/fetching";
-import {$generateHtmlFromNodes} from "@lexical/html";
 import {useRouter} from "@/app/_localization/navigation";
 import React from "react";
 import {toBase64} from "@/app/_util/components/image-dropzone";
+import {locales} from "@/app/_localization/i18n";
+import {LexicalEditor} from "lexical";
+import {$generateHtmlFromNodes} from "@lexical/html";
 
 export default function SavePlugin(
     {
-        previewFormRef
+        localizations,
+        stateKeys,
     } : {
-        previewFormRef: React.RefObject<HTMLFormElement | null>
+        localizations: Map<string, {
+            preview: {
+                title: string,
+                summary: string,
+                image: string
+            },
+            content: string
+        }>,
+        stateKeys: string[]
     }
 ) {
-    const [editor] = useLexicalComposerContext();
     const router = useRouter();
 
     return (
         <Button className="w-1/5 text-black hover:text-white" variant="contained" onClick={async () => {
-            if (!previewFormRef.current) return;
-
-            let editorHtml: string;
-
-            editor.update(() => {
-                editorHtml = $generateHtmlFromNodes(editor);
-            });
-
-            const formData = new FormData(previewFormRef.current);
-
-            const response = await post("/publications?type=NEWS", {
-                language: "UK",
+            const localizationsArr = [] as {
+                language: string,
                 preview: {
-                    title: formData.get("title") as string,
-                    summary: formData.get("summary") as string,
-                    image: await toBase64(formData.get("image") as File)
+                    title: string,
+                    summary: string,
+                    image: string
                 },
-                content: editorHtml!
-            });
+                content: string
+            }[]
+
+            for (const locale of locales) {
+                if (localizations.get(locale)!.content) {
+                    const localeRecord = localizations.get(locale)!;
+
+                    localizationsArr.push({
+                        language: locale.toUpperCase(),
+                        preview: localeRecord.preview,
+                        content: localeRecord.content
+                    });
+                }
+            }
+
+            const response = await post("/publications?type=NEWS", {localizations: localizationsArr});
             if (!response.ok) {
                 console.error(response.status + " " + await response.text());
                 return;
             }
-            localStorage.removeItem("editorState");
             const id = (await response.json()).id;
             router.push("/news/" + id);
         }}>

@@ -241,6 +241,10 @@ export default class ImageNode extends MultimediaNode {
         return new ImageNode(json.src, json.altText, json.width, json.height, undefined, json.initialWidth, json.initialHeight);
     }
 
+    override exportJSON(): SerializedImageNode {
+        return super.exportJSON()
+    }
+
 
     decorate(): React.JSX.Element {
         return <ImageNodeComponent key1={this.getKey()} src={this.__src} alt={this.__altText} width={this.__width}
