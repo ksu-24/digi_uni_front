@@ -36,24 +36,7 @@
         },
         "partners": {
             "enumerationCaption": "Partners",
-            "title": "Partners of the project",
-            "partnersList": {
-                "ksu": {
-                    "title": "Kherson State University"
-                },
-                "khpi": {
-                    "title": "Kharkiv Polytechnic Institute"
-                },
-                "lu": {
-                    "title": "Lviv University"
-                },
-                "moeu": {
-                    "title": "Ministry of Education and Science of Ukraine"
-                },
-                "mariupol": {
-                    "title": "Mariupol State University"
-                }
-            }
+            "title": "Partners of the project"
         },
         "news": {
             "enumerationCaption": "Projects news",
@@ -305,7 +288,66 @@
         },
         "timeline": {
             "enumerationCaption": "Timeline",
-            "title": "Project timeline:"
+            "title": "Project timeline:",
+            "milestones": {
+                "milestone1": {
+                    "date": "31/12/24",
+                    "description": {
+                        "text1": "Obtain experience and best practices from DigiUni EU Partners"
+                    }
+                },
+                "milestone2": {
+                    "date": "30/04/25",
+                    "description": {
+                        "text1": "Create training curriculum for teachers and trainers"
+                    }
+                },
+                "milestone3": {
+                    "date": "31/05/25",
+                    "description": {
+                        "text1": "Create 10 DigiCentres in each UA partner university"
+                    }
+                },
+                "milestone4": {
+                    "date": "31/07/25",
+                    "description": {
+                        "text1": "Launch DigiPlatform",
+                        "text2": "Create UA Digital educational ecosystem",
+                        "text3": "Obtain experience and best practices from DigiUni EU Partners"
+                    }
+                },
+                "milestone5": {
+                    "date": "30/11/25",
+                    "description": {
+                        "text1": "UA university staff trained and ready to use DigiUni platform"
+                    }
+                },
+                "milestone6": {
+                    "date": "31/01/26",
+                    "description": {
+                        "text1": "Developed rules for Quality assurance of digital content",
+                        "text2": "Existing digital content placed on DigiPlatform"
+                    }
+                },
+                "milestone7": {
+                    "date": "31/06/26",
+                    "description": {
+                        "text1": "DigiPlatform is equipped with virtual laboratories and other features"
+                    }
+                },
+                "milestone8": {
+                    "date": "31/03/27",
+                    "description": {
+                        "text1": "New exclusive digital content is created"
+                    }
+                },
+                "milestone9": {
+                    "date": "31/10/27",
+                    "description": {
+                        "text1": "DigiUni pilot implemented and target groups trained"
+                    }
+                }
+            }
         }
     },
     "partners": {

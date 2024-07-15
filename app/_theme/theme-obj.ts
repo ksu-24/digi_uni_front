@@ -82,8 +82,6 @@ const themeObj = {
             whiteSpace: "pre-wrap",
             lineHeight: 1.1,
             letterSpacing: "-0.03rem",
-
-
         },
     },
     components: {

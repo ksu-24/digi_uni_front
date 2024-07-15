@@ -1,58 +1,75 @@
+import timelineDot from '@/public/images/about/timeline-dot.svg';
+import {Box, Stack, Typography} from "@mui/material";
+import Image from "next/image";
+import React, {ReactNode} from "react";
+import enDict from "@/resources/dicts/en.json";
+import Timestamp from "@/app/_util/components/timestamp";
+import {getTranslations} from "next-intl/server";
+import colors from "@/resources/colors.json";
+import screens from "@/resources/screens.json";
 import {DefaultContainer} from "@/app/_util/components/default-container";
 import {SectionTitle} from "@/app/_util/components/section-title";
-import {Stack, Typography} from "@mui/material";
-import {getTranslations} from "next-intl/server";
-import {
-    Timeline,
-    TimelineConnector,
-    TimelineContent as MuiTimelineContent,
-    TimelineDot as MuiTimelineDot,
-    TimelineItem,
-    TimelineSeparator
-} from "@mui/lab";
-import customTimelineDot from "@/public/images/about/timeline-dot.svg";
-import Image from "next/image";
-import React from "react";
 
-function TimelineDot() {
+function TimelineItem(
+    {
+        children,
+    }: {
+        children: React.ReactNode,
+    }
+) {
+    const widthClasses = "3xl:w-[7dvw] 2xl:w-[8.5dvw] lg:w-[10dvw] md:w-[11dvw]";
     return (
-        <MuiTimelineDot className="bg-white p-0 relative w-4 h-4 shadow-none">
-            <Image src={customTimelineDot} alt="dot" fill className="object-contain"/>
-        </MuiTimelineDot>
+        <Box className={`flex md:flex-row flex-col items-center md:h-full w-full ${widthClasses}`}>
+            <Stack className="relative h-full md:h-fit w-full md:w-fit" direction="row">
+                <Stack className="md:h-fit w-4 items-center flex-1">
+                    <Box className="w-4 h-4 bg-white shadow-none relative">
+                        <Image src={timelineDot} alt="dot" fill className="object-contain"/>
+                    </Box>
+                    <hr className="w-px bg-themed-darkgray md:hidden flex-[2]"/>
+                </Stack>
+                <Stack
+                    className={`md:top-full md:absolute timeline-item-content gap-5 pl-2 ${widthClasses} md:w-[15dvw] w-dvw h-fit mb-7 md:mb-0`}
+                    sx={{
+                        ...(React.Children.toArray(children).length > 2 && {
+                            "&.MuiStack-root > li::after": {
+                                content: "''",
+                                width: "100%",
+                                height: "1px",
+                                backgroundColor: colors.gray.darkest,
+                                display: "block",
+                                marginTop: "1.25rem"
+                            }
+                        }),
+                        [`@media (min-width: ${screens.md})`]: {
+                            flexDirection: "column"
+                        }
+                    }} component="ul">
+                    <hr className="w-px h-10 bg-clip-padding bg-themed-darkgray py-2.5 hidden md:block"/>
+                    {children}
+                </Stack>
+            </Stack>
+            <hr className="w-full h-0.5 bg-themed-darkgray hidden md:block"/>
+        </Box>
     )
 }
 
-function TimelineContent({children, date, padding, XMarginStack, marginContent = "0"}: {
-    children: React.ReactNode,
-    date: string,
-    padding: string,
-    XMarginStack: string,
-    marginContent?: string
-}) {
+function TimelineContainer(props: { children: ReactNode }) {
     return (
-        <MuiTimelineContent style={{
-            paddingTop: padding,
-            marginTop: marginContent,
-            marginBottom: marginContent,
+        <Stack direction="row" className="h-fit justify-center md:mt-[16rem] items-center" sx={{
+            [`@media (min-width: ${screens.md})`]: {
+                "&.MuiStack-root > *:nth-child(even) .timeline-item-content": {
+                    transform: "translateY(calc(-100% - 1rem))",
+                    flexDirection: "column-reverse !important"
+                },
+                flexDirection: "row",
+                marginBottom: "calc(6dvh + 28.3rem)",
+            },
+            flexDirection: "column"
         }}>
-            <Stack direction={"inherit" as never} className="gap-10 w-[12.5rem]" style={{
-                marginRight: XMarginStack,
-                marginLeft: XMarginStack,
-            }}>
-                <Stack className="gap-5">
-                    {React.Children.toArray(children).length === 1 ? children :
-                        React.Children.map(children, (child, index) => (
-                            <React.Fragment key={index}>
-                                {child}
-                                <hr className="w-full h-px bg-themed-darkgray"/>
-                            </React.Fragment>
-                        ))
-                    }
-                </Stack>
-                <Typography variant="caption" className="w-fit h-fit bg-secondary" component="time">{date}</Typography>
-                <hr className="h-10 w-px bg-themed-darkgray"/>
-            </Stack>
-        </MuiTimelineContent>
+            <hr className="md:block hidden w-10 h-0.5 bg-themed-darkgray"/>
+            {props.children}
+            <hr className="md:block hidden w-10 h-0.5 bg-themed-darkgray"/>
+        </Stack>
     )
 }
 
@@ -60,97 +77,37 @@ export default async function ProjectTimeline() {
     const translations = await getTranslations("about.timeline")
     return (
         <section id="timeline">
-            <DefaultContainer withTopPadding className="h-dvh">
+            <DefaultContainer withTopPadding className="mb-[15dvh]">
                 <SectionTitle number={7} titleTranslationKey="about.timeline.enumerationCaption"/>
                 <Typography variant="h3">{translations("title")}</Typography>
-                <Timeline className="-rotate-90" sx={{
-                    "&.MuiTimeline-root > .MuiTimelineItem-root > .MuiTimelineContent-root > *": {
-                        transform: "rotate(90deg)",
-                    },
-                    "&.MuiTimeline-root > .MuiTimelineItem-root > .MuiTimelineContent-root": {
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "start",
-                    },
-                    "&.MuiTimeline-root > :nth-child(even) > .MuiTimelineContent-root": {
-                        flexDirection: "column-reverse",
-                        alignItems: "end",
-                    },
-                    "&.MuiTimeline-root > .MuiTimelineItem-root": {
-                        minHeight: "0 !important",
-                        flex: "2 !important"
+                <TimelineContainer>
+                    {
+                        Object.entries(enDict.about.timeline.milestones).map(([key, value], index) => {
+                            const dateSplit = value.date.split("/");
+                            const date = new Date();
+                            date.setFullYear(2000 + parseInt(dateSplit[2]), parseInt(dateSplit[1]) - 1, parseInt(dateSplit[0]));
+                            return (
+                                <TimelineItem key={index}>
+                                    <Timestamp date={date} textProps={{
+                                        className: "bg-secondary w-fit"
+                                    }}/>
+                                    {
+                                        Object.keys(value.description).map((textKey, index) => {
+                                            return (
+                                                <li className="w-full">
+                                                    <Typography key={index} variant="caption"
+                                                                lineHeight={1.5}>
+                                                        {translations("milestones." + key + ".description." + textKey as never)}
+                                                    </Typography>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </TimelineItem>
+                            )
+                        })
                     }
-                }} position="alternate">
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="31/12/24" padding="1.25rem" XMarginStack="-1.25rem">
-                            <Typography variant="body2" fontSize={14}>Obtain experience and best practices from Digiuni
-                                EU Partners</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="30/04/25" padding="1.89rem" XMarginStack="-1.75rem">
-                            <Typography variant="body2" fontSize={14}>Create training curriculum for teachers and
-                                trainers</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="31/05/25" padding="1.9rem" XMarginStack="-1.78rem">
-                            <Typography variant="body2" fontSize={14}>Create 10 DigiCentres in each UA partner
-                                university</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="31/07/25" padding="0rem" XMarginStack="4rem" marginContent="-3.9rem">
-                            <Typography variant="body2" fontSize={14}>Launch DigiPlatform</Typography>
-                            <Typography variant="body2" fontSize={14}>Create UA Digital educational ecosystem</Typography>
-                            <Typography variant="body2" fontSize={14}>Obtain experience and best practices from Digiuni EU Partners</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="31/12/25" padding="1.3rem" XMarginStack="-1.3rem">
-                            <Typography variant="body2" fontSize={14}>UA university staff trained and ready to use DigiUni platform</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="31/03/26" padding="0rem" XMarginStack="1.4rem" marginContent="-1.36rem">
-                            <Typography variant="body2" fontSize={14}>Developed rules for Quality assurance of digital content</Typography>
-                            <Typography variant="body2" fontSize={14}>Existing digital content placed on DigiPlatform</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot/>
-                            <TimelineConnector/>
-                        </TimelineSeparator>
-                        <TimelineContent date="31/07/26" padding="1.3rem" XMarginStack="-1.3rem">
-                            <Typography variant="body2" fontSize={14}>UA university staff trained and ready to use DigiUni platform</Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                </Timeline>
+                </TimelineContainer>
             </DefaultContainer>
         </section>
     )
