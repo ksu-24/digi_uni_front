@@ -15,7 +15,8 @@ export type ToolbarItemProps = {
     onMouseLeave?: () => void,
     undoOnEmptySelection?: boolean,
     disablePreview?: boolean,
-    appendAfter?: () => JSX.Element
+    appendAfter?: () => JSX.Element,
+    disableUndo?: boolean
 };
 
 export const ToolbarItem = (
@@ -28,7 +29,8 @@ export const ToolbarItem = (
         disabled = false,
         active = false,
         undoOnEmptySelection = false,
-        disablePreview = false
+        disablePreview = false,
+        disableUndo = false
     }: ToolbarItemProps
 ) => {
     const [editor] = useLexicalComposerContext();

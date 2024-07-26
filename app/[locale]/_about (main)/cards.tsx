@@ -1,94 +1,87 @@
-import folders from "@/public/images/about/folders.png";
-import clock from "@/public/images/about/clock.png";
-import durationTime from "@/public/images/main/about/duration-time.svg";
-import tuner from "@/public/images/about/tuner.png";
-import knu from "@/public/images/main/about/knu.png";
-import {Box, Stack, Typography} from "@mui/material";
-import Image, {StaticImageData} from "next/image";
+import Image from "next/image";
 import React from "react";
-import {getTranslations} from "next-intl/server";
-import themeObj from "@/app/_theme/theme-obj";
-import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";
+import {getLocale} from "next-intl/server";
+import {Box} from "@mui/material";
+import {DefaultContainer} from "@/app/_util/components/default-container";
 
-function CardTitle(props: { translations: (key: "title") => string }) {
-    return <Typography variant="h4" style={{
-        backgroundColor: themeObj.palette.secondary.main
-    }} className="w-fit">
-        {props.translations("title") + ":"}
-    </Typography>;
+function localeExtension(locale: string) {
+    return locale === "en" ? "jpg" : "svg";
 }
 
 async function ProgramCard() {
-    const translations = await getTranslations("main.boxes.program");
+    const locale = await getLocale();
     return (
-        <Card image={folders} imageAlt="Folders">
-            <CardTitle translations={translations}/>
-            <Typography variant="body2" className="w-[80%]">
-                {translations("content")}
-            </Typography>
+        <Card>
+            <Image src={`/images/main/program-${locale}.${localeExtension(locale)}`} alt="Program" fill
+                   className="object-contain !bottom-0 !top-auto"/>
         </Card>
     )
 }
 
 async function DurationCard() {
-    const translations = await getTranslations("main.boxes.duration");
+    const locale = await getLocale();
     return (
-        <Card image={clock} imageAlt="Clock">
-            <CardTitle translations={translations}/>
-            <Image src={durationTime} alt={"2023-2027"} className="object-cover"/>
+        <Card>
+            <Image src={`/images/commons/duration-${locale}.${localeExtension(locale)}`} alt={"2023-2027"} fill
+                   className="object-contain !h-auto !bottom-0 !top-auto"/>
         </Card>
     )
 }
 
 async function CoordinatorCard() {
-    const translations = await getTranslations("main.boxes.coordinator");
+    const locale = await getLocale();
     return (
-        <Card image={tuner} imageAlt="Tuner">
-            <CardTitle translations={translations}/>
-            <Stack className="gap-[14%] h-1/2">
-                <Image src={knu} alt="KNU" className="object-cover"/>
-                <Typography variant="body2" className="w-[80%]">
-                    {translations("content")}
-                </Typography>
-            </Stack>
+        <Card>
+            <Image src={`/images/commons/coordinator-${locale}.${localeExtension(locale)}`} alt="Coordinator" fill
+                   className="object-contain !h-auto !bottom-0 !top-auto"/>
         </Card>
     )
 }
 
-export default async function Cards() {
+async function CustomCard(
+    {
+        root
+    }: {
+        root: string
+    }
+) {
+    const locale = await getLocale();
     return (
-        <InfoContainer boxProps={{
-            className: "w-full min-h-[50dvh] h-fit items-center mb-[22dvh]"
-        }} stackProps={{
-            className: "h-full w-[80%]",
-            direction: "row"
-        }}>
-            <ProgramCard/>
+        <Card>
+            <Image src={`${root}-${locale}.${localeExtension(locale)}`} alt={"card"} fill
+                     className="object-contain !h-auto !bottom-0 !top-auto"/>
+        </Card>
+    )
+}
+
+export default async function Cards(
+    {
+        firstCardRoot
+    }: {
+        firstCardRoot?: string
+    }
+) {
+    return (
+        <DefaultContainer className="mb-[22dvh] !gap-[2dvw]" direction="row">
+            {firstCardRoot ? <CustomCard root={firstCardRoot}/> : <ProgramCard/>}
             <DurationCard/>
             <CoordinatorCard/>
-        </InfoContainer>
+        </DefaultContainer>
     )
 }
 
 async function Card(
     {
-        image,
-        imageAlt,
         children
     }: {
-        image: StaticImageData,
-        imageAlt: string,
         children: React.ReactNode
     }
 ) {
     return (
-        <InfoContainerItem className={`h-full w-full`}>
-            <Box className="absolute w-[57px] h-[57px] -translate-y-1/2 translate-x-[40px]">
-                <Image src={image} alt={imageAlt} fill className="object-cover"/>
-            </Box>
-            <Stack className="w-full h-full gap-[13%] pt-[15%] px-[11%]">
-                {children}
-            </Stack>
-        </InfoContainerItem>
+        <Box className={`w-1/3 relative`} sx={{
+            height: "calc(25dvw * 1.2)"
+        }}>
+            {children}
+        </Box>
     )
 }

@@ -24,7 +24,7 @@ export function InfoContainer(
         ...cardsContainerBorders,
         borderLeft: 0,
         borderRight: 0
-    }} {...boxProps}>
+    }} {...boxProps} className={`${boxProps.className} flex border-collapse`}>
         { /* @ts-ignore */}
         <Stack sx={{
             ...cardsContainerBorders,
@@ -34,7 +34,7 @@ export function InfoContainer(
                     marginRight: defaultPx
                 }
             }
-        }} {...stackProps} className={`${stackProps.className ?? ''} h-fit min-h-full`} component="ul">
+        }} {...stackProps} className={`${stackProps.className ?? ''} justify-center border-collapse`} component="ul">
             {children}
         </Stack>
     </Box>;

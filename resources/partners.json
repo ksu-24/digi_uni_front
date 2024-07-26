@@ -1,19 +1,121 @@
 [
     {
+        "translationKey": "knu",
+        "logo": "/images/partners/knu.png",
+        "link": "https://knu.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "kseniaSmirnova",
+                "email": "kseniia.smyrnova@knu.ua"
+            },
+            {
+                "translationKey": "sergiyBronin",
+                "email": "sergiy.bronin@knu.ua"
+            },
+            {
+                "translationKey": "liudmilaZagoruiko",
+                "email": "liudmyla_zagoruiko@knu.ua"
+            },
+            {
+                "translationKey": "olhaKravchenko",
+                "email": "olha.kravchenko@knu.ua"
+            }
+        ]
+    },
+    {
+        "translationKey": "kma",
+        "logo": "/images/partners/kma.png",
+        "link": "https://www.ukma.edu.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "larisaChovnyuk",
+                "email": "larch@ukma.edu.ua"
+            }
+        ]
+    },
+    {
+        "translationKey": "sdu",
+        "logo": "/images/partners/sdu.png",
+        "link": "https://sumdu.edu.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "IvanKozii",
+                "email": "i.kozii@rectorat.sumdu.edu.ua"
+            }
+        ]
+    },
+    {
+        "translationKey": "SKkhnu",
+        "logo": "/images/partners/SKkhnu.png",
+        "link": "https://www.hneu.edu.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "irynaZolotaryova",
+                "email": "izolotaryova@gmail.com"
+            },
+            {
+                "translationKey": "oleksiiBesedovskyi",
+                "email": "balexn78@gmail.com"
+            }
+        ]
+    },
+    {
+        "translationKey": "chnu",
+        "logo": "/images/partners/chnu.png",
+        "link": "https://www.chnu.edu.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "heorhiiVorobets",
+                "email": "g.vorobets@chnu.edu.ua"
+            }
+        ]
+    },
+    {
+        "translationKey": "ucu",
+        "logo": "/images/partners/ucu.png",
+        "link": "https://ucu.edu.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "alinaSynytska",
+                "email": "a.synytska@ucu.edu.ua"
+            }
+        ]
+    },
+    {
         "translationKey": "ksu",
         "logo": "/images/partners/ksu.png",
         "link": "https://www.kspu.edu/",
         "country": "Ukraine",
         "people": [
             {
-                "title": "Rector",
-                "name": "Olena Koval",
-                "email": "olena.koval@gmail.com"
+                "translationKey": "oleksandrSpivakovskiy",
+                "email": "spivakovsky@ksu.ks.ua"
             },
             {
-                "title": "Vice-Rector",
-                "name": "Serhii Bronin",
-                "email": "sb@gmail.com"
+                "translationKey": "allaTsapiv",
+                "email": "atsapiv@ksu.ks.ua"
+            }
+        ]
+    },
+    {
+        "translationKey": "mariupol",
+        "logo": "/images/partners/mariupol.png",
+        "link": "https://en.mdu.in.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "andriyStoyka",
+                "email": "a.stoika@mu.edu.ua"
+            },
+            {
+                "translationKey": "tetyanaMarena",
+                "email": "t.marena@mu.edu.ua"
             }
         ]
     },
@@ -21,132 +123,188 @@
         "translationKey": "lu",
         "logo": "/images/partners/lu.png",
         "link": "https://www.lnu.edu.ua",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "mariupol",
-        "logo": "/images/partners/mariupol.png",
-        "link": "https://en.mdu.in.ua/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "moeu",
-        "logo": "/images/partners/moeu.png",
-        "link": "https://www.mon.gov.ua",
-        "country": "Ukraine"
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonLu",
+                "email": "Information will appear soon"
+            }
+        ]
     },
     {
         "translationKey": "khpi",
         "logo": "/images/partners/khpi.png",
         "link": "https://www.kpi.kharkov.ua",
-        "country": "Ukraine"
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonKpi",
+                "email": "Information will appear soon"
+            }
+        ]
     },
     {
-        "translationKey": "chnu",
-        "logo": "/images/partners/chnu.png",
-        "link": "https://www.chnu.edu.ua/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "ecti",
-        "logo": "/images/partners/ecti.png",
-        "link": "https://ecti.org/",
-        "country": "France"
-    },
-    {
-        "translationKey": "fauen",
-        "logo": "/images/partners/fauen.png",
-        "link": "https://www.fau.eu/",
-        "country": "Germany"
-    },
-    {
-        "translationKey": "kma",
-        "logo": "/images/partners/kma.png",
-        "link": "https://www.ukma.edu.ua/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "knu",
-        "logo": "/images/partners/knu.png",
-        "link": "https://knu.ua/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "SKkhnu",
-        "logo": "/images/partners/SKkhnu.png",
-        "link": "https://www.hneu.edu.ua/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "luh",
-        "logo": "/images/partners/luh.png",
-        "link": "https://www.uni-hannover.de/",
-        "country": "Germany"
+        "translationKey": "moeu",
+        "logo": "/images/partners/moeu.png",
+        "link": "https://www.mon.gov.ua",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonMoeus",
+                "email": "Information will appear soon"
+            }
+        ]
     },
     {
         "translationKey": "modfu",
         "logo": "/images/partners/modfu.png",
         "link": "https://thedigital.gov.ua/",
-        "country": "Ukraine"
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonDigital",
+                "email": "Information will appear soon"
+            }
+        ]
     },
     {
-        "translationKey": "muni",
-        "logo": "/images/partners/muni.png",
-        "link": "https://www.muni.cz/",
-        "country": "Czech Republic"
+        "translationKey": "uaip",
+        "logo": "/images/partners/uaip.png",
+        "link": "https://itukraine.org.ua/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonUAIP",
+                "email": "Information will appear soon"
+            }
+        ]
     },
     {
         "translationKey": "nahe",
         "logo": "/images/partners/nahe.png",
         "link": "https://en.naqa.gov.ua/",
-        "country": "Ukraine"
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "maksymFolomieiev",
+                "email": "mfolomieiev@naqa.gov.ua"
+            }
+        ]
     },
     {
-        "translationKey": "sdu",
-        "logo": "/images/partners/sdu.png",
-        "link": "https://sumdu.edu.ua/",
-        "country": "Ukraine"
+        "translationKey": "fauen",
+        "logo": "/images/partners/fauen.png",
+        "link": "https://www.fau.eu/",
+        "country": "Germany",
+        "people": [
+            {
+                "translationKey": "anneMarieLipphardt",
+                "email": "anne-marie.lipphardt@ili.fau.de"
+            }
+        ]
     },
     {
-        "translationKey": "tib",
-        "logo": "/images/partners/tib.png",
-        "link": "https://www.tib.eu/",
-        "country": "Germany"
-    },
-    {
-        "translationKey": "uaip",
-        "logo": "/images/partners/uaip.png",
-        "link": "",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "uam",
-        "logo": "/images/partners/uam.png",
-        "link": "https://amu.edu.pl/",
-        "country": "Poland"
-    },
-    {
-        "translationKey": "uas",
-        "logo": "/images/partners/uas.png",
-        "link": "https://www.uas.ngo/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "ucu",
-        "logo": "/images/partners/ucu.png",
-        "link": "https://ucu.edu.ua/",
-        "country": "Ukraine"
-    },
-    {
-        "translationKey": "uesis",
-        "logo": "/images/partners/uesis.png",
-        "link": "https://usit.eu.org/",
-        "country": "Ukraine"
+        "translationKey": "muni",
+        "logo": "/images/partners/muni.png",
+        "link": "https://www.muni.cz/",
+        "country": "Czech Republic",
+        "people": [
+            {
+                "translationKey": "michaelaKortysova",
+                "email": "kortysova@rect.muni.cz"
+            }
+        ]
     },
     {
         "translationKey": "uoc",
         "logo": "/images/partners/uoc.png",
         "link": "https://portal.uni-koeln.de/",
-        "country": "Germany"
+        "country": "Germany",
+        "people": [
+            {
+                "translationKey": "soonUOC",
+                "email": "Information will appear soon"
+            }
+        ]
+    },
+    {
+        "translationKey": "uam",
+        "logo": "/images/partners/uam.png",
+        "link": "https://amu.edu.pl/",
+        "country": "Poland",
+        "people": [
+            {
+                "translationKey": "lukaszDonaj",
+                "email": "lukasz.donaj@amu.edu.pl"
+            },
+            {
+                "translationKey": "rafalWitkowski",
+                "email": "rwitkows@amu.edu.pl"
+            }
+        ]
+    },
+    {
+        "translationKey": "luh",
+        "logo": "/images/partners/luh.png",
+        "link": "https://www.uni-hannover.de/",
+        "country": "Germany",
+        "people": [
+            {
+                "translationKey": "soonLuh",
+                "email": "Information will appear soon"
+            }
+        ]
+    },
+    {
+        "translationKey": "ecti",
+        "logo": "/images/partners/ecti.png",
+        "link": "https://ecti.org/",
+        "country": "France",
+        "people": [
+            {
+                "translationKey": "soonEcti",
+                "email": "Information will appear soon"
+            }
+        ]
+    },
+    {
+        "translationKey": "uas",
+        "logo": "/images/partners/uas.png",
+        "link": "https://www.uas.ngo/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonUas",
+                "email": "Information will appear soon<"
+            }
+        ]
+    },
+    {
+        "translationKey": "uesis",
+        "logo": "/images/partners/uesis.png",
+        "link": "https://usit.eu.org/",
+        "country": "Ukraine",
+        "people": [
+            {
+                "translationKey": "soonUesis",
+                "email": "Information will appear soon"
+            }
+        ]
+    },
+    {
+        "translationKey": "tib",
+        "logo": "/images/partners/tib.png",
+        "link": "https://www.tib.eu/",
+        "country": "Germany",
+        "people": [
+            {
+                "translationKey": "nataliyaButych",
+                "email": "nataliya.butych@zuv.uni-hannover.de"
+            },
+            {
+                "translationKey": "margretPlank",
+                "email": "Margret.Plank@tib.eu"
+            }
+        ]
     }
 ]

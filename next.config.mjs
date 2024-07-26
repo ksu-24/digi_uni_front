@@ -10,7 +10,18 @@ const nextConfig = {
         ignoreBuildErrors: true,
     },
     images: {
-        domains: [API_URL_HOST, API_URL_HOST.replace("host.docker.internal", "localhost")],
+        remotePatterns: [
+            {
+                protocol: "http",
+                hostname: API_URL_HOST,
+                port: "8080",
+            },
+            {
+                protocol: "http",
+                hostname: "localhost",
+                port: "8080",
+            }
+        ]
     }
 };
 

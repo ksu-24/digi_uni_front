@@ -5,9 +5,9 @@ import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import {ThemeProvider} from "@mui/system";
 import theme from "@/app/_theme/theme";
 import {Fonts} from "@/app/_util/components/fonts";
-import {locales} from "@/app/_localization/i18n";
 import {StyledEngineProvider} from "@mui/material";
 import "@/public/global.css"
+import MobileHeader from "@/app/[locale]/_mobileHeader/mobile-header";
 
 export default async function LocaleLayout(
     {
@@ -36,6 +36,7 @@ export default async function LocaleLayout(
                     prepend: true
                 }}>
                     <ThemeProvider theme={theme}>
+                        <MobileHeader/>
                         {children}
                     </ThemeProvider>
                 </AppRouterCacheProvider>

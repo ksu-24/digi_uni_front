@@ -13,8 +13,8 @@ import {
     Typography
 } from "@mui/material";
 import {Partner, Person} from "@/app/[locale]/_partners/partner-details";
-import {KeyboardArrowDown} from "@mui/icons-material";
-import { Link } from "@/app/_localization/navigation";
+import {Link} from "@/app/_localization/navigation";
+import colors from "@/resources/colors.json"
 
 function PersonPlaceholder() {
     return (
@@ -50,8 +50,11 @@ export default function PartnerDropdown(
             <AccordionSummary sx={{
                 "& .MuiAccordionSummary-content": {
                     margin: "0 !important"
+                },
+                "&:hover *": {
+                    color: `${colors.blue} !important`
                 }
-            }}>
+            }} className="px-2 py-4">
                 <Stack direction="row" className="items-center justify-between w-full h-fit" onClick={() => {
                     setExpanded(!expanded);
                 }}>
@@ -61,11 +64,19 @@ export default function PartnerDropdown(
                         }
                     </Typography>
                     <IconButton>
-                        {
-                            <KeyboardArrowDown fontSize="small" className="transition-transform duration-200" style={{
-                                transform: expanded ? "scaleY(-1)" : "scaleY(1)"
-                            }}/>
-                        }
+                        <svg width="1rem" height="auto" viewBox="0 0 84 49" fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             className="transition-transform duration-200" style={{
+                            transform: expanded ? "scaleY(-1)" : "scaleY(1)"
+                        }}>
+                            <path d="M48 36.1H36V48.1H48V36.1Z" fill="currentColor"></path>
+                            <path d="M60 24.1H48V36.1H60V24.1Z" fill="currentColor"></path>
+                            <path d="M71.9004 12H59.9004V24H71.9004V12Z" fill="currentColor"></path>
+                            <path d="M83.9004 0H71.9004V12H83.9004V0Z" fill="currentColor"></path>
+                            <path d="M36 24.1H24V36.1H36V24.1Z" fill="currentColor"></path>
+                            <path d="M24 12.1H12V24.1H24V12.1Z" fill="currentColor"></path>
+                            <path d="M12 0.0999756H0V12.1H12V0.0999756Z" fill="currentColor"></path>
+                        </svg>
                     </IconButton>
                 </Stack>
             </AccordionSummary>
@@ -75,14 +86,15 @@ export default function PartnerDropdown(
                         <img src={partner.logo} alt={partner.translationKey}
                              className="max-w-[25dvw] w-auto h-full object-contain"/>
                     </Box>
-                    <Stack className="gap-4 w-full md:w-1/2">
+                    <Stack className="gap-4 w-full">
                         <Link href={partner.link}>
                             <Typography variant="body2" className="text-[#012AFF]">{partner.link}</Typography>
                         </Link>
-                        <Stack direction="row" className="gap-[25%] w-fit">
+                        <Stack direction="row" className="gap-[25%] w-full justify-start">
                             {
                                 partner.people ? partner.people.map((person, index) => (
-                                        <PersonInfo key={index} person={person}/>
+                                        <PersonInfo key={index} person={person}
+                                                    partnerTranslationKey={partner.translationKey}/>
                                     ))
                                     : <>
                                         <PersonPlaceholder/> <PersonPlaceholder/>
@@ -99,15 +111,27 @@ export default function PartnerDropdown(
 function PersonInfo(
     {
         person,
+        partnerTranslationKey,
     }: {
-        person: Person;
+        person: Person
+        partnerTranslationKey: string
     }
 ) {
+    const translations = useTranslations(`partners.${partnerTranslationKey}` as never);
+    const miscTranslations = useTranslations("misc");
     return (
-        <Stack className="gap-1 w-full">
-            <Typography variant="body2" bgcolor="secondary.main" className="w-fit">{person.title}</Typography>
-            <Typography variant="body2" fontWeight={500} className="mt-3">{person.name}</Typography>
-            <Typography variant="body2">{person.email}</Typography>
+        <Stack className="gap-1">
+            <Typography variant="body2" bgcolor="secondary.main" className="w-fit">
+                {translations(`people.${person.translationKey}.role` as never)}
+            </Typography>
+            <Typography variant="body2" fontWeight={500} className="mt-3 w-fit">
+                {translations(`people.${person.translationKey}.name` as never)}
+            </Typography>
+            <Typography variant="body2">{
+                miscTranslations(person.email as never).startsWith("misc.") ?
+                    person.email :
+                    miscTranslations(person.email as never)
+            }</Typography>
         </Stack>
     )
 }

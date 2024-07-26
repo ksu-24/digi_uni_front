@@ -12,7 +12,7 @@ export default async function TargetAudience() {
         <section id="target-audience">
             <DefaultContainer className="pt-[20dvh]">
                 <SectionTitle number={4} titleTranslationKey="about.targetAudience.enumerationCaption"/>
-                <Typography variant="h3">{translations("title")}</Typography>
+                <Typography variant="h2">{translations("title")}</Typography>
                 <List>
                     {
                         Object.keys(enDict.about.targetAudience.list).map((key, index) => {
@@ -21,8 +21,8 @@ export default async function TargetAudience() {
                                     "&.MuiListItem-root > *": {
                                         margin: 0
                                     }
-                                }}>
-                                    <ListItemIcon className="w-12 !min-w-0">
+                                }} className="lg:gap-8 gap-[4dvw]">
+                                    <ListItemIcon className="w-4 !min-w-0">
                                         <Image  src={listIcon} alt="list icon" width={"1rem" as never}
                                                 height={"1rem" as never} className="mt-1"/>
                                     </ListItemIcon>

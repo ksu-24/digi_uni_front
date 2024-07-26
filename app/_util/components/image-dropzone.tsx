@@ -33,7 +33,7 @@ export const ImageDropzone = (
         },
         resetOnUpload = false,
         className = "",
-        initialPicture = null
+        initialPicture = null,
     }: {
         onPictureUpload?: (picture: string) => void,
         resetOnUpload?: boolean,
@@ -41,6 +41,7 @@ export const ImageDropzone = (
         initialPicture?: string | null
     }) => {
     const [picture, setPicture] = React.useState(null as File | null);
+    const id = Math.floor(Math.random() * 1000000000)
 
     useEffect(() => {
         if (picture) {
@@ -81,9 +82,9 @@ export const ImageDropzone = (
                 ]
             }}
         >
-            <Box className={`w-full h-full flex items-center justify-center ${className}`} style={
+            <Box className={`${className} w-full h-full flex items-center justify-center border-black border-[1px]`} style={
                 url ? {
-                    backgroundImage: `url(${url})`,
+                    backgroundImage: `url("${url}")`,
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"
@@ -91,11 +92,11 @@ export const ImageDropzone = (
             }>
                 <InputLabel
                     required
-                    htmlFor="image-dropzone"
-                    className="w-full h-full flex items-center justify-center hover:cursor-pointer"
+                    htmlFor={`image-dropzone-${id}`}
+                    className="p-2 flex items-center justify-center hover:cursor-pointer"
                     onDrop={(e) => handleDrop(e, setPicture)}
                     onDragOver={(e) => e.preventDefault()}>
-                    <Box className="flex flex-col gap-2 bg-white bg-opacity-85 justify-center items-center rounded-3xl">
+                    <Box className="flex flex-col gap-2 bg-white bg-opacity-85 justify-center items-center rounded-3xl w-full h-full">
                         <CloudUpload fontSize="large"/>
                         <Typography variant="caption" className="w-4/5 text-wrap text-center">
                             Drop your image here
@@ -104,7 +105,7 @@ export const ImageDropzone = (
                 </InputLabel>
                 <Input
                     required
-                    id="image-dropzone"
+                    id={`image-dropzone-${id}`}
                     value={picture === null ? "" : undefined}
                     type="file"
                     name="image"

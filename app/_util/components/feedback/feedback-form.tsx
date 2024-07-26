@@ -12,7 +12,7 @@ export default async function FeedbackForm(
     }
 ) {
     return (
-        <Stack className="w-full h-full items-start gap-[20%] justify-between" direction="row">
+        <Stack className="h-full items-start xs:gap-[6%] xs:justify-between gap-16 xs:!flex-row">
             <Caption variant={captionVariant}/>
             <Form/>
         </Stack>
@@ -28,7 +28,7 @@ async function Caption(
 ) {
     const translations = await getTranslations("feedbackForm");
     return (
-        <Stack className="w-full h-full items-start gap-16">
+        <Stack className="h-full items-start gap-16">
             <Typography variant={variant}>{translations("title")}</Typography>
             <Stack className="gap-10 items-start">
                 <OrganizerInfo name={translations("oleh")} email="email_name@kpi.kharkov.ua"/>

@@ -2,7 +2,7 @@ import {
     $getSelection,
     $isParagraphNode,
     $isRangeSelection,
-    $isTextNode,
+    $isTextNode, ElementNode,
     FORMAT_ELEMENT_COMMAND,
     FORMAT_TEXT_COMMAND,
     LexicalEditor,
@@ -34,11 +34,10 @@ import {clearLevel, useToolbarState} from "@/app/[locale]/(with-header)/news/edi
 import {ToolbarItemProps} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
 import {ImageDropzone} from "@/app/_util/components/image-dropzone";
 import {INSERT_IMAGE_COMMAND} from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-plugin";
-import {$createQuoteNode, $isQuoteNode, QuoteNode} from "@lexical/rich-text";
+import {$createQuoteNode, $isQuoteNode} from "@lexical/rich-text";
 import {ColorPicker} from "@/app/[locale]/(with-header)/news/editor/color-picker";
-import {$createAutoLinkNode, $isAutoLinkNode, AutoLinkNode} from "@lexical/link";
+import {$isAutoLinkNode, AutoLinkNode} from "@lexical/link";
 import {$wrapNodeInElement} from "@lexical/utils";
-import {$creatClassnameTextNode} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
 
 export type CustomToolbarItemProps = {
     __type__: "custom"
@@ -129,21 +128,32 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                             if ($isRangeSelection(selection)) {
                                 const parents = selection.getNodes()
                                     .map(node => node.getParent())
-                                    .filter(node => $isParagraphNode(node) || $isAutoLinkNode(node) || $isQuoteNode(node)) as (ParagraphNode | AutoLinkNode | QuoteNode)[];
+                                    .filter(node => $isParagraphNode(node) || $isAutoLinkNode(node)) as (ParagraphNode | AutoLinkNode)[];
 
-                                const shouldRemoveQuote = parents.every(parent => $isQuoteNode(parent));
+                                const shouldRemoveQuote = parents.every((parent: ElementNode | null) => {
+                                    do {
+                                        if ($isQuoteNode(parent)) {
+                                            return true;
+                                        }
+                                    } while (parent = parent!.getParent());
+                                    return false;
+                                });
 
                                 const parentsSet = new Set(parents);
 
                                 if (shouldRemoveQuote) {
                                     parentsSet.forEach(parent => {
-                                        const firstChild = parent.getFirstChild()
+                                        let quote = parent as ElementNode | null;
 
-                                        const replacement = $isAutoLinkNode(firstChild) ?
-                                            $createAutoLinkNode(firstChild.getURL()) :
-                                            $creatClassnameTextNode(firstChild?.getTextContent() ?? "");
+                                        while (quote && !$isQuoteNode(quote)) {
+                                            quote = quote.getParent();
+                                        }
 
-                                        parent.replace(replacement, true)
+                                        if ($isQuoteNode(quote)) {
+                                            const child = quote.getFirstChild()!;
+                                            quote.insertBefore(child);
+                                            quote.remove();
+                                        }
                                     })
                                 } else {
                                     parentsSet.forEach(parent => {
@@ -154,7 +164,7 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                         })
                     },
                     active: true,
-                    undoOnEmptySelection: true
+                    disablePreview: true
                 },
                 {
                     __type__: "default",
@@ -210,7 +220,7 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                         const currentLineHeight = useToolbarState((state) => state.lineHeight);
                         return (
                             <AutocompleteToolbarItem
-                                label="textFormatting.lineHeight"
+                                label="textFormating.lineHeight"
                                 cssProperty="line-height"
                                 autocompleteProps={{
                                     options: ["1", "1.15", "1.5", "2", "2.5", "3"],

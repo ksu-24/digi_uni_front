@@ -2,52 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes slideInFromLeft {
-    0% {
-        transform: translateX(-100dvw);
-        width: 0;
-    }
-    100% {
-        transform: translateX(0);
-        width: 100%;
-    }
-}
-
-@keyframes slideInFromRight {
-    0% {
-        transform: translateX(100dvw);
-        width: 0;
-    }
-    100% {
-        transform: translateX(0);
-        width: 100%;
-    }
-}
-
-@keyframes slideOutToLeft {
-    0% {
-        transform: translateX(0);
-        width: 100%;
-    }
-    100% {
-        transform: translateX(-100dvw);
-        width: 0;
-        display: none;
-    }
-}
-
-@keyframes slideOutToRight {
-    0% {
-        transform: translateX(0);
-        width: 100%;
-    }
-    100% {
-        transform: translateX(100dvw);
-        width: 0;
-        display: none;
-    }
-}
-
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -71,12 +25,16 @@
     margin-left: 0.25rem;
 }
 
-html, body {
-    width: 100%;
-    width: -webkit-calc(100dvw - 10px);
-    width: -moz-calc(100dvw - 10px);
-    width: calc(100dvw - 10px);
-    max-width: 100%;
+@media screen and (min-width: 1024px) {
+    html, body {
+        width: -webkit-calc(100dvw - 10px);
+        width: -moz-calc(100dvw - 10px);
+        width: calc(100dvw - 10px);
+        min-width: calc(100dvw - 10px);
+        max-width: -webkit-calc(100dvw - 10px);
+        max-width: -moz-calc(100dvw - 10px);
+        max-width: 100%;
+    }
 }
 
 .underline-strike {
@@ -107,7 +65,7 @@ html, body {
 }
 
 .quote::before {
-    content : url("/images/quote.svg");
+    content : url("/images/commons/quote.svg");
     display: block;
     align-self: start;
     margin-bottom: 1.5rem;
@@ -117,6 +75,132 @@ html, body {
     display: inline-block;
     padding-left: 2rem;
     border-left: 1px solid #D5DAFF;
+}
+
+@media screen and (min-width: 480px) {
+    .h1-media {
+        font-size: 2.25rem !important;
+    }
+
+    .h2-media {
+        font-size: 2rem !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .h1-media {
+        font-size: 2.875rem !important;
+    }
+
+    .h2-media {
+        font-size: 2.125rem !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .h1-media {
+        font-size: 3.0625rem !important;
+    }
+
+    .h2-media {
+        font-size: 2rem !important;
+    }
+
+    .h3-media {
+        font-size: 1.75rem !important;
+    }
+}
+
+.translate-30 {
+    --translate-offset: 30px;
+}
+
+.translate-20 {
+    --translate-offset: 20px;
+}
+
+.translate-0 {
+    --translate-offset: 0px;
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-50%));
+    }
+}
+
+@keyframes grow-from-right {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes translate-from-left {
+    0% {
+        transform: translateX(calc(var(--translate-offset) * -1));
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes translate-from-right {
+    0% {
+        transform: translateX(var(--translate-offset));
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes translate-from-top {
+    0% {
+        transform: translateY(calc(var(--translate-offset) * -1));
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes translate-from-bottom {
+    0% {
+        transform: translateY(var(--translate-offset));
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes grow-y-full {
+    0% {
+        transform: scaleY(0);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
 }
 
 

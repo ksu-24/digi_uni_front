@@ -8,12 +8,12 @@
     },
     "main": {
         "slogan": {
-            "creatingFirst": "Creating first ukrainian digital university together"
+            "creatingFirst": "Developing a digital ecosystem for Ukrainian universities"
         },
         "about": {
             "enumerationCaption": "About project",
-            "title": "Erasmus+ program. KA2 Developing the potential of higher education.",
-            "content": "The Erasmus+ CBHE DigiUni project, with the full name \"Digital University - Open Ukrainian Initiative\", is an important initiative aimed at supporting higher education in Ukraine in the conditions of martial law and post-war reconstruction. Currently, this is the largest Erasmus+ project ever implemented in Ukraine.\n\nThis project was developed in response to the unprecedented challenges associated with the full-scale invasion of Russia in Ukraine, and aims to harmonize the processes of digital transformation in education, creating a single digital educational ecosystem to ensure continuous, high-quality, inclusive and transparent education​​​​ . The project emphasizes the importance of digitization for the continuity and success of educational institutions in Ukraine. It aims to use the experience of European universities in the development of integrated digital solutions and to promote cooperation between Ukrainian and European partners."
+            "title": "Erasmus+ Program. КА2 Capacity Building in Higher Education",
+            "content": "The Erasmus+ CBHE project \"Digital University – Open Ukrainian Initiative\" (DigiUni), aims to develop an open digital education environment for Ukrainian universities. This initiative is in response to the challenges posed by the russian federation's aggression and the subsequent damage to Ukraine's higher education system. The project emphasizes the importance of digitalization for the continuity and success of educational institutions in Ukraine. It seeks to leverage European universities' experience in developing integrated digital solutions and to foster cooperation between Ukrainian and European partners.\n\nOur consortium of Ukrainian and European universities is strongly committed to share expertise in order to support and develop an open digital education environment for Ukrainian universities.\n\nThe Digital University – Open Ukrainian Initiative (DigiUni) proposes to start the process of creating a full-fledged, integrated, sustainable, enriching, inclusive and high-performing digital educational ecosystem in Ukraine."
         },
         "boxes": {
             "program": {
@@ -55,22 +55,30 @@
         "France": "France"
     },
     "feedbackForm": {
-        "title": "Send your questions or suggestions to the project coordinators:",
+        "title": "Send your questions or suggestions to the main project administrator:",
         "name": "Name",
         "email": "Email",
         "message": "Message",
         "send": "Send",
         "success": "Your message has been sent successfully",
         "error": "An error occurred while sending the message",
-        "oleh": "Oleh Bronin",
-        "kseniia": "Kseniia Smyrnova"
+        "kseniia": "Liudmyla Zagoruiko"
     },
     "misc": {
         "slogan": "Digital university -\nOpen ukrainian initiative",
-        "copyright": "©2024 Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or [name of the granting authority]. Neither the European Union nor the granting authority can be held responsible for them."
+        "Information will appear soon": "Information will appear soon",
+        "copyright": "©2024 Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union. Neither the European Union nor the granting authority can be held responsible for them."
     },
     "news": {
-        "title": "News and events"
+        "title": "News and events",
+        "otherNews": "Other news",
+        "subscribeForm": {
+            "wantToBeUpdated": "Want to stay updated?",
+            "subscribeToNews": "Subscribe to project news to be the first to know about them",
+            "email": "Email",
+            "subscribeButton": "Subscribe",
+            "success": "You have successfully subscribed to the news"
+        }
     },
     "form": {
         "success": "Your message has been sent successfully",
@@ -105,7 +113,8 @@
             "background-color": "Text background color",
             "fontFamily": "Font",
             "undo": "Undo",
-            "redo": "Redo"
+            "redo": "Redo",
+            "lineHeight": "Line height"
         },
         "multimedia": {
             "title": "Multimedia",
@@ -114,7 +123,8 @@
     },
     "about": {
         "title": {
-            "slogan": "Digiuni - the largest project under the Erasmus+ program ever implemented in Ukraine"
+            "join": "Join the open digital educational environment!",
+            "biggestProject": "DigiUni is the largest Erasmus+ project\nto be implemented in Ukraine\n"
         },
         "aboutProject": {
             "1": "About the project",
@@ -126,7 +136,7 @@
             "7": "Project timeline",
             "enumerationCaption": "About project",
             "title": "About project",
-            "content": "The Erasmus+ CBHE DigiUni project, with the full name \"Digital University - Open Ukrainian Initiative\", is an important initiative aimed at supporting higher education in Ukraine in the conditions of martial law and post-war reconstruction. Currently, this is the largest Erasmus+ project ever implemented in Ukraine.\n\nThis project was developed in response to the unprecedented challenges associated with the full-scale invasion of Russia in Ukraine, and aims to harmonize the processes of digital transformation in education, creating a single digital educational ecosystem to ensure continuous, high-quality, inclusive and transparent education\u200B\u200B\u200B\u200B . The project emphasizes the importance of digitization for the continuity and success of educational institutions in Ukraine. It aims to use the experience of European universities in the development of integrated digital solutions and to promote cooperation between Ukrainian and European partners.\n\nIn 2023, the European Commission opened a special window for Ukraine under the Erasmus+ program in response to the challenges faced by Ukrainian higher education due to the full-scale Russian invasion and its consequences. The Ministry of Education and Science of Ukraine, together with Ukrainian partner universities, worked on a proposal that would combine a systematic approach, broad influence and cooperation of all Ukrainian higher education institutions. According to the results of the selection, the DigiUni project became the winner, and European partners supported it.",
+            "content": "The DigiUni project is aimed at supporting higher education in Ukraine during the wartime and post-war restoration period. Currently, it is the largest project under the Erasmus+ program ever implemented in Ukraine.\n\n In 2023, the European Commission opened a special window for Ukraine under the Erasmus+ program in response to the challenges faced by Ukrainian higher education due to the full-scale invasion of Russia and its consequences. The Ministry of Education and Science of Ukraine, together with Ukrainian partner universities, worked on a proposal that would combine a systematic approach, broad influence and cooperation of all Ukrainian higher education institutions. According to the results of the selection, the DigiUni project became the winner, and European partners supported it.",
             "info": {
                 "duration": {
                     "title": "Project duration",
@@ -146,19 +156,19 @@
                     "right": "and innovations in the higher education sector"
                 },
                 "development": {
-                    "bold": "Development of",
-                    "right": "an inclusive higher education system to ensure adequate conditions for students from different backgrounds and with fewer opportunities for access to education and achieving success in learning"
+                    "bold": "Develop",
+                    "right": "inclusive higher education system to ensure the right conditions for students of different backgrounds and fewer opportunities to access and succeed in their studies."
                 },
                 "modernisation": {
-                    "bold": "Modernisation of",
-                    "right": "the governance and funding of the higher education system in Ukraine"
+                    "bold": "Modernise",
+                    "right": "governance and financing of Ukrainian higher education system."
                 },
                 "potential": {
-                    "bold": "Enhancement of potential",
-                    "right": "of Ukrainian higher education institutions through synergy with current EU initiatives, including Erasmus+"
+                    "bold": "Increase",
+                    "right": " the capacities of Ukrainian HEIs by synergies with ongoing EU initiatives including Erasmus+."
                 }
             },
-            "consortiumMembers": "All members of the consortium aim to play their part in creating a highly effective digital education ecosystem that can ensure the continuity and effectiveness of their academic activities to continue to engage all students and increase their employability in the knowledge-based economy."
+            "consortiumMembers": "All members of the consortium are eager to play a role in setting up a high-performing digital education ecosystem that can ensure continuity and performance in their academic activities to keep attracting all learners and enhancing their employability in a knowledge-driven economy."
         },
         "goal": {
             "enumerationCaption": "Project goal",
@@ -166,15 +176,15 @@
             "goalsList": {
                 "1": {
                     "bold": "The first general goal",
-                    "content": "is the development of a highly effective digital educational ecosystem in Ukraine to ensure continuous, high-quality, inclusive and transparent education, regardless of the location of the student and teacher, using existing digital innovations in the field of education and a clear paradigm for attracting future innovations, developing a holistic and sustainable system of higher education to meet socio-economic needs and high ambitions for a knowledge-based economy."
+                    "content": "Development of a high-performing digital educational ecosystem in Ukraine to ensure continuous, high-quality, inclusive, and transparent education, regardless of the student's and teacher’s location, using the existing digital innovations in the field of education and the understandable paradigm of involving future innovations, develop holistic and sustainable higher education system to meet socio-economic needs and broad ambitions for a knowledge-based economy."
                 },
                 "2": {
                     "bold": "The second goal",
-                    "content": "is to digitize teaching and learning methods and provide the infrastructure necessary for online and inclusive education."
+                    "content": "Digitalization of teaching and learning methods and providing the infrastructure necessary for online and inclusive education."
                 },
                 "3": {
                     "bold": "The third goal",
-                    "content": "is to promote the gradual synchronization of Ukrainian and European universities in accordance with the values, standards and priorities of the European Higher Education Area, as well as in the perspective of Ukraine's future accession to the European Union (EU). The project aims to promote bottom-up European solidarity on an inter-institutional and result-oriented basis, in combination with different levels of political decision-making."
+                    "content": "Contribution to the progressive synchronization of Ukrainian and European universities in line with the values, standards, and priorities of the European Higher Education Area, and in the perspective of the future accession of Ukraine to the European Union (EU). The project aims to promote the manifestation of European solidarity on a \"bottom-up\" principle based on inter-institutional cooperation and a result-oriented approach, combined with various levels of political decision- making."
                 }
             }
         },
@@ -182,18 +192,17 @@
             "enumerationCaption": "Specific goals",
             "title": "Specific goals of the DigiUni project:",
             "list": {
-                "developConceptStrategy": "Develop a concept, strategy, and action plan for creating an integrated and inclusive digital educational ecosystem in Ukraine and submit them for approval at the state level;",
-                "launchDigiPlatform": "Develop and launch the all-Ukrainian digital educational environment – the Digital Platform (DigiPlatform);",
-                "digiUniPilot": "Development of DigiUni as a pilot organizational mechanism for uniting, transforming, and integrating higher education institutions and other interested institutions to achieve a common goal, which will be the creation of the Open Charter of DigiUni-Ukraine;",
-                "ensureQuality": "Develop rules to ensure and improve the quality of digital content in Ukrainian higher education institutions, methods for assessing the quality of digital content, develop recommendations for creating digital content and digital courses;",
-                "buildInfrastructure": "Develop infrastructure and project tools: creation of Digital Centers (DigiCentres) in each Ukrainian higher education institution with the necessary software and equipment;",
-                "populateDigiPlatform": "Develop the initial content of the Digital Platform, including a complete list of available digital courses and other digital materials of Ukrainian partner universities with direct links to the digital resources of their university; place and/or create direct links to digital resources of European partners on the platform, to which they are ready to provide free access to the Ukrainian audience;",
-                "createNewCourses": "Develop 100+ new courses in various fields of knowledge, including the use of virtual and/or augmented reality and/or virtual/remote laboratories; create virtual and remote laboratories;",
-                "localizeCourses": "Localize 20+ partner courses from the EU and publish them on the Digital Platform;",
-                "createModules": "Create 20 separate learning modules of 20 to 30 hours of training for the non-university audience;",
-                "trainLecturers": "Train 600 lecturers as digital content lecturers, 30 as content administrators, and 40 as quality content evaluators;",
-                "engageStudents": "Provide 5,000+ students with courses and 1,000+ students with educational modules using the Digital Platform as part of the DigiUni pilot project;",
-                "implementVirtualMobility": "Implement 20+ cases of virtual student mobility among partner higher education institutions of Ukraine."
+                "developConceptStrategy": "To develop the concept, strategy, and action plan for creating an integrated and inclusive digital educational ecosystem in Ukraine to be submitted for state adoption;",
+                "launchDigiPlatform": "To develop and launch the all-Ukrainian digital educational environment – DigiPlatform;",
+                "digiUniPilot": "To develop DigiUni as a pilot organizational mechanism for uniting, transforming, and integrating HEIs and other interested institutions for achieving the common objective, it includes the creation of the Open DigiUni-Ukraine Charter;",
+                "ensureQuality": "To develop the rules for ensuring and improving the quality of the digital content at the higher education institutions of Ukraine, methods of the digital content quality assessment, developing methodology and guidelines for creating digital content and digital courses;",
+                "buildInfrastructure": "To build up the project infrastructure and tools: to create DigiCentres at each Ukrainian higher education partner institution with the necessary software and equipment;",
+                "populateDigiPlatform": "To develop the primary DigiPlatform content, in particular, the complete list of the available digital courses and other digital materials of the Ukrainian partner-HEIs with direct links to their university's digital resources; to place and/or create on the platform direct links to the digital courses/resources of the European partners which they are ready to provide the Ukrainian audience with granted access;",
+                "createNewCourses": "To develop 100+ new courses in different fields of knowledge, with 20 of them incorporating the use of virtual or/and augmented reality and/or virtual/remote laboratories; to build in and/or create virtual and remote laboratories;",
+                "localizeCourses": "To create 20 separate educational modules and 30 microlearning modules for the non-university audience;",
+                "createModules": "To train 600 educators as digital content facilitators, 30 – as administrators of the content, and 40 – as specialists in quality assessment of the content;",
+                "trainLecturers": "To provide 5,000+ students with courses and 1,000+ non-academics with educational modules using DigiPlatform within the pilot DigiUni project.",
+                "engageStudents": "To realize 20+ examples of std’s virtual mobility among UA partner-HEIs."
             }
         },
         "targetAudience": {
@@ -212,14 +221,14 @@
             "coordinators": {
                 "title": "Project coordinators:",
                 "list": {
-                    "1": {
+                    "kseniiaSmirnova": {
                         "name": "Kseniia Smirnova",
                         "role": "Project Coordinator",
                         "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv.",
                         "experience": "Has been professionally managing projects in education and science since 2004. Coordinated (acted as Project manager) 4 different European projects. 2 TEMPUS, Erasmus + CBHE JP and Erasmus + CBHE SP: iCo-op – Main goal of cooperation between Universities and Industry; SEHUD – Cities sustainable development; GameHub – digital games development education, dComFra – Digital competence framework for Ukrainian teachers and other citizens.",
                         "photo": "kseniia.png"
                     },
-                    "2": {
+                    "serhiiBronin": {
                         "name": "Serhii Bronin, PhD",
                         "role": "Project Coordinator",
                         "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv.",
@@ -230,55 +239,72 @@
             },
             "title": "Project team: ",
             "list": {
-                "1": {
-                    "name": "Serhii Bronin, PhD",
-                    "role": "Project Coordinator",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "irynaPorunkova": {
+                    "name": "Iryna Porunkova",
+                    "position": "Head of Fundraising Group",
+                    "institution": "National Technical University 'Kharkiv Polytechnic Institute'"
                 },
-                "2": {
-                    "name": "Kseniia Smirnova",
-                    "role": "Project Coordinator",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "georgiyVorobets": {
+                    "name": "Georgiy Vorobets",
+                    "degree": "Candidate of Physical and Mathematical Sciences",
+                    "position": "Associate Professor, Head of the Department of Computer Systems and Networks",
+                    "institution": "Yuriy Fedkovych Chernivtsi National University"
                 },
-                "3": {
-                    "name": "Oleh Bronin",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "andriyStoika": {
+                    "name": "Andriy Stoika",
+                    "degree": "PhD",
+                    "position": "Professor of the Department of Marketing and Tourism, Professor of the Department of Information Systems and Technologies, Faculty of Information Technologies",
+                    "institution": "Taras Shevchenko National University of Kyiv"
                 },
-                "4": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "allaTsapiv": {
+                    "name": "Alla Tsapiv",
+                    "degree": "Doctor of Philology",
+                    "position": "Associate Professor, Vice-Rector for International, Social and Humanitarian and Educational Work, Professor of the Department of English Philology and World Literature named after Professor Oleh Mishukov",
+                    "institution": "Kherson State University"
                 },
-                "5": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "oleksandrSpivakovsky": {
+                    "name": "Oleksandr Spivakovsky",
+                    "position": "Rector",
+                    "institution": "Kherson State University"
                 },
-                "6": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "anneMarieLipphardt": {
+                    "name": "Anne-Marie Lipphardt",
+                    "degree": "M.A. Political Science",
+                    "position": "Researcher",
+                    "institution": "FAU Erlangen-Nürnberg"
                 },
-                "7": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "alinaSynytska": {
+                    "name": "Alina Synytska",
+                    "position": "Head of the Center for Educational and Innovative Technologies",
+                    "institution": "Ukrainian Catholic University"
                 },
-                "8": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "tetyanaMarena": {
+                    "name": "Tetyana Marena",
+                    "degree": "Candidate of Economic Sciences",
+                    "position": "Associate Professor, Vice-Rector for Educational Work",
+                    "institution": "Mariupol State University"
                 },
-                "9": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "lukaszDonaj": {
+                    "name": "Łukasz Donaj",
+                    "position": "University Professor, Researcher",
+                    "institution": "Adam Mickiewicz University, Poznań"
                 },
-                "10": {
-                    "name": "Oleksandr Kovalenko",
-                    "role": "Project Manager",
-                    "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv."
+                "ivanKozii": {
+                    "name": "Ivan Kozii",
+                    "position": "Professor, Vice-Rector for Educational Work",
+                    "institution": "Sumy State University"
+                },
+                "michaelaKortysova": {
+                    "name": "Michaela Kortyšová",
+                    "degree": "Bc.",
+                    "position": "Project manager",
+                    "institution": "Masaryk University"
+                },
+                "maksymFolomyeiev": {
+                    "name": "Maksym Folomyeiev",
+                    "degree": "Candidate of Political Sciences",
+                    "position": "Associate Professor, Head of the Public Relations and International Cooperation Department",
+                    "institution": "National Agency for Higher Education Quality Assurance"
                 }
             }
         },
@@ -351,74 +377,244 @@
         }
     },
     "partners": {
-        "ksu": {
-            "title": "Kherson State University"
-        },
-        "khpi": {
-            "title": "Kharkiv Polytechnic Institute"
-        },
-        "lu": {
-            "title": "Lviv University"
-        },
-        "moeu": {
-            "title": "Ministry of Education and Science of Ukraine"
-        },
-        "mariupol": {
-            "title": "Mariupol State University"
-        },
-        "chnu": {
-            "title": "Chernivtsi National University"
-        },
-        "ecti": {
-            "title": "ECTI, Senior Skills Volunteering"
-        },
-        "fauen": {
-            "title": "Friedrich-Alexander University Erlangen-Nurenberg"
+        "knu": {
+            "title": "Kyiv National University named after Taras Shevchenko",
+            "people": {
+                "kseniiaSmirnova": {
+                    "name": "Ksenia Smirnova",
+                    "role": "Project coordinator:"
+                },
+                "sergiyBronin": {
+                    "name": "Sergey Bronin",
+                    "role": "Project coordinator:"
+                },
+                "liudmilaaZagoruiko": {
+                    "name": "Lyudmila Zagoruiko",
+                    "role": "Chief administrator:"
+                },
+                "olhaKravchenko": {
+                    "name": "Olga Kravchenko",
+                    "role": "Academic director:"
+                }
+            }
         },
         "kma": {
-            "title": "Kyiv-Mohyla Academy"
-        },
-        "knu": {
-            "title": "Kyiv National University named after Taras Shevchenko"
-        },
-        "luh": {
-            "title": "Leibniz University Hannover"
-        },
-        "modfu": {
-            "title": "Ministry of Digital Transformation of Ukraine"
-        },
-        "muni": {
-            "title": "Marasyk university"
-        },
-        "nahe": {
-            "title": "National Agency for Higher Education Quality Assurance"
+            "title": "Kyiv-Mohyla Academy",
+            "people": {
+                "larisaChovnyuk": {
+                    "name": "Larisa Chovnyuk",
+                    "role": "Project Manager:"
+                }
+            }
         },
         "sdu": {
-            "title": "Sumy State University"
-        },
-        "SKkhnu": {
-            "title": "Simon Kuznets Kharkiv National University of Economics"
-        },
-        "tib": {
-            "title": "TIB – Leibniz Information Centre for Science and Technology and University Library"
-        },
-        "uaip": {
-            "title": "Ukrainian Association of IT Professionals"
-        },
-        "uam": {
-            "title": "Adam Mickiewicz University in Poznań"
-        },
-        "uas": {
-            "title": "Ukrainian Association of Students"
-        },
-        "ucu": {
-            "title": "Ukrainian Catholic University"
-        },
-        "uesis": {
-            "title": "Ukrainian Educational and Scientific IT Society"
-        },
-        "uoc": {
-            "title": "University of Cologne"
+            "title": "Sumy State University",
+            "people": {
+                "IvanKozii": {
+                    "name": "Ivan Kozii",
+                    "role": "Project Manager:"
+                }
+            }
+        }
+    },
+    "SKkhnu": {
+        "title": "Simon Kuznets Kharkiv National University of Economics",
+        "people": {
+            "irynaZolotaryova": {
+                "name": "Iryna Zolotaryova",
+                "role": "Project Manager:"
+            },
+            "oleksiiBesedovskyi": {
+                "name": "Oleksii Besedovskyi",
+                "role": "Academic director:"
+            }
+        }
+    },
+    "chnu": {
+        "title": "Chernivtsi National University",
+        "people": {
+            "heorhiiVorobets": {
+                "name": "Heorhii Vorobets",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "ucu": {
+        "title": "Ukrainian Catholic University",
+        "people": {
+            "alinaSynytska": {
+                "name": "Alina Synytska",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "ksu": {
+        "title": "Kherson State University",
+        "people": {
+            "oleksandrSpivakovskiy": {
+                "name": "Oleksandr Spivakovskiy",
+                "role": "Project Manager:"
+            },
+            "allaTsapiv": {
+                "name": "Alla Tsapiv",
+                "role": "Academic director:"
+            }
+        }
+    },
+    "mariupol": {
+        "title": "Mariupol State University",
+        "people": {
+            "andriyStoyka": {
+                "name": "Andriy Stoyka",
+                "role": "Project Manager:"
+            },
+            "tetyanaMarena": {
+                "name": "Tetyana Marena",
+                "role": "Academic director:"
+            }
+        }
+    },
+    "lu": {
+        "title": "Lviv University",
+        "people": {
+            "soonLu": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "khpi": {
+        "title": "Kharkiv Polytechnic Institute",
+        "people": {
+            "soonKpi": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "moeu": {
+        "title": "Ministry of Education and Science of Ukraine",
+        "people": {
+            "soonMoeus": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "modfu": {
+        "title": "Ministry of Digital Transformation of Ukraine",
+        "people": {
+            "soonDigital": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "uaip": {
+        "title": "Ukrainian Association of IT Professionals",
+        "people": {
+            "soonUAIP": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "nahe": {
+        "title": "National Agency for Higher Education Quality Assurance",
+        "people": {
+            "maksymFolomieiev": {
+                "name": "Maksym Folomieiev",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "fauen": {
+        "title": "Friedrich-Alexander University Erlangen-Nurenberg",
+        "people": {
+            "anneMarieLipphardt": {
+                "name": "Anne-Marie Lipphardt",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "muni": {
+        "title": "Marasyk university",
+        "people": {
+            "michaelaKortysova": {
+                "name": "Michaela Kortyšová",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "uoc": {
+        "title": "University of Cologne",
+        "people": {
+            "soonUOC": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "uam": {
+        "title": "Adam Mickiewicz University in Poznań",
+        "people": {
+            "lukaszDonaj": {
+                "name": "Lukasz Donaj",
+                "role": "Project Manager:"
+            },
+            "rafalWitkowski": {
+                "name": "Rafal Witkowski",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "luh": {
+        "title": "Leibniz University Hannover",
+        "people": {
+            "soonLuh": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "ecti": {
+        "title": "ECTI, Senior Skills Volunteering",
+        "people": {
+            "soonEcti": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "uas": {
+        "title": "Ukrainian Association of Students",
+        "people": {
+            "soonUas": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "uesis": {
+        "title": "Ukrainian Educational and Scientific IT Society",
+        "people": {
+            "soonUesis": {
+                "name": "Information will appear soon",
+                "role": "Project Manager:"
+            }
+        }
+    },
+    "tib": {
+        "title": "TIB – Leibniz Information Centre for Science and Technology and University Library",
+        "people": {
+            "nataliyaButych": {
+                "name": "Nataliya Butych",
+                "role": "Project Manager:"
+            },
+            "margretPlank": {
+                "name": "Margret Plank",
+                "role": "Academic director:"
+            }
         }
     }
 }

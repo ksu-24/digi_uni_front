@@ -14,14 +14,17 @@ const config: Config = {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-                "digipattern-secondary": "url('/images/digi-pattern-secondary.png')",
-                "digipattern-info": "url('/images/digi-pattern-info.png')",
+                "digipattern-secondary": "url('/images/commons/digi-pattern-secondary.png')",
+                "digipattern-info": "url('/images/commons/digi-pattern-info.png')",
             },
             animation: {
-                "slide-in-left": "0.7s ease-out 0s 1 slideInFromLeft",
-                "slide-in-right": "0.7s ease-out 0s 1 slideInFromRight",
-                "slide-out-left": "0.7s ease-out 0s 1 slideOutToLeft",
-                "slide-out-right": "0.7s ease-out 0s 1 slideOutToRight",
+                "scroll-right-half": "scroll-right 60s linear infinite",
+                "grow-right": "grow-from-right 0.5s cubic-bezier(0,0,.11,1.06) forwards",
+                "slide-left": "translate-from-right 0.6s ease-out forwards",
+                "slide-right": "translate-from-left 0.6s ease-out forwards",
+                "slide-down": "translate-from-top 0.6s ease-out forwards",
+                "slide-up": "translate-from-bottom 0.6s ease-out forwards",
+                "grow": "grow 0.6s ease-out forwards",
             },
             backgroundColor: {
                 "primary": colors.primary.main,

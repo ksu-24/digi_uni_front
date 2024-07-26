@@ -1,5 +1,5 @@
 import colors from "@/resources/colors.json"
-import {Breakpoint, SvgIconTypeMap} from "@mui/material";
+import {Breakpoint, SvgIconTypeMap, ThemeOptions} from "@mui/material";
 import {DefaultComponentProps} from "@mui/types";
 import screens from "@/resources/screens.json";
 
@@ -10,32 +10,70 @@ export const body2Font = "Inter";
 const themeObj = {
     palette: colors,
     typography: {
-        // when changing media queries, also change in @/public.global.css
         h1: {
             fontFamily: headerFont,
-            fontSize: 46,
-            fontWeight: 500,
+            fontSize: "9dvw",
+            fontWeight: 600,
             lineHeight: 1.2,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.02rem",
+            wordBreak: "break-word",
+
+            [`@media (min-width: ${screens.sm})`]: {
+                wordBreak: "keep-all"
+            },
+
+
+            [`@media (min-width: ${screens.sm})`]: {
+                fontSize: 36
+            },
+            [`@media (min-width: ${screens.md})`]: {
+                fontSize: 46
+            },
+            [`@media (min-width: ${screens.lg})`]: {
+                fontSize: 49
+            }
+
         },
-        // when changing media queries, also change in @/public.global.css
         h2: {
             fontFamily: headerFont,
-            fontSize: 38,
+            fontSize: 30,
             fontWeight: 500,
             lineHeight: 1.3,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem",
+            wordBreak: "break-word",
+
+            [`@media (min-width: ${screens.sm})`]: {
+                wordBreak: "keep-all"
+            },
+
+            [`@media (min-width: ${screens.sm})`]: {
+                fontSize: 32
+            },
+            [`@media (m-width: ${screens.md})`]: {
+                fontSize: 34
+            },
+            [`@media (min-width: ${screens.lg})`]: {
+                fontSize: 36
+            }
         },
-        // when changing media queries, also change in @/public.global.css
         h3: {
             fontFamily: headerFont,
-            fontSize: 32,
+            fontSize: 22,
             fontWeight: 500,
             lineHeight: 1.3,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem",
+            wordBreak: "break-word",
+
+            [`@media (min-width: ${screens.sm})`]: {
+                wordBreak: "keep-all"
+            },
+
+            [`@media (min-width: ${screens.lg})`]: {
+                fontSize: 32
+            }
         },
         h4: {
             fontFamily: headerFont,
@@ -44,6 +82,11 @@ const themeObj = {
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem",
+            wordBreak: "break-word",
+
+            [`@media (min-width: ${screens.sm})`]: {
+                wordBreak: "keep-all"
+            },
         },
         h5: {
             fontFamily: headerFont,
@@ -52,6 +95,11 @@ const themeObj = {
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.03rem",
+            wordBreak: "break-word",
+
+            [`@media (min-width: ${screens.sm})`]: {
+                wordBreak: "keep-all"
+            }
         },
         h6: {
             fontFamily: headerFont,
@@ -60,6 +108,11 @@ const themeObj = {
             lineHeight: 1.1,
             whiteSpace: "pre-wrap",
             letterSpacing: 0,
+            wordBreak: "break-word",
+
+            [`@media (min-width: ${screens.sm})`]: {
+                wordBreak: "keep-all"
+            }
         },
         body1: {
             fontFamily: body1Font,

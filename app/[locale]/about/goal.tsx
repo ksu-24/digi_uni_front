@@ -13,7 +13,7 @@ export default async function Goal() {
             <DefaultContainer className="!p-0">
                 <DefaultContainer withTopPadding>
                     <SectionTitle number={2} titleTranslationKey="about.goal.enumerationCaption"/>
-                    <Typography variant="h3">{translations("title")}</Typography>
+                    <Typography variant="h2">{translations("title")}</Typography>
                 </DefaultContainer>
                 <InfoContainer boxProps={{
                     className: "min-h-[66dvh] h-fit"

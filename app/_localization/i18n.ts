@@ -1,7 +1,7 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
 
-export const locales = Object.freeze(['uk', 'en']);
+export const locales = Object.freeze(['uk', 'en'] as const);
 
 export const localeNames = Object.freeze({
     en: 'ENG',

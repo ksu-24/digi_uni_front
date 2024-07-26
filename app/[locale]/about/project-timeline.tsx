@@ -94,7 +94,7 @@ export default async function ProjectTimeline() {
                                     {
                                         Object.keys(value.description).map((textKey, index) => {
                                             return (
-                                                <li className="w-full">
+                                                <li className="w-full" key={index}>
                                                     <Typography key={index} variant="caption"
                                                                 lineHeight={1.5}>
                                                         {translations("milestones." + key + ".description." + textKey as never)}

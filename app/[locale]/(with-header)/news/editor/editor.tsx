@@ -4,7 +4,7 @@ import {InitialConfigType, LexicalComposer} from '@lexical/react/LexicalComposer
 import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
 import {ContentEditable} from '@lexical/react/LexicalContentEditable';
 import {LexicalErrorBoundary} from '@lexical/react/LexicalErrorBoundary';
-import {Stack, Tab, Tabs} from "@mui/material";
+import {Skeleton, Stack, Tab, Tabs} from "@mui/material";
 import ToolbarPlugin from "@/app/[locale]/(with-header)/news/editor/toolbar";
 import {HeadingNode, QuoteNode} from "@lexical/rich-text";
 import StyledQuoteNode, {
@@ -26,8 +26,11 @@ import SavePlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/save-p
 import SaveProgressPlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/save-state-plugin";
 import PreviewForm from "@/app/[locale]/(with-header)/news/editor/preview-form";
 import ClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
-import React from "react";
+import React, {useEffect} from "react";
 import {locales} from "@/app/_localization/i18n";
+import GalleryInput from "@/app/[locale]/(with-header)/news/editor/gallery-input";
+import {useLexicalIsTextContentEmpty} from "@lexical/react/useLexicalIsTextContentEmpty";
+import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 
 const theme: InitialConfigType = {
     // @ts-ignore
@@ -66,6 +69,15 @@ export const COMMAND_PRIORITY = 1;
 const URL_MATCHER =
     /((https?:\/\/(www\.)?)|(www\.))[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&\/=]*)/;
 
+export type Localization = {
+    preview: {
+        title: string,
+        image: string
+    },
+    gallery: (string | null)[],
+    content: string
+}
+
 export const useEditorClasses = create<{
     className: string;
     addClass: (className: string) => void;
@@ -94,27 +106,48 @@ const initialConfig = {
     }]
 };
 
-export default function Editor() {
+export default function Editor(
+    {
+        initialState,
+        id
+    }: {
+        initialState?: Map<typeof locales[number], Localization>,
+        id?: number
+    }
+) {
     const className = useEditorClasses((state) => state.className);
     const [currentLocaleIdx, setCurrentLocaleIdx] = React.useState(0);
+    const [galleries, setGalleries] =
+        React.useState<Map<string, (string | null)[]>>(
+            new Map(locales.map((locale) => [locale,
+                initialState?.get(locale)?.gallery ?? (localStorage.getItem(`gallery-${locale}`) ?
+                    JSON.parse(localStorage.getItem(`gallery-${locale}`)!) : [])]
+            )));
 
-    const publicationsRef = React.useRef(new Map<string, {
-        preview: {
-            title: string,
-            summary: string,
-            image: string
-        },
-        content: string
-    }>(locales.map((locale) =>
-        [locale, {
-            preview: {
-                title: "",
-                summary: "",
-                image: ""
-            },
-            content: ""
-        }]
-    )));
+    const [publications, setPublications] = React.useState(new Map<string, Localization>(
+        locales.map((locale) =>
+            [locale, {
+                preview: {
+                    title: initialState?.get(locale)?.preview.title ?? "",
+                    image: initialState?.get(locale)?.preview.image ?? ""
+                },
+                gallery: galleries.get(locale)!,
+                content: initialState?.get(locale)?.content ?? ""
+            }]
+        )));
+
+    useEffect(() => {
+        setPublications(new Map(locales.map((locale) =>
+            [locale, {
+                preview: {
+                    title: initialState?.get(locale)?.preview.title ?? "",
+                    image: initialState?.get(locale)?.preview.image ?? ""
+                },
+                gallery: galleries.get(locale)!,
+                content: initialState?.get(locale)?.content ?? ""
+            }]
+        )));
+    }, [galleries, initialState]);
 
     return <>
         <Tabs onChange={(_, value) => setCurrentLocaleIdx(value)} value={currentLocaleIdx}>
@@ -127,13 +160,16 @@ export default function Editor() {
         {
             locales.map((locale) => {
                 return locale === locales[currentLocaleIdx] &&
-                    <Stack className="gap-6 items-center my-10" component="form" role="tabpanel"
+                    <Stack className="gap-6 items-center my-10" role="tabpanel"
                            aria-labelledby={`tab-${locale}`} id={`tab-${locale}`} key={locale}>
-                        <LexicalComposer initialConfig={initialConfig}>
+                        <LexicalComposer initialConfig={{
+                            ...initialConfig,
+                            editorState: initialState?.get(locale)?.content
+                        }}>
                             <HistoryPlugin/>
                             <SaveProgressPlugin key1={locale} setEditorContent={(content) => {
-                                publicationsRef.current.get(locale)!.content = content
-                            }}/>
+                                publications.get(locale)!.content = content
+                            }} restoreOnFirstRender={initialState?.get(locale)?.content === undefined}/>
                             <ImagePlugin/>
                             <ClearEditorPlugin/>
                             <AutoLinkPlugin matchers={[
@@ -154,10 +190,32 @@ export default function Editor() {
                                 placeholder={<></>}
                                 ErrorBoundary={LexicalErrorBoundary}
                             />
+                            <GalleryInput
+                                images={galleries.get(locale)!}
+                                setImages={(images) => {
+                                    setGalleries((galleries) => {
+                                        if (images instanceof Array) {
+                                            galleries.set(locale, images);
+                                        } else {
+                                            galleries.set(locale, images(galleries.get(locale)!));
+                                        }
+                                        try {
+                                            localStorage.setItem(`gallery-${locale}`, JSON.stringify(galleries.get(locale)!));
+                                        } catch (e) {
+                                            console.log(e)
+                                        }
+                                        return new Map(galleries);
+                                    })
+                                }}
+                            />
                             <PreviewForm key1={locale.toString()} setPreview={(preview) => {
-                                publicationsRef.current.get(locale)!.preview = preview
+                                publications.get(locale)!.preview = preview
+                            }} initialState={{
+                                title: initialState?.get(locale)?.preview.title,
+                                image: initialState?.get(locale)?.preview.image,
                             }}/>
-                            <SavePlugin localizations={publicationsRef.current}
+                            <SavePlugin localizations={publications}
+                                        id={id}
                                         stateKeys={locales.map((_, idx) => idx.toString())}/>
                         </LexicalComposer>
                     </Stack>
@@ -166,20 +224,46 @@ export default function Editor() {
     </>;
 }
 
+function PlaceholderPlugin() {
+    const [editor] = useLexicalComposerContext();
+    const isTextContentEmpty = useLexicalIsTextContentEmpty(editor);
+    const [isLoaded, setIsLoaded] = React.useState(isTextContentEmpty);
+
+    useEffect(() => {
+        if (!isLoaded && !isTextContentEmpty) {
+            setIsLoaded(true);
+        }
+    }, [isTextContentEmpty]);
+
+    return !isLoaded && <Stack className="gap-6">
+        {
+            Array.from({length: 10}).map((_, idx) => (
+                <React.Fragment key={idx}>
+                    <Skeleton variant="text" width="100%"/>
+                    <Skeleton variant="text" width="100%"/>
+                    <Skeleton variant="text" width="100%"/>
+                    <Skeleton variant="text" width={`${Math.round(Math.random() * 100)}%`}/>
+                </React.Fragment>
+            ))
+        }
+    </Stack>;
+}
+
 export function ReadOnlyEditor(
-    {editorStateJson} : {editorStateJson: string}
+    {editorStateJson}: { editorStateJson: string }
 ) {
     const thisInitialConfig = {
         ...initialConfig,
         editorState: editorStateJson,
         editable: false
     }
+
     return (
         <LexicalComposer initialConfig={thisInitialConfig}>
             <RichTextPlugin
                 contentEditable={<ContentEditable
                     contentEditable={false}
-                    className={"w-full h-fit min-h-dvh quote-container"}
+                    className={"w-full h-fit quote-container flex flex-col"}
                     style={{
                         // @ts-ignore
                         ...themeObj.typography.body1
@@ -187,6 +271,7 @@ export function ReadOnlyEditor(
                 placeholder={<></>}
                 ErrorBoundary={LexicalErrorBoundary}
             />
+            <PlaceholderPlugin/>
         </LexicalComposer>
     )
 }

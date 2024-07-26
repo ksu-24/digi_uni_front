@@ -85,7 +85,7 @@ export function ColorPicker(
                     width: "100%",
                     alignSelf: "end"
                 }
-            }} className="min-h-0 h-full flex flex-col items-center justify-end gap-1 !px-0 mx-4">
+            }} className="min-h-0 h-full flex flex-col items-center justify-center gap-1 !px-0 mx-4">
                 <FormControl className="w-fit !cursor-pointer">
                     <InputLabel shrink required htmlFor="textcolor">{translations(styleProp as never)}</InputLabel>
                     <TextField sx={{

@@ -1,0 +1,60 @@
+{
+    "coordinators": [
+        {
+            "key": "kseniaSmirnova"
+        },
+        {
+            "key": "serhiiBronin"
+        }
+    ],
+    "all": [
+        {
+            "key": "irynaPorunkova",
+            "gender": "F"
+        },
+        {
+            "key": "georgiyVorobets",
+            "gender": "M"
+        },
+        {
+            "key": "andriyStoika",
+            "gender": "M"
+        },
+        {
+            "key": "allaTsapiv",
+            "gender": "F"
+        },
+        {
+            "key": "oleksandrSpivakovsky",
+            "gender": "M"
+        },
+        {
+            "key": "anneMarieLipphardt",
+            "gender": "F"
+        },
+        {
+            "key": "alinaSynytska",
+            "gender": "F"
+        },
+        {
+            "key": "tetyanaMarena",
+            "gender": "F"
+        },
+        {
+            "key": "lukaszDonaj",
+            "gender": "M"
+        },
+        {
+            "key": "ivanKozii",
+            "gender": "M"
+        },
+        {
+            "key": "michaelaKortysova",
+            "gender": "F"
+        },
+        {
+            "key": "maksymFolomyeiev",
+            "gender": "M"
+        }
+    ]
+}

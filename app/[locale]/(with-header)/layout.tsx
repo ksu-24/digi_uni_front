@@ -4,7 +4,8 @@ import Header from "@/app/[locale]/(with-header)/header";
 import {DefaultContainer} from "@/app/_util/components/default-container";
 import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
 import Footer from "@/app/[locale]/_footer/footer";
-import {BwTiles} from "@/app/_util/components/tiles";
+import {Box} from "@mui/material";
+import {BwTiles, SecondaryToBlackTiles} from "@/app/_util/components/tiles";
 
 export default async function WithHeaderLayout({children, params}: {
     children: React.ReactNode,
@@ -14,11 +15,17 @@ export default async function WithHeaderLayout({children, params}: {
     return (
         <>
             <Header/>
-            <DefaultContainer>
+            <Box className="h-[28dvw] lg:hidden"/>
+            <DefaultContainer className="mb-[6dvh]">
                 <DynamicBackwardsNav/>
-                {children}
             </DefaultContainer>
-            <Footer tiles={<BwTiles/>}/>
+            {children}
+            <Footer tiles={(
+                <Box className="w-full">
+                    <BwTiles className="hidden xs:block"/>
+                    <SecondaryToBlackTiles className="xs:hidden"/>
+                </Box>
+            )}/>
         </>
     );
 }

@@ -7,19 +7,22 @@ import React, {useEffect} from "react";
 export default function PreviewForm(
     {
         key1,
-        setPreview
+        setPreview,
+        initialState
     } : {
         key1: string,
         setPreview: (preview: {
             title: string,
-            summary: string,
             image: string
-        }) => void
+        }) => void,
+        initialState: {
+            title?: string,
+            image?: string
+        }
     }
 ) {
-    const [title, setTitle] = React.useState<string>("");
-    const [summary, setSummary] = React.useState<string>("");
-    const [image, setImage] = React.useState<string | null>(null);
+    const [title, setTitle] = React.useState<string>(initialState.title ?? "");
+    const [image, setImage] = React.useState<string | null>(initialState.image ?? null);
 
     useEffect(() => {
         if (localStorage.getItem(`editorState-preview-title-${key1}`)) {
@@ -45,10 +48,9 @@ export default function PreviewForm(
     useEffect(() => {
         setPreview({
             title,
-            summary,
             image: image ?? ""
         });
-    }, [title, summary, image]);
+    }, [title, image]);
 
     return (
         <FormWrapper onSubmit={async (e) => {
@@ -58,6 +60,7 @@ export default function PreviewForm(
         }}>
             <Typography variant="h1">Preview</Typography>
             <ImageDropzone className="!h-[25dvh] border-[1px] border-black" onPictureUpload={(picture) => setImage(picture)} initialPicture={image}/>
+            {/* @ts-ignore */}
             <TextField value={title} label="Title" variant="standard" className="w-full" name="title" required style={{
                 ...themeObj.typography.h4
             }} onChange={e => setTitle(e.target.value)}/>

@@ -15,7 +15,7 @@ export default async function Partners() {
             <DefaultContainer withTopPadding className="!p-0">
                 <DefaultContainer>
                     <SectionTitle number={6} titleTranslationKey="about.partners.enumerationCaption"/>
-                    <Typography variant="h3">{translations("title")}</Typography>
+                    <Typography variant="h2">{translations("title")}</Typography>
                 </DefaultContainer>
                 <InfoContainer>
                     <Grid2 container columns={60}>

@@ -4,8 +4,7 @@ import PartnerDropdown from "@/app/[locale]/_partners/partner-dropdown";
 import {DefaultContainer} from "@/app/_util/components/default-container";
 
 export type Person = {
-    title: string;
-    name: string;
+    translationKey: string;
     email: string;
 }
 
@@ -14,7 +13,7 @@ export type Partner = {
     country: string;
     logo: string;
     link: string;
-    people?: Person[];
+    people: Person[];
 };
 
 export async function PartnerDetails() {

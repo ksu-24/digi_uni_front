@@ -1,10 +1,7 @@
-"use client"
-
 import News from '@/app/model/news';
 import {Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
 import {Link} from "@/app/_localization/navigation";
-import {useNewsAmount} from "@/app/[locale]/_latestNews/body";
 
 export default function OtherRecent(
     {
@@ -14,9 +11,9 @@ export default function OtherRecent(
     }
 ) {
     const newsArr = JSON.parse(news) as News[];
-    const newsAmount = useNewsAmount();
+    const newsAmount = 3;
     return (
-        <Stack className="w-2/3 h-full" direction="column">
+        <Stack className="w-full xs:w-2/3 xs:h-full" direction="column">
             {newsArr.slice(0, newsAmount).map((news, index) => (
                 <NewsVisualization key={index} news={news}/>
             ))}

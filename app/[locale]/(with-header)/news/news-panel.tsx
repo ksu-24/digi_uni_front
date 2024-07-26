@@ -68,13 +68,8 @@ function NewsListItem(
 
     const news = useNewsPreview(lcm, page);
 
-
     return (
-        <Grid container columns={lcm} spacing="3%" sx={{
-            "&.MuiGrid2-container > *": {
-                height: "50dvh"
-            }
-        }}>
+        <Grid container columns={lcm} spacing="3%">
             {news.map((news) => (
                 <NewsCard key={news.id} news={news}/>
             ))}
@@ -90,15 +85,15 @@ function NewsCard(
     }
 ) {
     return (
-        <Grid {...pageSizeFactors} className="h-full">
-            <Link href={`/news/${news.id}`} className="h-full">
-                <Stack className="gap-10 h-full" sx={{
+        <Grid {...pageSizeFactors}>
+            <Link href={`/news/${news.id}`} className="h-full block">
+                <Stack className="gap-10 justify-between h-full" sx={{
                     "&.MuiStack-root:hover .MuiTypography-h4": {
                         color: colors.blue
                     }
                 }}>
-                    <Box className="w-full h-full relative 3xl:h-[25dvh] flex items-center">
-                        <Image src={news.image} alt={news.title} fill className="object-contain"/>
+                    <Box className="h-1/2 min-h-[50%] max-h-[50%] w-full relative flex items-center overflow-hidden">
+                        <img src={news.image} alt={news.title} className="object-cover" height="100%"/>
                     </Box>
                     <Stack className="gap-8">
                         <Timestamp date={news.date}/>

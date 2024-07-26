@@ -284,7 +284,12 @@ export default function ToolbarPlugin() {
                 </Tabs>
                 {
                     <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
-                           id={`tabcontrol-${currentTab}`} className="w-full h-fit items-center"
+                           id={`tabcontrol-${currentTab}`} className="w-full h-[15dvh] items-center overflow-x-scroll"
+                           sx={{
+                               "& > *": {
+                                   flex: "0 0 auto"
+                               }
+                           }}
                            onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */}
                         {toolbarTabs[currentTab].tools.map((item, index) =>
                             item.__type__ === "custom" ? <CustomToolbarItem key={index} supplier={item.supplier}/> :

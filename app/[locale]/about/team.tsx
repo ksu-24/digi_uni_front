@@ -3,7 +3,7 @@ import {SectionTitle} from "@/app/_util/components/section-title";
 import {Box, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";
-import enDict from "@/resources/dicts/en.json";
+import team from "@/resources/team.json";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import screens from "@/resources/screens.json";
 
@@ -20,10 +20,11 @@ export default async function Team() {
                     className: "h-fit"
                 }}>
                     {
-                        Object.keys(enDict.about.team.coordinators.list).map((coordinator, index) => (
-                            <InfoContainerItem className="p-10 h-fit w-full shrink-0" key={index}>
-                                <Stack direction="row" className="gap-8">
-                                    <Box className="w-1/4 h-fit shrink-0">
+                        team.coordinators.map(({key: coordinator}, index) => (
+                            <InfoContainerItem className="px-[5dvw] pb-[5dvw] md:p-[4dvw] lg:p-10 h-fit w-full shrink-0"
+                                               key={index}>
+                                <Stack className="gap-8 lg:flex-row">
+                                    <Box className="w-full lg:w-1/4 h-fit shrink-0">
                                         <img
                                             src={`/images/about/${translations(`coordinators.list.${coordinator}.photo` as never)}`}
                                             alt="photo" width="100%"/>
@@ -48,25 +49,42 @@ export default async function Team() {
                     }
                 </InfoContainer>
                 <DefaultContainer>
-                    <Typography variant="h3">{translations("title")}</Typography>
-                    <Grid2 container rowSpacing={3.5} columnSpacing={2} className="w-full">
-                        {Object.keys(enDict.about.team.list).map((teamMember, index) => (
-                            <Grid2 key={index} xs={12} sm={6} md={4} lg={3} className="h-[60dvh]" sx={{
+                    <Typography variant="h2">{translations("title")}</Typography>
+                    <Grid2 container columnSpacing={2} className="w-full gap-[12dvw] xs:gap-0" sx={{
+                        [`@media (max-width: ${screens.xs})`]: {
+                            margin: "0"
+                        }
+                    }}>
+                        {team.all.map((teamMember, index) => (
+                            <Grid2 key={index} xs={12} sm={6} md={4} lg={3} sx={{
                                 [`@media (min-width: ${screens["4xl"]})`]: {
                                     "&.MuiGrid2-root": {
                                         width: "calc(100%* 2/var(--Grid-columns)) !important"
                                     }
+                                },
+                                [`@media (max-width: ${screens.xs})`]: {
+                                    padding: "0"
                                 }
                             }}>
-                                <Stack className="w-full h-full gap-8 items-center">
-                                    <Box className="w-full bg-themed-gray h-1/2"/>
-                                    <Stack className="w-full h-fit min-h-1/2 gap-5">
-                                        <Typography
-                                            variant="h4">{translations(`list.${teamMember}.name` as never)}</Typography>
+                                <Stack className="h-full w-full lg:w-auto gap-8 items-center">
+                                    <img src={teamMember.gender === "M" ?
+                                        "/images/about/man_placeholder.jpg" :
+                                        "/images/about/woman_placeholder.jpg"
+                                    } alt="photo" width="100%"/>
+                                    <Stack className="h-fit min-h-1/2 gap-4" sx={{
+                                        "&.MuiStack-root > .MuiTypography-root:first-letter": {
+                                            textTransform: "uppercase"
+                                        }
+                                    }}>
+                                        <Typography variant="h4">{translations(`list.${teamMember.key}.name` as never)
+                                            + (translations(`list.${teamMember.key}.degree` as never)
+                                            !== `about.team.list.${teamMember.key}.degree` ? `, ${translations(`list.${teamMember.key}.degree` as never)}`
+                                                : "")
+                                        }</Typography>
                                         <Typography variant="body1"
-                                                    fontSize={16} lineHeight={1.1}>{translations(`list.${teamMember}.role` as never)}</Typography>
-                                        <Typography
-                                            variant="body2" fontSize={14}>{translations(`list.${teamMember}.description` as never)}</Typography>
+                                                    fontSize={16}>{translations(`list.${teamMember.key}.position` as never)}</Typography>
+                                        <Typography variant="caption"
+                                                    lineHeight={1.5}>{translations(`list.${teamMember.key}.institution` as never)}</Typography>
                                     </Stack>
                                 </Stack>
                             </Grid2>
