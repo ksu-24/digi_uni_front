@@ -6,6 +6,7 @@ import screens from "@/resources/screens.json";
 export const headerFont = "IBM Plex Serif";
 export const body1Font = "IBM Plex Mono";
 export const body2Font = "Inter";
+const color = colors.gray.darkest;
 
 const themeObj = {
     palette: colors,
@@ -17,12 +18,6 @@ const themeObj = {
             lineHeight: 1.2,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.02rem",
-            wordBreak: "break-word",
-
-            [`@media (min-width: ${screens.sm})`]: {
-                wordBreak: "keep-all"
-            },
-
 
             [`@media (min-width: ${screens.sm})`]: {
                 fontSize: 36
@@ -32,8 +27,8 @@ const themeObj = {
             },
             [`@media (min-width: ${screens.lg})`]: {
                 fontSize: 49
-            }
-
+            },
+            color
         },
         h2: {
             fontFamily: headerFont,
@@ -42,11 +37,6 @@ const themeObj = {
             lineHeight: 1.3,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem",
-            wordBreak: "break-word",
-
-            [`@media (min-width: ${screens.sm})`]: {
-                wordBreak: "keep-all"
-            },
 
             [`@media (min-width: ${screens.sm})`]: {
                 fontSize: 32
@@ -56,7 +46,8 @@ const themeObj = {
             },
             [`@media (min-width: ${screens.lg})`]: {
                 fontSize: 36
-            }
+            },
+            color
         },
         h3: {
             fontFamily: headerFont,
@@ -65,15 +56,11 @@ const themeObj = {
             lineHeight: 1.3,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem",
-            wordBreak: "break-word",
-
-            [`@media (min-width: ${screens.sm})`]: {
-                wordBreak: "keep-all"
-            },
 
             [`@media (min-width: ${screens.lg})`]: {
                 fontSize: 32
-            }
+            },
+            color
         },
         h4: {
             fontFamily: headerFont,
@@ -82,11 +69,7 @@ const themeObj = {
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.01rem",
-            wordBreak: "break-word",
-
-            [`@media (min-width: ${screens.sm})`]: {
-                wordBreak: "keep-all"
-            },
+            color
         },
         h5: {
             fontFamily: headerFont,
@@ -95,11 +78,7 @@ const themeObj = {
             lineHeight: 1.4,
             whiteSpace: "pre-wrap",
             letterSpacing: "-0.03rem",
-            wordBreak: "break-word",
-
-            [`@media (min-width: ${screens.sm})`]: {
-                wordBreak: "keep-all"
-            }
+            color
         },
         h6: {
             fontFamily: headerFont,
@@ -108,11 +87,7 @@ const themeObj = {
             lineHeight: 1.1,
             whiteSpace: "pre-wrap",
             letterSpacing: 0,
-            wordBreak: "break-word",
-
-            [`@media (min-width: ${screens.sm})`]: {
-                wordBreak: "keep-all"
-            }
+            color
         },
         body1: {
             fontFamily: body1Font,
@@ -128,6 +103,7 @@ const themeObj = {
             fontSize: 16,
             whiteSpace: "pre-wrap",
             letterSpacing: 0,
+            color
         },
         caption: {
             fontFamily: body1Font,
@@ -135,6 +111,7 @@ const themeObj = {
             whiteSpace: "pre-wrap",
             lineHeight: 1.1,
             letterSpacing: "-0.03rem",
+            color
         },
     },
     components: {
@@ -214,11 +191,6 @@ const themeObj = {
 
 export default themeObj;
 
-export const iconProps = {
-    style: {
-        fontSize: "1.67rem"
-    }
-} as DefaultComponentProps<SvgIconTypeMap>
 
 declare module '@mui/material/styles' {
     interface BreakpointOverrides {

@@ -1,31 +1,31 @@
 import {Stack} from "@mui/material";
-import {Facebook, LinkedIn} from "@mui/icons-material";
-import {iconProps} from "@/app/_theme/theme-obj";
 import {Link} from "@/app/_localization/navigation";
+import facebook from '@/public/images/commons/facebook.svg'
+import linkedin from '@/public/images/commons/linkedin.svg'
+import Image from "next/image";
 
 export function Social(
     {
         direction = "column",
-        color = "black"
+        color = "black",
+        className = ""
     }: {
         direction?: "row" | "column",
-        color?: string
+        color?: string,
+        className?: string
     }
 ) {
     return (
-        <Stack className="gap-6 items-start" direction={direction} style={{
-            width: direction === "row" ? "4.5rem" : "6%",
-            height: direction === "column" ? "4.5rem" : "auto"
-        }} sx={{
+        <Stack className={className + " gap-[2dvw] items-start"} direction={direction} sx={{
             "& *": {
                 color
             }
         }}>
             <Link href="https://www.facebook.com/khersonstateuniversity">
-                <Facebook {...iconProps}/>
+                <Image src={facebook} alt="facebook" width={21} height={21}/>
             </Link>
             <Link href="https://www.linkedin.com/school/kherson-state-university">
-                <LinkedIn {...iconProps}/>
+                <Image src={linkedin} alt="linkedin" width={21} height={21}/>
             </Link>
         </Stack>
     )

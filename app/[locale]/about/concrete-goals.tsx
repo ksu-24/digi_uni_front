@@ -1,7 +1,7 @@
 import enDict from '@/resources/dicts/en.json';
 import {getTranslations} from "next-intl/server";
 import {List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import listIcon from "@/public/images/about/list-icon-arrow.svg";
 import Image from "next/image";
 import {SectionTitle} from "@/app/_util/components/section-title";
@@ -10,7 +10,7 @@ export default async function ConcreteGoals() {
     const translations = await getTranslations("about.specificGoals");
     return (
         <section id="specific-goals">
-            <DefaultContainer className={`mb-[20dvh]`} withTopPadding>
+            <DefaultWrapper className={`mb-[20dvh]`} withPadding>
                 <SectionTitle number={3} titleTranslationKey="about.specificGoals.enumerationCaption"/>
                 <Typography variant="h2">{translations("title")}</Typography>
                 <List className="flex flex-col gap-4">
@@ -47,7 +47,7 @@ export default async function ConcreteGoals() {
                             )
                         })}
                 </List>
-            </DefaultContainer>
+            </DefaultWrapper>
         </section>
     )
 }

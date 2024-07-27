@@ -12,15 +12,15 @@ import {Link} from "@/app/_localization/navigation";
 import colors from "@/resources/colors.json"
 import screens from "@/resources/screens.json";
 import useWindow from "@/app/_util/use-window";
-import Image from "next/image";
+import EnterAnimation from "@/app/_util/components/enter-animation";
 
 const lcm = 12;
 
 const pageSizeFactors = {
     xs: lcm,
-    sm: lcm/2,
-    xl: lcm/3,
-    "3xl": lcm/4
+    sm: lcm / 2,
+    xl: lcm / 3,
+    "3xl": lcm / 4
 };
 
 const cache = new Map<number, NewsPreview[]>();
@@ -203,14 +203,16 @@ export default function NewsPanel() {
     }, [isExhausted]);
 
     return (
-        <Stack ref={stackRef}>
-            {
-                Array.from({length: pages}, (_, i) => (
-                    <Suspense fallback={<NewsListItemSkeleton/>} key={i}>
-                        <NewsListItem page={i}/>
-                    </Suspense>
-                ))
-            }
-        </Stack>
+        <EnterAnimation direction="up" delay={200} duration={600} offset={20}>
+            <Stack ref={stackRef}>
+                {
+                    Array.from({length: pages}, (_, i) => (
+                        <Suspense fallback={<NewsListItemSkeleton/>} key={i}>
+                            <NewsListItem page={i}/>
+                        </Suspense>
+                    ))
+                }
+            </Stack>
+        </EnterAnimation>
     )
 }

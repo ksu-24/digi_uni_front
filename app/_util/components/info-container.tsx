@@ -1,6 +1,6 @@
 import React, {CSSProperties} from "react";
 import {Box, BoxProps, Stack, StackProps} from "@mui/material";
-import {defaultPx} from "@/app/_util/components/default-container";
+import {defaultPx} from "@/app/_util/components/default-wrapper";
 import colors from "@/resources/colors.json";
 import screens from "@/resources/screens.json";
 

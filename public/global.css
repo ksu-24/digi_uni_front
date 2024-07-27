@@ -2,39 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    visibility: hidden;
-}
-
-::-webkit-scrollbar-thumb {
-    visibility: visible;
-    background: lightgray;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #888;
-}
-
 .backwards-nav {}
 
 .backwards-nav > :not(:first-child):before {
     content: '|';
     margin-right: 0.25rem;
     margin-left: 0.25rem;
-}
-
-@media screen and (min-width: 1024px) {
-    html, body {
-        width: -webkit-calc(100dvw - 10px);
-        width: -moz-calc(100dvw - 10px);
-        width: calc(100dvw - 10px);
-        min-width: calc(100dvw - 10px);
-        max-width: -webkit-calc(100dvw - 10px);
-        max-width: -moz-calc(100dvw - 10px);
-        max-width: 100%;
-    }
 }
 
 .underline-strike {

@@ -15,31 +15,35 @@ export default function MobileHeader() {
     const windowWidth = useWindow().innerWidth;
     const bwCondition = windowWidth < parseInt(screens.xs) && open;
     return (
-        <Box className="fixed lg:hidden w-full z-[1500] px-[4.5dvw] py-[3.5dvw]" component="header">
+        <Box className="fixed md:hidden w-full z-[1500] px-[4.5dvw] py-[3.5dvw]
+        max-xs:!pt-[7dvw]
+        max-md:px-[5dvw] max-md:pt-[4dvw]"
+             component="header">
             <Stack direction="row" className="justify-between items-center">
-                <Box className="relative flex items-center" sx={{
+                <Box className="relative flex items-center w-[19dvw] max-lg:w-[24dvw]" sx={{
                     "& > img": {
-                        width: "100%",
-                        height: "auto",
-                        position: "absolute",
                         transitionDelay: "0.1s",
-                    },
-                    [`@media (max-width: ${screens.xs})`]: {
-                        width: "38dvw"
+                        height: "auto !important",
+                        position: "absolute",
+                        transform: "translateY(-50%)",
                     },
                     [`@media (min-width: ${screens.lg})`]: {
                         width: "21dvw"
                     },
-                    width: "16dvw"
+                    [`@media (max-width: ${screens.xs})`]: {
+                        width: "40dvw !important"
+                    }
                 }}>
-                    <Image src={logo} alt="logo" style={{
+                    <Image src={logo} alt="logo" fill style={{
                         opacity: bwCondition ? 0 : 1
                     }} className="transition-[opacity]"/>
-                    <Image src={bwLogo} alt="logo" style={{
+                    <Image src={bwLogo} alt="logo" fill style={{
                         opacity: bwCondition ? 1 : 0
                     }} className="transition-[opacity]"/>
                 </Box>
-                <Stack direction="row" className="items-center">
+                <Stack direction="row" className="items-center
+                max-md:gap-[6dvw]
+                ">
                     <LanguageToggle color={open ? "white" : undefined}/>
                     <Menu open={open} setOpen={setOpen}/>
                 </Stack>

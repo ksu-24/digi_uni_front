@@ -1,8 +1,8 @@
-import Image from "next/image";
 import React from "react";
 import {getLocale} from "next-intl/server";
-import {Box} from "@mui/material";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {Box, Stack} from "@mui/material";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import screens from "@/resources/screens.json";
 
 function localeExtension(locale: string) {
     return locale === "en" ? "jpg" : "svg";
@@ -12,8 +12,8 @@ async function ProgramCard() {
     const locale = await getLocale();
     return (
         <Card>
-            <Image src={`/images/main/program-${locale}.${localeExtension(locale)}`} alt="Program" fill
-                   className="object-contain !bottom-0 !top-auto"/>
+            <img src={`/images/main/program-${locale}.${localeExtension(locale)}`} alt="Program" width="100%"
+                 className="object-contain !bottom-0 !top-auto"/>
         </Card>
     )
 }
@@ -22,8 +22,8 @@ async function DurationCard() {
     const locale = await getLocale();
     return (
         <Card>
-            <Image src={`/images/commons/duration-${locale}.${localeExtension(locale)}`} alt={"2023-2027"} fill
-                   className="object-contain !h-auto !bottom-0 !top-auto"/>
+            <img src={`/images/commons/duration-${locale}.${localeExtension(locale)}`} alt={"2023-2027"} width="100%"
+                 className="object-contain !h-auto !bottom-0 !top-auto"/>
         </Card>
     )
 }
@@ -32,8 +32,8 @@ async function CoordinatorCard() {
     const locale = await getLocale();
     return (
         <Card>
-            <Image src={`/images/commons/coordinator-${locale}.${localeExtension(locale)}`} alt="Coordinator" fill
-                   className="object-contain !h-auto !bottom-0 !top-auto"/>
+            <img src={`/images/commons/coordinator-${locale}.${localeExtension(locale)}`} alt="Coordinator" width="100%"
+                 className="object-contain !h-auto !bottom-0 !top-auto"/>
         </Card>
     )
 }
@@ -48,25 +48,34 @@ async function CustomCard(
     const locale = await getLocale();
     return (
         <Card>
-            <Image src={`${root}-${locale}.${localeExtension(locale)}`} alt={"card"} fill
-                     className="object-contain !h-auto !bottom-0 !top-auto"/>
+            <img src={`${root}-${locale}.${localeExtension(locale)}`} alt={"card"} width="100%"
+                 className="object-contain !h-auto !bottom-0 !top-auto"/>
         </Card>
     )
 }
 
 export default async function Cards(
     {
-        firstCardRoot
+        firstCardRoot,
     }: {
-        firstCardRoot?: string
+        firstCardRoot?: string,
     }
 ) {
     return (
-        <DefaultContainer className="mb-[22dvh] !gap-[2dvw]" direction="row">
-            {firstCardRoot ? <CustomCard root={firstCardRoot}/> : <ProgramCard/>}
-            <DurationCard/>
-            <CoordinatorCard/>
-        </DefaultContainer>
+        <DefaultWrapper className="!my-0">
+            <Stack direction="column" className="gap-4
+            max-xs:-mt-[10dvw] max-xs:gap-5
+            max-md:gap-[9px]
+            xs:flex-row xs:items-end
+            xl:max-w-[70dvw] xl:gap-[2dvw]
+            2xl:-mt-[4dvw]
+            3xl:max-w-[47dvw] 3xl:gap-[1dvw]
+        ">
+                {firstCardRoot ? <CustomCard root={firstCardRoot}/> : <ProgramCard/>}
+                <DurationCard/>
+                <CoordinatorCard/>
+            </Stack>
+        </DefaultWrapper>
     )
 }
 
@@ -78,8 +87,10 @@ async function Card(
     }
 ) {
     return (
-        <Box className={`w-1/3 relative`} sx={{
-            height: "calc(25dvw * 1.2)"
+        <Box className={`w-full xs:w-1/3 relative`} sx={{
+            [`@media (max-width: ${screens.xs})`]: {
+                maxWidth: "320px"
+            }
         }}>
             {children}
         </Box>

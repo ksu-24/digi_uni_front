@@ -15,7 +15,7 @@ export async function SectionTitle(
 ) {
     const translations = await getTranslations();
     return (
-        <Typography variant="body1" {...typographyProps}>{`0${number} ${translations(titleTranslationKey as never)}`}</Typography>
+        <Typography variant="body1" fontSize={16} {...typographyProps}>{`0${number} ${translations(titleTranslationKey as never)}`}</Typography>
     );
 }
 

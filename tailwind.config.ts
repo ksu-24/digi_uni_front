@@ -52,7 +52,12 @@ const config: Config = {
                 "themed-darker-gray": colors.gray.darker,
                 "themed-blue": colors.blue
             },
-            screens: screens
+            screens: {
+                ...screens,
+                ...(Object.entries(screens).map(([key, value]) => ({
+                    ["max-" + key]: { max: (parseInt(value) - 1) + "px" },
+                })).reduce((acc, val) => ({ ...acc, ...val }), {}))
+            }
         },
     },
     plugins: [],

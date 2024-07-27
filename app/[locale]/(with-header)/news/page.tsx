@@ -1,9 +1,10 @@
-import {NoSsr, Typography} from "@mui/material";
+import {Box, NoSsr, Typography} from "@mui/material";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import someTiles from "@/public/images/commons/some-tiles.svg";
 import NewsPanel from "@/app/[locale]/(with-header)/news/news-panel";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import EnterAnimation from "@/app/_util/components/enter-animation";
 
 export default async function News(
     {
@@ -15,15 +16,18 @@ export default async function News(
     unstable_setRequestLocale(locale)
     const translations = await getTranslations("news");
     return (
-        <DefaultContainer className="!p-0">
-            <img src={someTiles.src} alt="Some tiles" className="absolute top-0 left-1/2 -translate-x-1/2 hidden lg:block"/>
-            <DefaultContainer>
-                <Typography variant="h1">{translations("title")}:</Typography>
-                <NoSsr>
+        <DefaultWrapper className="!p-0">
+            <img src={someTiles.src} alt="Some tiles"
+                 className="absolute top-0 left-1/2 -translate-x-1/2 hidden lg:block"/>
+            <DefaultWrapper>
+                <EnterAnimation direction="up" offset={20} duration={500} fadeDuration={400}>
+                    <Typography variant="h1">{translations("title")}:</Typography>
+                </EnterAnimation>
+                <NoSsr fallback={<Box className="h-dvh"/>}>
                     <NewsPanel/>
                 </NoSsr>
                 <SubscribeForm/>
-            </DefaultContainer>
-        </DefaultContainer>
+            </DefaultWrapper>
+        </DefaultWrapper>
     )
 }

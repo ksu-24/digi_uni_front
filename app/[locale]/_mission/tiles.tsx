@@ -2,8 +2,10 @@ import {Box} from "@mui/material";
 
 export default function Tiles() {
     return (
-        <Box className="bg-digipattern-info bg-repeat-space bg-center bg-contain h-[33dvh] max-h-[23dvw]" style={{
-            backgroundSize: "12dvw 12dvw"
-        }}/>
+        <Box className="px-[2dvw] pt-[1dvw] pb-[6dvw]">
+            <img src="/images/main/about/digipattern-info.svg" alt="tiles" width="100%" className="max-xs:hidden"/>
+            <img src="/images/main/about/digipattern-info-xs.svg" alt="tiles" width="100%"
+                 className="hidden max-xs:block"/>
+        </Box>
     )
 }

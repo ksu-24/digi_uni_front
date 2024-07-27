@@ -1,6 +1,6 @@
 import {Box, Fade, Stack, Typography} from "@mui/material";
 import Header from "@/app/[locale]/(with-header)/header";
-import {DefaultContainer, defaultPx} from "@/app/_util/components/default-container";
+import {DefaultWrapper, defaultPx} from "@/app/_util/components/default-wrapper";
 import {getTranslations} from "next-intl/server";
 import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
 import screens from "@/resources/screens.json";
@@ -54,10 +54,10 @@ export default async function Title() {
                     backgroundPosition: "right center"
                 }}>
                 <Header className="!p-0"/>
-                <DefaultContainer className="lg:-ml-11 lg:!px-[11%]">
+                <DefaultWrapper className="lg:-ml-11 lg:!px-[11%]">
                     <DynamicBackwardsNav/>
-                </DefaultContainer>
-                <DefaultContainer
+                </DefaultWrapper>
+                <DefaultWrapper
                     className="lg:-ml-11 mt-[10dvh] mb-[18dvh] lg:mt-0 lg:!mb-[6dvh] pr-0 !p-0 3xl:!py-[5dvh] lg:!px-[11%] justify-start h-full">
                     <EnterAnimation direction="up" offset={20} duration={500} className="w-full lg:w-4/5 4xl:w-2/3">
                         <Typography variant="h1"
@@ -68,7 +68,7 @@ export default async function Title() {
                         <Typography variant="h3"
                                     className="w-full">{translations("biggestProject")}</Typography>
                     </EnterAnimation>
-                </DefaultContainer>
+                </DefaultWrapper>
             </Stack>
             <Stack>
                 <NavTop/>

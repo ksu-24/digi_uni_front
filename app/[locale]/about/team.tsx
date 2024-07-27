@@ -1,4 +1,4 @@
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import {SectionTitle} from "@/app/_util/components/section-title";
 import {Box, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
@@ -11,11 +11,11 @@ export default async function Team() {
     const translations = await getTranslations("about.team");
     return (
         <section id="team">
-            <DefaultContainer className="!p-0">
-                <DefaultContainer withTopPadding>
+            <DefaultWrapper className="!p-0">
+                <DefaultWrapper withPadding>
                     <SectionTitle number={5} titleTranslationKey="about.team.enumerationCaption"/>
                     <Typography variant="h3">{translations("coordinators.title")}</Typography>
-                </DefaultContainer>
+                </DefaultWrapper>
                 <InfoContainer boxProps={{
                     className: "h-fit"
                 }}>
@@ -48,7 +48,7 @@ export default async function Team() {
                         ))
                     }
                 </InfoContainer>
-                <DefaultContainer>
+                <DefaultWrapper>
                     <Typography variant="h2">{translations("title")}</Typography>
                     <Grid2 container columnSpacing={2} className="w-full gap-[12dvw] xs:gap-0" sx={{
                         [`@media (max-width: ${screens.xs})`]: {
@@ -90,8 +90,8 @@ export default async function Team() {
                             </Grid2>
                         ))}
                     </Grid2>
-                </DefaultContainer>
-            </DefaultContainer>
+                </DefaultWrapper>
+            </DefaultWrapper>
         </section>
     )
 }

@@ -7,19 +7,18 @@ import EnterAnimation from "@/app/_util/components/enter-animation";
 
 function Folders() {
     return (
-        <Stack direction="row" className="w-1/2 h-fit gap-[15%] justify-center">
-            <EnterAnimation direction="up" className="w-[75px] h-[66px]" fadeDuration={300} delay={700} duration={500}>
+        <Stack direction="row" className="w-full justify-center
+        xl:gap-[3dvw]
+        3xl:gap-[2dvw]
+        ">
+            <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={700} duration={500}>
                 <Box className="relative w-full h-full">
-                    <Image src={uaPartners} alt="UA partners" fill style={{
-                        objectFit: "contain"
-                    }}/>
+                    <img src={uaPartners.src} alt="UA partners" width="100%"/>
                 </Box>
             </EnterAnimation>
-            <EnterAnimation direction="up" className="w-[75px] h-[66px]" fadeDuration={300} delay={900} duration={500}>
-                <Box className="w-[75px] h-[66px] relative">
-                    <Image src={euPartners} alt="EU partners" fill style={{
-                        objectFit: "contain"
-                    }}/>
+            <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={900} duration={500}>
+                <Box className="w-full h-full relative">
+                    <img src={euPartners.src} alt="EU partners" width="100%"/>
                 </Box>
             </EnterAnimation>
         </Stack>
@@ -29,15 +28,13 @@ function Folders() {
 export function DigiuniLoading() {
     return (
         <Stack
-            className="h-[90%] items-center justify-center gap-[9%] mb-[2%] w-0 xs:w-1/5 xl:w-2/5 shrink-0 opacity-0 xl:opacity-100">
+            className="hidden h-[90%] justify-center gap-[2dvw] grow-0 z-50
+            xl:flex
+            3xl:gap-[1.5dvw]
+            ">
             <Folders/>
-            <EnterAnimation offset={0} duration={600} delay={200} fadeDuration={400} direction="up" grow
-                            className="w-4/5 h-1/3">
-                <Box className="relative w-full h-full">
-                    <Image src={digiuniLoading} alt="Digiuni Loading" fill style={{
-                        objectFit: "contain"
-                    }}/>
-                </Box>
+            <EnterAnimation offset={0} duration={600} delay={200} fadeDuration={400} direction="up" grow>
+                <img src={digiuniLoading.src} alt="Digiuni Loading" className="w-[23dvw] 3xl:w-[18dvw]"/>
             </EnterAnimation>
         </Stack>
     )

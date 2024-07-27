@@ -2,7 +2,7 @@ import {get} from "@/app/_util/fetching";
 import {NoSsr, Typography} from "@mui/material";
 import {unstable_setRequestLocale} from "next-intl/server";
 import Editor, {Localization} from "@/app/[locale]/(with-header)/news/editor/editor";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 
 export default async function Page({params}: {
     params: {
@@ -41,12 +41,12 @@ export default async function Page({params}: {
     }
 
     return (
-        <DefaultContainer>
+        <DefaultWrapper>
             <NoSsr>
                 <Editor
                     initialState={new Map(Object.entries(response.localizations).map(([key, value]) => [key.toLowerCase() as "uk" | "en", value]))}
                     id={response.id}/>
             </NoSsr>
-        </DefaultContainer>
+        </DefaultWrapper>
     );
 }

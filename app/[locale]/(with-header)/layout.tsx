@@ -1,7 +1,7 @@
 import React from "react";
 import {unstable_setRequestLocale} from "next-intl/server";
 import Header from "@/app/[locale]/(with-header)/header";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
 import Footer from "@/app/[locale]/_footer/footer";
 import {Box} from "@mui/material";
@@ -16,9 +16,9 @@ export default async function WithHeaderLayout({children, params}: {
         <>
             <Header/>
             <Box className="h-[28dvw] lg:hidden"/>
-            <DefaultContainer className="mb-[6dvh]">
+            <DefaultWrapper className="mb-[6dvh]">
                 <DynamicBackwardsNav/>
-            </DefaultContainer>
+            </DefaultWrapper>
             {children}
             <Footer tiles={(
                 <Box className="w-full">

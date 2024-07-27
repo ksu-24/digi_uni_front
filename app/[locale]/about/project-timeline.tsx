@@ -7,7 +7,7 @@ import Timestamp from "@/app/_util/components/timestamp";
 import {getTranslations} from "next-intl/server";
 import colors from "@/resources/colors.json";
 import screens from "@/resources/screens.json";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import {SectionTitle} from "@/app/_util/components/section-title";
 
 function TimelineItem(
@@ -77,7 +77,7 @@ export default async function ProjectTimeline() {
     const translations = await getTranslations("about.timeline")
     return (
         <section id="timeline">
-            <DefaultContainer withTopPadding className="mb-[15dvh]">
+            <DefaultWrapper withPadding className="mb-[15dvh]">
                 <SectionTitle number={7} titleTranslationKey="about.timeline.enumerationCaption"/>
                 <Typography variant="h3">{translations("title")}</Typography>
                 <TimelineContainer>
@@ -108,7 +108,7 @@ export default async function ProjectTimeline() {
                         })
                     }
                 </TimelineContainer>
-            </DefaultContainer>
+            </DefaultWrapper>
         </section>
     )
 }

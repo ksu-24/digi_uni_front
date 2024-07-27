@@ -1,4 +1,4 @@
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import enDict from "@/resources/dicts/en.json";
 import {Box, Fade, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
@@ -63,9 +63,9 @@ async function NavBottom() {
 async function ConsortiumMembersSection() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <DefaultContainer>
+        <DefaultWrapper>
             <Typography variant="body2">{translations("consortiumMembers")}</Typography>
-        </DefaultContainer>
+        </DefaultWrapper>
     );
 }
 
@@ -105,9 +105,9 @@ async function GoalsSection() {
 async function AfterInfoRows() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <DefaultContainer>
+        <DefaultWrapper>
             <Typography variant="body2">{translations("afterInfoRows")}</Typography>
-        </DefaultContainer>
+        </DefaultWrapper>
     );
 }
 
@@ -120,7 +120,7 @@ async function InfoRows() {
 async function Preamble() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <DefaultContainer>
+        <DefaultWrapper>
             <NavBottom/>
             <SectionTitle
                 number={1}
@@ -129,20 +129,20 @@ async function Preamble() {
             />
             <Typography variant="h2">{translations("title")}</Typography>
             <Typography variant="body2">{translations("content")}</Typography>
-        </DefaultContainer>
+        </DefaultWrapper>
     );
 }
 
 export default async function AboutProject() {
     return (
         <section id="about-project">
-            <DefaultContainer className="!p-0">
+            <DefaultWrapper className="!p-0">
                 <Preamble/>
                 <InfoRows/>
                 <AfterInfoRows/>
                 <GoalsSection/>
                 <ConsortiumMembersSection/>
-            </DefaultContainer>
+            </DefaultWrapper>
         </section>
     );
 }

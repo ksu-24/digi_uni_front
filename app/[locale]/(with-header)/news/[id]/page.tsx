@@ -6,7 +6,7 @@ import Timestamp from "@/app/_util/components/timestamp";
 import {getNewsPreview} from "@/app/model/news";
 import {Link} from "@/app/_localization/navigation";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import {Gallery} from "@/app/[locale]/(with-header)/news/editor/gallery";
 
 async function OtherRecent(
@@ -72,7 +72,7 @@ export default async function NewsPage({params}: {
     };
 
     return (
-        <DefaultContainer>
+        <DefaultWrapper>
             <Stack className="gap-9 w-full">
                 <Typography variant="h1">{response.preview.title}</Typography>
                 <Timestamp date={response.preview.createdAt}/>
@@ -88,6 +88,6 @@ export default async function NewsPage({params}: {
                 </Stack>
                 <SubscribeForm/>
             </Stack>
-        </DefaultContainer>
+        </DefaultWrapper>
     );
 }

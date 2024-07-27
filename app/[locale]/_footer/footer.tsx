@@ -1,4 +1,4 @@
-import {DefaultContainer} from "@/app/_util/components/default-container";
+import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
 import {Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import Nav from "@/app/_util/components/nav";
@@ -16,8 +16,8 @@ export default async function Footer(
     return (
         <>
             {tiles}
-            <DefaultContainer component="footer"
-                              className="bg-themed-darkgray h-fit min-h-[80dvh] w-full pt-[12dvh] pb-[6dvh] justify-between">
+            <DefaultWrapper component="footer"
+                            className="bg-themed-darkgray h-fit min-h-[80dvh] w-full pt-[12dvh] pb-[6dvh] justify-between">
                 <Stack direction="row" className="min-h-fit justify-between items-center">
                     <Typography variant="body1" className="text-themed-gray w-fit"
                                 fontSize="16px">{translations("slogan")}</Typography>
@@ -27,7 +27,7 @@ export default async function Footer(
                 <Typography variant="body2" className="w-full min-h-fit text-themed-darker-gray xs:!font-[14px]" fontSize="12px">
                     {translations("copyright")}
                 </Typography>
-            </DefaultContainer>
+            </DefaultWrapper>
         </>
     )
 }
