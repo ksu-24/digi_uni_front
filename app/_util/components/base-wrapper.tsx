@@ -4,7 +4,7 @@ import {Stack, SxProps, Theme} from "@mui/material";
 export const defaultPx = "11dvw";
 
 
-export function DefaultWrapper(
+export function BaseWrapper(
     {
         children,
         component,
@@ -13,6 +13,7 @@ export function DefaultWrapper(
         direction = "column",
         withPadding,
         disableGap = false,
+        disableBeforeAfter = false,
         sx,
         bgcolor
     }: {
@@ -24,21 +25,22 @@ export function DefaultWrapper(
         withPadding?: boolean,
         disableGap?: boolean,
         sx?: SxProps<Theme>,
-        bgcolor?: string
+        bgcolor?: string,
+        disableBeforeAfter?: boolean
     }
 ) {
     return (
         // if px changed, don't forget to change in defaultPx
         <Stack bgcolor={bgcolor} component={component ?? "div"} className={`${className} w-full h-fit
-         ${!disableGap && " gap-[12dvw] xl:gap-[10dvw] 3xl:gap-[7dvw]"} px-[8dvw]
-         max-xs:mt-[12dvw] max-xs:mb-[18dvw]
+         ${!disableGap && " gap-[12dvw] 2xl:gap-[10dvw] 3xl:gap-[7dvw]"} px-[8dvw]
+         max-xs:!gap-[20dvw]
          max-lg:px-[5dvw]
          xl:px-[10dvw]
          3xl:px-[8.5dvw]
          `} direction={direction} dangerouslySetInnerHTML={innerHtml ? {
             __html: innerHtml
         } : undefined} sx={{
-            ...(withPadding && !disableGap && {
+            ...(withPadding && !disableGap && !disableBeforeAfter && {
                 "&::before, &::after": {
                     content: "''"
                 }

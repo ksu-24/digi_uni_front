@@ -1,7 +1,7 @@
 import React from "react";
 import partners from "@/resources/partners.json";
 import PartnerDropdown from "@/app/[locale]/_partners/partner-dropdown";
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import {List} from "@mui/material";
 
 export type Person = {
@@ -19,14 +19,18 @@ export type Partner = {
 
 export async function PartnerDetails() {
     return (
-        <DefaultWrapper className="!gap-0 mb-[20dvh]">
-            <List>
+        <BaseWrapper className="max-xs:!px-0
+        xl:pt-[6dvw]
+        2xl:pt-[5dvw]
+        3xl:pt-[4dvw]
+        " disableGap>
+            <List className="!p-0">
                 {
                     partners.map((partner, index) => (
                         <PartnerDropdown key={index} index={index + 1} partner={partner}/>
                     ))
                 }
             </List>
-        </DefaultWrapper>
+        </BaseWrapper>
     );
 }

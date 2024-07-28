@@ -1,4 +1,4 @@
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import {SectionTitle} from "@/app/_util/components/section-title";
 import {Box, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
@@ -12,11 +12,11 @@ export default async function Partners() {
     const partnerTranslations = await getTranslations("partners");
     return (
         <section id="partners">
-            <DefaultWrapper withPadding className="!p-0">
-                <DefaultWrapper>
+            <BaseWrapper withPadding className="!p-0">
+                <BaseWrapper>
                     <SectionTitle number={6} titleTranslationKey="about.partners.enumerationCaption"/>
                     <Typography variant="h2">{translations("title")}</Typography>
-                </DefaultWrapper>
+                </BaseWrapper>
                 <InfoContainer>
                     <Grid2 container columns={60}>
                         {
@@ -37,7 +37,7 @@ export default async function Partners() {
                         }
                     </Grid2>
                 </InfoContainer>
-            </DefaultWrapper>
+            </BaseWrapper>
         </section>
     );
 }

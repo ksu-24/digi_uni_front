@@ -31,7 +31,8 @@ export default function FormWrapper(
         children,
         onSubmit,
         messageOverrides = {},
-        formProps = {}
+        formProps = {},
+        disableSuccessSnackbar = false
     }: {
         children: React.ReactNode,
         onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>,
@@ -39,7 +40,8 @@ export default function FormWrapper(
         messageOverrides?: {
             success?: string,
             error?: string
-        }
+        },
+        disableSuccessSnackbar?: boolean
     }
 ) {
     const [errors, setErrors] = React.useState([] as Record<string, string>[]);
@@ -71,7 +73,7 @@ export default function FormWrapper(
         return currentChild;
     }
 
-    const childrenArray =  React.Children.toArray(children).map((child) => provideErrors(child)).map((child, index) => (
+    const childrenArray = React.Children.toArray(children).map((child) => provideErrors(child)).map((child, index) => (
         React.cloneElement(child, {
             key: index
         })
@@ -92,10 +94,13 @@ export default function FormWrapper(
             }
         }} {...formProps} component="form">
             {childrenArray.map((child, index) => child)}
-            <Snackbar open={sendingState === "success"} onClose={() => setSendingState(null)}>
-                <Alert severity="success" variant="filled"
-                       onClose={() => setSendingState(null)}>{messageOverrides.success ?? translations("success")}</Alert>
-            </Snackbar>
+            {
+                !disableSuccessSnackbar &&
+                <Snackbar open={sendingState === "success"} onClose={() => setSendingState(null)}>
+                    <Alert severity="success" variant="filled"
+                           onClose={() => setSendingState(null)}>{messageOverrides.success ?? translations("success")}</Alert>
+                </Snackbar>
+            }
             <Snackbar open={sendingState === "error"} onClose={() => setSendingState(null)}>
                 <Alert severity="error" variant="filled"
                        onClose={() => setSendingState(null)}>{messageOverrides.error ?? translations("error")}</Alert>

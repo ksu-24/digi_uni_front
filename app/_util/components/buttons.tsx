@@ -1,4 +1,4 @@
-import {CSSProperties, ReactNode} from "react";
+import {ReactNode} from "react";
 import {Button, ButtonProps} from "@mui/material";
 import colors from "@/resources/colors.json";
 
@@ -12,15 +12,10 @@ export function PrimaryButton(
     }) {
     return (
         <Button {...props}
-            sx={{
-                "&:hover > svg": {
-                    transform: "translateX(0.25rem)"
-                }
-            }}
-                className={`${props?.className ?? ""} !bg-button-primary !capitalize hover:!bg-button-hover-primary !text-white gap-3`}
+                className={`${props?.className ?? ""} !bg-button-primary !capitalize hover:!bg-button-hover-primary !text-white !px-12 !h-14 gap-4 !py-0`}
         >
             {children}
-            <svg width="28" height="14" viewBox="0 0 28 14" fill="none" xmlns="http://www.w3.org/2000/svg"
+            <svg height="14" viewBox="0 0 28 14" fill="none" xmlns="http://www.w3.org/2000/svg"
                  className="transition-transform duration-[350]">
                 <path fillRule="evenodd" clipRule="evenodd"
                       d="M26.2931 7.00003L20.6465 12.6485L21.3537 13.3555L27.7071 7.00001L21.3537 0.644792L20.6465 1.3518L26.2931 7.00003Z"

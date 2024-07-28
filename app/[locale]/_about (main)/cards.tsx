@@ -1,7 +1,7 @@
 import React from "react";
 import {getLocale} from "next-intl/server";
 import {Box, Stack} from "@mui/material";
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import screens from "@/resources/screens.json";
 
 function localeExtension(locale: string) {
@@ -62,20 +62,20 @@ export default async function Cards(
     }
 ) {
     return (
-        <DefaultWrapper className="!my-0">
+        <BaseWrapper className="!my-0">
             <Stack direction="column" className="gap-4
             max-xs:-mt-[10dvw] max-xs:gap-5
             max-md:gap-[9px]
             xs:flex-row xs:items-end
             xl:max-w-[70dvw] xl:gap-[2dvw]
-            2xl:-mt-[4dvw]
+            xl:-mt-[4dvw]
             3xl:max-w-[47dvw] 3xl:gap-[1dvw]
         ">
                 {firstCardRoot ? <CustomCard root={firstCardRoot}/> : <ProgramCard/>}
                 <DurationCard/>
                 <CoordinatorCard/>
             </Stack>
-        </DefaultWrapper>
+        </BaseWrapper>
     )
 }
 

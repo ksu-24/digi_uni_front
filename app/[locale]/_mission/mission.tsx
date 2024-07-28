@@ -2,13 +2,12 @@ import Text from "@/app/[locale]/_mission/text";
 import Tiles from "@/app/[locale]/_mission/tiles";
 import {SectionTitle} from "@/app/_util/components/section-title";
 import {Box, Stack} from "@mui/material";
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 
 export default async function Mission() {
     return (
         <Box bgcolor="info.main">
-            <DefaultWrapper withPadding className="mr-[5dvw] !my-0
-            max-xs:gap-[20dvw]
+            <BaseWrapper withPadding className="mr-[5dvw] !my-0
             max-lg:px-[6.5dvw]
             ">
                 <Stack className="gap-16
@@ -20,7 +19,7 @@ export default async function Mission() {
                     <SectionTitle number={2} titleTranslationKey="main.mission.enumerationCaption"/>
                     <Text/>
                 </Stack>
-            </DefaultWrapper>
+            </BaseWrapper>
             <Tiles/>
         </Box>
     );

@@ -5,7 +5,10 @@ import Carousel from "@/app/_util/components/carousel";
 
 export default function PartnersWheel() {
     return (
-        <Stack direction="row" className="h-[20dvh] max-lg:h-[88px] items-center overflow-x-clip">
+        <Stack direction="row" className="h-[110px]  items-center overflow-x-clip mb-[5dvw]
+        max-xs:!mb-[6dvw]
+        max-lg:h-[88px] max-lg:mb-[7dvw]
+        xl:mb-0">
             <Carousel>
                 {
                     partners.map((partner) => {

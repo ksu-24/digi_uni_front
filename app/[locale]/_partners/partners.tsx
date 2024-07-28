@@ -1,16 +1,16 @@
 import Heading from "@/app/[locale]/_partners/heading";
 import PartnersWheel from "@/app/[locale]/_partners/partners-wheel";
 import {PartnerDetails} from "@/app/[locale]/_partners/partner-details";
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {Box} from "@mui/material";
 
 export default async function Partners() {
     return (
-        <>
+        <Box className="pb-[12dvw]
+        2xl:pb-[10dvw]
+        ">
             <Heading/>
-            <DefaultWrapper className="!p-0">
-                <PartnersWheel/>
-                <PartnerDetails/>
-            </DefaultWrapper>
-        </>
+            <PartnersWheel/>
+            <PartnerDetails/>
+        </Box>
     )
 }

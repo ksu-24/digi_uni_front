@@ -13,7 +13,11 @@ export default function OtherRecent(
     const newsArr = JSON.parse(news) as News[];
     const newsAmount = 3;
     return (
-        <Stack className="w-full xs:w-2/3 xs:h-full" direction="column">
+        <Stack className="w-[46%] gap-[3dvw]
+        max-xs:w-full max-xs:!gap-[8dvw]
+        2xl:w-[44%]
+        3xl:gap-[2dvw]
+        " direction="column">
             {newsArr.slice(0, newsAmount).map((news, index) => (
                 <NewsVisualization key={index} news={news}/>
             ))}
@@ -28,14 +32,19 @@ function NewsVisualization(
         news: News
     }) {
     return (
-        <Stack className="w-full h-full border-t-[1px] border-[#AAAAAD] gap-5" direction="column" sx={{
-            "&.MuiStack-root::before, &.MuiStack-root::after": {
+        <Stack className="w-full border-t-[1px] gap-4 border-themed-gray
+        xl:border-info
+        " direction="column" sx={{
+            "&.MuiStack-root::before": {
                 content: "''",
             }
         }}>
             <Timestamp date={news.date}/>
-            <Link href={`/news/${news.id}`} className="w-full h-full">
-                <Typography variant="h5" className="hover:text-themed-blue">{news.title}</Typography>
+            <Link href={`/news/${news.id}`} className="max-w-[95%] h-full">
+                <Typography variant="h5" className="hover:text-themed-blue
+                max-xs:!text-[20px]
+                max-lg:text-[18px] max-lg:leading-[1.3]
+                ">{news.title}</Typography>
             </Link>
         </Stack>
     )

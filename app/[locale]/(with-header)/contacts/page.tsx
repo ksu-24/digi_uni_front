@@ -1,10 +1,10 @@
 import FeedbackForm from "@/app/_util/components/feedback/feedback-form";
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 
 export default function ContactsPage() {
     return (
-        <DefaultWrapper>
+        <BaseWrapper>
             <FeedbackForm captionVariant="h1"/>
-        </DefaultWrapper>
+        </BaseWrapper>
     )
 }

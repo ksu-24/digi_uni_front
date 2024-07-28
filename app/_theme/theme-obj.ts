@@ -1,6 +1,5 @@
 import colors from "@/resources/colors.json"
-import {Breakpoint, SvgIconTypeMap, ThemeOptions} from "@mui/material";
-import {DefaultComponentProps} from "@mui/types";
+import {Breakpoint} from "@mui/material";
 import screens from "@/resources/screens.json";
 
 export const headerFont = "IBM Plex Serif";
@@ -95,14 +94,14 @@ const themeObj = {
             fontSize: 18,
             fontWeight: 400,
             whiteSpace: "pre-wrap",
-            letterSpacing: 0,
+            letterSpacing: "-0.03rem",
         },
         body2: {
             fontFamily: body2Font,
             lineHeight: 1.5,
             fontSize: 16,
             whiteSpace: "pre-wrap",
-            letterSpacing: 0,
+            letterSpacing: "-0.03rem",
             color
         },
         caption: {
@@ -145,28 +144,73 @@ const themeObj = {
                 root: {
                     fontFamily: body2Font,
                     fontSize: 16,
+                    marginTop: "0 !important",
                     lineHeight: 1.4,
-                    color: "black"
+                    color: "black",
+                    paddingLeft: "0.75rem !important",
+                    paddingRight: "0.75rem !important",
+                    paddingTop: "0.5rem !important",
+                    paddingBottom: "calc(0.5rem + 0.4dvw) !important",
+                    "&::after": {
+                        borderColor: colors.blue + " !important",
+                        borderBottomWidth: "1px !important"
+                    },
+                    '& *': {
+                        padding: "0 !important"
+                    },
+                    [`@media (max-width: ${screens.xs})`]: {
+                        paddingLeft: "0.5rem !important",
+                        paddingRight: "0.5rem !important",
+                    }
+                },
+                multiline: {
+                    paddingBottom: "calc(0.5rem + 0.4dvw + 10px) !important",
+                    height: "auto !important"
+                }
+            }
+        },
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    paddingTop: "0 !important",
+                    lineHeight: "1.42857 !important",
+                    letterSpacing: "normal !important",
+                    "& *": {
+                        lineHeight: "1.42857 !important",
+                        letterSpacing: "normal !important",
+                    }
                 }
             }
         },
         MuiInputLabel: {
             styleOverrides: {
+                fontSize: "22px !important",
                 asterisk: {
                     display: "none"
                 },
                 root: {
-                    padding: 0,
+                    paddingLeft: "0.75rem !important",
+                    paddingRight: "0.75rem !important",
+                    paddingTop: "0.5rem !important",
+                    paddingBottom: "calc(0.5rem + 0.4dvw) !important",
+                    [`@media (max-width: ${screens.xs})`]: {
+                        paddingLeft: "0.5rem !important",
+                        paddingRight: "0.5rem !important",
+                    },
                     "&::after": {
                         content: "'(optional)'",
                         marginLeft: "0.5rem",
                         transition: "opacity 0.25s ease-in-out, width 0s 0.25s ease-in-out",
                     },
+                    transform: "none !important",
                     "&.Mui-required": {
                         "&::after": {
                             opacity: 0,
                             width: 0
                         }
+                    },
+                    "&.MuiFormLabel-filled": {
+                        display: "none !important"
                     },
                     "&.Mui-focused": {
                         "&::after": {

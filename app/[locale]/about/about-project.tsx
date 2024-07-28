@@ -1,4 +1,4 @@
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import enDict from "@/resources/dicts/en.json";
 import {Box, Fade, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
@@ -63,9 +63,9 @@ async function NavBottom() {
 async function ConsortiumMembersSection() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <DefaultWrapper>
+        <BaseWrapper>
             <Typography variant="body2">{translations("consortiumMembers")}</Typography>
-        </DefaultWrapper>
+        </BaseWrapper>
     );
 }
 
@@ -105,9 +105,9 @@ async function GoalsSection() {
 async function AfterInfoRows() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <DefaultWrapper>
+        <BaseWrapper>
             <Typography variant="body2">{translations("afterInfoRows")}</Typography>
-        </DefaultWrapper>
+        </BaseWrapper>
     );
 }
 
@@ -120,7 +120,7 @@ async function InfoRows() {
 async function Preamble() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <DefaultWrapper>
+        <BaseWrapper>
             <NavBottom/>
             <SectionTitle
                 number={1}
@@ -129,20 +129,20 @@ async function Preamble() {
             />
             <Typography variant="h2">{translations("title")}</Typography>
             <Typography variant="body2">{translations("content")}</Typography>
-        </DefaultWrapper>
+        </BaseWrapper>
     );
 }
 
 export default async function AboutProject() {
     return (
         <section id="about-project">
-            <DefaultWrapper className="!p-0">
+            <BaseWrapper className="!p-0">
                 <Preamble/>
                 <InfoRows/>
                 <AfterInfoRows/>
                 <GoalsSection/>
                 <ConsortiumMembersSection/>
-            </DefaultWrapper>
+            </BaseWrapper>
         </section>
     );
 }

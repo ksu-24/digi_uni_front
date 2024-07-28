@@ -1,4 +1,4 @@
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import {SectionTitle} from "@/app/_util/components/section-title";
 import {List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
@@ -10,7 +10,7 @@ export default async function TargetAudience() {
     const translations = await getTranslations("about.targetAudience")
     return (
         <section id="target-audience">
-            <DefaultWrapper className="pt-[20dvh]">
+            <BaseWrapper className="pt-[20dvh]">
                 <SectionTitle number={4} titleTranslationKey="about.targetAudience.enumerationCaption"/>
                 <Typography variant="h2">{translations("title")}</Typography>
                 <List>
@@ -34,7 +34,7 @@ export default async function TargetAudience() {
                         })
                     }
                 </List>
-            </DefaultWrapper>
+            </BaseWrapper>
         </section>
     );
 }

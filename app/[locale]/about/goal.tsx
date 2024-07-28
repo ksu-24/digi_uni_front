@@ -1,5 +1,5 @@
 import React from "react";
-import {DefaultWrapper} from "@/app/_util/components/default-wrapper";
+import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import {SectionTitle} from "@/app/_util/components/section-title";
 import {Box, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
@@ -10,11 +10,11 @@ export default async function Goal() {
     const translations = await getTranslations("about.goal");
     return (
         <section id="goal">
-            <DefaultWrapper className="!p-0">
-                <DefaultWrapper withPadding>
+            <BaseWrapper className="!p-0">
+                <BaseWrapper withPadding>
                     <SectionTitle number={2} titleTranslationKey="about.goal.enumerationCaption"/>
                     <Typography variant="h2">{translations("title")}</Typography>
-                </DefaultWrapper>
+                </BaseWrapper>
                 <InfoContainer boxProps={{
                     className: "min-h-[66dvh] h-fit"
                 }}>
@@ -35,7 +35,7 @@ export default async function Goal() {
                         ))
                     }
                 </InfoContainer>
-            </DefaultWrapper>
+            </BaseWrapper>
         </section>
     );
 }

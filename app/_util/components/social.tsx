@@ -8,11 +8,13 @@ export function Social(
     {
         direction = "column",
         color = "black",
-        className = ""
+        className = "",
+        size = 21
     }: {
         direction?: "row" | "column",
         color?: string,
-        className?: string
+        className?: string,
+        size?: number
     }
 ) {
     return (
@@ -22,10 +24,14 @@ export function Social(
             }
         }}>
             <Link href="https://www.facebook.com/khersonstateuniversity">
-                <Image src={facebook} alt="facebook" width={21} height={21}/>
+                <Image src={facebook} alt="facebook" width={size} height={size} className="
+                max-xs:!w-[30px] max-xs:!h-[30px]
+                "/>
             </Link>
             <Link href="https://www.linkedin.com/school/kherson-state-university">
-                <Image src={linkedin} alt="linkedin" width={21} height={21}/>
+                <Image src={linkedin} alt="linkedin" width={size} height={size} className="
+                max-xs:!w-[30px] max-xs:!h-[30px]
+                "/>
             </Link>
         </Stack>
     )
