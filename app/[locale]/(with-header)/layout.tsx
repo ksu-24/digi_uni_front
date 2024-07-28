@@ -15,10 +15,6 @@ export default async function WithHeaderLayout({children, params}: {
     return (
         <>
             <Header/>
-            <Box className="h-[28dvw] lg:hidden"/>
-            <BaseWrapper className="mb-[6dvh]">
-                <DynamicBackwardsNav/>
-            </BaseWrapper>
             {children}
             <Footer tiles={(
                 <Box className="w-full">

@@ -6,10 +6,12 @@ import {Logo} from "@/app/[locale]/(with-header)/logo";
 export default async function Header(
     {
         className = '',
+        logoClassname= "",
         disableImage = false
     }: {
         className?: string,
-        disableImage?: boolean
+        disableImage?: boolean,
+        logoClassname?: string
     }
 ) {
     return (
@@ -23,7 +25,7 @@ export default async function Header(
             ${className}`}
              component="header">
             <Stack className="justify-between items-start w-full h-full max-lg:mt-[4dvw]" direction="row">
-                {!disableImage && <Logo/>}
+                {!disableImage && <Logo className={logoClassname}/>}
                 <Stack direction="row" className="justify-end items-start w-fit h-full gap-[6dvw]
                 xl:gap-[4dvw]
                 3xl:gap-[3dvw]">

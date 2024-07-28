@@ -10,9 +10,8 @@ import {useLocale} from "next-intl";
 import {useGet} from "@/app/_util/fetching-client";
 import {Link} from "@/app/_localization/navigation";
 import colors from "@/resources/colors.json"
-import screens from "@/resources/screens.json";
-import useWindow from "@/app/_util/use-window";
 import EnterAnimation from "@/app/_util/components/enter-animation";
+import screens from "@/resources/screens.json";
 
 const lcm = 12;
 
@@ -69,11 +68,25 @@ function NewsListItem(
     const news = useNewsPreview(lcm, page);
 
     return (
-        <Grid container columns={lcm} spacing="3%">
+        <Box className="gap-y-16 w-full gap-x-6 grid
+        max-xs:!gap-y-12
+        max-lg:gap-x-8
+        xl:gap-x-8
+        " sx={{
+            gridTemplateRows: "auto",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gridAutoColumns: "1fr",
+            [`@media (max-width: ${screens.lg})`]: {
+                gridTemplateColumns: "1fr 1fr",
+            },
+            [`@media (max-width: ${screens.xs})`]: {
+                gridTemplateColumns: "1fr",
+            }
+        }}>
             {news.map((news) => (
                 <NewsCard key={news.id} news={news}/>
             ))}
-        </Grid>
+        </Box>
     )
 }
 
@@ -85,23 +98,31 @@ function NewsCard(
     }
 ) {
     return (
-        <Grid {...pageSizeFactors}>
-            <Link href={`/news/${news.id}`} className="h-full block">
-                <Stack className="gap-10 justify-between h-full" sx={{
+        <>
+            <Link href={`/news/${news.id}`} className="h-full block max-w-full">
+                <Stack className="gap-[2dvw]
+                max-xs:!gap-[5dvw]
+                max-lg:gap-[3dvw]
+                xl:gap-[1.5dvw]
+                3xl:gap-[1dvw]
+                h-full" sx={{
                     "&.MuiStack-root:hover .MuiTypography-h4": {
                         color: colors.blue
                     }
                 }}>
-                    <Box className="h-1/2 min-h-[50%] max-h-[50%] w-full relative flex items-center overflow-hidden">
+                    <Box className="aspect-video w-full relative flex items-center overflow-hidden">
                         <img src={news.image} alt={news.title} className="object-cover" height="100%"/>
                     </Box>
-                    <Stack className="gap-8">
+                    <Stack className="gap-4
+                    max-xs:!gap-[2dvw]
+                    max-lg:gap-[1.5dvw]
+                    ">
                         <Timestamp date={news.date}/>
-                        <Typography variant="h4">{news.title}</Typography>
+                        <Typography variant="h4" fontSize={20} lineHeight={1.3}>{news.title}</Typography>
                     </Stack>
                 </Stack>
             </Link>
-        </Grid>
+        </>
     )
 }
 
@@ -151,21 +172,6 @@ export default function NewsPanel() {
     const [pages, setPages] = useState(2);
     const stackRef = React.useRef<HTMLDivElement | null>(null);
 
-    function getRowSize(width: number) {
-        return pageSizeFactors[
-            (
-                Object.entries(screens)
-                    .filter(([key, _]) => pageSizeFactors[key as never])
-                    .findLast(([_, width1]) => width >= parseInt(width1))?.[0] ?? "xs") as never];
-    }
-
-    const windowWidth = useWindow().innerWidth;
-    const [rowSize, setRowSize] = useState(getRowSize(windowWidth));
-
-    useEffect(() => {
-        setRowSize(getRowSize(windowWidth));
-    }, [windowWidth]);
-
     const {
         isExhausted,
         lastPage,
@@ -203,8 +209,14 @@ export default function NewsPanel() {
     }, [isExhausted]);
 
     return (
-        <EnterAnimation direction="up" delay={200} duration={600} offset={20}>
-            <Stack ref={stackRef}>
+        <EnterAnimation direction="up" className="mt-[4dvw] mb-[7dvw]
+        max-lg:mt-[6dvw]
+        2xl:mt-[3dvw] 2xl:mb-[5dvw]
+        3xl:mb-[5dvw]
+        " delay={200} duration={600} offset={20}>
+            <Stack ref={stackRef} className="gap-16
+            max-xs:!gap-12
+            ">
                 {
                     Array.from({length: pages}, (_, i) => (
                         <Suspense fallback={<NewsListItemSkeleton/>} key={i}>

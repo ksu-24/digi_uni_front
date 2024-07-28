@@ -1,7 +1,7 @@
 "use client"
 
 import {Box, Stack} from "@mui/material";
-import logo from "@/public/images/header/digiuni.svg"
+import logo from "@/public/images/commons/digiuni.svg"
 import bwLogo from "@/public/images/header/digiuni-bw.svg"
 import React from "react";
 import LanguageToggle from "@/app/_util/components/language-toggle";
@@ -20,7 +20,7 @@ export default function MobileHeader() {
         max-md:px-[5dvw] max-md:pt-[4dvw]"
              component="header">
             <Stack direction="row" className="justify-between items-center">
-                <Box className="relative flex items-center w-[19dvw] max-lg:w-[24dvw]" sx={{
+                <Box className="relative flex items-center w-[19dvw]" sx={{
                     "& > img": {
                         transitionDelay: "0.1s",
                         height: "auto !important",
@@ -29,6 +29,12 @@ export default function MobileHeader() {
                     },
                     [`@media (min-width: ${screens.lg})`]: {
                         width: "21dvw"
+                    },
+                    [`@media (max-width: ${screens.lg})`]: {
+                        width: "24dvw"
+                    },
+                    [`@media (max-width: ${screens.md})`]: {
+                        width: "26dvw !important"
                     },
                     [`@media (max-width: ${screens.xs})`]: {
                         width: "40dvw !important"

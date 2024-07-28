@@ -18,7 +18,7 @@ export default function DynamicBackwardsNav() {
                                 return s === "main" ? "" : s;
                             }).join("/")} key={index}>
                                 <Typography variant="caption" className="hover:text-themed-darker-gray"
-                                            fontWeight={500}>
+                                            lineHeight={1.5} letterSpacing={0}>
                                     {translations(segment as never) || segment}
                                 </Typography>
                             </Link>

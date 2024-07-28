@@ -1,0 +1,43 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 200">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2b48ff;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #16161d;
+      }
+
+      .cls-3 {
+        fill: #ffe72b;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="200" height="200"/>
+  <polygon class="cls-2" points="304 64 304 136 352 136 352 160 280 160 280 40 352 40 352 64 304 64"/>
+  <polygon class="cls-2" points="448 64 448 136 472 136 472 160 400 160 400 136 424 136 424 64 400 64 400 40 472 40 472 64 448 64"/>
+  <path class="cls-2" d="M568,40h-48v24h48v-24Z"/>
+  <polygon class="cls-2" points="592 88 592 136 568 136 568 112 544 112 544 88 592 88"/>
+  <path class="cls-2" d="M568,136h-48v24h48v-24Z"/>
+  <path class="cls-2" d="M376,64h-24v72h24v-72Z"/>
+  <polygon class="cls-2" points="664 64 664 136 688 136 688 160 616 160 616 136 640 136 640 64 616 64 616 40 688 40 688 64 664 64"/>
+  <polygon class="cls-2" points="1000 64 1000 136 1024 136 1024 160 952 160 952 136 976 136 976 64 952 64 952 40 1024 40 1024 64 1000 64"/>
+  <path class="cls-2" d="M736,40h-24v96h24V40Z"/>
+  <polygon class="cls-2" points="880 80 880 104 856 104 856 160 832 160 832 40 856 40 856 80 880 80"/>
+  <polygon class="cls-2" points="928 40 928 160 904 160 904 128 880 128 880 104 904 104 904 40 928 40"/>
+  <polygon class="cls-2" points="808 40 808 160 736 160 736 136 784 136 784 40 808 40"/>
+  <path class="cls-2" d="M520,64h-24v72h24v-72Z"/>
+  <g>
+    <path class="cls-3" d="M64,64h-24v48h24v-48Z"/>
+    <polygon class="cls-3" points="136 88 136 112 88 112 88 64 112 64 112 88 136 88"/>
+    <path class="cls-3" d="M88,112h-24v24h24v-24Z"/>
+    <path class="cls-3" d="M136,40h-24v24h24v-24Z"/>
+    <path class="cls-3" d="M160,64h-24v24h24v-24Z"/>
+    <path class="cls-3" d="M136,136h-48v24h48v-24Z"/>
+  </g>
+</svg>

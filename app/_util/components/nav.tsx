@@ -15,7 +15,8 @@ export default function Nav(
         className = "",
         containerClassName = "",
         showCurrent = true,
-        linkContainerClassname = ""
+        linkContainerClassname = "",
+        tight = false
     }: {
         exclude?: string[],
         className?: string,
@@ -23,14 +24,15 @@ export default function Nav(
         fontSize?: number | string,
         containerClassName?: string,
         showCurrent?: boolean,
-        linkContainerClassname?: string
+        linkContainerClassname?: string,
+        tight?: boolean
     }
 ) {
     const translations = useTranslations("nav");
     const path = usePathname();
     return (
-        <Box className={containerClassName} component="nav">
-            <Stack component="ul" className="justify-between items-end flex-nowrap">
+        <Box component="nav">
+            <Stack component="ul" className={containerClassName + " justify-between items-end flex-nowrap"}>
                 {Object.entries(links).filter(e => !exclude.includes(e[0])).map((link, index) => (
                     <Stack className={linkContainerClassname + ` w-fit h-fit items-center gap-6`}
                            direction="row" key={index} component={"li"}>
@@ -49,17 +51,19 @@ export default function Nav(
                                         <path d="M184 70H172V82H184V70Z" fill="currentColor"></path>
                                     </svg>
                                 </Fade>
-                            ) : <Box className="w-[27px] h-[14px]"/>
+                            ) : <Box className={!tight ? "w-[27px] h-[14px]" : "hidden"}/>
                         }
                         <EnterAnimation direction="left" duration={500} delay={index * 200} offset={20} key={index}
-                                        className="h-8">
+                                        className={!tight ? "h-8" : undefined}>
                             <Link href={link[1]} className="h-full flex items-center">
                                 <Typography variant="h6"
                                             fontSize={fontSize}
                                             fontWeight={fontWeight}
                                             letterSpacing="-0.32px"
                                             fontFamily={body1Font}
-                                            className={`${className} text-black hover:font-[600]`}>{translations(link[0] as never)}</Typography>
+                                            className={`${className} text-black hover:font-[600]`}>
+                                    {translations(link[0] as never)}
+                                </Typography>
                             </Link>
                         </EnterAnimation>
                     </Stack>

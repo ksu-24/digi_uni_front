@@ -35,7 +35,7 @@ export default async function Slogan() {
             },
         }}>
             <DigiLogoHuge/>
-            <Header className="absolute top-0 left-0"/>
+            <Header className="absolute top-0 left-0" logoClassname="visible lg:invisible w-[19dvw] max-lg:w-auto"/>
             <Main/>
             <img src={ellipse.src} alt="Ellipse" className="absolute pointer-events-none -right-[44dvw]
             3xl:-right-[33.6dvw]

@@ -1,14 +1,24 @@
 import EnterAnimation from "@/app/_util/components/enter-animation";
 
-export function Logo() {
+export function Logo(
+    {
+        className = ""
+    }: {
+        className?: string
+    }
+) {
     return (
         <EnterAnimation direction="right" offset={20} duration={500}>
             <img
-                src="/images/header/digiuni.svg"
+                src="/images/commons/digiuni.svg"
                 alt="DigiUni"
-                className="visible lg:invisible w-[19dvw]
-                max-lg:w-auto
-            "/>
+                className={className + ` w-[15dvw]
+                max-xs:!w-[44dvw]
+                max-md:!w-[26dvw]
+                max-lg:w-[23dvw]
+                xl:w-[13dvw]
+                3xl:w-[9dvw]
+            `}/>
         </EnterAnimation>
     );
 }

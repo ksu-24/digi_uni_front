@@ -32,8 +32,7 @@ export function BaseWrapper(
     return (
         // if px changed, don't forget to change in defaultPx
         <Stack bgcolor={bgcolor} component={component ?? "div"} className={`${className} w-full h-fit
-         ${!disableGap && " gap-[12dvw] 2xl:gap-[10dvw] 3xl:gap-[7dvw]"} px-[8dvw]
-         max-xs:!gap-[20dvw]
+         ${!disableGap && " max-xs:!gap-[20dvw] gap-[12dvw] 2xl:gap-[10dvw] 3xl:gap-[7dvw]"} px-[8dvw]
          max-lg:px-[5dvw]
          xl:px-[10dvw]
          3xl:px-[8.5dvw]

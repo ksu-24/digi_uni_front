@@ -6,7 +6,10 @@ export function SecondaryTiles(
     }
 ) {
     return (
-        <img src="/images/commons/secondary-tiles.png" alt="Secondary tiles" className={className + " w-full"}/>
+        <>
+            <img src="/images/commons/secondary-tiles.png" alt="Secondary tiles" className={className + " w-full hidden xs:block"}/>
+            <img src="/images/commons/secondary-tiles-xs.jpg" alt="Secondary tiles" className={className + " w-full xs:hidden"}/>
+        </>
     )
 }
 
