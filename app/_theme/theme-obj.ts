@@ -147,10 +147,10 @@ const themeObj = {
                     marginTop: "0 !important",
                     lineHeight: 1.4,
                     color: "black",
-                    paddingLeft: "0.75rem !important",
-                    paddingRight: "0.75rem !important",
-                    paddingTop: "0.5rem !important",
-                    paddingBottom: "calc(0.5rem + 0.4dvw) !important",
+                    paddingLeft: "0.75rem",
+                    paddingRight: "0.75rem",
+                    paddingTop: "0.5rem",
+                    paddingBottom: "calc(0.5rem + 0.4dvw)",
                     "&::after": {
                         borderColor: colors.blue + " !important",
                         borderBottomWidth: "1px !important"
@@ -159,25 +159,25 @@ const themeObj = {
                         padding: "0 !important"
                     },
                     [`@media (max-width: ${screens.xs})`]: {
-                        paddingLeft: "0.5rem !important",
-                        paddingRight: "0.5rem !important",
+                        paddingLeft: "0.5rem",
+                        paddingRight: "0.5rem",
                     }
                 },
                 multiline: {
-                    paddingBottom: "calc(0.5rem + 0.4dvw + 10px) !important",
-                    height: "auto !important"
+                    paddingBottom: "calc(0.5rem + 0.4dvw + 10px)",
+                    height: "auto"
                 }
             }
         },
         MuiFormControl: {
             styleOverrides: {
                 root: {
-                    paddingTop: "0 !important",
-                    lineHeight: "1.42857 !important",
-                    letterSpacing: "normal !important",
+                    paddingTop: "0",
+                    lineHeight: "1.42857",
+                    letterSpacing: "normal",
                     "& *": {
-                        lineHeight: "1.42857 !important",
-                        letterSpacing: "normal !important",
+                        lineHeight: "1.42857",
+                        letterSpacing: "normal",
                     }
                 }
             }
@@ -189,20 +189,20 @@ const themeObj = {
                     display: "none"
                 },
                 root: {
-                    paddingLeft: "0.75rem !important",
-                    paddingRight: "0.75rem !important",
+                    paddingLeft: "0.75rem",
+                    paddingRight: "0.75rem",
                     paddingTop: "0.5rem !important",
-                    paddingBottom: "calc(0.5rem + 0.4dvw) !important",
+                    paddingBottom: "calc(0.5rem + 0.4dvw)",
                     [`@media (max-width: ${screens.xs})`]: {
-                        paddingLeft: "0.5rem !important",
-                        paddingRight: "0.5rem !important",
+                        paddingLeft: "0.5rem",
+                        paddingRight: "0.5rem",
                     },
                     "&::after": {
                         content: "'(optional)'",
                         marginLeft: "0.5rem",
                         transition: "opacity 0.25s ease-in-out, width 0s 0.25s ease-in-out",
                     },
-                    transform: "none !important",
+                    transform: "none",
                     "&.Mui-required": {
                         "&::after": {
                             opacity: 0,
