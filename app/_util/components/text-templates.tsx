@@ -70,6 +70,8 @@ export function SectionHeading(props: { children: React.ReactNode }) {
             }
         }
     }} className="max-lg:!leading-[1.2] max-w-[50dvw]
+    max-xs:!max-w-[88dvw]
+    max-lg:!max-w-[76dvw]
     xl:max-w-[53dvw]
     3xl:max-w-[48dvw]
     ">

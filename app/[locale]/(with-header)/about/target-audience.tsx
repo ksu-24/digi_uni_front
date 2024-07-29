@@ -1,39 +1,36 @@
-import {BaseWrapper} from "@/app/_util/components/wrappers";
-import {List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
+import {ListItemText, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import enDict from "@/resources/dicts/en.json";
-import listIcon from "@/public/images/about/list-icon-arrow.svg";
-import Image from "next/image";
-import {SectionTitle} from "@/app/_util/components/text-templates";
+import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
+import {ListItemBase} from "@/app/_util/components/list/list-item-base";
+import {ListBase} from "@/app/_util/components/list/list-base";
 
 export default async function TargetAudience() {
     const translations = await getTranslations("about.targetAudience")
     return (
         <section id="target-audience">
-            <BaseWrapper className="pt-[20dvh]">
-                <SectionTitle number={4} titleTranslationKey="about.targetAudience.enumerationCaption"/>
-                <Typography variant="h2">{translations("title")}</Typography>
-                <List>
-                    {
-                        Object.keys(enDict.about.targetAudience.list).map((key, index) => {
-                            return (
-                                <ListItem alignItems="flex-start" key={index} disableGutters sx={{
-                                    "&.MuiListItem-root > *": {
-                                        margin: 0
-                                    }
-                                }} className="lg:gap-8 gap-[4dvw]">
-                                    <ListItemIcon className="w-4 !min-w-0">
-                                        <Image  src={listIcon} alt="list icon" width={"1rem" as never}
-                                                height={"1rem" as never} className="mt-1"/>
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        <Typography variant="body2">{translations("list." + key as never)}</Typography>
-                                    </ListItemText>
-                                </ListItem>
-                            )
-                        })
-                    }
-                </List>
+            <BaseWrapper withPadding className="
+            max-xs:!gap-[12dvw] max-xs:!mt-[10dvw]
+            ">
+                <ContentWrapper>
+                    <SectionTitle number={4} titleTranslationKey="about.targetAudience.enumerationCaption"/>
+                    <SectionHeading>{translations("title")}</SectionHeading>
+                    <ListBase>
+                        {
+                            Object.keys(enDict.about.targetAudience.list).map((key, index) => {
+                                return (
+                                    <ListItemBase key={index}>
+                                        <ListItemText>
+                                            <Typography letterSpacing={0}
+                                                        variant="body2">{translations("list." + key as never)}</Typography>
+                                        </ListItemText>
+                                    </ListItemBase>
+                                )
+                            })
+                        }
+                    </ListBase>
+                </ContentWrapper>
             </BaseWrapper>
         </section>
     );
