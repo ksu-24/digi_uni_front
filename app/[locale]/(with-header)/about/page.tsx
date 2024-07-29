@@ -3,14 +3,14 @@ import {unstable_setRequestLocale} from "next-intl/server";
 import AboutProject from "@/app/[locale]/(with-header)/about/about-project";
 import Goal from "@/app/[locale]/(with-header)/about/goal";
 import ConcreteGoals from "@/app/[locale]/(with-header)/about/concrete-goals";
-import banner from "@/public/images/about/banner.png";
-import Image from "next/image";
 import TargetAudience from "@/app/[locale]/(with-header)/about/target-audience";
 import Team from "@/app/[locale]/(with-header)/about/team";
 import Partners from "@/app/[locale]/(with-header)/about/partners";
 import ProjectTimeline from "@/app/[locale]/(with-header)/about/project-timeline";
 import Footer from "@/app/[locale]/_footer/footer";
 import {BwTiles} from "@/app/_util/components/tiles";
+import {Banner} from "@/app/[locale]/(with-header)/about/banner";
+import {Box} from "@mui/material";
 
 export default async function AboutPage(
     {
@@ -24,17 +24,17 @@ export default async function AboutPage(
     unstable_setRequestLocale(params.locale);
 
     return (
-        <>
+        <Box className="bg-white">
             <Title/>
             <AboutProject/>
             <Goal/>
             <ConcreteGoals/>
-            <Image src={banner} alt="banner" width={"100%" as never}/>
+            <Banner/>
             <TargetAudience/>
             <Team/>
             <Partners/>
             <ProjectTimeline/>
             <Footer tiles={<BwTiles/>}/>
-        </>
+        </Box>
     )
 }

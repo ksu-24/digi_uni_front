@@ -206,6 +206,9 @@
                 "engageStudents": "To realize 20+ examples of std’s virtual mobility among UA partner-HEIs."
             }
         },
+        "banner": {
+            "text": "DigiUni -\nmodern digital education for everyone!"
+        },
         "targetAudience": {
             "enumerationCaption": "Target groups",
             "title": "The target groups of the DigiUni project are:",

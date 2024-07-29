@@ -69,7 +69,10 @@ export function SectionHeading(props: { children: React.ReactNode }) {
                 fontSize: "30px"
             }
         }
-    }}>
+    }} className="max-lg:!leading-[1.2] max-w-[50dvw]
+    xl:max-w-[53dvw]
+    3xl:max-w-[48dvw]
+    ">
         {props.children}
     </Typography>;
 }

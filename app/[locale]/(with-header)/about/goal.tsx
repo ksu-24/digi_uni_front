@@ -18,15 +18,23 @@ export default async function Goal() {
                 </ContentWrapper>
             </BaseWrapper>
             <InfoContainer boxProps={{
-                className: `mt-[6dvw]
-                max-xs:mb-[12dvw]
+                className: `mt-[6dvw] !mb-0
+                max-xs:!mb-[12dvw]
                 max-md:!mt-[8dvw]
                 max-lg:mt-[7dvw]
                 2xl:mt-[6dvw]
                 3xl:mt-[4dvw]
                 `
             }} stackProps={{
-                className: "!p-0 !gap-0 max-xs:!pt-0"
+                className: "!p-0 !gap-0 max-xs:!py-0",
+                sx: {
+                    [`@media (max-width: ${screens.xs})`]: {
+                        "& > *:last-child": {
+                            borderBottom: 'none !important',
+                            paddingBottom: "0 !important"
+                        }
+                    }
+                }
             }}>
                 {
                     Object.keys(enDict.about.goal.goalsList).map((value, index) => (

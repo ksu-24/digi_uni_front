@@ -32,9 +32,10 @@ export function InfoContainer(
             3xl:my-[3dvw]
             `}>
                 { /* @ts-ignore */}
-                <Stack sx={{
-                    ...cardsContainerBorders
-                }} {...stackProps} className={`${stackProps.className ?? ''} 
+                <Stack {...stackProps} sx={{
+                    ...cardsContainerBorders,
+                    ...stackProps.sx
+                }} className={`${stackProps.className ?? ''} 
                 justify-center border-collapse py-[4dvw] gap-[2dvw] p-[3dvw]
                 max-xs:!border-none max-xs:!py-[16dvw] max-xs:gap-[11dvw]
                 max-lg:p-[5dvw] max-lg:gap-[3dvw]
