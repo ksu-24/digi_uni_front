@@ -1,8 +1,7 @@
 import React, {CSSProperties} from "react";
-import {Box, BoxProps, Stack, StackProps} from "@mui/material";
-import {defaultPx} from "@/app/_util/components/base-wrapper";
+import {BoxProps, Stack, StackProps, SxProps, Theme} from "@mui/material";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import colors from "@/resources/colors.json";
-import screens from "@/resources/screens.json";
 
 const cardsContainerBorders: CSSProperties = {
     border: `1px solid ${colors.info.main}`,
@@ -20,39 +19,51 @@ export function InfoContainer(
         stackProps?: StackProps,
     }
 ) {
-    return <Box style={{
-        ...cardsContainerBorders,
-        borderLeft: 0,
-        borderRight: 0
-    }} {...boxProps} className={`${boxProps.className} flex border-collapse`}>
-        { /* @ts-ignore */}
-        <Stack sx={{
-            ...cardsContainerBorders,
-            [`@media (min-width: ${screens.md})`]: {
-                "&.MuiStack-root": {
-                    marginLeft: defaultPx,
-                    marginRight: defaultPx
-                }
-            }
-        }} {...stackProps} className={`${stackProps.className ?? ''} justify-center border-collapse`} component="ul">
-            {children}
-        </Stack>
-    </Box>;
+    return (
+        <>
+            {/* @ts-ignore */}
+            <BaseWrapper sx={{
+                ...cardsContainerBorders,
+                borderLeft: 0,
+                borderRight: 0
+            }} {...boxProps} className={`${boxProps.className ?? ""} flex border-collapse my-[7dvw]
+            max-xs:!border-none max-xs:!px-0
+            xl:my-[6dvw]
+            3xl:my-[3dvw]
+            `}>
+                { /* @ts-ignore */}
+                <Stack sx={{
+                    ...cardsContainerBorders
+                }} {...stackProps} className={`${stackProps.className ?? ''} 
+                justify-center border-collapse py-[4dvw] gap-[2dvw] p-[3dvw]
+                max-xs:!border-none max-xs:!py-[16dvw] max-xs:gap-[11dvw]
+                max-lg:p-[5dvw] max-lg:gap-[3dvw]
+                2xl:py-[3dvw] 2xl:gap-[1.5dvw]
+                3xl:py-[2dvw] 3xl:pl-[2dvw] 3xl:gap-[1.2dvw]
+                `}
+                       component="ul">
+                    {children}
+                </Stack>
+            </BaseWrapper>
+        </>
+    );
 }
 
 export function InfoContainerItem(
     {
         children,
-        className = ''
+        className = '',
+        sx = {}
     }: {
         children: React.ReactNode,
-        className?: string
+        className?: string,
+        sx?: SxProps<Theme>
     }
 ) {
     return (
-        <Stack className={`${className} w-full border-collapse`} style={{
+        <Stack className={`${className} w-full border-collapse -my-px !border-x-0`} style={{
             ...cardsContainerBorders
-        }} component="li">
+        }} component="li" sx={sx}>
             {children}
         </Stack>
     )

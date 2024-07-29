@@ -1,7 +1,7 @@
 import {getTranslations} from "next-intl/server";
 import {Stack, Typography} from "@mui/material";
-import {ContentWrapper} from "@/app/[locale]/_about (main)/erasmus";
 import React from "react";
+import {ContentWrapper} from "@/app/_util/components/wrappers";
 
 
 function SectionHeading(props: { children: React.ReactNode }) {

@@ -1,10 +1,9 @@
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 import Title from "@/app/[locale]/_latestNews/title";
 import Body from "@/app/[locale]/_latestNews/body";
 import React from "react";
 import {Stack} from "@mui/material";
-import {ContentWrapper} from "@/app/[locale]/_about (main)/erasmus";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function LatestNews() {
     return (

@@ -1,11 +1,11 @@
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import {Box, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";
 import team from "@/resources/team.json";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import screens from "@/resources/screens.json";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function Team() {
     const translations = await getTranslations("about.team");

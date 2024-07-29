@@ -1,9 +1,8 @@
 import Text from "@/app/[locale]/_about (main)/text";
 import Cards from "@/app/[locale]/_about (main)/cards";
-import {SectionTitle} from "@/app/_util/components/section-title";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {ReactNode} from "react";
-import {Box, Stack} from "@mui/material";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
+import {Box} from "@mui/material";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function Erasmus() {
     return (
@@ -22,14 +21,3 @@ export default async function Erasmus() {
     )
 }
 
-export function ContentWrapper(props: { children: ReactNode, className?: string }) {
-    return (
-        <Stack className={props.className + ` gap-[5dvw]
-        max-xs:!gap-[2.5rem]
-        xl:gap-[4dvw]
-        3xl:gap-[d3vw]
-        `}>
-            {props.children}
-        </Stack>
-    )
-}

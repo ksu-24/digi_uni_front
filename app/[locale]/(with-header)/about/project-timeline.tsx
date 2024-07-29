@@ -7,8 +7,9 @@ import Timestamp from "@/app/_util/components/timestamp";
 import {getTranslations} from "next-intl/server";
 import colors from "@/resources/colors.json";
 import screens from "@/resources/screens.json";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
+
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 function TimelineItem(
     {

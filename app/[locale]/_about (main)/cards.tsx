@@ -1,7 +1,7 @@
 import React from "react";
 import {getLocale} from "next-intl/server";
 import {Box, Stack} from "@mui/material";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import screens from "@/resources/screens.json";
 
 function localeExtension(locale: string) {
@@ -56,21 +56,23 @@ async function CustomCard(
 
 export default async function Cards(
     {
+        containerClassName = "",
         firstCardRoot,
     }: {
         firstCardRoot?: string,
+        containerClassName?: string
     }
 ) {
     return (
         <BaseWrapper className="!my-0">
-            <Stack direction="column" className="gap-4
+            <Stack direction="column" className={containerClassName + ` gap-4
             max-xs:-mt-[10dvw] max-xs:gap-5
             max-md:gap-[9px]
-            xs:flex-row xs:items-end
+            xs:!flex-row xs:items-end
             xl:max-w-[70dvw] xl:gap-[2dvw]
             xl:-mt-[4dvw]
             3xl:max-w-[47dvw] 3xl:gap-[1dvw]
-        ">
+        `}>
                 {firstCardRoot ? <CustomCard root={firstCardRoot}/> : <ProgramCard/>}
                 <DurationCard/>
                 <CoordinatorCard/>

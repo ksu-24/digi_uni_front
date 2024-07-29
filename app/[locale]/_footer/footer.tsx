@@ -1,4 +1,4 @@
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import {Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import Nav from "@/app/_util/components/nav";

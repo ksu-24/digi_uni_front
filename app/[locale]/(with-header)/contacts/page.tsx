@@ -1,5 +1,5 @@
 import FeedbackForm from "@/app/_util/components/feedback/feedback-form";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import screens from "@/resources/screens.json";
 import {Stack} from "@mui/material";
 import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";

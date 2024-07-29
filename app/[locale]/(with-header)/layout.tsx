@@ -1,11 +1,9 @@
 import React from "react";
 import {unstable_setRequestLocale} from "next-intl/server";
 import Header from "@/app/[locale]/(with-header)/header";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
 import Footer from "@/app/[locale]/_footer/footer";
 import {Box} from "@mui/material";
-import {BwTiles, SecondaryToBlackTiles} from "@/app/_util/components/tiles";
+import {BwTiles} from "@/app/_util/components/tiles";
 
 export default async function WithHeaderLayout({children, params}: {
     children: React.ReactNode,

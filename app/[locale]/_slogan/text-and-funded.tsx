@@ -4,6 +4,7 @@ import Image from "next/image";
 import screens from "@/resources/screens.json"
 import fundedByEU from "@/public/images/main/slogan/funded-by-eu.png";
 import EnterAnimation from "@/app/_util/components/enter-animation";
+import {MainHeading} from "@/app/_util/components/text-templates";
 
 export async function TextAndFunded() {
     const translation = await getTranslations("main.slogan");
@@ -32,23 +33,9 @@ export async function TextAndFunded() {
                     </Typography>
                 </EnterAnimation>
                 <EnterAnimation direction="up" offset={20}>
-                    <Typography
-                        variant="h1"
-                        className="flex-grow-0 w-fit xl:text-[50px] 2xl:text-[54px] 3xl:text-[56px]"
-                        letterSpacing={"-0.01rem"}
-                        sx={{
-                            '&': {
-                                fontSize: 52,
-                            },
-                            [`@media (max-width: ${screens.lg})`]: {
-                                fontSize: 50
-                            },
-                            [`@media (max-width: ${screens.md})`]: {
-                                fontSize: 38
-                            }
-                        }}>
+                    <MainHeading>
                         {translation("creatingFirst")}
-                    </Typography>
+                    </MainHeading>
                 </EnterAnimation>
             </Stack>
             <EnterAnimation direction="up" duration={600} delay={300} offset={20}

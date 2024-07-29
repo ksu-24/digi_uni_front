@@ -1,11 +1,11 @@
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import {Box, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import partners from "@/resources/partners.json"
 import {Link} from "@/app/_localization/navigation";
 import {InfoContainer} from "@/app/_util/components/info-container";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function Partners() {
     const translations = await getTranslations("about.partners");

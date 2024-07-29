@@ -1,33 +1,6 @@
 import {getTranslations} from "next-intl/server";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
-import {Typography} from "@mui/material";
-import screens from "@/resources/screens.json";
-
-export function SectionHeading(props: { children: React.ReactNode }) {
-    return <Typography variant="h2" lineHeight={1.3} sx={{
-        "&": {
-            fontSize: "38px",
-        },
-        [`@media (max-width: ${screens.lg})`]: {
-            "&": {
-                fontSize: "34px"
-            }
-        },
-        [`@media (max-width: ${screens.md})`]: {
-            "&": {
-                fontSize: "32px"
-            }
-        },
-        [`@media (max-width: ${screens.xs})`]: {
-            "&": {
-                fontSize: "30px"
-            }
-        }
-    }}>
-        {props.children}
-    </Typography>;
-}
+import {BaseWrapper} from "@/app/_util/components/wrappers";
+import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function Heading() {
     const translations = await getTranslations("main.partners");

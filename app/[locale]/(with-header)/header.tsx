@@ -16,7 +16,7 @@ export default async function Header(
 ) {
     return (
         <Box className={
-            `!hidden absolute top-0 left-0 w-full h-fit pt-[3.5dvw] pb-[3.5dvw] px-[4.5dvw]
+            `!hidden absolute top-0 left-0 w-full h-fit pt-[3.5dvw] pb-[3.5dvw] px-[4.5dvw] z-50 bg-transparent
             max-lg:pt-[1dvw]
             md:!block 
             xl:py-[3dvw]

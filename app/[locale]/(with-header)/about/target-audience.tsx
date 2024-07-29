@@ -1,10 +1,10 @@
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import {List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import enDict from "@/resources/dicts/en.json";
 import listIcon from "@/public/images/about/list-icon-arrow.svg";
 import Image from "next/image";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function TargetAudience() {
     const translations = await getTranslations("about.targetAudience")

@@ -1,7 +1,8 @@
 import {Box, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import {Link} from "@/app/_localization/navigation";
-import {SectionHeading} from "@/app/[locale]/_partners/heading";
+
+import {SectionHeading} from "@/app/_util/components/text-templates";
 
 export default async function Title() {
     const translations = await getTranslations("main.news");

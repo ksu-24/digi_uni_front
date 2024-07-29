@@ -1,10 +1,11 @@
 import enDict from '@/resources/dicts/en.json';
 import {getTranslations} from "next-intl/server";
 import {List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import listIcon from "@/public/images/about/list-icon-arrow.svg";
 import Image from "next/image";
-import {SectionTitle} from "@/app/_util/components/section-title";
+
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function ConcreteGoals() {
     const translations = await getTranslations("about.specificGoals");

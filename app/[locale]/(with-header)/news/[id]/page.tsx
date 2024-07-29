@@ -6,7 +6,7 @@ import Timestamp from "@/app/_util/components/timestamp";
 import {getNewsPreview} from "@/app/model/news";
 import {Link} from "@/app/_localization/navigation";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {PageTopWrapper} from "@/app/_util/components/wrappers";
 import {Gallery} from "@/app/[locale]/(with-header)/news/editor/gallery";
 import screens from "@/resources/screens.json";
 import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
@@ -97,25 +97,9 @@ export default async function NewsPage({params}: {
     };
 
     return (
-        <BaseWrapper className="justify-between" disableGap>
-            <Stack className="w-full
-            max-xs:mb-[18dvw] max-xs:gap-[4dvw]
-            xl:pt-[12dvw] xl:pb-[4dvw]
-            3xl:pt-[9dvw] 3xl:pb-[3dvw]
-            " sx={{
-                paddingTop: "13dvw",
-                [`@media (max-width: ${screens.xl})`]: {
-                    paddingTop: "24dvw"
-                },
-                [`@media (max-width: ${screens.md})`]: {
-                    paddingTop: "18dvw",
-                    paddingBottom: "16dvw"
-                },
-                [`@media (max-width: ${screens.xs})`]: {
-                    paddingTop: "24dvw"
-                },
-            }}>
-                < Stack className="gap-6
+        <PageTopWrapper className="justify-between">
+            <Stack className=" max-xs:gap-[4dvw]">
+                <Stack className="gap-6
                 max-xs:mt-[10dvw]
                 xl:gap-[2dvw]
                 2xl:gap-[1.5dvw]
@@ -174,7 +158,6 @@ export default async function NewsPage({params}: {
                 </Stack>
                 <SubscribeForm/>
             </Stack>
-        </BaseWrapper>
+        </PageTopWrapper>
     )
-        ;
 }

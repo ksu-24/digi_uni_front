@@ -173,6 +173,7 @@
         "goal": {
             "enumerationCaption": "Мета проєкту",
             "title": "Мета, цілі проєкту",
+            "goal": "Мета",
             "goalsList": {
                 "1": {
                     "bold": "Мета 1",

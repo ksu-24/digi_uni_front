@@ -173,6 +173,7 @@
         "goal": {
             "enumerationCaption": "Project goal",
             "title": "Project goals, aims",
+            "goal": "Goal",
             "goalsList": {
                 "1": {
                     "bold": "The first general goal",

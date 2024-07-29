@@ -1,7 +1,7 @@
 import React from "react";
 import partners from "@/resources/partners.json";
 import PartnerDropdown from "@/app/[locale]/_partners/partner-dropdown";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 import {List} from "@mui/material";
 
 export type Person = {

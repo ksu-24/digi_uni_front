@@ -2,7 +2,7 @@ import {get} from "@/app/_util/fetching";
 import {NoSsr, Typography} from "@mui/material";
 import {unstable_setRequestLocale} from "next-intl/server";
 import Editor, {Localization} from "@/app/[locale]/(with-header)/news/editor/editor";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
 
 export default async function Page({params}: {
     params: {

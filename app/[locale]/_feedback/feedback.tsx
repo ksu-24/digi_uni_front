@@ -1,7 +1,6 @@
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
-import {SectionTitle} from "@/app/_util/components/section-title";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 import FeedbackForm from "@/app/_util/components/feedback/feedback-form";
-import {ContentWrapper} from "@/app/[locale]/_about (main)/erasmus";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default function Feedback() {
     return (

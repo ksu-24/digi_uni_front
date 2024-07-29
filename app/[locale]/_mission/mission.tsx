@@ -1,8 +1,8 @@
 import Text from "@/app/[locale]/_mission/text";
 import Tiles from "@/app/[locale]/_mission/tiles";
-import {SectionTitle} from "@/app/_util/components/section-title";
 import {Box, Stack} from "@mui/material";
-import {BaseWrapper} from "@/app/_util/components/base-wrapper";
+import {BaseWrapper} from "@/app/_util/components/wrappers";
+import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function Mission() {
     return (
