@@ -9,7 +9,6 @@ import LatestNews from "@/app/[locale]/_latestNews/latest-news";
 import Feedback from "@/app/[locale]/_feedback/feedback";
 import Footer from "@/app/[locale]/_footer/footer";
 import React from "react";
-import {locales} from "@/app/_localization/i18n";
 
 
 // TODO move sections into components

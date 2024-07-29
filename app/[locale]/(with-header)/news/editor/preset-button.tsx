@@ -1,4 +1,4 @@
-import {$getSelection, $isRangeSelection, EditorState, RangeSelection, UNDO_COMMAND} from "lexical";
+import {$getSelection, $isRangeSelection, RangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import themeObj from "@/app/_theme/theme-obj";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";

@@ -63,7 +63,7 @@ export const ImageDropzone = (
         return picture ? URL.createObjectURL(picture) : initialPicture ? initialPicture : undefined;
     }
 
-    const [url, setUrl] =useState(evaluateURL());
+    const [url, setUrl] = useState(evaluateURL());
 
     useEffect(() => {
         setUrl(evaluateURL());
@@ -82,21 +82,23 @@ export const ImageDropzone = (
                 ]
             }}
         >
-            <Box className={`${className} w-full h-full flex items-center justify-center border-black border-[1px]`} style={
-                url ? {
-                    backgroundImage: `url("${url}")`,
-                    backgroundSize: "contain",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat"
-                } : {}
-            }>
+            <Box className={`${className} w-full h-full flex items-center justify-center border-black border-[1px]`}
+                 style={
+                     url ? {
+                         backgroundImage: `url("${url}")`,
+                         backgroundSize: "contain",
+                         backgroundPosition: "center",
+                         backgroundRepeat: "no-repeat"
+                     } : {}
+                 }>
                 <InputLabel
                     required
                     htmlFor={`image-dropzone-${id}`}
                     className="p-2 flex items-center justify-center hover:cursor-pointer"
                     onDrop={(e) => handleDrop(e, setPicture)}
                     onDragOver={(e) => e.preventDefault()}>
-                    <Box className="flex flex-col gap-2 bg-white bg-opacity-85 justify-center items-center rounded-3xl w-full h-full">
+                    <Box
+                        className="flex flex-col gap-2 bg-white bg-opacity-85 justify-center items-center rounded-3xl w-full h-full">
                         <CloudUpload fontSize="large"/>
                         <Typography variant="caption" className="w-4/5 text-wrap text-center">
                             Drop your image here

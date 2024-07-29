@@ -6,7 +6,7 @@ import {Logo} from "@/app/[locale]/(with-header)/logo";
 export default async function Header(
     {
         className = '',
-        logoClassname= "",
+        logoClassname = "",
         disableImage = false
     }: {
         className?: string,

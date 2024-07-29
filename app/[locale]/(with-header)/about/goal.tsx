@@ -1,5 +1,5 @@
 import React from "react";
-import {BaseWrapper, ContentWrapper, HeadingWrapper} from "@/app/_util/components/wrappers";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 import {Box, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";

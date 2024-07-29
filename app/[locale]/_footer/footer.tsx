@@ -40,7 +40,8 @@ export default async function Footer(
                     <Stack className="gap-[2dvw]
                     3xl:gap-[1.5dvw]
                     ">
-                        <img src="/images/header/digiuni-bw.svg" alt="digiuni-bw" className="max-w-full hidden xs:block"/>
+                        <img src="/images/header/digiuni-bw.svg" alt="digiuni-bw"
+                             className="max-w-full hidden xs:block"/>
                         <Typography variant="body1" className="text-themed-gray w-fit !tracking-[-0.02rem]"
                                     fontSize="16px">{translations("slogan")}
                         </Typography>

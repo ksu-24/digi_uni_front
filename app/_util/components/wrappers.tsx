@@ -121,7 +121,7 @@ export function TextWrapper(
 ) {
     return (
         <Box
-        className="w-[95%]
+            className="w-[95%]
             xl:w-[88%]
             2x;w-[86%]
             "

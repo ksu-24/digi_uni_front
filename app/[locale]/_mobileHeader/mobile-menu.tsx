@@ -15,7 +15,8 @@ export function Menu(
 ) {
     return (
         <>
-            <Stack className="w-10 h-10 justify-center gap-[3px] border-[1px] border-themed-gray items-center" onClick={() => setOpen(!open)} component="button">
+            <Stack className="w-10 h-10 justify-center gap-[3px] border-[1px] border-themed-gray items-center"
+                   onClick={() => setOpen(!open)} component="button">
                 <Box className="w-5 h-0.5 transition-all" style={{
                     transform: open ? "rotate(-45deg) translateY(6px)" : "none",
                     backgroundColor: open ? "white" : colors.gray.darkest,
@@ -51,14 +52,17 @@ export function Menu(
                 }}
                 transitionDuration={450}
             >
-                <Stack className="w-full h-full pr-[12dvw] pl-[8dvw] justify-center xs:justify-start items-end pt-[36dvw] xs:pt-[14dvw] xs:px-[8dvw] gap-[6dvw] xs:gap-[3dvw]">
+                <Stack
+                    className="w-full h-full pr-[12dvw] pl-[8dvw] justify-center xs:justify-start items-end pt-[36dvw] xs:pt-[14dvw] xs:px-[8dvw] gap-[6dvw] xs:gap-[3dvw]">
                     <Typography className="text-themed-darker-gray xs:text-themed-gray xs:hidden md:block">
                         Navigation
                     </Typography>
-                    <hr className="scale-0 w-full border-[1px] border-themed-darker-gray xs:border-themed-gray mb-[3dvw] animate-grow-right origin-right xs:hidden md:block" style={{
-                        animationDelay: "100ms"
-                    }}/>
-                    <Nav className="text-white xs:!text-[1.3rem] !text-[1.8rem]" fontWeight={400} containerClassName="gap-[6dvw] xs:gap-[3dvw]" showCurrent={false}/>
+                    <hr className="scale-0 w-full border-[1px] border-themed-darker-gray xs:border-themed-gray mb-[3dvw] animate-grow-right origin-right xs:hidden md:block"
+                        style={{
+                            animationDelay: "100ms"
+                        }}/>
+                    <Nav className="text-white xs:!text-[1.3rem] !text-[1.8rem]" fontWeight={400}
+                         containerClassName="gap-[6dvw] xs:gap-[3dvw]" showCurrent={false}/>
                     <Social direction="row" color="white"/>
                 </Stack>
             </Drawer>

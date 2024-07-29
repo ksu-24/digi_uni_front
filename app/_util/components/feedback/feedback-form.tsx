@@ -25,7 +25,8 @@ export default async function FeedbackForm(
         3xl:gap-[10%] 3xl:-mt-[0.7rem]
         `
         }>
-            <Caption variant={captionVariant} textClassName={captionTextClassName} containerClassName={captionContainerClassName}/>
+            <Caption variant={captionVariant} textClassName={captionTextClassName}
+                     containerClassName={captionContainerClassName}/>
             <Form/>
         </Stack>
     )

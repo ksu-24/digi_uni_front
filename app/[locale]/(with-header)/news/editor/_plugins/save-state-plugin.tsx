@@ -7,7 +7,7 @@ export default function SaveStatePlugin(
         key1,
         setEditorContent,
         restoreOnFirstRender
-    } : {
+    }: {
         key1: string,
         setEditorContent: (content: string) => void,
         restoreOnFirstRender: boolean

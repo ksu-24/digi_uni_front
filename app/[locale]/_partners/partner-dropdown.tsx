@@ -5,7 +5,7 @@ import {useTranslations} from "next-intl";
 import {
     Accordion,
     AccordionDetails,
-    AccordionSummary, Box,
+    AccordionSummary,
     IconButton,
     ListItem,
     Skeleton,

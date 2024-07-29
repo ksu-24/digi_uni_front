@@ -3,34 +3,12 @@ import {EditorConfig, NodeKey, SerializedElementNode} from "lexical";
 
 export default class StyledQuoteNode extends QuoteNode {
 
-    public static getType() {
-        return "styled-quote";
-    }
-
     constructor(key?: NodeKey) {
         super(key);
     }
 
-    createDOM(config: EditorConfig): HTMLElement {
-        const base = super.createDOM(config);
-        base.classList.add("quote", "quote-border");
-        return base;
-    }
-
-
-    updateDOM(prevNode: QuoteNode, dom: HTMLElement): boolean {
-        if (dom.style.border || dom.style.borderLeft || (dom.firstElementChild?.hasAttribute("style")
-            && (dom.firstElementChild as HTMLElement).style.borderLeft || (dom.firstElementChild as HTMLElement).style.border)) {
-            dom.classList.remove("quote-border");
-        }
-        return super.updateDOM(prevNode, dom);
-    }
-
-    exportJSON(): SerializedElementNode {
-        return {
-            ...super.exportJSON(),
-            type: StyledQuoteNode.getType()
-        }
+    public static getType() {
+        return "styled-quote";
     }
 
     static importJSON(json: SerializedElementNode): StyledQuoteNode {
@@ -48,6 +26,27 @@ export default class StyledQuoteNode extends QuoteNode {
         result.setDirection(node.getDirection());
         result.getChildren().push(...node.getChildren());
         return result;
+    }
+
+    createDOM(config: EditorConfig): HTMLElement {
+        const base = super.createDOM(config);
+        base.classList.add("quote", "quote-border");
+        return base;
+    }
+
+    updateDOM(prevNode: QuoteNode, dom: HTMLElement): boolean {
+        if (dom.style.border || dom.style.borderLeft || (dom.firstElementChild?.hasAttribute("style")
+            && (dom.firstElementChild as HTMLElement).style.borderLeft || (dom.firstElementChild as HTMLElement).style.border)) {
+            dom.classList.remove("quote-border");
+        }
+        return super.updateDOM(prevNode, dom);
+    }
+
+    exportJSON(): SerializedElementNode {
+        return {
+            ...super.exportJSON(),
+            type: StyledQuoteNode.getType()
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-import {Box, NoSsr, Stack, Typography} from "@mui/material";
+import {Box, NoSsr, Typography} from "@mui/material";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import NewsPanel from "@/app/[locale]/(with-header)/news/news-panel";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";

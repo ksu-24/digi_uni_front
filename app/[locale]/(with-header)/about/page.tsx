@@ -7,8 +7,6 @@ import TargetAudience from "@/app/[locale]/(with-header)/about/target-audience";
 import Team from "@/app/[locale]/(with-header)/about/team";
 import Partners from "@/app/[locale]/(with-header)/about/partners";
 import ProjectTimeline from "@/app/[locale]/(with-header)/about/project-timeline";
-import Footer from "@/app/[locale]/_footer/footer";
-import {BwTiles} from "@/app/_util/components/tiles";
 import {Banner} from "@/app/[locale]/(with-header)/about/banner";
 import {Box} from "@mui/material";
 

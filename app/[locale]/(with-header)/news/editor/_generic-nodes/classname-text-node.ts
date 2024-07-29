@@ -10,8 +10,26 @@ export default class ClassnameTextNode extends TextNode {
         this.__classList.push(..._classList);
     }
 
+    public get classList() {
+        return this.__classList;
+    }
+
+    public set classList(value: string[]) {
+        this.__classList.splice(0, this.__classList.length, ...value);
+    }
+
     public static getType() {
         return "custom-text";
+    }
+
+    static clone(node: ClassnameTextNode) {
+        return new ClassnameTextNode(node.getTextContent(), node.getKey(), node.__classList);
+    }
+
+    public static importJSON(json: SerializedClassnameTextNode): ClassnameTextNode {
+        const node = super.importJSON(json) as ClassnameTextNode;
+        node.__classList.push(...json._classList);
+        return node;
     }
 
     /**
@@ -27,19 +45,6 @@ export default class ClassnameTextNode extends TextNode {
         }
     }
 
-    public get classList() {
-        return this.__classList;
-    }
-
-    public set classList(value: string[]) {
-        this.__classList.splice(0, this.__classList.length, ...value);
-    }
-
-
-    static clone(node: ClassnameTextNode) {
-        return new ClassnameTextNode(node.getTextContent(), node.getKey(), node.__classList);
-    }
-
     public override updateDOM(prevNode: ClassnameTextNode, dom: HTMLElement, config: EditorConfig): boolean {
         dom.classList.remove(...prevNode.__classList);
         dom.classList.add(...this.__classList);
@@ -47,7 +52,7 @@ export default class ClassnameTextNode extends TextNode {
     }
 
     public override createDOM(config: EditorConfig, editor?: LexicalEditor): HTMLElement {
-        const result =  super.createDOM(config, editor);
+        const result = super.createDOM(config, editor);
         result.classList.add(...this.__classList);
         return result;
     }
@@ -64,17 +69,10 @@ export default class ClassnameTextNode extends TextNode {
         }
     }
 
-
     public override exportDOM(editor: LexicalEditor): DOMExportOutput {
         const domExport = super.exportDOM(editor) as ClassnameDOMExportOutput;
         domExport.element.classList.add(...this.__classList);
         return domExport;
-    }
-
-    public static importJSON(json: SerializedClassnameTextNode): ClassnameTextNode {
-        const node = super.importJSON(json) as ClassnameTextNode;
-        node.__classList.push(...json._classList);
-        return node;
     }
 
 

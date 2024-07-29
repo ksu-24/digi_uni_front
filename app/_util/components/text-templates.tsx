@@ -2,7 +2,6 @@ import screens from "@/resources/screens.json";
 import {Typography} from "@mui/material";
 import React from "react";
 import {getTranslations} from "next-intl/server";
-import {className} from "postcss-selector-parser";
 
 export function MainHeading(
     {

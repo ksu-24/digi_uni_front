@@ -9,7 +9,7 @@ export default function PreviewForm(
         key1,
         setPreview,
         initialState
-    } : {
+    }: {
         key1: string,
         setPreview: (preview: {
             title: string,
@@ -59,7 +59,8 @@ export default function PreviewForm(
             className: "items-center gap-4 !w-[16.65dvw]"
         }}>
             <Typography variant="h1">Preview</Typography>
-            <ImageDropzone className="!h-[25dvh] border-[1px] border-black" onPictureUpload={(picture) => setImage(picture)} initialPicture={image}/>
+            <ImageDropzone className="!h-[25dvh] border-[1px] border-black"
+                           onPictureUpload={(picture) => setImage(picture)} initialPicture={image}/>
             {/* @ts-ignore */}
             <TextField value={title} label="Title" variant="standard" className="w-full" name="title" required style={{
                 ...themeObj.typography.h4

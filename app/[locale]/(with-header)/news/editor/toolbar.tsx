@@ -4,9 +4,13 @@ import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import {mergeRegister} from '@lexical/utils';
 import {
     $getSelection,
-    $isRangeSelection, $isTextNode, CAN_UNDO_COMMAND, CLEAR_EDITOR_COMMAND,
+    $isRangeSelection,
+    $isTextNode,
+    CLEAR_EDITOR_COMMAND,
     FORMAT_TEXT_COMMAND,
-    LexicalEditor, RangeSelection, REDO_COMMAND,
+    LexicalEditor,
+    RangeSelection,
+    REDO_COMMAND,
     SELECTION_CHANGE_COMMAND,
     UNDO_COMMAND,
 } from 'lexical';
@@ -17,7 +21,9 @@ import {IconButton, Stack, Tab, Tabs} from "@mui/material";
 import {create} from "zustand";
 import {ToolbarItem} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
 import {getCssProp, getCssValue, useToolbarTabs} from "@/app/[locale]/(with-header)/news/editor/toolbar-tabs";
-import ClassnameTextNode, {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
+import ClassnameTextNode, {
+    $isClassNameTextNode
+} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
 import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {$isAutoLinkNode} from "@lexical/link";
 import {useHistory} from "@/app/[locale]/(with-header)/news/editor/_plugins/history-plugin";

@@ -2,7 +2,7 @@ import MultimediaNode, {
     SerializedMultimediaNode
 } from "@/app/[locale]/(with-header)/news/editor/_multimedia/multimedia-node";
 import {NodeKey} from "lexical";
-import React, {useEffect, useMemo, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Box} from "@mui/material";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import useWindow from "@/app/_util/use-window";

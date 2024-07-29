@@ -25,9 +25,9 @@ export async function TextAndFunded() {
             ">
                 <EnterAnimation direction="down" duration={600} delay={300} offset={20}>
                     <Typography variant="body1" sx={{
-                       [`@media (max-width: ${screens.md})`]: {
-                           letterSpacing: "-0.48px"
-                       }
+                        [`@media (max-width: ${screens.md})`]: {
+                            letterSpacing: "-0.48px"
+                        }
                     }}>
                         {miscTranslation("slogan")}
                     </Typography>

@@ -1,6 +1,6 @@
 import {useTranslations} from "next-intl";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {$getSelection, $isRangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import themeObj from "@/app/_theme/theme-obj";

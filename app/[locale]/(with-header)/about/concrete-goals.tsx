@@ -1,6 +1,6 @@
 import enDict from '@/resources/dicts/en.json';
 import {getTranslations} from "next-intl/server";
-import {List, ListItemText, Typography} from "@mui/material";
+import {ListItemText, Typography} from "@mui/material";
 import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 
 import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";

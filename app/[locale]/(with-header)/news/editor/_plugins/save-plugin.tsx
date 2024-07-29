@@ -10,7 +10,7 @@ export default function SavePlugin(
         localizations,
         stateKeys,
         id
-    } : {
+    }: {
         localizations: Map<string, Localization>,
         stateKeys: string[],
         id?: number
@@ -20,7 +20,7 @@ export default function SavePlugin(
 
     return (
         <Button className="w-1/5 text-black hover:text-white" variant="contained" onClick={async () => {
-            const localizationsArr = [] as (Localization & {language: string})[]
+            const localizationsArr = [] as (Localization & { language: string })[]
 
             for (const locale of locales) {
                 if (localizations.get(locale)!.content) {
@@ -35,7 +35,7 @@ export default function SavePlugin(
                 }
             }
 
-            const response = id ? await patch("/publications/" + id, {localizations: localizationsArr}):
+            const response = id ? await patch("/publications/" + id, {localizations: localizationsArr}) :
                 await post("/publications?type=NEWS", {localizations: localizationsArr});
 
             if (!response.ok) {

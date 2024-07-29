@@ -7,7 +7,7 @@ import {
     SerializedLexicalNode,
     Spread
 } from "lexical";
-import React, {JSX} from "react";
+import {JSX} from "react";
 import {renderToStaticMarkup} from "react-dom/server";
 
 export default abstract class MultimediaNode extends DecoratorNode<JSX.Element> {

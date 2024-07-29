@@ -67,7 +67,7 @@ export default async function Team() {
                                             3xl:gap-[0.5dvw]
                                             ">
                                             <Typography letterSpacing={"-0.01rem"}
-                                                variant="h4" className="max-w-[60dvw] !leading-[1.3]
+                                                        variant="h4" className="max-w-[60dvw] !leading-[1.3]
                                                 max-xs:!text-[29px]
                                                 max-lg:text-[24px]
                                                 xl:!text-[28px]

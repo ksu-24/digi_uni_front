@@ -105,7 +105,8 @@ export default async function ProjectTimeline() {
                                             Object.keys(value.description).map((textKey, index) => {
                                                 return (
                                                     <li className="w-full" key={index}>
-                                                        <Typography key={index} variant="caption" className="max-xs:!text-[16px]"
+                                                        <Typography key={index} variant="caption"
+                                                                    className="max-xs:!text-[16px]"
                                                                     lineHeight={1.5} letterSpacing={0} fontFamily={
                                                             themeObj.typography.body2.fontFamily
                                                         }>

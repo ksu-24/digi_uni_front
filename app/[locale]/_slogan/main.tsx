@@ -25,7 +25,8 @@ export default async function Main() {
                 <DigiuniLoading/>
             </Stack>
             <Box className="hidden md:block xl:hidden z-10">
-                <Social className="absolute top-auto bottom-auto left-auto right-[4.5dvw] -translate-y-1/2 hidden lg:flex"/>
+                <Social
+                    className="absolute top-auto bottom-auto left-auto right-[4.5dvw] -translate-y-1/2 hidden lg:flex"/>
             </Box>
         </>
     );
