@@ -37,7 +37,8 @@ export default function Nav(
                     <Stack className={linkContainerClassname + ` w-fit h-fit items-center gap-6`}
                            direction="row" key={index} component={"li"}>
                         {
-                            path === link[1] && showCurrent ? (
+                            (path.split("/").length === 2 ? path === link[1] :
+                                link[1] !== "/" && path.startsWith(link[1])) && showCurrent ? (
                                 <Fade in={true} timeout={500} easing="ease-out" style={{
                                     transitionDelay: `${index * 200}ms`
                                 }}>
@@ -61,7 +62,7 @@ export default function Nav(
                                             fontWeight={fontWeight}
                                             letterSpacing="-0.32px"
                                             fontFamily={body1Font}
-                                            className={`${className} text-black hover:font-[600]`}>
+                                            className={`${className} text-black`}>
                                     {translations(link[0] as never)}
                                 </Typography>
                             </Link>
