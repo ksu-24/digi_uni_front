@@ -7,9 +7,10 @@ import Timestamp from "@/app/_util/components/timestamp";
 import {getTranslations} from "next-intl/server";
 import colors from "@/resources/colors.json";
 import screens from "@/resources/screens.json";
-import {BaseWrapper} from "@/app/_util/components/wrappers";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 
-import {SectionTitle} from "@/app/_util/components/text-templates";
+import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
+import themeObj from "@/app/_theme/theme-obj";
 
 function TimelineItem(
     {
@@ -26,10 +27,11 @@ function TimelineItem(
                     <Box className="w-4 h-4 bg-white shadow-none relative">
                         <Image src={timelineDot} alt="dot" fill className="object-contain"/>
                     </Box>
-                    <hr className="w-px bg-themed-darkgray md:hidden flex-[2]"/>
+                    <hr className="w-px bg-themed-darkgray md:hidden flex-[2] max-xs:bg-[#c3c6e3]"/>
                 </Stack>
                 <Stack
-                    className={`md:top-full md:absolute timeline-item-content gap-5 pl-2 ${widthClasses} md:w-[15dvw] w-dvw h-fit mb-7 md:mb-0`}
+                    className={`md:top-full md:absolute timeline-item-content gap-5 pl-2 ${widthClasses} 
+                    md:w-[15dvw] w-dvw h-fit mb-7 md:mb-0`}
                     sx={{
                         ...(React.Children.toArray(children).length > 2 && {
                             "&.MuiStack-root > li::after": {
@@ -56,7 +58,7 @@ function TimelineItem(
 
 function TimelineContainer(props: { children: ReactNode }) {
     return (
-        <Stack direction="row" className="h-fit justify-center md:mt-[16rem] items-center" sx={{
+        <Stack direction="row" className="h-fit justify-center md:mt-[18rem] items-center" sx={{
             [`@media (min-width: ${screens.md})`]: {
                 "&.MuiStack-root > *:nth-child(even) .timeline-item-content": {
                     transform: "translateY(calc(-100% - 1rem))",
@@ -77,38 +79,48 @@ function TimelineContainer(props: { children: ReactNode }) {
 export default async function ProjectTimeline() {
     const translations = await getTranslations("about.timeline")
     return (
-        <section id="timeline">
-            <BaseWrapper withPadding className="mb-[15dvh]">
-                <SectionTitle number={7} titleTranslationKey="about.timeline.enumerationCaption"/>
-                <Typography variant="h3">{translations("title")}</Typography>
-                <TimelineContainer>
-                    {
-                        Object.entries(enDict.about.timeline.milestones).map(([key, value], index) => {
-                            const dateSplit = value.date.split("/");
-                            const date = new Date();
-                            date.setFullYear(2000 + parseInt(dateSplit[2]), parseInt(dateSplit[1]) - 1, parseInt(dateSplit[0]));
-                            return (
-                                <TimelineItem key={index}>
-                                    <Timestamp date={date} textProps={{
-                                        className: "bg-secondary w-fit"
-                                    }}/>
-                                    {
-                                        Object.keys(value.description).map((textKey, index) => {
-                                            return (
-                                                <li className="w-full" key={index}>
-                                                    <Typography key={index} variant="caption"
-                                                                lineHeight={1.5}>
-                                                        {translations("milestones." + key + ".description." + textKey as never)}
-                                                    </Typography>
-                                                </li>
-                                            )
-                                        })
-                                    }
-                                </TimelineItem>
-                            )
-                        })
-                    }
-                </TimelineContainer>
+        <section id="timeline" className="max-xs:mt-[5dvw]">
+            <BaseWrapper withPadding>
+                <Stack className="gap-[6dvw]
+                max-xs:gap-[12dvw]
+                2xl:gap-[5dvw]
+                ">
+                    <ContentWrapper>
+                        <SectionTitle number={7} titleTranslationKey="about.timeline.enumerationCaption"/>
+                        <SectionHeading>{translations("title")}</SectionHeading>
+                    </ContentWrapper>
+                    <TimelineContainer>
+                        {
+                            Object.entries(enDict.about.timeline.milestones).map(([key, value], index) => {
+                                const dateSplit = value.date.split("/");
+                                const date = new Date();
+                                date.setFullYear(2000 + parseInt(dateSplit[2]), parseInt(dateSplit[1]) - 1, parseInt(dateSplit[0]));
+                                return (
+                                    <TimelineItem key={index}>
+                                        <Timestamp date={date} textProps={{
+                                            className: "bg-secondary w-fit !text-themed-darkgray py-1",
+                                            bgcolor: "#f4f5d1"
+                                        }}/>
+                                        {
+                                            Object.keys(value.description).map((textKey, index) => {
+                                                return (
+                                                    <li className="w-full" key={index}>
+                                                        <Typography key={index} variant="caption" className="max-xs:!text-[16px]"
+                                                                    lineHeight={1.5} letterSpacing={0} fontFamily={
+                                                            themeObj.typography.body2.fontFamily
+                                                        }>
+                                                            {translations("milestones." + key + ".description." + textKey as never)}
+                                                        </Typography>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </TimelineItem>
+                                )
+                            })
+                        }
+                    </TimelineContainer>
+                </Stack>
             </BaseWrapper>
         </section>
     )

@@ -34,7 +34,6 @@ export default async function AboutPage(
             <Team/>
             <Partners/>
             <ProjectTimeline/>
-            <Footer tiles={<BwTiles/>}/>
         </Box>
     )
 }

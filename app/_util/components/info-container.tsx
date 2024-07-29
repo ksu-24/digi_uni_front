@@ -2,6 +2,7 @@ import React, {CSSProperties} from "react";
 import {BoxProps, Stack, StackProps, SxProps, Theme} from "@mui/material";
 import {BaseWrapper} from "@/app/_util/components/wrappers";
 import colors from "@/resources/colors.json";
+import screens from "@/resources/screens.json";
 
 const cardsContainerBorders: CSSProperties = {
     border: `1px solid ${colors.info.main}`,
@@ -13,10 +14,12 @@ export function InfoContainer(
         children,
         boxProps = {},
         stackProps = {},
+        disablePy = false
     }: {
         children: React.ReactNode,
         boxProps?: BoxProps,
         stackProps?: StackProps,
+        disablePy?: boolean
     }
 ) {
     return (
@@ -34,14 +37,20 @@ export function InfoContainer(
                 { /* @ts-ignore */}
                 <Stack {...stackProps} sx={{
                     ...cardsContainerBorders,
+                    [`@media (max-width: ${screens.xs})`]: {
+                        "& > *:last-child": {
+                            borderBottom: 'none !important',
+                            paddingBottom: "0 !important"
+                        }
+                    },
                     ...stackProps.sx
                 }} className={`${stackProps.className ?? ''} 
-                justify-center border-collapse py-[4dvw] gap-[2dvw] p-[3dvw]
-                max-xs:!border-none max-xs:!py-[16dvw] max-xs:gap-[11dvw]
-                max-lg:p-[5dvw] max-lg:gap-[3dvw]
-                2xl:py-[3dvw] 2xl:gap-[1.5dvw]
-                3xl:py-[2dvw] 3xl:pl-[2dvw] 3xl:gap-[1.2dvw]
-                `}
+                justify-center border-collapse gap-[2dvw] px-[3dvw]
+                max-xs:!border-none  max-xs:gap-[11dvw]
+                max-lg:px-[5dvw] max-lg:gap-[3dvw]
+                2xl:gap-[1.5dvw]
+                3xl:pl-[2dvw] 3xl:gap-[1.2dvw]
+                ` + (disablePy ? '' : 'py-[4dvw] max-xs:!py-[16dvw] max-lg:py-[5dvw] 2xl:py-[3dvw] 3xl:py-[2dvw]')}
                        component="ul">
                     {children}
                 </Stack>

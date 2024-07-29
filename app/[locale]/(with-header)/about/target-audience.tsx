@@ -11,7 +11,7 @@ export default async function TargetAudience() {
     return (
         <section id="target-audience">
             <BaseWrapper withPadding className="
-            max-xs:!gap-[12dvw] max-xs:!mt-[10dvw]
+            max-xs:!gap-[12dvw] max-xs:!mt-[10dvw] max-xs:!mb-[18dvw]
             ">
                 <ContentWrapper>
                     <SectionTitle number={4} titleTranslationKey="about.targetAudience.enumerationCaption"/>

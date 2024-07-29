@@ -26,15 +26,7 @@ export default async function Goal() {
                 3xl:mt-[4dvw]
                 `
             }} stackProps={{
-                className: "!p-0 !gap-0 max-xs:!py-0",
-                sx: {
-                    [`@media (max-width: ${screens.xs})`]: {
-                        "& > *:last-child": {
-                            borderBottom: 'none !important',
-                            paddingBottom: "0 !important"
-                        }
-                    }
-                }
+                className: "!p-0 !gap-0 max-xs:!py-0"
             }}>
                 {
                     Object.keys(enDict.about.goal.goalsList).map((value, index) => (

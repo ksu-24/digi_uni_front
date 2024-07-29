@@ -2,6 +2,7 @@ import screens from "@/resources/screens.json";
 import {Typography} from "@mui/material";
 import React from "react";
 import {getTranslations} from "next-intl/server";
+import {className} from "postcss-selector-parser";
 
 export function MainHeading(
     {
@@ -49,7 +50,7 @@ export async function SectionTitle(
     );
 }
 
-export function SectionHeading(props: { children: React.ReactNode }) {
+export function SectionHeading(props: { children: React.ReactNode, className?: string }) {
     return <Typography variant="h2" lineHeight={1.3} sx={{
         "&": {
             fontSize: "38px",
@@ -69,12 +70,12 @@ export function SectionHeading(props: { children: React.ReactNode }) {
                 fontSize: "30px"
             }
         }
-    }} className="max-lg:!leading-[1.2] max-w-[50dvw]
+    }} className={props.className + ` max-lg:!leading-[1.2] max-w-[50dvw]
     max-xs:!max-w-[88dvw]
     max-lg:!max-w-[76dvw]
     xl:max-w-[53dvw]
     3xl:max-w-[48dvw]
-    ">
+    `}>
         {props.children}
     </Typography>;
 }

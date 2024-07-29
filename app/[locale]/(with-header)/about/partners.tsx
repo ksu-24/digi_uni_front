@@ -1,42 +1,81 @@
-import {BaseWrapper} from "@/app/_util/components/wrappers";
-import {Box, Typography} from "@mui/material";
+import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
+import {Box, Stack} from "@mui/material";
 import {getTranslations} from "next-intl/server";
-import Grid2 from "@mui/material/Unstable_Grid2";
 import partners from "@/resources/partners.json"
 import {Link} from "@/app/_localization/navigation";
 import {InfoContainer} from "@/app/_util/components/info-container";
-import {SectionTitle} from "@/app/_util/components/text-templates";
+import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
+import screens from "@/resources/screens.json";
+
+const logoClasses = [
+    "max-xs:!w-[21dvw] max-md:w-[12dvw] w-[10dvw] xl:w-[7dvw] 3xl:w-[5dvw]",
+    "max-xs:!w-[21dvw] max-md:w-[10dvw] w-[9dvw] xl:w-[6dvw] 3xl:w-[4dvw]",
+    "max-xs:!w-[30dvw] max-md:w-[16dvw] w-[12dvw] xl:w-[10dvw] 2xl:w-[9dvw] 3xl:w-[7dvw]",
+    "max-xs:!w-[32dvw] max-md:w-[18dvw] w-[14dvw] xl:w-[12dvw] 2xl:w-[11dvw] 3xl:w-[8dvw]",
+]
 
 export default async function Partners() {
     const translations = await getTranslations("about.partners");
     const partnerTranslations = await getTranslations("partners");
     return (
         <section id="partners">
-            <BaseWrapper withPadding className="!p-0">
-                <BaseWrapper>
-                    <SectionTitle number={6} titleTranslationKey="about.partners.enumerationCaption"/>
-                    <Typography variant="h2">{translations("title")}</Typography>
-                </BaseWrapper>
-                <InfoContainer>
-                    <Grid2 container columns={60}>
-                        {
-                            Object.values(partners).map((partner, index) => (
-                                <Grid2 key={index} xs={60} sm={30} lg={20} xl={12} component="li">
-                                    <Box
-                                        className="h-[25dvh] border-[1px] border-collapse border-info">
-                                        <Link
-                                            className="w-full h-full flex items-center justify-center p-9 hover:scale-105"
-                                            href={partner.link}>
-                                            <img src={partner.logo}
-                                                 alt={partnerTranslations(partner.translationKey as never)}
-                                                 className="w-auto max-h-full"/>
-                                        </Link>
+            <BaseWrapper withPadding disableAfter className="!p-0">
+                <Box>
+                    <BaseWrapper>
+                        <ContentWrapper>
+                            <SectionTitle number={6} titleTranslationKey="about.partners.enumerationCaption"/>
+                            <SectionHeading>{translations("title")}</SectionHeading>
+                        </ContentWrapper>
+                    </BaseWrapper>
+                    <InfoContainer
+                        boxProps={{
+                            className: "!mt-[5dvw] max-xs:!px-[5dvw] xs:!mb-0"
+                        }}
+                        stackProps={{
+                            className: "!p-0 !border-none"
+                        }}
+                    >
+                        <Box className="grid grid-cols-4
+                        max-xs:!grid-cols-2
+                        max-md:grid-cols-3
+                        xl:grid-cols-5
+                        " sx={{
+                            [`@media (min-width: ${screens["2xl"]})`]: {
+                                "& >  *:nth-child(-n + 5)  > *:first-child": {
+                                    height: "15dvw !important",
+                                }
+                            },
+                        }}
+                        >
+                            {
+                                Object.values(partners).map((partner, index) => (
+                                    <Box component="li" key={index}>
+                                        <Stack
+                                            className="border-[1px] border-collapse border-info -ml-px -mt-px h-[18dvw]
+                                            items-center justify-center
+                                            max-xs:!h-[34dvw]
+                                            max-md:h-[20dvw]
+                                            xl:h-[14dvw]
+                                            2xl:h-[12dvw]
+                                            3xl:h-[10dvw]
+                                            ">
+                                            <Link
+                                                className={
+                                                    "flex items-center justify-center " +
+                                                    logoClasses[parseInt(partner.logoType) - 1]
+                                                }
+                                                href={partner.link}>
+                                                <img src={partner.logo}
+                                                     alt={partnerTranslations(partner.translationKey as never)}
+                                                     className="w-full"/>
+                                            </Link>
+                                        </Stack>
                                     </Box>
-                                </Grid2>
-                            ))
-                        }
-                    </Grid2>
-                </InfoContainer>
+                                ))
+                            }
+                        </Box>
+                    </InfoContainer>
+                </Box>
             </BaseWrapper>
         </section>
     );
