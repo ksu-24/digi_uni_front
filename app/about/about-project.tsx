@@ -10,7 +10,7 @@ import Image from "next/image";
 import {InfoContainer} from "@/app/_util/components/info-container";
 import Cards from "@/app/[locale]/_about (main)/cards";
 import {Link} from "@/app/_localization/navigation";
-import {idxToSection} from "@/app/[locale]/about/title";
+import {idxToSection} from "@/app/about/title";
 
 function Arrow() {
     return <Image src={arrow} alt="arrow" width={48} height={48} className="rotate-90 xs:rotate-0 xs:!w-6 xs:!h-6"/>;

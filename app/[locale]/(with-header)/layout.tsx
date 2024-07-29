@@ -18,8 +18,7 @@ export default async function WithHeaderLayout({children, params}: {
             {children}
             <Footer tiles={(
                 <Box className="w-full">
-                    <BwTiles className="hidden xs:block"/>
-                    <SecondaryToBlackTiles className="xs:hidden"/>
+                    <BwTiles/>
                 </Box>
             )}/>
         </>

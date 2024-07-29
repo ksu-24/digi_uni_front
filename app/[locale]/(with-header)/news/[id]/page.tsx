@@ -8,6 +8,8 @@ import {Link} from "@/app/_localization/navigation";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
 import {BaseWrapper} from "@/app/_util/components/base-wrapper";
 import {Gallery} from "@/app/[locale]/(with-header)/news/editor/gallery";
+import screens from "@/resources/screens.json";
+import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
 
 async function OtherRecent(
     {
@@ -19,23 +21,46 @@ async function OtherRecent(
     const news = await getNewsPreview(6, 0);
     const translations = await getTranslations("news");
     return (
-        <Stack>
-            <Typography variant="h4" className="mb-6">{translations("otherNews")}</Typography>
+        <Stack className="max-w-[27%] hidden
+        lg:block
+        2xl:max-w-[25%]
+        3xl:max-w-[26%]
+        ">
+            <Typography variant="h5" className="mb-6
+            3xl:mb-[1dvw]
+            " letterSpacing={"-0.01rem"}>
+                {translations("otherNews")}
+            </Typography>
             {
                 news
                     .filter(news => news.id !== excludeId)
                     .slice(0, 5)
                     .map((news, index) => (
-                        <Stack key={index} className="border-y-[1px] border-info gap-6 border-collapse" sx={{
-                            "&.MuiStack-root::before, &.MuiStack-root::after": {
-                                content: "''",
-                            }
-                        }}>
-                            <Timestamp date={news.date}/>
-                            <Link href={`/news/${news.id}`}>
-                                <Typography variant="h4" fontSize={18} lineHeight={1.5}
-                                            className="hover:text-themed-blue">{news.title}</Typography>
-                            </Link>
+                        <Stack key={index} className="border-y-[1px] border-info border-collaps pb-[1dvw]
+                        2xl:pb-0
+                        3xl:pb-[1dvw]
+                        e">
+                            <Stack className="gap-[1.5dvw] pb-[3dvw]
+                            2xl:pb-[1.5dvw]
+                            3xl:gap-[1dvw] 3xl:pb-[0.5dvw]
+                            " sx={{
+                                "&.MuiStack-root::before": {
+                                    content: "''",
+                                },
+                            }}>
+                                <Stack className="gap-[1dvw]
+                                    2xl:gap-[0.5dvw]
+                                    3xl:gap-2
+                                    ">
+                                    <Timestamp date={news.date} textProps={{
+                                        className: "!mt-0"
+                                    }}/>
+                                    <Link href={`/news/${news.id}`}>
+                                        <Typography variant="h6" lineHeight={1.4}
+                                                    className="hover:text-themed-blue">{news.title}</Typography>
+                                    </Link>
+                                </Stack>
+                            </Stack>
                         </Stack>
                     ))
             }
@@ -72,22 +97,84 @@ export default async function NewsPage({params}: {
     };
 
     return (
-        <BaseWrapper>
-            <Stack className="gap-9 w-full">
-                <Typography variant="h1">{response.preview.title}</Typography>
-                <Timestamp date={response.preview.createdAt}/>
-                <Stack className="lg:gap-20 w-full" direction="row">
-                    <Stack className="w-full lg:w-3/4 min-w-3/4 flex-shrink-0 gap-9">
-                        <img src={response.preview.image.image} alt="Preview" width="100%" className="mb-10"/>
+        <BaseWrapper className="justify-between" disableGap>
+            <Stack className="w-full
+            max-xs:mb-[18dvw] max-xs:gap-[4dvw]
+            xl:pt-[12dvw] xl:pb-[4dvw]
+            3xl:pt-[9dvw] 3xl:pb-[3dvw]
+            " sx={{
+                paddingTop: "13dvw",
+                [`@media (max-width: ${screens.xl})`]: {
+                    paddingTop: "24dvw"
+                },
+                [`@media (max-width: ${screens.md})`]: {
+                    paddingTop: "18dvw",
+                    paddingBottom: "16dvw"
+                },
+                [`@media (max-width: ${screens.xs})`]: {
+                    paddingTop: "24dvw"
+                },
+            }}>
+                < Stack className="gap-6
+                max-xs:mt-[10dvw]
+                xl:gap-[2dvw]
+                2xl:gap-[1.5dvw]
+                ">
+                    <DynamicBackwardsNav/>
+                    <Stack className="gap-[2dvw]
+                    max-xs:!gap-[6dvw]
+                    max-lg:gap-[3dvw]
+                    2xl:gap-[1.5dvw]
+                    ">
+                        <Typography
+                            variant="h1" lineHeight={1.15} letterSpacing={"-0.01rem"}
+                            className="
+                            max-md:!max-w-full
+                            max-lg:!leading-[1.2] max-lg:max-w-[80dvw]
+                            xl:text-[50px]
+                            2xl:text-[54px]
+                            3xl:text-[56px] 3xl:max-w-[52dvw]
+                            "
+                            sx={{
+                                fontSize: 52,
+                                [`@media (max-width: ${screens.lg})`]: {
+                                    fontSize: 40
+                                },
+                                [`@media (max-width: ${screens.md})`]: {
+                                    fontSize: 34
+                                },
+                                [`@media (max-width: ${screens.xs})`]: {
+                                    fontSize: 32
+                                }
+                            }}>
+                            {response.preview.title}
+                        </Typography>
+                        <Timestamp date={response.preview.createdAt} textProps={{
+                            className: "mt-0"
+                        }}/>
+                    </Stack>
+                </Stack>
+                <Stack
+                    className="w-full mt-[4dvw]
+                     max-lg:mt-[6dvw]
+                    lg:gap-20
+                    3xl:mt-[2dvw]
+                    "
+                    direction="row">
+                    <Stack className="max-w-[68%] gap-[4dvw]
+                    max-lg:max-w-full
+                    3xl:gap-[2dvw]
+                    ">
+                        <img src={response.preview.image.image} alt="Preview" width="100%"
+                             className="mb-[1dvw] aspect-video"/>
                         <ReadOnlyEditor editorStateJson={response.content}/>
                         {response.gallery && <Gallery images={response.gallery.map(img => img.image)}/>}
                     </Stack>
-                    <Stack className="hidden lg:block">
-                        <OtherRecent excludeId={response.id}/>
-                    </Stack>
+                    <OtherRecent excludeId={response.id}/>
                 </Stack>
                 <SubscribeForm/>
             </Stack>
         </BaseWrapper>
-    );
+    )
+        ;
 }

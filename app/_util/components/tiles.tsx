@@ -7,8 +7,10 @@ export function SecondaryTiles(
 ) {
     return (
         <>
-            <img src="/images/commons/secondary-tiles.png" alt="Secondary tiles" className={className + " w-full hidden xs:block"}/>
-            <img src="/images/commons/secondary-tiles-xs.jpg" alt="Secondary tiles" className={className + " w-full xs:hidden"}/>
+            <img src="/images/commons/secondary-tiles.png" alt="Secondary tiles"
+                 className={className + " w-full hidden xs:block"}/>
+            <img src="/images/commons/secondary-tiles-xs.jpg" alt="Secondary tiles"
+                 className={className + " w-full xs:hidden"}/>
         </>
     )
 }
@@ -30,7 +32,10 @@ export function BwTiles(
     }
 ) {
     return (
-        <img src="/images/commons/bw-tiles.png" alt="Black and white tiles" className={className + " w-full"}/>
+        <>
+            <img src="/images/commons/bw-tiles.png" alt="Black and white tiles" className={className + " w-full hidden xs:block"}/>
+            <img src="/images/commons/bw-tiles-xs.jpg" alt="Black and white tiles" className={className + " w-full xs:hidden"}/>
+        </>
     )
 }
 

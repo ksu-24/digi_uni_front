@@ -14,12 +14,13 @@ export default function FeedbackForm() {
     const [rows, setRows] = useState(initialRows);
     const [isSubmitted, setIsSubmitted] = useState(false);
     return !isSubmitted ? (
-        <Box className="w-[40%] h-full max-lg:w-full 2xl:max-w-[38dvw]">
+        <Box className="w-[40%] h-full max-lg:w-full">
             <FormWrapper formProps={{
-                className: ` w-full h-full items-start shrink-0 gap-[2dvw] -mt-4
+                className: ` h-full items-start shrink-0 gap-[2dvw]
                 max-xs:gap-[1dvw]
                 max-lg:w-full
                 2xl:max-w-[38dvw] 2xl:gap-[1dvw]
+                3xl:-mt-[0.6rem]
                 `
             }} onSubmit={async (e) => {
                 e.preventDefault();
@@ -46,7 +47,6 @@ export default function FeedbackForm() {
                 <TextField name="message" id="message" label={translations("message")} variant="standard" multiline
                            className="w-full !h-auto
                            max-xs:!pt-[3dvw]
-                       xl:min-h-[13dvw]
                        "
                            rows={rows}
                            required={true}

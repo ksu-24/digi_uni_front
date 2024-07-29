@@ -10,13 +10,15 @@ export default function DynamicBackwardsNav() {
     const translations = useTranslations("nav");
     return (
         <EnterAnimation direction="up" offset={0} duration={400} delay={800}>
-            <Stack direction="row" className="backwards-nav text-themed-gray">
+            <Stack direction="row" className="backwards-nav text-themed-gray h-[30px] items-start
+            max-lg:h-[21px]
+            ">
                 {
                     segments.map((segment, index) => {
                         return (
                             <Link href={"/" + segments.slice(0, index + 1).map(s => {
                                 return s === "main" ? "" : s;
-                            }).join("/")} key={index}>
+                            }).join("/")} key={index} className="h-full flex items-center">
                                 <Typography variant="caption" className="hover:text-themed-darker-gray"
                                             lineHeight={1.5} letterSpacing={0}>
                                     {translations(segment as never) || segment}
