@@ -20,6 +20,7 @@ export type Partner = {
 export async function PartnerDetails() {
     return (
         <BaseWrapper className="max-xs:!px-0
+        max-xs:pt-[6dvw]
         xl:pt-[6dvw]
         2xl:pt-[5dvw]
         3xl:pt-[4dvw]

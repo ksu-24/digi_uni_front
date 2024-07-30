@@ -106,7 +106,7 @@ html {
     }
 
     100% {
-        transform: translateX(calc(-50%));
+        transform: translateX(-50%);
     }
 }
 

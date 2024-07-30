@@ -1,7 +1,7 @@
 import {Box, Fade, Stack, Typography} from "@mui/material";
 import {HeadingWrapper, PageTopWrapper} from "@/app/_util/components/wrappers";
 import {getTranslations} from "next-intl/server";
-import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
+import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import EnterAnimation from "@/app/_util/components/enter-animation";
 import {Link} from "@/app/_localization/navigation";
 import {MainHeading} from "@/app/_util/components/text-templates";
@@ -58,7 +58,7 @@ export default async function Title() {
                     2xl:pb-[9dvw]
                     3xl:pb-[6dvw]
                     ">
-                        <DynamicBackwardsNav className="!h-fit"/>
+                        <Breadcrumbs className="!h-fit"/>
                         <Stack className="gap-[3dvw] w-[76%]
                         max-xs:!gap-[8dvw]
                         max-lg:gap-[6dvw] max-lg:w-[90%]

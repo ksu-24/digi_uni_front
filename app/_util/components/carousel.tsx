@@ -14,7 +14,9 @@ export default function Carousel(
     const initialChildren = React.Children.toArray(children).concat(React.Children.toArray(children));
 
     return (
-        <Stack direction="row" className="h-full items-center px-4 gap-[70px] animate-scroll-right-half
+        <Stack direction="row" className="h-full items-center gap-[70px] min-w-full shrink-0
+        animate-scroll-right-xs justify-start !inline-flex flex-nowrap
+        xs:animate-scroll-right-half
         max-lg:gap-[50px]
         ">
             {initialChildren.map((child, index) => (

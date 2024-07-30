@@ -4,7 +4,7 @@ import NewsPanel from "@/app/[locale]/(with-header)/news/news-panel";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
 import {HeadingWrapper, PageTopWrapper} from "@/app/_util/components/wrappers";
 import EnterAnimation from "@/app/_util/components/enter-animation";
-import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
+import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import React from "react";
 import screens from "@/resources/screens.json";
 
@@ -20,7 +20,7 @@ export default async function News(
     return (
         <PageTopWrapper>
             <HeadingWrapper>
-                <DynamicBackwardsNav/>
+                <Breadcrumbs/>
                 <EnterAnimation direction="up" offset={20} duration={500} fadeDuration={400}>
                     <Typography
                         variant="h1"

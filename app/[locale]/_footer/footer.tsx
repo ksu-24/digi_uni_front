@@ -4,6 +4,7 @@ import {getTranslations} from "next-intl/server";
 import Nav from "@/app/_util/components/nav";
 import React from "react";
 import screens from "@/resources/screens.json"
+import EnterAnimation from "@/app/_util/components/enter-animation";
 
 
 export default async function Footer(
@@ -49,8 +50,9 @@ export default async function Footer(
                     <Nav fontWeight={400} className="text-white !tracking-[-0.03rem]" fontSize={16} showCurrent={false}
                          linkContainerClassname="!justify-end" tight containerClassName="gap-[1.2rem]"/>
                 </Stack>
-                <img src={"/images/footer/digiuni-dark-purple.svg"} alt="Digiuni Logo"
-                     className="max-w-[84dvw] mt-[8dvw] mb-[4dvw]
+                <EnterAnimation direction="up" offset={0} delay={800} duration={0.5}>
+                    <img src={"/images/footer/digiuni-dark-purple.svg"} alt="Digiuni Logo"
+                         className="max-w-[84dvw] mt-[8dvw] mb-[4dvw]
                      max-xs:!mb-[8dvw] max-xs:!mt-[12dvw]
                      max-md:mb-[6dvw] max-md:mt-[10dvw]
                      max-lg:max-w-[90dvw]
@@ -58,7 +60,8 @@ export default async function Footer(
                      2xl:max-w-[82dvw]
                      3xl:mt-[5dvw] 3xl:mb-[2dvw]
                      "
-                />
+                    />
+                </EnterAnimation>
                 <Typography variant="body2"
                             className="w-full min-h-fit text-themed-darker-gray py-[3dvw]
                             max-xs:!text-[12px]

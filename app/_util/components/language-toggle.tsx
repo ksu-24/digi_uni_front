@@ -27,8 +27,8 @@ export default function LanguageToggle(
                         return (
                             <Link key={locale} href={currentPath} locale={locale} className="h-full flex items-center">
                                 <Typography color={locale === currentLocale ? color ?? "primary" : colors.gray.default}
-                                            variant="body1" fontSize="1rem" lineHeight={1.5}
-                                            letterSpacing="0"
+                                            variant="body1" fontSize="1rem" lineHeight={1.5} fontWeight={500}
+                                            letterSpacing="-0.01rem"
                                             className="transition-colors duration-200">
                                     {localeNames[locale]}
                                 </Typography>

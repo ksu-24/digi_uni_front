@@ -27,10 +27,10 @@ function TimelineItem(
                     <Box className="w-4 h-4 bg-white shadow-none relative">
                         <Image src={timelineDot} alt="dot" fill className="object-contain"/>
                     </Box>
-                    <hr className="w-px bg-themed-darkgray md:hidden flex-[2] max-xs:bg-[#c3c6e3]"/>
+                    <hr className="w-px bg-themed-darkgray md:hidden flex-[2] max-md:bg-[#c3c6e3]"/>
                 </Stack>
                 <Stack
-                    className={`md:top-full md:absolute timeline-item-content gap-5 pl-2 ${widthClasses} 
+                    className={`md:top-full md:absolute timeline-item-content gap-5 pl-2 max-md:-mt-[1dvw] ${widthClasses} 
                     md:w-[15dvw] w-dvw h-fit mb-7 md:mb-0`}
                     sx={{
                         ...(React.Children.toArray(children).length > 2 && {
@@ -41,6 +41,11 @@ function TimelineItem(
                                 backgroundColor: colors.gray.darkest,
                                 display: "block",
                                 marginTop: "1.25rem"
+                            },
+                            [`@media (max-width: ${screens.md})`]: {
+                                "&.MuiStack-root > li::after": {
+                                    backgroundColor: colors.info.main
+                                }
                             }
                         }),
                         [`@media (min-width: ${screens.md})`]: {
@@ -51,7 +56,7 @@ function TimelineItem(
                     {children}
                 </Stack>
             </Stack>
-            <hr className="w-full h-0.5 bg-themed-darkgray hidden md:block"/>
+            <hr className="w-full h-0.5 bg-themed-darkgray hidden md:block max-md:bg-[#c3c6e3]"/>
         </Box>
     )
 }

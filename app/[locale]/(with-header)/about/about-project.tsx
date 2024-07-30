@@ -10,6 +10,7 @@ import {Link} from "@/app/_localization/navigation";
 import {idxToSection} from "@/app/[locale]/(with-header)/about/title";
 import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
 import screens from "@/resources/screens.json"
+import EnterAnimation from "@/app/_util/components/enter-animation";
 
 function Arrow() {
     return (
@@ -202,24 +203,26 @@ async function InfoRows() {
 async function Preamble() {
     const translations = await getTranslations("about.aboutProject");
     return (
-        <BaseWrapper disableGap>
-            <NavBottom/>
-            <Stack className="gap-[5dvw] pt-[12dvw]
-            max-xs:mt-[18dvw] max-xs:mb-[12dvw] max-xs:gap-10
-            xl:gap-[4dvw]
-            2xl:pt-[8dvw]
-            3xl:pt-[6dvw] 3xl:gap-[3dvw]
-            ">
-                <SectionTitle
-                    number={1}
-                    titleTranslationKey="about.aboutProject.enumerationCaption"
-                />
-                <SectionHeading>{translations("title")}</SectionHeading>
-                <TextWrapper>
-                    <Typography variant="body2">{translations("content")}</Typography>
-                </TextWrapper>
-            </Stack>
-        </BaseWrapper>
+        <EnterAnimation direction="up" delay={1000} offset={0} duration={400}>
+            <BaseWrapper disableGap>
+                <NavBottom/>
+                <Stack className="gap-[5dvw] pt-[12dvw]
+                    max-xs:mt-[18dvw] max-xs:mb-[12dvw] max-xs:gap-10
+                    xl:gap-[4dvw]
+                    2xl:pt-[8dvw]
+                    3xl:pt-[6dvw] 3xl:gap-[3dvw]
+                    ">
+                    <SectionTitle
+                        number={1}
+                        titleTranslationKey="about.aboutProject.enumerationCaption"
+                    />
+                    <SectionHeading>{translations("title")}</SectionHeading>
+                    <TextWrapper>
+                        <Typography variant="body2">{translations("content")}</Typography>
+                    </TextWrapper>
+                </Stack>
+            </BaseWrapper>
+        </EnterAnimation>
     );
 }
 

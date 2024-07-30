@@ -1,8 +1,9 @@
 import {Box, Stack} from "@mui/material";
-import uaPartners from "@/public/images/main/slogan/ua-partners.png";
-import euPartners from "@/public/images/main/slogan/eu-partners.png";
+import uaPartners from "@/public/images/main/slogan/ua-partners.svg";
+import euPartners from "@/public/images/main/slogan/eu-partners.svg";
 import digiuniLoading from "@/public/images/main/slogan/digiuni-loading.png";
 import EnterAnimation from "@/app/_util/components/enter-animation";
+import Image from "next/image";
 
 function Folders() {
     return (
@@ -12,14 +13,18 @@ function Folders() {
         ">
             <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={700}
                             duration={500}>
-                <Box className="relative w-full h-full">
-                    <img src={uaPartners.src} alt="UA partners" width="100%"/>
+                <Box className="relative w-full" style={{
+                    aspectRatio: `${uaPartners.width}/${uaPartners.height}`
+                }}>
+                    <Image src={uaPartners} alt="UA partners" fill className="!h-auto objetct-contain"/>
                 </Box>
             </EnterAnimation>
             <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={900}
                             duration={500}>
-                <Box className="w-full h-full relative">
-                    <img src={euPartners.src} alt="EU partners" width="100%"/>
+                <Box className="w-full relative" style={{
+                    aspectRatio: `${euPartners.width}/${euPartners.height}`
+                }}>
+                    <Image src={euPartners.src} alt="EU partners" fill className="!h-auto objetct-contain"/>
                 </Box>
             </EnterAnimation>
         </Stack>

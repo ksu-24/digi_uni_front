@@ -1,5 +1,5 @@
 import screens from "@/resources/screens.json";
-import {Typography} from "@mui/material";
+import {Stack, Typography} from "@mui/material";
 import React from "react";
 import {getTranslations} from "next-intl/server";
 
@@ -44,8 +44,20 @@ export async function SectionTitle(
 ) {
     const translations = await getTranslations();
     return (
-        <Typography variant="body1"
-                    fontSize={16} {...typographyProps}>{`0${number} ${translations(titleTranslationKey as never)}`}</Typography>
+        <Stack direction="row" className="gap-6">
+            <Typography variant="body1"
+                        fontSize={16} {...typographyProps}>
+                0{number}
+            </Typography>
+            <Stack direction="row" className="gap-2 items-center">
+
+                <img src="/images/commons/hr.svg" alt="" className="w-12 h-px bg-[#2f2f35] border-0"/>
+                <Typography variant="body1"
+                            fontSize={16} {...typographyProps}>
+                    {`${translations(titleTranslationKey as never)}`}
+                </Typography>
+            </Stack>
+        </Stack>
     );
 }
 

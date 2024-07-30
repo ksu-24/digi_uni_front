@@ -4,7 +4,8 @@
         "about": "Про нас",
         "programs": "Програми",
         "news": "Новини",
-        "contacts": "Контакти"
+        "contacts": "Контакти",
+        "navigation": "Навігація"
     },
     "main": {
         "slogan": {
@@ -72,6 +73,7 @@
     "news": {
         "title": "Новини та події",
         "otherNews": "Інші новини",
+        "share": "Поділитись",
         "subscribeForm": {
             "wantToBeUpdated": "Бажаєте завжди бути в курсі новин?",
             "subscribeToNews": "Підпишіться на новини проєкту, щоб дізнаватися про них першими",

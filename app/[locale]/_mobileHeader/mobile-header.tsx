@@ -13,7 +13,7 @@ import Image from "next/image";
 export default function MobileHeader() {
     const [open, setOpen] = React.useState(false);
     const windowWidth = useWindow().innerWidth;
-    const bwCondition = windowWidth < parseInt(screens.xs) && open;
+    const bwCondition = windowWidth < parseInt(screens.md) && open;
     return (
         <Box className="fixed md:hidden w-full z-[1500] px-[4.5dvw] py-[3.5dvw]
         max-xs:!pt-[7dvw]

@@ -2,6 +2,7 @@ import {Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import {Social} from "@/app/_util/components/social";
 import Form from "@/app/_util/components/feedback/form";
+import EnterAnimation from "@/app/_util/components/enter-animation";
 
 
 export default async function FeedbackForm(
@@ -53,14 +54,18 @@ async function Caption(
         2xl:w-[50%] 2xl:max-w-[44dvw]
         3xl:gap-[2dvw]
         `}>
-            <Typography variant={variant} className={textClassName + ` text-[38px]
+            <EnterAnimation direction="up" offset={20} fadeDuration={400} duration={1000}>
+                <Typography variant={variant} className={textClassName + ` text-[38px]
                 max-lg:text-[30px]
                 `
-            }>{translations("title")}</Typography>
-            <Stack className="gap-10 items-start">
-                <OrganizerInfo name={translations("kseniia")} email="email_name@kpi.kharkov.ua"/>
-                <Social direction="row" size={24} className="!gap-5"/>
-            </Stack>
+                }>{translations("title")}</Typography>
+            </EnterAnimation>
+            <EnterAnimation delay={200} fadeDuration={400} duration={1000} offset={20} direction="up">
+                <Stack className="gap-10 items-start">
+                    <OrganizerInfo name={translations("kseniia")} email="email_name@kpi.kharkov.ua"/>
+                    <Social direction="row" size={24} className="!gap-5"/>
+                </Stack>
+            </EnterAnimation>
         </Stack>
     )
 }

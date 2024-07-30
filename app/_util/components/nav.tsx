@@ -25,7 +25,7 @@ export default function Nav(
         containerClassName?: string,
         showCurrent?: boolean,
         linkContainerClassname?: string,
-        tight?: boolean
+        tight?: boolean,
     }
 ) {
     const translations = useTranslations("nav");

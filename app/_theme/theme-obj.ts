@@ -189,6 +189,7 @@ const themeObj = {
                     display: "none"
                 },
                 root: {
+                    letterSpacing: 0,
                     paddingLeft: "0.75rem",
                     paddingRight: "0.75rem",
                     paddingTop: "0.5rem !important",

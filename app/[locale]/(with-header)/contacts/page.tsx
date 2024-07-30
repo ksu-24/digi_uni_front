@@ -2,7 +2,7 @@ import FeedbackForm from "@/app/_util/components/feedback/feedback-form";
 import {BaseWrapper} from "@/app/_util/components/wrappers";
 import screens from "@/resources/screens.json";
 import {Stack} from "@mui/material";
-import DynamicBackwardsNav from "@/app/_util/components/dynamic-backwards-nav";
+import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 
 export default function ContactsPage() {
     return (
@@ -29,7 +29,7 @@ export default function ContactsPage() {
                 <Stack className="
                 max-xs:pt-[10dvw] max-xs:pb-[20dvw]
                 ">
-                    <DynamicBackwardsNav/>
+                    <Breadcrumbs/>
                     <FeedbackForm captionVariant="h1" className="!mt-6 pb-[12dvw] justify-start
                     2xl:pb-[10dvw]
                     3xl:pb-[7dvw]

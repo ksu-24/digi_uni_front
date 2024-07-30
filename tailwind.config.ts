@@ -18,7 +18,8 @@ const config: Config = {
                 "digipattern-info": "url('/images/commons/digi-pattern-info.png')",
             },
             animation: {
-                "scroll-right-half": "scroll-right 60s linear infinite",
+                "scroll-right-half": "scroll-right 90s linear infinite",
+                "scroll-right-xs": "scroll-right 92s linear infinite",
                 "grow-right": "grow-from-right 0.5s cubic-bezier(0,0,.11,1.06) forwards",
                 "slide-left": "translate-from-right 0.6s ease-out forwards",
                 "slide-right": "translate-from-left 0.6s ease-out forwards",

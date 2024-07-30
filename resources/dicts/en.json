@@ -4,7 +4,8 @@
         "about": "About",
         "programs": "Programs",
         "news": "News",
-        "contacts": "Contacts"
+        "contacts": "Contacts",
+        "navigation": "Navigation"
     },
     "main": {
         "slogan": {
@@ -72,6 +73,7 @@
     "news": {
         "title": "News and events",
         "otherNews": "Other news",
+        "share": "Share",
         "subscribeForm": {
             "wantToBeUpdated": "Want to stay updated?",
             "subscribeToNews": "Subscribe to project news to be the first to know about them",
@@ -225,7 +227,7 @@
             "coordinators": {
                 "title": "Project coordinators:",
                 "list": {
-                    "kseniiaSmirnova": {
+                    "kseniaSmirnova": {
                         "name": "Kseniia\nSmirnova",
                         "role": "Project Coordinator",
                         "description": "Associate professor at the Department of information systems and technology, Faculty of information technology, Taras Shevchenko National University of Kyiv.",
@@ -419,205 +421,205 @@
                     "role": "Project Manager:"
                 }
             }
-        }
-    },
-    "SKkhnu": {
-        "title": "Simon Kuznets Kharkiv National University of Economics",
-        "people": {
-            "irynaZolotaryova": {
-                "name": "Iryna Zolotaryova",
-                "role": "Project Manager:"
-            },
-            "oleksiiBesedovskyi": {
-                "name": "Oleksii Besedovskyi",
-                "role": "Academic director:"
+        },
+        "SKkhnu": {
+            "title": "Simon Kuznets Kharkiv National University of Economics",
+            "people": {
+                "irynaZolotaryova": {
+                    "name": "Iryna Zolotaryova",
+                    "role": "Project Manager:"
+                },
+                "oleksiiBesedovskyi": {
+                    "name": "Oleksii Besedovskyi",
+                    "role": "Academic director:"
+                }
             }
-        }
-    },
-    "chnu": {
-        "title": "Chernivtsi National University",
-        "people": {
-            "heorhiiVorobets": {
-                "name": "Heorhii Vorobets",
-                "role": "Project Manager:"
+        },
+        "chnu": {
+            "title": "Chernivtsi National University",
+            "people": {
+                "heorhiiVorobets": {
+                    "name": "Heorhii Vorobets",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "ucu": {
-        "title": "Ukrainian Catholic University",
-        "people": {
-            "alinaSynytska": {
-                "name": "Alina Synytska",
-                "role": "Project Manager:"
+        },
+        "ucu": {
+            "title": "Ukrainian Catholic University",
+            "people": {
+                "alinaSynytska": {
+                    "name": "Alina Synytska",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "ksu": {
-        "title": "Kherson State University",
-        "people": {
-            "oleksandrSpivakovskiy": {
-                "name": "Oleksandr Spivakovskiy",
-                "role": "Project Manager:"
-            },
-            "allaTsapiv": {
-                "name": "Alla Tsapiv",
-                "role": "Academic director:"
+        },
+        "ksu": {
+            "title": "Kherson State University",
+            "people": {
+                "oleksandrSpivakovskiy": {
+                    "name": "Oleksandr Spivakovskiy",
+                    "role": "Project Manager:"
+                },
+                "allaTsapiv": {
+                    "name": "Alla Tsapiv",
+                    "role": "Academic director:"
+                }
             }
-        }
-    },
-    "mariupol": {
-        "title": "Mariupol State University",
-        "people": {
-            "andriyStoyka": {
-                "name": "Andriy Stoyka",
-                "role": "Project Manager:"
-            },
-            "tetyanaMarena": {
-                "name": "Tetyana Marena",
-                "role": "Academic director:"
+        },
+        "mariupol": {
+            "title": "Mariupol State University",
+            "people": {
+                "andriyStoyka": {
+                    "name": "Andriy Stoyka",
+                    "role": "Project Manager:"
+                },
+                "tetyanaMarena": {
+                    "name": "Tetyana Marena",
+                    "role": "Academic director:"
+                }
             }
-        }
-    },
-    "lu": {
-        "title": "Lviv University",
-        "people": {
-            "soonLu": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "lu": {
+            "title": "Lviv University",
+            "people": {
+                "soonLu": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "khpi": {
-        "title": "Kharkiv Polytechnic Institute",
-        "people": {
-            "soonKpi": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "khpi": {
+            "title": "Kharkiv Polytechnic Institute",
+            "people": {
+                "soonKpi": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "moeu": {
-        "title": "Ministry of Education and Science of Ukraine",
-        "people": {
-            "soonMoeus": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "moeu": {
+            "title": "Ministry of Education and Science of Ukraine",
+            "people": {
+                "soonMoeus": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "modfu": {
-        "title": "Ministry of Digital Transformation of Ukraine",
-        "people": {
-            "soonDigital": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "modfu": {
+            "title": "Ministry of Digital Transformation of Ukraine",
+            "people": {
+                "soonDigital": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "uaip": {
-        "title": "Ukrainian Association of IT Professionals",
-        "people": {
-            "soonUAIP": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "uaip": {
+            "title": "Ukrainian Association of IT Professionals",
+            "people": {
+                "soonUAIP": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "nahe": {
-        "title": "National Agency for Higher Education Quality Assurance",
-        "people": {
-            "maksymFolomieiev": {
-                "name": "Maksym Folomieiev",
-                "role": "Project Manager:"
+        },
+        "nahe": {
+            "title": "National Agency for Higher Education Quality Assurance",
+            "people": {
+                "maksymFolomieiev": {
+                    "name": "Maksym Folomieiev",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "fauen": {
-        "title": "Friedrich-Alexander University Erlangen-Nurenberg",
-        "people": {
-            "anneMarieLipphardt": {
-                "name": "Anne-Marie Lipphardt",
-                "role": "Project Manager:"
+        },
+        "fauen": {
+            "title": "Friedrich-Alexander University Erlangen-Nurenberg",
+            "people": {
+                "anneMarieLipphardt": {
+                    "name": "Anne-Marie Lipphardt",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "muni": {
-        "title": "Marasyk university",
-        "people": {
-            "michaelaKortysova": {
-                "name": "Michaela Kortyšová",
-                "role": "Project Manager:"
+        },
+        "muni": {
+            "title": "Marasyk university",
+            "people": {
+                "michaelaKortysova": {
+                    "name": "Michaela Kortyšová",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "uoc": {
-        "title": "University of Cologne",
-        "people": {
-            "soonUOC": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "uoc": {
+            "title": "University of Cologne",
+            "people": {
+                "soonUOC": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "uam": {
-        "title": "Adam Mickiewicz University in Poznań",
-        "people": {
-            "lukaszDonaj": {
-                "name": "Lukasz Donaj",
-                "role": "Project Manager:"
-            },
-            "rafalWitkowski": {
-                "name": "Rafal Witkowski",
-                "role": "Project Manager:"
+        },
+        "uam": {
+            "title": "Adam Mickiewicz University in Poznań",
+            "people": {
+                "lukaszDonaj": {
+                    "name": "Lukasz Donaj",
+                    "role": "Project Manager:"
+                },
+                "rafalWitkowski": {
+                    "name": "Rafal Witkowski",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "luh": {
-        "title": "Leibniz University Hannover",
-        "people": {
-            "soonLuh": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "luh": {
+            "title": "Leibniz University Hannover",
+            "people": {
+                "soonLuh": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "ecti": {
-        "title": "ECTI, Senior Skills Volunteering",
-        "people": {
-            "soonEcti": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "ecti": {
+            "title": "ECTI, Senior Skills Volunteering",
+            "people": {
+                "soonEcti": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "uas": {
-        "title": "Ukrainian Association of Students",
-        "people": {
-            "soonUas": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "uas": {
+            "title": "Ukrainian Association of Students",
+            "people": {
+                "soonUas": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "uesis": {
-        "title": "Ukrainian Educational and Scientific IT Society",
-        "people": {
-            "soonUesis": {
-                "name": "Information will appear soon",
-                "role": "Project Manager:"
+        },
+        "uesis": {
+            "title": "Ukrainian Educational and Scientific IT Society",
+            "people": {
+                "soonUesis": {
+                    "name": "Information will appear soon",
+                    "role": "Project Manager:"
+                }
             }
-        }
-    },
-    "tib": {
-        "title": "TIB – Leibniz Information Centre for Science and Technology and University Library",
-        "people": {
-            "nataliyaButych": {
-                "name": "Nataliya Butych",
-                "role": "Project Manager:"
-            },
-            "margretPlank": {
-                "name": "Margret Plank",
-                "role": "Academic director:"
+        },
+        "tib": {
+            "title": "TIB – Leibniz Information Centre for Science and Technology and University Library",
+            "people": {
+                "nataliyaButych": {
+                    "name": "Nataliya Butych",
+                    "role": "Project Manager:"
+                },
+                "margretPlank": {
+                    "name": "Margret Plank",
+                    "role": "Academic director:"
+                }
             }
         }
     }

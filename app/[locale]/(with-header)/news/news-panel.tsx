@@ -4,7 +4,6 @@ import React, {Suspense, useEffect, useState} from "react";
 import {NewsPreview} from "@/app/model/news";
 import {Box, Skeleton, Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
-import Grid from "@mui/material/Unstable_Grid2";
 import {create} from "zustand";
 import {useLocale} from "next-intl";
 import {useGet} from "@/app/_util/fetching-client";
@@ -14,13 +13,6 @@ import EnterAnimation from "@/app/_util/components/enter-animation";
 import screens from "@/resources/screens.json";
 
 const lcm = 12;
-
-const pageSizeFactors = {
-    xs: lcm,
-    sm: lcm / 2,
-    xl: lcm / 3,
-    "3xl": lcm / 4
-};
 
 const cache = new Map<number, NewsPreview[]>();
 
@@ -128,26 +120,40 @@ function NewsCard(
 
 function NewsListItemSkeleton() {
     return (
-        <Grid container columns={lcm} spacing="3%">
+        <Box className="gap-y-16 w-full gap-x-6 grid
+        max-xs:!gap-y-12
+        max-lg:gap-x-8
+        xl:gap-x-8
+        " sx={{
+            gridTemplateRows: "auto",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gridAutoColumns: "1fr",
+            [`@media (max-width: ${screens.lg})`]: {
+                gridTemplateColumns: "1fr 1fr",
+            },
+            [`@media (max-width: ${screens.xs})`]: {
+                gridTemplateColumns: "1fr",
+            }
+        }}>
             {Array.from({length: lcm}, (_, i) => (
                 <NewsCardSkeleton key={i}/>
             ))}
-        </Grid>
+        </Box>
     )
 }
 
 function NewsCardSkeleton() {
     return (
-        <Grid {...pageSizeFactors}>
-            <Stack className="gap-10">
-                <Skeleton variant="rectangular" width="100%" height="25vh"/>
-                <Stack className="gap-8">
-                    <Skeleton variant="text" width="100%"/>
-                    <Skeleton variant="text" width="100%"/>
-                    <Skeleton variant="text" width="100%"/>
-                </Stack>
+        <Stack className="h-full block max-w-full">
+            <Skeleton variant="rectangular" width="100%" className="!h-auto !aspect-video w-full"/>
+            <Stack className="gap-4
+                max-xs:!gap-[2dvw]
+                max-lg:gap-[1.5dvw]
+                ">
+                <Skeleton variant="text" width="20%" className="mt-10"/>
+                <Skeleton variant="text" width="100%"/>
             </Stack>
-        </Grid>
+        </Stack>
     )
 }
 

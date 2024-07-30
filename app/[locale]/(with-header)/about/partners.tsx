@@ -5,7 +5,6 @@ import partners from "@/resources/partners.json"
 import {Link} from "@/app/_localization/navigation";
 import {InfoContainer} from "@/app/_util/components/info-container";
 import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
-import screens from "@/resources/screens.json";
 
 const logoClasses = [
     "max-xs:!w-[21dvw] max-md:w-[12dvw] w-[10dvw] xl:w-[7dvw] 3xl:w-[5dvw]",
@@ -39,14 +38,7 @@ export default async function Partners() {
                         max-xs:!grid-cols-2
                         max-md:grid-cols-3
                         xl:grid-cols-5
-                        " sx={{
-                            [`@media (min-width: ${screens["2xl"]})`]: {
-                                "& >  *:nth-child(-n + 5)  > *:first-child": {
-                                    height: "15dvw !important",
-                                }
-                            },
-                        }}
-                        >
+                        ">
                             {
                                 Object.values(partners).map((partner, index) => (
                                     <Box component="li" key={index}>

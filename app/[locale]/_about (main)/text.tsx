@@ -10,7 +10,7 @@ function SectionHeading(props: { children: React.ReactNode }) {
              max-md:font-[2rem]
              max-lg:max-w-[76dvw]
              xl:max-w-[53dvw]
-             2xl:font-size-[38px] 2xl:max-w-[46dvw]
+             2xl:text-[38px] 2xl:max-w-[46dvw]
              3xl:max-w-[40dvw]
              ">
         {props.children}

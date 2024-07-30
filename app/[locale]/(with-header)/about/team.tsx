@@ -30,7 +30,7 @@ export default async function Team() {
                                }}
                                stackProps={{
                                    className: `
-                                   max-xs:!px-0 max-xs:!gap-[17dvw]
+                                   max-xs:!gap-[17dvw]
                                    xs:!p-0 xs:!gap-0
                                    `
                                }}>

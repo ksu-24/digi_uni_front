@@ -19,7 +19,7 @@ export const useHistory = create<
         readonly setAwaitEvict: (value: boolean) => void;
         readonly setCanUndo: (canUndo: boolean) => void;
         readonly setCanRedo: (canRedo: boolean) => void;
-    }>((set, getState) => ({
+    }>((set) => ({
     editor: null as any,
     setEditor: (editor) => {
         set((state) => {

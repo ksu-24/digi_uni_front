@@ -33,7 +33,6 @@ function NewsVisualization(
     }) {
     return (
         <Stack className="w-full border-t-[1px] gap-4 border-themed-gray
-        xl:border-info
         " direction="column" sx={{
             "&.MuiStack-root::before": {
                 content: "''",

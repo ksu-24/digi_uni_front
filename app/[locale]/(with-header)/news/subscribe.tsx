@@ -62,6 +62,10 @@ export default function SubscribeForm() {
                             paddingTop: "0.8dvw !important",
                             paddingBottom: "0.4dvw !important"
                         },
+                        '& > .MuiInputLabel-root': {
+                            paddingTop: "0.8dvw !important",
+                            paddingBottom: "0 !important"
+                        }
                     }}/>
                 <Typography variant="caption" lineHeight="20px" className="pt-[2dvw]
                 3xl:py-[1dvw]

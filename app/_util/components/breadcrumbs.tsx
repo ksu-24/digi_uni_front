@@ -5,7 +5,7 @@ import {Stack, Typography} from "@mui/material";
 import {useTranslations} from "next-intl";
 import EnterAnimation from "@/app/_util/components/enter-animation";
 
-export default function DynamicBackwardsNav(
+export default function Breadcrumbs(
     {
         className = ""
     }: {
