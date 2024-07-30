@@ -114,7 +114,7 @@ function FullscreenBackdrop(
         <Backdrop className="z-[5000]"
                   open={open}
                   onClick={close}>
-            <Stack direction="row" className="items-center w-full justify-between p-[3dvw] xs:px-[5dvw] md:px-[10dvw]">
+            <Stack direction="row" className="items-center justify-between p-[3dvw] xs:px-[5dvw] md:px-[10dvw]">
                 <IconButton onClick={(e) => {
                     e.stopPropagation();
                     selectPrevious();

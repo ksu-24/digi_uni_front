@@ -86,27 +86,32 @@ export default async function NewsPage({params}: {
                         </EnterAnimation>
                     </Stack>
                 </Stack>
-                <EnterAnimation direction="up" className="w-full" delay={200} fadeDuration={400} duration={1000}>
-                    <Stack
-                        className="w-full mt-[4dvw]
+                <Stack
+                    className="w-full mt-[4dvw]
                             max-lg:mt-[6dvw]
                             lg:gap-20
                             3xl:mt-[2dvw]
                             "
-                        direction="row">
-                        <Stack className="max-w-[68%] gap-[4dvw]
+                    direction="row">
+                    <Stack className="max-w-[68%] gap-[4dvw]
                             max-lg:max-w-full
                             3xl:gap-[2dvw]
                             ">
-                            <img src={response.preview.image.image} alt="Preview" width="100%"
-                                 className="mb-[1dvw] aspect-video"/>
-                            <ReadOnlyEditor editorStateJson={response.content}/>
-                            {response.gallery && <Gallery images={response.gallery.map(img => img.image)}/>}
-                            <Share/>
-                        </Stack>
-                        <OtherRecent excludeId={response.id}/>
+                        <EnterAnimation direction="up" className="w-full" delay={200} fadeDuration={400}
+                                        duration={1000}>
+                            <Stack className="gap-[4dvw]
+                                          3xl:gap-[2dvw]
+                                          ">
+                                <img src={response.preview.image.image} alt="Preview" width="100%"
+                                     className="mb-[1dvw] aspect-video"/>
+                                <ReadOnlyEditor editorStateJson={response.content}/>
+                            </Stack>
+                        </EnterAnimation>
+                        {response.gallery && <Gallery images={response.gallery.map(img => img.image)}/>}
+                        <Share/>
                     </Stack>
-                </EnterAnimation>
+                    <OtherRecent excludeId={response.id}/>
+                </Stack>
                 <SubscribeForm/>
             </Stack>
         </PageTopWrapper>
@@ -123,50 +128,54 @@ async function OtherRecent(
     const news = await getNewsPreview(6, 0);
     const translations = await getTranslations("news");
     return (
-        <Stack className="max-w-[27%] hidden
-        lg:block
-        2xl:max-w-[25%]
-        3xl:max-w-[26%]
-        ">
-            <Typography variant="h5" className="mb-6
+        <EnterAnimation
+            direction="up"
+            className="w-full max-w-[27%]
+                2xl:max-w-[25%]
+                3xl:max-w-[26%]
+                " delay={200} fadeDuration={400}
+            duration={1000}>
+            <Stack className="w-full hiddenlg:block">
+                <Typography variant="h5" className="mb-6
             3xl:mb-[1dvw]
             " letterSpacing={"-0.01rem"}>
-                {translations("otherNews")}
-            </Typography>
-            {
-                news
-                    .filter(news => news.id !== excludeId)
-                    .slice(0, 5)
-                    .map((news, index) => (
-                        <Stack key={index} className="border-y-[1px] border-info border-collaps pb-[1dvw]
+                    {translations("otherNews")}
+                </Typography>
+                {
+                    news
+                        .filter(news => news.id !== excludeId)
+                        .slice(0, 5)
+                        .map((news, index) => (
+                            <Stack key={index} className="border-y-[1px] border-info border-collaps pb-[1dvw]
                         2xl:pb-0
                         3xl:pb-[1dvw]
                         e">
-                            <Stack className="gap-[1.5dvw] pb-[3dvw]
+                                <Stack className="gap-[1.5dvw] pb-[3dvw]
                             2xl:pb-[1.5dvw]
                             3xl:gap-[1dvw] 3xl:pb-[0.5dvw]
                             " sx={{
-                                "&.MuiStack-root::before": {
-                                    content: "''",
-                                },
-                            }}>
-                                <Stack className="gap-[1dvw]
+                                    "&.MuiStack-root::before": {
+                                        content: "''",
+                                    },
+                                }}>
+                                    <Stack className="gap-[1dvw]
                                     2xl:gap-[0.5dvw]
                                     3xl:gap-2
                                     ">
-                                    <Timestamp date={news.date} textProps={{
-                                        className: "!mt-0"
-                                    }}/>
-                                    <Link href={`/news/${news.id}`}>
-                                        <Typography variant="h6" lineHeight={1.4}
-                                                    className="hover:text-themed-blue">{news.title}</Typography>
-                                    </Link>
+                                        <Timestamp date={news.date} textProps={{
+                                            className: "!mt-0"
+                                        }}/>
+                                        <Link href={`/news/${news.id}`}>
+                                            <Typography variant="h6" lineHeight={1.4}
+                                                        className="hover:text-themed-blue">{news.title}</Typography>
+                                        </Link>
+                                    </Stack>
                                 </Stack>
                             </Stack>
-                        </Stack>
-                    ))
-            }
-        </Stack>
+                        ))
+                }
+            </Stack>
+        </EnterAnimation>
     );
 }
 
