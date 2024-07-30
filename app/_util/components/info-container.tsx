@@ -44,7 +44,7 @@ export function InfoContainer(
                         }
                     },
                     ...stackProps.sx
-                }} className={`${stackProps.className ?? ''} 
+                }} className={`${(stackProps.className ?? '') + " -my-px"} 
                 justify-center border-collapse gap-[2dvw] px-[3dvw]
                 max-xs:!border-none  max-xs:gap-[11dvw]
                 max-lg:px-[5dvw] max-lg:gap-[3dvw]
