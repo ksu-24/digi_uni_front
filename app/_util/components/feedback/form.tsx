@@ -21,11 +21,16 @@ export default function FeedbackForm() {
             <Box>
                 <FormWrapper formProps={{
                     className: ` h-full items-start shrink-0 gap-[2dvw]
-                max-xs:gap-[1dvw]
-                max-lg:w-full
-                2xl:max-w-[38dvw] 2xl:gap-[1dvw]
-                3xl:-mt-[0.6rem]
-                `
+                    max-xs:gap-[1dvw]
+                    max-lg:w-full
+                    2xl:max-w-[38dvw] 2xl:gap-[1dvw]
+                    3xl:-mt-[0.6rem]
+                    `,
+                    sx: {
+                        "& .MuiInputLabel-root.Mui-focused": {
+                            paddingLeft: "12px !important"
+                        }
+                    }
                 }} onSubmit={async (e) => {
                     e.preventDefault();
                     const form = e.currentTarget;

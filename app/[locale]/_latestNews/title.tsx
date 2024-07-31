@@ -11,14 +11,17 @@ export default async function Title() {
             <SectionHeading>{translations("title")}:</SectionHeading>
             <Link href={"/news"} passHref>
                 <Stack direction="row" className="gap-[1.5dvw]
-                3xl:gap-[1vw]
-                ">
+                3xl:gap-[1vw] hover:text-themed-blue transition-[color] duration-200 ease-linear
+                " sx={{
+                    "&:hover > div": {
+                        transform: "translateX(4px)"
+                    }
+                }}>
                     <Typography variant="body1" fontSize={16}
                                 className="cursor-pointer h-fit max-md:hidden">{translations("all")}</Typography>
-                    <Box className="mt-1 w-9 h-5
+                    <Box className="mt-1 w-9 h-5 transition-transform duration-300 ease-linear
                      max-lg:mt-0.5 max-lg:w-8
                      2xl:mt-[5px]
-                     text-[#2f2f35]
                      " sx={{
                         "&::before, &::after": {
                             content: "''",
