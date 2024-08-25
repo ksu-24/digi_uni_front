@@ -132,9 +132,11 @@ const themeObj = {
                     fontSize: 16,
                     lineHeight: 1.4,
                     color: "black",
-                    paddingLeft: 10,
-                    "&.Mui-focused": {
-                        paddingLeft: 0
+                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                        paddingLeft: 10,
+                        "&.Mui-focused": {
+                            paddingLeft: 0
+                        }
                     }
                 }
             }
@@ -144,40 +146,49 @@ const themeObj = {
                 root: {
                     fontFamily: body2Font,
                     fontSize: 16,
-                    marginTop: "0 !important",
                     lineHeight: 1.4,
                     color: "black",
-                    paddingLeft: "0.75rem",
-                    paddingRight: "0.75rem",
-                    paddingTop: "0.5rem",
-                    paddingBottom: "calc(0.5rem + 0.4dvw)",
-                    "&::after": {
-                        borderColor: colors.blue + " !important",
-                        borderBottomWidth: "1px !important"
-                    },
-                    '& *': {
-                        padding: "0 !important"
-                    },
-                    [`@media (max-width: ${screens.xs})`]: {
-                        paddingLeft: "0.5rem",
-                        paddingRight: "0.5rem",
+                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                        marginTop: "0 !important",
+                        paddingLeft: "0.75rem",
+                        paddingRight: "0.75rem",
+                        paddingTop: "0.5rem",
+                        paddingBottom: "calc(0.5rem + 0.4dvw)",
+                        "&::after": {
+                            borderColor: colors.blue + " !important",
+                            borderBottomWidth: "1px !important"
+                        },
+                        '& *': {
+                            padding: "0 !important"
+                        },
+                        [`@media (max-width: ${screens.xs})`]: {
+                            paddingLeft: "0.5rem",
+                            paddingRight: "0.5rem",
+                        }
                     }
                 },
                 multiline: {
-                    paddingBottom: "calc(0.5rem + 0.4dvw + 10px)",
-                    height: "auto"
+                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                        paddingBottom: "calc(0.5rem + 0.4dvw + 10px)",
+                        height: "auto"
+                    }
                 }
             }
         },
         MuiFormControl: {
             styleOverrides: {
                 root: {
-                    paddingTop: "0",
+                    "&:not(.MuiInputLabel-outlined)": {
+                        paddingTop: "0",
+                    },
                     lineHeight: "1.42857",
                     letterSpacing: "normal",
                     "& *": {
                         lineHeight: "1.42857",
                         letterSpacing: "normal",
+                    },
+                    "& legend": {
+                        transform: "translateX(14px)"
                     }
                 }
             }
@@ -189,35 +200,40 @@ const themeObj = {
                     display: "none"
                 },
                 root: {
-                    letterSpacing: 0,
-                    paddingLeft: "0.75rem",
-                    paddingRight: "0.75rem",
-                    paddingTop: "0.5rem !important",
-                    paddingBottom: "calc(0.5rem + 0.4dvw)",
-                    [`@media (max-width: ${screens.xs})`]: {
-                        paddingLeft: "0.5rem",
-                        paddingRight: "0.5rem",
+                    "&.Mui-focused": {
+                        "&::after": {
+                            opacity: 0,
+                            width: 0
+                        },
                     },
-                    "&::after": {
-                        content: "'(optional)'",
-                        marginLeft: "0.5rem",
-                        transition: "opacity 0.25s ease-in-out, width 0s 0.25s ease-in-out",
-                    },
-                    transform: "none",
                     "&.Mui-required": {
                         "&::after": {
                             opacity: 0,
                             width: 0
                         }
                     },
-                    "&.MuiFormLabel-filled": {
-                        display: "none !important"
+                    "&:not(.Mui-focused):not(.MuiFormLabel-filled)": {
+                        transform: "translate(14px, 9px) scale(1)",
                     },
-                    "&.Mui-focused": {
+                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
                         "&::after": {
-                            opacity: 0,
-                            width: 0
-                        }
+                            content: "'(optional)'",
+                            marginLeft: "0.5rem",
+                            transition: "opacity 0.25s ease-in-out, width 0s 0.25s ease-in-out",
+                        },
+                        transform: "none",
+                        letterSpacing: 0,
+                        paddingLeft: "0.75rem",
+                        paddingRight: "0.75rem",
+                        paddingTop: "0.5rem !important",
+                        paddingBottom: "calc(0.5rem + 0.4dvw)",
+                        [`@media (max-width: ${screens.xs})`]: {
+                            paddingLeft: "0.5rem",
+                            paddingRight: "0.5rem",
+                        },
+                        "&.MuiFormLabel-filled": {
+                            display: "none !important"
+                        },
                     }
                 }
             }

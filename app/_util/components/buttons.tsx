@@ -12,7 +12,10 @@ export function PrimaryButton(
     }) {
     return (
         <Button {...props}
-                className={`${props?.className ?? ""} !bg-button-primary !capitalize hover:!bg-button-hover-primary !text-white !px-12 !h-14 gap-4 !py-0`}
+                className={`${props?.className ?? ""} !bg-button-primary 
+                !capitalize hover:!bg-button-hover-primary 
+                [&>*]:!text-white 
+                !px-12 !h-14 gap-4 !py-0`}
                 sx={{
                     "&:hover > svg": {
                         transform: "translateX(4px)"

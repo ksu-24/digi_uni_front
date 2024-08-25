@@ -16,12 +16,11 @@ export default async function Header(
 ) {
     return (
         <Box className={
-            `!hidden absolute top-0 left-0 w-full h-fit pt-[3.5dvw] px-[4.5dvw] z-40 bg-transparent
+            `!hidden absolute top-0 left-0 w-full h-fit pt-[3.5dvw] px-[4.5dvw] z-40 !bg-transparent
             max-lg:pt-[1dvw]
             md:!block 
             3xl:px-[4dvw] 3xl:pt-[2.5dvw]
-            ${className}`}
-             component="header">
+            ${className}`} component="header">
             <Stack className="justify-between items-start w-full h-full max-lg:mt-[4dvw]" direction="row">
                 {!disableImage && <Logo className={logoClassname}/>}
                 <Stack direction="row" className="justify-end items-start w-fit h-full gap-[6dvw]

@@ -66,7 +66,7 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                     supplier: () => {
                         const removeClass = useEditorClasses((state) => state.removeClass);
                         return (
-                            <Stack direction="row" className="gap-4 overflow-x-scroll" onMouseLeave={() => {
+                            <Stack direction="row" className="gap-4" onMouseLeave={() => {
                                 removeClass("invisible-selection");
                             }}>
                                 {

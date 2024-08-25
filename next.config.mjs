@@ -1,7 +1,8 @@
 import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./app/_localization/i18n.ts");
 
-const API_URL_HOST = process.env.NEXT_PUBLIC_API_URL.replace("http://", "").replace("https://", "").split(":")[0];
+const API_URL_HOST = process.env.NEXT_PUBLIC_API_URL.replace("http://", "").replace("https://", "").split(":");
+const SERVER_URL_HOST = process.env.SERVER_API_URL.replace("http://", "").replace("https://", "").split(":");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,14 +14,24 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "http",
-                hostname: API_URL_HOST,
-                port: "8080",
+                hostname: API_URL_HOST[0],
+                port: API_URL_HOST[1],
+            },
+            {
+                protocol: "https",
+                hostname: API_URL_HOST[0],
+                port: API_URL_HOST[1],
             },
             {
                 protocol: "http",
-                hostname: "localhost",
-                port: "8080",
-            }
+                hostname: SERVER_URL_HOST[0],
+                port: SERVER_URL_HOST[1],
+            },
+            {
+                protocol: "https",
+                hostname: SERVER_URL_HOST[0],
+                port: SERVER_URL_HOST[1],
+            },
         ]
     }
 };

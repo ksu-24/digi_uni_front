@@ -1,5 +1,5 @@
 import {Stack, Typography} from "@mui/material";
-import {NewsPreview} from "@/app/model/news";
+import {NewsPreview} from "@/app/types/news";
 import Timestamp from "@/app/_util/components/timestamp";
 import {Link} from "@/app/_localization/navigation";
 

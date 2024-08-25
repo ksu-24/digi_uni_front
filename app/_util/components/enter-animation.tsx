@@ -40,8 +40,8 @@ export default function EnterAnimation(
                     <Box className={animationClassname + ` translate-${offset} ` + className} style={{
                         animationDuration: `${duration}ms`,
                         animationDelay: `${delay}ms`
-                    }}>
-                        <Box className={"w-full h-full " + (grow ? "animate-grow" : "")}>
+                    }} key={new Date().toString()}>
+                        <Box className={"w-full h-full " + (grow ? "animate-grow" : "")} key={new Date().toString()}>
                             <Fade in={true} timeout={fadeDuration ?? duration} easing="ease-out" style={{
                                 transitionDelay: `${fadeDelay ?? delay}ms`
                             }}>

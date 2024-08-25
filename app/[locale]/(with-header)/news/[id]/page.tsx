@@ -3,7 +3,7 @@ import {Stack, Typography} from "@mui/material";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import {ReadOnlyEditor} from "@/app/[locale]/(with-header)/news/editor/editor";
 import Timestamp from "@/app/_util/components/timestamp";
-import {getNewsPreview} from "@/app/model/news";
+import {getNewsPreview} from "@/app/types/news";
 import {Link} from "@/app/_localization/navigation";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
 import {PageTopWrapper} from "@/app/_util/components/wrappers";

@@ -109,28 +109,28 @@ function getStyleOfSelection(selection: RangeSelection, style: string) {
             } else {
                 if ($isAutoLinkNode(node.getParent())) {
                     out:
-                    for (const styleSheet of document.styleSheets) {
-                        const rules = styleSheet.cssRules;
-                        for (const rule of rules) {
-                            if (rule.cssText.includes(".styled-autolink > *")) {
-                                const cssText = rule.cssText;
-                                const regex = new RegExp(`${style}:([^;]+);`);
-                                const match = regex.exec(cssText);
-                                if (match) {
-                                    let matchStr = match[1].trim();
-                                    if (/rgb\((\s*\d+){3}\)/.test(currentStyle)) {
-                                        matchStr = rgbToHex(matchStr);
+                        for (const styleSheet of document.styleSheets) {
+                            const rules = styleSheet.cssRules;
+                            for (const rule of rules) {
+                                if (rule.cssText.includes(".styled-autolink > *")) {
+                                    const cssText = rule.cssText;
+                                    const regex = new RegExp(`${style}:([^;]+);`);
+                                    const match = regex.exec(cssText);
+                                    if (match) {
+                                        let matchStr = match[1].trim();
+                                        if (/rgb\((\s*\d+){3}\)/.test(currentStyle)) {
+                                            matchStr = rgbToHex(matchStr);
+                                        }
+                                        if (currentStyle && matchStr !== currentStyle) {
+                                            return null;
+                                        } else {
+                                            currentStyle = matchStr;
+                                        }
                                     }
-                                    if (currentStyle && matchStr !== currentStyle) {
-                                        return null;
-                                    } else {
-                                        currentStyle = matchStr;
-                                    }
+                                    break out;
                                 }
-                                break out;
                             }
                         }
-                    }
                 } else {
                     return null;
                 }
@@ -288,21 +288,19 @@ export default function ToolbarPlugin() {
                         ))
                     }
                 </Tabs>
-                {
-                    <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
-                           id={`tabcontrol-${currentTab}`} className="w-full h-[15dvh] items-center overflow-x-scroll"
-                           sx={{
-                               "& > *": {
-                                   flex: "0 0 auto"
-                               }
-                           }}
-                           onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */}
-                        {toolbarTabs[currentTab].tools.map((item, index) =>
-                            item.__type__ === "custom" ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
-                                <ToolbarItem key={index} {...item} />
-                        )}
-                    </Stack>
-                }
+                <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
+                       id={`tabcontrol-${currentTab}`} className="w-full h-[15dvh] items-center overflow-x-scroll"
+                       sx={{
+                           "& > *": {
+                               flex: "0 0 auto"
+                           }
+                       }}
+                       onMouseLeave={() => removeClass("invisible-selection")}> { /* ensure selection is visible */}
+                    {toolbarTabs[currentTab].tools.map((item, index) =>
+                        item.__type__ === "custom" ? <CustomToolbarItem key={index} supplier={item.supplier}/> :
+                            <ToolbarItem key={index} {...item} />
+                    )}
+                </Stack>
             </Stack>
             <IconButton onClick={() => editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined)} className="self-end">
                 <Clear/>

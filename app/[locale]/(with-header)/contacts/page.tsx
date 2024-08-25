@@ -3,8 +3,21 @@ import {BaseWrapper} from "@/app/_util/components/wrappers";
 import screens from "@/resources/screens.json";
 import {Stack} from "@mui/material";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
+import {locales} from "@/app/_localization/i18n";
+import {unstable_setRequestLocale} from "next-intl/server";
 
-export default function ContactsPage() {
+export default function ContactsPage(
+    {
+        params
+    }: {
+        params: {
+            locale: string
+        }
+    }
+) {
+
+    unstable_setRequestLocale(params.locale);
+
     return (
         <BaseWrapper className="
         3xl:!px-[7.5dvw]
@@ -42,4 +55,12 @@ export default function ContactsPage() {
             </Stack>
         </BaseWrapper>
     )
+}
+
+export async function generateStaticParams() {
+    return locales.map(locale => ({
+        params: {
+            locale
+        }
+    }));
 }

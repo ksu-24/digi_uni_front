@@ -6,8 +6,6 @@ export default createMiddleware({
     defaultLocale: 'uk'
 });
 
-
-
 export const config = {
-    matcher:  ["/((?!api|public|.*\\..*|_next|favicon.ico|robots.txt).*)"]
+    matcher:  ["/((?!back|public|.*\\..*|_next|favicon.ico|robots.txt).*)"]
 };

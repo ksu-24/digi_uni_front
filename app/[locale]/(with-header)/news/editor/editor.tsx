@@ -160,7 +160,7 @@ export default function Editor(
         {
             locales.map((locale) => {
                 return locale === locales[currentLocaleIdx] &&
-                    <Stack className="gap-6 items-center my-10" role="tabpanel"
+                    <Stack className="gap-6 items-center mb-10 mt-4" role="tabpanel"
                            aria-labelledby={`tab-${locale}`} id={`tab-${locale}`} key={locale}>
                         <LexicalComposer initialConfig={{
                             ...initialConfig,

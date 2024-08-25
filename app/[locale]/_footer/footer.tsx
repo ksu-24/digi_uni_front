@@ -19,7 +19,7 @@ export default async function Footer(
         <>
             {tiles}
             <BaseWrapper component="footer"
-                         className="bg-themed-darkgray h-fit w-full justify-between
+                         className="!bg-themed-darkgray h-fit w-full justify-between
                          max-xs:!pt-[20dvw] max-xs:!pb-[4dvw]
                          xl:!pt-[10dvw]
                          3xl:!pt-[5dvw]

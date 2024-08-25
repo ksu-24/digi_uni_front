@@ -1,7 +1,7 @@
 "use client"
 
 import React, {Suspense, useEffect, useState} from "react";
-import {NewsPreview} from "@/app/model/news";
+import {NewsPreview} from "@/app/types/news";
 import {Box, Skeleton, Stack, Typography} from "@mui/material";
 import Timestamp from "@/app/_util/components/timestamp";
 import {create} from "zustand";

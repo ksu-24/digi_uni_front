@@ -41,7 +41,7 @@ export default function Nav(
                                 link[1] !== "/" && path.startsWith(link[1])) && showCurrent ? (
                                 <Fade in={true} timeout={500} easing="ease-out" style={{
                                     transitionDelay: `${index * 200}ms`
-                                }}>
+                                }} key={new Date().toString()}>
                                     <svg width="27" height="14" viewBox="0 0 220 82" fill="currentColor"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M220 35V47H208V58H196V46H0V36H196V24H208V35H220Z"
