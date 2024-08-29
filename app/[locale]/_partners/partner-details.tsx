@@ -19,7 +19,7 @@ export type Partner = {
 
 export async function PartnerDetails() {
     return (
-        <BaseWrapper className="max-xs:!px-0
+        <BaseWrapper className="max-xs:!w-full
         max-xs:pt-[6dvw]
         xl:pt-[6dvw]
         2xl:pt-[5dvw]

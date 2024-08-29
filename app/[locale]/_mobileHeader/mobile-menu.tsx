@@ -76,7 +76,8 @@ export function Menu(
                                 max-lg:gap-[3dvw]`}>
                             {Object.entries(links).map((link, index) => (
                                 <Fade in={true} key={index}>
-                                    <Link href={link[1]} className="h-full flex items-center">
+                                    <Link href={link[1]} className="h-full flex items-center"
+                                          onClick={() => setOpen(false)}>
                                         <Typography
                                             variant="h6"
                                             letterSpacing={0}

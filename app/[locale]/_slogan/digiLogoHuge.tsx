@@ -17,7 +17,7 @@ export function DigiLogoHuge() {
 
     return (
         <EnterAnimation direction="right" className="h-full min-h-full shrink-0 hidden lg:block"
-                        loaded={loaded}>
+                        loaded={loaded} duration={1000} fadeDuration={400}>
             <Box className="h-full min-h-full relative">
                 <img ref={imgRef} src={verticalLogo.src} alt="Digiuni" height="100%"
                      onLoad={() => setLoaded(true)} className="!w-auto !h-full"/>

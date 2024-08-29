@@ -1,6 +1,6 @@
 import {Stack} from "@mui/material";
 import Slogan from "@/app/[locale]/_slogan/slogan";
-import {unstable_setRequestLocale} from "next-intl/server";
+import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import {InfoTiles, SecondaryTiles} from "@/app/_util/components/tiles";
 import Erasmus from "@/app/[locale]/_about (main)/erasmus";
 import Mission from "@/app/[locale]/_mission/mission";
@@ -37,7 +37,7 @@ export default async function Main(params: { locale: string }) {
                     <Feedback/>
                 </section>
             </Stack>
-            <Footer tiles={<InfoTiles/>}/>
+            <Footer tiles={<InfoTiles/>} translations={await getTranslations("misc") as never}/>
         </>
     );
 }

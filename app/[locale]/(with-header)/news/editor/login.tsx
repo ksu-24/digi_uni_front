@@ -29,7 +29,8 @@ export default function Login() {
 
                 router.refresh();
             }} formProps={{
-                className: "h-[80dvh] items-center justify-center pt-[10dvh] px-[40dvw] gap-4"
+                className: "h-[80dvh] items-center justify-center pt-[10dvh] gap-4 " +
+                    "px-[25dvw] md:px-[40dvw] 3xl:px-[30dvw]"
             }} disableSuccessSnackbar>
                 <TextField name="username" label="Username" variant="outlined" fullWidth required/>
                 <TextField name="password" label="Password" variant="outlined" fullWidth type="password" required/>

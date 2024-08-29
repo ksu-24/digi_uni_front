@@ -84,7 +84,7 @@ async function NavBottom() {
     return (
         <Stack direction="row" className="w-full
         max-lg:pr-[1dvw]">
-            <Fade className="md:flex hidden delay-[400ms] pt-[2dvw] pb-[1.5dvw] gap-4
+            <Fade className="md:flex hidden delay-[600ms] pt-[2dvw] pb-[1.5dvw] gap-4
                 3xl:pt-[1dvw] w-full
                 " timeout={400} in={true}>
                 <Stack direction="row" component="nav">

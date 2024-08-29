@@ -11,7 +11,7 @@ export default async function ConcreteGoals() {
     const translations = await getTranslations("about.specificGoals");
     return (
         <section id="specific-goals">
-            <BaseWrapper withPadding className="max-xs:my-[18dvw] max-xs:!gap-[12dvw]">
+            <BaseWrapper withPadding className="max-xs:my-[18dvw] max-xs:!gap-[12dvw]" disableAfter>
                 <ContentWrapper>
                     <SectionTitle number={3} titleTranslationKey="about.specificGoals.enumerationCaption"/>
                     <SectionHeading>{translations("title")}</SectionHeading>

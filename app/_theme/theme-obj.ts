@@ -158,6 +158,10 @@ const themeObj = {
                             borderColor: colors.blue + " !important",
                             borderBottomWidth: "1px !important"
                         },
+                        "&:hover::before": {
+                            borderColor: colors.blue + " !important",
+                            borderBottomWidth: "1px !important"
+                        },
                         '& *': {
                             padding: "0 !important"
                         },

@@ -18,7 +18,7 @@ export default function EnterAnimation(
         children: React.ReactElement,
         className?: string,
         loaded?: boolean,
-        offset?: number,
+        offset?: number | string,
         duration?: number,
         delay?: number,
         grow?: boolean,
@@ -37,18 +37,22 @@ export default function EnterAnimation(
         <>
             {
                 loaded && (
-                    <Box className={animationClassname + ` translate-${offset} ` + className} style={{
-                        animationDuration: `${duration}ms`,
-                        animationDelay: `${delay}ms`
-                    }} key={new Date().toString()}>
-                        <Box className={"w-full h-full " + (grow ? "animate-grow" : "")} key={new Date().toString()}>
-                            <Fade in={true} timeout={fadeDuration ?? duration} easing="ease-out" style={{
-                                transitionDelay: `${fadeDelay ?? delay}ms`
-                            }}>
-                                {children}
-                            </Fade>
+                    <>
+                        { /* @ts-ignore */}
+                        <Box className={animationClassname + ` ` + className} style={{
+                            animationDuration: `${duration}ms`,
+                            animationDelay: `${delay}ms`,
+                            "--translate-offset": typeof offset === "string" ? offset : offset + "px"
+                        }} key={new Date().toString()}>
+                            <Box className={"w-full h-full " + (grow ? "animate-grow" : "")} key={new Date().toString()}>
+                                <Fade in={true} timeout={fadeDuration ?? duration} easing="ease-out" style={{
+                                    transitionDelay: `${fadeDelay ?? delay}ms`
+                                }}>
+                                    {children}
+                                </Fade>
+                            </Box>
                         </Box>
-                    </Box>
+                    </>
                 )
             }
             {

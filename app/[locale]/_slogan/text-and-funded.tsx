@@ -23,7 +23,7 @@ export async function TextAndFunded() {
             max-lg:gap-[4dvw]
             2xl:gap-[3dvw]
             ">
-                <EnterAnimation direction="down" duration={600} delay={300} offset={20}>
+                <EnterAnimation direction="down" duration={1000} delay={300} fadeDuration={500} offset={20}>
                     <Typography variant="body1" sx={{
                         [`@media (max-width: ${screens.md})`]: {
                             letterSpacing: "-0.48px"
@@ -32,13 +32,13 @@ export async function TextAndFunded() {
                         {miscTranslation("slogan")}
                     </Typography>
                 </EnterAnimation>
-                <EnterAnimation direction="up" offset={20}>
+                <EnterAnimation direction="up" offset={20} duration={1000} fadeDuration={500}>
                     <MainHeading>
                         {translation("creatingFirst")}
                     </MainHeading>
                 </EnterAnimation>
             </Stack>
-            <EnterAnimation direction="up" duration={600} delay={300} offset={20}
+            <EnterAnimation direction="up" duration={1000} delay={300} fadeDuration={400} offset={20}
                             className="h-[10%]">
                 <Box className="relative w-[52dvw] h-full
                 xs:w-[34dvw]

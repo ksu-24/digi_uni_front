@@ -37,7 +37,7 @@ export default async function LocaleLayout(
                 }}>
                     <ThemeProvider theme={theme}>
                         <MobileHeader/>
-                        <Box className="mx-auto relative w-full h-full
+                        <Box className="mx-auto relative w-full h-full overflow-x-hidden
                         3xl:w-[75dvw]
                         " sx={{
                             "& > *": {

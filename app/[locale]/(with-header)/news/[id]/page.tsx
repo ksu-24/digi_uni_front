@@ -6,7 +6,7 @@ import Timestamp from "@/app/_util/components/timestamp";
 import {getNewsPreview} from "@/app/types/news";
 import {Link} from "@/app/_localization/navigation";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
-import {PageTopWrapper} from "@/app/_util/components/wrappers";
+import {BaseWrapper, PageTopWrapper} from "@/app/_util/components/wrappers";
 import {Gallery} from "@/app/[locale]/(with-header)/news/editor/gallery";
 import screens from "@/resources/screens.json";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
@@ -41,80 +41,85 @@ export default async function NewsPage({params}: {
     };
 
     return (
-        <PageTopWrapper className="justify-between">
-            <Stack className="max-xs:gap-[4dvw]">
-                <Stack className="gap-6
+        <>
+            <PageTopWrapper className="justify-between !mb-0 !pb-0">
+                <Stack className="max-xs:gap-[4dvw]">
+                    <Stack className="gap-6
                 max-xs:mt-[10dvw]
                 xl:gap-[2dvw]
                 2xl:gap-[1.5dvw]
                 ">
-                    <Breadcrumbs/>
-                    <Stack className="gap-[2dvw]
+                        <Breadcrumbs/>
+                        <Stack className="gap-[2dvw]
                     max-xs:!gap-[6dvw]
                     max-lg:gap-[3dvw]
                     2xl:gap-[1.5dvw]
                     ">
-                        <EnterAnimation direction="up" fadeDuration={0.4} duration={1000}>
-                            <Typography
-                                variant="h1" lineHeight={1.15} letterSpacing={"-0.01rem"}
-                                className="
+                            <EnterAnimation direction="up" fadeDuration={0.4} duration={1000}>
+                                <Typography
+                                    variant="h1" lineHeight={1.15} letterSpacing={"-0.01rem"}
+                                    className="
                             max-md:!max-w-full
                             max-lg:!leading-[1.2] max-lg:max-w-[80dvw]
                             xl:text-[50px]
                             2xl:text-[54px]
                             3xl:text-[56px] 3xl:max-w-[52dvw]
                             "
-                                sx={{
-                                    fontSize: 52,
-                                    [`@media (max-width: ${screens.lg})`]: {
-                                        fontSize: 40
-                                    },
-                                    [`@media (max-width: ${screens.md})`]: {
-                                        fontSize: 34
-                                    },
-                                    [`@media (max-width: ${screens.xs})`]: {
-                                        fontSize: 32
-                                    }
-                                }}>
-                                {response.preview.title}
-                            </Typography>
-                        </EnterAnimation>
-                        <EnterAnimation direction="up" offset={0} delay={800} duration={500}>
-                            <Timestamp date={response.preview.createdAt} textProps={{
-                                className: "mt-0"
-                            }}/>
-                        </EnterAnimation>
+                                    sx={{
+                                        fontSize: 52,
+                                        [`@media (max-width: ${screens.lg})`]: {
+                                            fontSize: 40
+                                        },
+                                        [`@media (max-width: ${screens.md})`]: {
+                                            fontSize: 34
+                                        },
+                                        [`@media (max-width: ${screens.xs})`]: {
+                                            fontSize: 32
+                                        }
+                                    }}>
+                                    {response.preview.title}
+                                </Typography>
+                            </EnterAnimation>
+                            <EnterAnimation direction="up" offset={0} delay={800} duration={500}>
+                                <Timestamp date={response.preview.createdAt} textProps={{
+                                    className: "mt-0"
+                                }}/>
+                            </EnterAnimation>
+                        </Stack>
                     </Stack>
-                </Stack>
-                <Stack
-                    className="w-full mt-[4dvw]
+                    <Stack
+                        className="w-full mt-[4dvw]
                             max-lg:mt-[6dvw]
                             lg:gap-20
                             3xl:mt-[2dvw]
                             "
-                    direction="row">
-                    <Stack className="max-w-[68%] gap-[4dvw]
+                        direction="row">
+                        <Stack className="max-w-[68%] gap-[4dvw]
                             max-lg:max-w-full
                             3xl:gap-[2dvw]
                             ">
-                        <EnterAnimation direction="up" className="w-full" delay={200} fadeDuration={400}
-                                        duration={1000}>
-                            <Stack className="gap-[4dvw]
+                            <EnterAnimation direction="up" className="w-full" delay={200} fadeDuration={400}
+                                            duration={1000}>
+                                <Stack className="gap-[4dvw]
+                                          max-xs:gap-[8dvw]
                                           3xl:gap-[2dvw]
                                           ">
-                                <img src={response.preview.image.image} alt="Preview" width="100%"
-                                     className="mb-[1dvw] aspect-video"/>
-                                <ReadOnlyEditor editorStateJson={response.content}/>
-                            </Stack>
-                        </EnterAnimation>
-                        {response.gallery && <Gallery images={response.gallery.map(img => img.image)}/>}
-                        <Share/>
+                                    <img src={response.preview.image.image} alt="Preview" width="100%"
+                                         className="mb-[1dvw] aspect-video"/>
+                                    <ReadOnlyEditor editorStateJson={response.content}/>
+                                </Stack>
+                            </EnterAnimation>
+                            {response.gallery && <Gallery images={response.gallery.map(img => img.image)}/>}
+                            <Share/>
+                        </Stack>
+                        <OtherRecent excludeId={response.id}/>
                     </Stack>
-                    <OtherRecent excludeId={response.id}/>
                 </Stack>
+            </PageTopWrapper>
+            <BaseWrapper className="max-xs:!w-full">
                 <SubscribeForm/>
-            </Stack>
-        </PageTopWrapper>
+            </BaseWrapper>
+        </>
     )
 }
 
@@ -130,12 +135,12 @@ async function OtherRecent(
     return (
         <EnterAnimation
             direction="up"
-            className="w-full max-w-[27%]
+            className="w-full max-w-[27%] hidden lg:block
                 2xl:max-w-[25%]
                 3xl:max-w-[26%]
                 " delay={200} fadeDuration={400}
             duration={1000}>
-            <Stack className="w-full hiddenlg:block">
+            <Stack className="w-full">
                 <Typography variant="h5" className="mb-6
             3xl:mb-[1dvw]
             " letterSpacing={"-0.01rem"}>
@@ -182,11 +187,15 @@ async function OtherRecent(
 async function Share() {
     const translations = await getTranslations("news");
     return (
-        <Stack className="py-[2.5dvw] mb-[2.5dvw] px-[3dvw] justify-between !bg-themed-light-gray
+        <Stack className="py-[2.5dvw] mb-[2.5dvw] px-[3dvw] justify-between xs:!bg-themed-light-gray
+        max-xs:gap-[22px] max-xs:py-[6dvw]
+        max-md:mt-[12dvw]
+        max-lg:!px-0
         3xl:p-[2dvw] 3xl:mb-[2dvw]
         " direction="row">
             <Typography variant="h5" letterSpacing={"-0.01rem"} lineHeight={1.4}>{translations("share")}:</Typography>
             <Stack className="gap-[2dvw] justify-start
+            max-xs:gap-[7dvw]
             3xl:gap-[1dvw]
             " direction="row">
                 <Link href={"#"} className="transition-opacity duration-200 hover:opacity-[0.8]">

@@ -219,7 +219,7 @@ export default function NewsPanel() {
         max-lg:mt-[6dvw]
         2xl:mt-[3dvw] 2xl:mb-[5dvw]
         3xl:mb-[5dvw]
-        " delay={200} duration={600} offset={20}>
+        " delay={200} duration={1000} fadeDuration={400} offset={20}>
             <Stack ref={stackRef} className="gap-16
             max-xs:!gap-12
             ">

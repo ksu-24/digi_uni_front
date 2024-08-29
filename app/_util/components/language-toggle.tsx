@@ -18,7 +18,7 @@ export default function LanguageToggle(
     const currentPath = usePathname();
     return (
         <EnterAnimation direction="left" duration={300} delay={800} offset={0}>
-            <Stack direction="row" className="gap-6 h-8
+            <Stack direction="row" className="gap-[21px] h-8
             max-xs:!gap-[4dvw]
             max-lg:gap-[3dvw]
             ">
@@ -26,7 +26,7 @@ export default function LanguageToggle(
                     locales.map(locale => {
                         return (
                             <Link key={locale} href={currentPath} locale={locale} className="h-full flex items-center">
-                                <Typography color={locale === currentLocale ? color ?? "primary" : colors.gray.default}
+                                <Typography color={locale === currentLocale ? color ?? "primary" : "#62626a"}
                                             variant="body1" fontSize="1rem" lineHeight={1.5} fontWeight={500}
                                             letterSpacing="-0.01rem"
                                             className="transition-colors duration-200">

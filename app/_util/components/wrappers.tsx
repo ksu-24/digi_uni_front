@@ -29,30 +29,37 @@ export function BaseWrapper(
         disableAfter?: boolean
     }
 ) {
+
+    const bgs = [] as string[];
+    for (const match of (className ?? "").matchAll(/bg-[a-z-]+/g)) {
+        bgs.push(match[0]);
+    }
+
     return (
-        // if px changed, don't forget to change in defaultPx
-        <Stack bgcolor={bgcolor} component={component ?? "div"} className={`${className} w-full h-fit
-         ${!disableGap && " max-xs:gap-[20dvw] gap-[12dvw] 2xl:gap-[10dvw] 3xl:gap-[7dvw]"} px-[8dvw]
-         max-lg:px-[5dvw]
-         xl:px-[10dvw]
-         3xl:px-[8.5dvw]
+        <Box bgcolor={bgcolor} className={"w-full h-fit " + bgs.join(" ")}>
+            <Stack component={component ?? "div"} className={`${className}
+         ${!disableGap && " max-xs:gap-[20dvw] gap-[12dvw] 2xl:gap-[10dvw] 3xl:gap-[7dvw]"} w-[84dvw] mx-auto
+         max-lg:w-[90dvw]
+         xl:w-[80dvw]
+         3xl:w-[58dvw]
          `} direction={direction} dangerouslySetInnerHTML={innerHtml ? {
-            __html: innerHtml
-        } : undefined} sx={{
-            ...(withPadding && !disableGap && !disableBeforeAfter && {
-                "&::before": {
-                    content: "''"
-                },
-                ...(!disableAfter && {
-                    "&::after": {
+                __html: innerHtml
+            } : undefined} sx={{
+                ...(withPadding && !disableGap && !disableBeforeAfter && {
+                    "&::before": {
                         content: "''"
-                    }
-                })
-            }),
-            ...sx
-        }}>
-            {children}
-        </Stack>
+                    },
+                    ...(!disableAfter && {
+                        "&::after": {
+                            content: "''"
+                        }
+                    })
+                }),
+                ...sx
+            }}>
+                {children}
+            </Stack>
+        </Box>
     );
 }
 

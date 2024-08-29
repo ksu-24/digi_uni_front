@@ -6,6 +6,7 @@ import {PrimaryButton} from "@/app/_util/components/buttons";
 import {post} from "@/app/_util/fetching";
 import FormWrapper, {FormFieldsValidationError} from "@/app/_util/components/form-wrapper";
 import {useTranslations} from "next-intl";
+import screens from "@/resources/screens.json";
 
 export default function SubscribeForm() {
     const translations = useTranslations("news.subscribeForm");
@@ -14,6 +15,8 @@ export default function SubscribeForm() {
         <FormWrapper formProps={{
             bgcolor: "secondary.main",
             className: `w-full md:!flex-row my-[12dvw] px-[4.5dvw] p-[5dvw] translate-y-[-2dvw] justify-between
+            max-xs:pt-[20dvw] max-xs:pb-[24dvw] max-xs:px-[5dvw] max-xs:!mb-0
+            max-md:gap-[7dvw]
             xl:mt-[8dvw] xl:max-w-[80dvw] xl:py-[5dvw]
             2xl:mb-[10dvw] 2xl:px-[6dvw] 2xl:py-[5dvw]
             3xl:my-[7dvw] 3xl:px-[5dvw] 3xl:py-[4dvw]
@@ -43,6 +46,7 @@ export default function SubscribeForm() {
                 <Typography variant="body2">{translations("subscribeToNews")}</Typography>
             </Stack>
             <Stack className="w-full max-w-[30dvw] mb-[15px]
+            max-xs:!max-w-none max-xs:gap-[4dvw]
             3xl:max-w-[21dvw]
             ">
                 <TextField
@@ -65,6 +69,14 @@ export default function SubscribeForm() {
                         '& > .MuiInputLabel-root': {
                             paddingTop: "0.8dvw !important",
                             paddingBottom: "0 !important"
+                        },
+                        "& > .MuiInputBase-root": {
+                            height: "38px"
+                        },
+                        [`@media (max-width: ${screens.xs})`]: {
+                            "& > .MuiInputBase-root": {
+                                paddingBottom: "2dvw !important"
+                            }
                         }
                     }}/>
                 <Typography variant="caption" lineHeight="20px" className="pt-[2dvw]

@@ -1,7 +1,6 @@
 import {Box, Stack} from "@mui/material";
 import uaPartners from "@/public/images/main/slogan/ua-partners.svg";
 import euPartners from "@/public/images/main/slogan/eu-partners.svg";
-import digiuniLoading from "@/public/images/main/slogan/digiuni-loading.png";
 import EnterAnimation from "@/app/_util/components/enter-animation";
 import Image from "next/image";
 
@@ -11,16 +10,16 @@ function Folders() {
         xl:gap-[3dvw]
         3xl:gap-[2dvw]
         ">
-            <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={700}
-                            duration={500}>
+            <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={500}
+                            duration={1000} offset={"0.6dvw"}>
                 <Box className="relative w-full" style={{
                     aspectRatio: `${uaPartners.width}/${uaPartners.height}`
                 }}>
                     <Image src={uaPartners} alt="UA partners" fill className="!h-auto objetct-contain"/>
                 </Box>
             </EnterAnimation>
-            <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={900}
-                            duration={500}>
+            <EnterAnimation direction="up" className="xl:w-[5dvw] 3xl:w-[3.5dvw]" fadeDuration={300} delay={700}
+                            duration={1000} offset={"0.6dvw"}>
                 <Box className="w-full relative" style={{
                     aspectRatio: `${euPartners.width}/${euPartners.height}`
                 }}>
@@ -40,7 +39,7 @@ export function DigiuniLoading() {
             ">
             <Folders/>
             <EnterAnimation offset={0} duration={600} delay={200} fadeDuration={400} direction="up" grow>
-                <img src={digiuniLoading.src} alt="Digiuni Loading" className="w-[23dvw] 3xl:w-[18dvw]"/>
+                <img src={"/images/main/slogan/digiuni-loading.svg"} alt="Digiuni Loading" className="w-[23dvw] 3xl:w-[18dvw]"/>
             </EnterAnimation>
         </Stack>
     )

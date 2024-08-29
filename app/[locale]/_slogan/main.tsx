@@ -32,9 +32,9 @@ export default async function Main() {
                         fill="#F4F5D1"/>
                 </svg>
             </Box>
-            <Stack direction="row" className="items-center justify-start w-full
+            <Stack direction="row" className="items-center justify-start
             max-lg:pt-[31px]
-            xl:justify-between
+            xl:justify-between xl:gap-[5dvw]
             2xl:gap-[6dvw] 2xl:w-auto
             3xl:gap-[4dvw]">
                 <TextAndFunded/>

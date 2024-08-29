@@ -19,9 +19,7 @@ export default function ContactsPage(
     unstable_setRequestLocale(params.locale);
 
     return (
-        <BaseWrapper className="
-        3xl:!px-[7.5dvw]
-        ">
+        <BaseWrapper className="3xl:!w-[60dvw]">
             <Stack className="w-full
             max-xs:gap-[4dvw]
             xl:pt-[12dvw] xl:pb-[4dvw]
@@ -45,8 +43,8 @@ export default function ContactsPage(
                     <Breadcrumbs/>
                     <FeedbackForm captionVariant="h1" className="!mt-6 pb-[12dvw] justify-start
                     2xl:pb-[10dvw]
-                    3xl:pb-[7dvw]
-                    " captionTextClassName="text-[43px]
+                    3xl:pb-[7dvw] 3xl:w-[58dvw]
+                    " captionTextClassName="text-[43px] tracking-[-0.01rem]
                     xl:!text-[45px]
                     max-xs:!text-[33px]
                     max-md:text-[38px]

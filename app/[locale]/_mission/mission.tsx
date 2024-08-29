@@ -7,7 +7,7 @@ import {SectionTitle} from "@/app/_util/components/text-templates";
 export default async function Mission() {
     return (
         <Box bgcolor="info.main">
-            <BaseWrapper withPadding className="mr-[5dvw] !my-0
+            <BaseWrapper withPadding className="!my-0
             max-lg:px-[6.5dvw]
             ">
                 <Stack className="gap-16

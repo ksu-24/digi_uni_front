@@ -16,7 +16,7 @@ export default function Breadcrumbs(
     const translations = useTranslations("nav");
     return (
         <EnterAnimation direction="up" offset={0} duration={400} delay={800}>
-            <Stack direction="row" className={className + ` backwards-nav text-themed-gray h-[30px] items-start
+            <Stack direction="row" className={className + ` backwards-nav text-themed-gray items-start
                 max-lg:h-[21px]
                 `}
             >
@@ -26,7 +26,7 @@ export default function Breadcrumbs(
                             <Link href={"/" + segments.slice(0, index + 1).map(s => {
                                 return s === "main" ? "" : s;
                             }).join("/")} key={index} className="h-full flex items-center">
-                                <Typography variant="caption" className="hover:text-themed-darker-gray"
+                                <Typography variant="caption" className="hover:text-[#62626a]"
                                             lineHeight={1.5} letterSpacing={0}>
                                     {translations(segment as never) || segment}
                                 </Typography>

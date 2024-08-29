@@ -16,7 +16,7 @@ export default function FeedbackForm() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     return !isSubmitted ? (
         <EnterAnimation
-            direction="up" offset={20} delay={0.4} fadeDuration={0.4} duration={1000}
+            direction="up" offset={20} delay={400} fadeDuration={400} duration={1000}
             className="w-[40%] h-full max-lg:w-full">
             <Box>
                 <FormWrapper formProps={{

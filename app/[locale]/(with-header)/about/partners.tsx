@@ -18,7 +18,7 @@ export default async function Partners() {
     const partnerTranslations = await getTranslations("partners");
     return (
         <section id="partners">
-            <BaseWrapper withPadding disableAfter className="!p-0">
+            <BaseWrapper withPadding disableAfter className="!p-0 !w-full">
                 <Box>
                     <BaseWrapper>
                         <ContentWrapper>

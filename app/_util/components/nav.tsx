@@ -54,7 +54,7 @@ export default function Nav(
                                 </Fade>
                             ) : <Box className={!tight ? "w-[27px] h-[14px]" : "hidden"}/>
                         }
-                        <EnterAnimation direction="left" duration={500} delay={index * 200} offset={20} key={index}
+                        <EnterAnimation direction="left" duration={1000} delay={index * 100} offset={20} key={index}
                                         className={!tight ? "h-8" : undefined}>
                             <Link href={link[1]} className="h-full flex items-center">
                                 <Typography variant="h6"

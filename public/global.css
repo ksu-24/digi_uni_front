@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     color: #16161D;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 .backwards-nav {}
@@ -88,18 +97,6 @@ html {
     }
 }
 
-.translate-30 {
-    --translate-offset: 30px;
-}
-
-.translate-20 {
-    --translate-offset: 20px;
-}
-
-.translate-0 {
-    --translate-offset: 0px;
-}
-
 @keyframes scroll-right {
     0% {
         transform: translateX(0);
@@ -179,4 +176,21 @@ html {
         transform: scaleY(1);
     }
 }
+
+@media screen and (max-width: 991px) {
+
+    .h3-media {
+        font-size: 24px !important;
+    }
+
+}
+
+@media screen and (max-width: 479px) {
+
+    .h3-media {
+        font-size: 22px !important;
+    }
+
+}
+
 

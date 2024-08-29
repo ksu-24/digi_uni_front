@@ -7,14 +7,15 @@ import screens from "@/resources/screens.json"
 import EnterAnimation from "@/app/_util/components/enter-animation";
 
 
-export default async function Footer(
+export default function Footer(
     {
-        tiles
+        tiles,
+        translations
     }: {
-        tiles: React.ReactNode
+        tiles: React.ReactNode,
+        translations: (key: string) => string
     }
 ) {
-    const translations = await getTranslations("misc");
     return (
         <>
             {tiles}
