@@ -2,11 +2,9 @@ import {$getSelection, $isRangeSelection, RangeSelection} from "lexical";
 import {$patchStyleText} from "@lexical/selection";
 import themeObj from "@/app/_theme/theme-obj";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import React, {useState} from "react";
-import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
+import React from "react";
 import {Button, Typography} from "@mui/material";
-import {undoIfNeeded, useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
-import {$isClassNameTextNode} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
+import {$isClassNameTextNode} from "@/app/[locale]/(with-header)/admin/editor/_generic-nodes/classname-text-node";
 
 export enum TextLevel {
     H1 = 'h1',
@@ -73,28 +71,13 @@ export function PresetButton(
 
     }) {
     const editor = useLexicalComposerContext()[0];
-    const [clicked, setClicked] = useState(false);
-    const {addClass, removeClass} = useEditorClasses((state) => {
-        return {
-            addClass: state.addClass,
-            removeClass: state.removeClass
-        };
-    });
-    const {clearSelectionColorTimeout, setSelectionColorTimeout} = useToolbarState((state) => {
-        return {
-            clearSelectionColorTimeout: state.clearSelectionBackgroundTimeout,
-            setSelectionColorTimeout: state.setSharedSelectionBackgroundTimeout
-        };
-    });
 
-    function applyStylesToSelection(onUpdate?: () => void) {
+    function applyStylesToSelection() {
         editor.update(() => {
             const selection = $getSelection();
             if ($isRangeSelection(selection)) {
                 $applyTextStyles(selection, TextLevel[level]);
             }
-        }, {
-            onUpdate
         });
 
         editor.update(() => {
@@ -110,19 +93,7 @@ export function PresetButton(
     }
 
     return (
-        <Button className="min-w-fit" onClick={() => {
-            setClicked(true);
-        }} onMouseEnter={() => {
-            clearSelectionColorTimeout();
-            addClass("invisible-selection");
-            applyStylesToSelection();
-        }} onMouseLeave={() => {
-            setSelectionColorTimeout(setTimeout(() => {
-                removeClass("invisible-selection");
-            }, 200));
-            undoIfNeeded(editor, clicked, setClicked);
-        }}
-        >
+        <Button className="min-w-fit" onClick={applyStylesToSelection}>
             <Typography variant={level.toLowerCase() as never}>
                 {textLevelToOption(TextLevel[level])}
             </Typography>

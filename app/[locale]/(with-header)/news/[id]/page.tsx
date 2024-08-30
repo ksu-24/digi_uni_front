@@ -1,13 +1,13 @@
 import {get} from "@/app/_util/fetching";
 import {Stack, Typography} from "@mui/material";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
-import {ReadOnlyEditor} from "@/app/[locale]/(with-header)/news/editor/editor";
+import {ReadOnlyEditor} from "@/app/[locale]/(with-header)/admin/editor/editor";
 import Timestamp from "@/app/_util/components/timestamp";
 import {getNewsPreview} from "@/app/types/news";
 import {Link} from "@/app/_localization/navigation";
 import SubscribeForm from "@/app/[locale]/(with-header)/news/subscribe";
 import {BaseWrapper, PageTopWrapper} from "@/app/_util/components/wrappers";
-import {Gallery} from "@/app/[locale]/(with-header)/news/editor/gallery";
+import {Gallery} from "@/app/[locale]/(with-header)/admin/editor/gallery";
 import screens from "@/resources/screens.json";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import EnterAnimation from "@/app/_util/components/enter-animation";

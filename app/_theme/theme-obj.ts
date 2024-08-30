@@ -132,11 +132,14 @@ const themeObj = {
                     fontSize: 16,
                     lineHeight: 1.4,
                     color: "black",
-                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                    "&:not(.MuiInputLabel-outlined)": {
                         paddingLeft: 10,
                         "&.Mui-focused": {
                             paddingLeft: 0
-                        }
+                        },
+                        "&.MuiFormLabel-filled": {
+                            display: "none"
+                        },
                     }
                 }
             }
@@ -147,8 +150,9 @@ const themeObj = {
                     fontFamily: body2Font,
                     fontSize: 16,
                     lineHeight: 1.4,
+                    letterSpacing: "0 !important",
                     color: "black",
-                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                    "&:not(.MuiInputLabel-outlined)": {
                         marginTop: "0 !important",
                         paddingLeft: "0.75rem",
                         paddingRight: "0.75rem",
@@ -172,7 +176,7 @@ const themeObj = {
                     }
                 },
                 multiline: {
-                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                    "&:not(.MuiInputLabel-outlined)": {
                         paddingBottom: "calc(0.5rem + 0.4dvw + 10px)",
                         height: "auto"
                     }
@@ -216,16 +220,13 @@ const themeObj = {
                             width: 0
                         }
                     },
-                    "&:not(.Mui-focused):not(.MuiFormLabel-filled)": {
-                        transform: "translate(14px, 9px) scale(1)",
-                    },
-                    "&:not(.MuiInputLabel-outlined):not(.MuiFormLabel-filled)": {
+                    "&:not(.MuiInputLabel-outlined)": {
                         "&::after": {
                             content: "'(optional)'",
                             marginLeft: "0.5rem",
                             transition: "opacity 0.25s ease-in-out, width 0s 0.25s ease-in-out",
                         },
-                        transform: "none",
+                        transform: "translateY(1px) !important",
                         letterSpacing: 0,
                         paddingLeft: "0.75rem",
                         paddingRight: "0.75rem",
@@ -234,9 +235,6 @@ const themeObj = {
                         [`@media (max-width: ${screens.xs})`]: {
                             paddingLeft: "0.5rem",
                             paddingRight: "0.5rem",
-                        },
-                        "&.MuiFormLabel-filled": {
-                            display: "none !important"
                         },
                     }
                 }

@@ -10,23 +10,20 @@ import {
     FORMAT_TEXT_COMMAND,
     LexicalEditor,
     RangeSelection,
-    REDO_COMMAND,
     SELECTION_CHANGE_COMMAND,
-    UNDO_COMMAND,
 } from 'lexical';
 
 import {$patchStyleText} from '@lexical/selection';
 import React, {useCallback, useEffect, useState} from 'react';
 import {IconButton, Stack, Tab, Tabs} from "@mui/material";
 import {create} from "zustand";
-import {ToolbarItem} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
-import {getCssProp, getCssValue, useToolbarTabs} from "@/app/[locale]/(with-header)/news/editor/toolbar-tabs";
+import {ToolbarItem} from "@/app/[locale]/(with-header)/admin/editor/toolbar-item";
+import {getCssProp, getCssValue, useToolbarTabs} from "@/app/[locale]/(with-header)/admin/editor/toolbar-tabs";
 import ClassnameTextNode, {
     $isClassNameTextNode
-} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
-import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
+} from "@/app/[locale]/(with-header)/admin/editor/_generic-nodes/classname-text-node";
+import {useEditorClasses} from "@/app/[locale]/(with-header)/admin/editor/editor";
 import {$isAutoLinkNode} from "@lexical/link";
-import {useHistory} from "@/app/[locale]/(with-header)/news/editor/_plugins/history-plugin";
 import {Clear} from "@mui/icons-material";
 import {useTranslations} from "next-intl";
 
@@ -109,28 +106,28 @@ function getStyleOfSelection(selection: RangeSelection, style: string) {
             } else {
                 if ($isAutoLinkNode(node.getParent())) {
                     out:
-                        for (const styleSheet of document.styleSheets) {
-                            const rules = styleSheet.cssRules;
-                            for (const rule of rules) {
-                                if (rule.cssText.includes(".styled-autolink > *")) {
-                                    const cssText = rule.cssText;
-                                    const regex = new RegExp(`${style}:([^;]+);`);
-                                    const match = regex.exec(cssText);
-                                    if (match) {
-                                        let matchStr = match[1].trim();
-                                        if (/rgb\((\s*\d+){3}\)/.test(currentStyle)) {
-                                            matchStr = rgbToHex(matchStr);
-                                        }
-                                        if (currentStyle && matchStr !== currentStyle) {
-                                            return null;
-                                        } else {
-                                            currentStyle = matchStr;
-                                        }
+                    for (const styleSheet of document.styleSheets) {
+                        const rules = styleSheet.cssRules;
+                        for (const rule of rules) {
+                            if (rule.cssText.includes(".styled-autolink > *")) {
+                                const cssText = rule.cssText;
+                                const regex = new RegExp(`${style}:([^;]+);`);
+                                const match = regex.exec(cssText);
+                                if (match) {
+                                    let matchStr = match[1].trim();
+                                    if (/rgb\((\s*\d+){3}\)/.test(currentStyle)) {
+                                        matchStr = rgbToHex(matchStr);
                                     }
-                                    break out;
+                                    if (currentStyle && matchStr !== currentStyle) {
+                                        return null;
+                                    } else {
+                                        currentStyle = matchStr;
+                                    }
                                 }
+                                break out;
                             }
                         }
+                    }
                 } else {
                     return null;
                 }
@@ -152,13 +149,9 @@ export default function ToolbarPlugin() {
     const [color, setColor] = useState("black");
     const [backgroundColor, setBackgroundColor] = useState("white");
     const [currentTab, setCurrentTab] = useState(0);
+    const canUndo = true;
+    const canRedo = true;
     const setToolbarState = useToolbarState((state) => state.setState);
-    const {canUndo, canRedo} = useHistory((state) => {
-        return {
-            canUndo: state.canUndo,
-            canRedo: state.canRedo,
-        };
-    });
 
     useEffect(() => {
         setToolbarState({
@@ -278,8 +271,8 @@ export default function ToolbarPlugin() {
     const translations = useTranslations("editor");
 
     return (
-        <Stack direction="row" className="w-full">
-            <Stack className="w-full gap-4">
+        <Stack direction="row" className="w-full max-w-full justify-between">
+            <Stack className="gap-4 w-full">
                 <Tabs value={currentTab} onChange={handleChange}>
                     {
                         toolbarTabs.map((tab, index) => (
@@ -289,7 +282,7 @@ export default function ToolbarPlugin() {
                     }
                 </Tabs>
                 <Stack direction="row" spacing={1} aria-labelledby={`tab-${currentTab}`}
-                       id={`tabcontrol-${currentTab}`} className="w-full h-[15dvh] items-center overflow-x-scroll"
+                       id={`tabcontrol-${currentTab}`} className="items-center w-full overflow-x-auto"
                        sx={{
                            "& > *": {
                                flex: "0 0 auto"
@@ -321,20 +314,21 @@ export function clearLevel(editor: LexicalEditor) {
 }
 
 export function undoIfNeeded(editor: LexicalEditor, clicked: boolean, setClicked: (value: (((prevState: boolean) => boolean) | boolean)) => void, allowEmptySelection = false) {
-    let shouldUndo = true;
-    const setAwaitEvict = useHistory.getState().setAwaitEvict;
-    if (!allowEmptySelection) {
-        editor.update(() => {
-            const selection = $getSelection();
-            if (selection?.getTextContent().length === 0 ?? true) {
-                shouldUndo = false;
-            }
-        });
-    }
-    if (!clicked && shouldUndo) {
-        editor.dispatchCommand(UNDO_COMMAND, undefined);
-        setAwaitEvict(true);
-        editor.dispatchCommand(REDO_COMMAND, undefined);
-    }
-    setClicked(false);
+    // let shouldUndo = true;
+    // const setAwaitEvict = useHistory.getState().setAwaitEvict;
+    // if (!allowEmptySelection) {
+    //     editor.update(() => {
+    //         const selection = $getSelection();
+    //         if (selection?.getTextContent().length === 0 ?? true) {
+    //             shouldUndo = false;
+    //         }
+    //     });
+    // }
+    // if (!clicked && shouldUndo) {
+    //     console.log("undoing");
+    //     editor.dispatchCommand(UNDO_COMMAND, undefined);
+    //     setAwaitEvict(true);
+    //     editor.dispatchCommand(REDO_COMMAND, undefined);
+    // }
+    // setClicked(false);
 }

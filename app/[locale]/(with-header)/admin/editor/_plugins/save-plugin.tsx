@@ -3,7 +3,7 @@ import {patch, post} from "@/app/_util/fetching";
 import {useRouter} from "@/app/_localization/navigation";
 import React from "react";
 import {locales} from "@/app/_localization/i18n";
-import {Localization} from "@/app/[locale]/(with-header)/news/editor/editor";
+import {Localization} from "@/app/[locale]/(with-header)/admin/editor/editor";
 
 export default function SavePlugin(
     {

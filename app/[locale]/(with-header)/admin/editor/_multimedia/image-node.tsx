@@ -1,6 +1,6 @@
 import MultimediaNode, {
     SerializedMultimediaNode
-} from "@/app/[locale]/(with-header)/news/editor/_multimedia/multimedia-node";
+} from "@/app/[locale]/(with-header)/admin/editor/_multimedia/multimedia-node";
 import {NodeKey} from "lexical";
 import React, {useEffect, useRef, useState} from "react";
 import {Box} from "@mui/material";

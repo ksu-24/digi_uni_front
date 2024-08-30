@@ -6,7 +6,7 @@ import {SectionTitle} from "@/app/_util/components/text-templates";
 
 export default async function LatestNews() {
     return (
-        <BaseWrapper className="bg-themed-light-gray w-full !my-0
+        <BaseWrapper className="!bg-themed-light-gray w-full !my-0
         max-xs:!gap-[20dvw]
         xl:gap-[12dvw]" withPadding>
             <ContentWrapper className="

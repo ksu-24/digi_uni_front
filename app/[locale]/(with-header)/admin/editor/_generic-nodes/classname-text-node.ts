@@ -1,5 +1,5 @@
 import {DOMExportOutput, EditorConfig, LexicalEditor, LexicalNode, SerializedTextNode, TextNode} from "lexical";
-import {TextLevel} from "@/app/[locale]/(with-header)/news/editor/preset-button";
+import {TextLevel} from "@/app/[locale]/(with-header)/admin/editor/preset-button";
 
 export default class ClassnameTextNode extends TextNode {
     // first position is reserved for media class

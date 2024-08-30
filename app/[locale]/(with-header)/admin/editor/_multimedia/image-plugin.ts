@@ -4,9 +4,9 @@ import {$wrapNodeInElement, mergeRegister} from "@lexical/utils";
 import ImageNode, {
     $createImageNode,
     ImagePayload
-} from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-node";
+} from "@/app/[locale]/(with-header)/admin/editor/_multimedia/image-node";
 import {$createParagraphNode, $insertNodes, $isRootOrShadowRoot, createCommand, LexicalCommand} from "lexical";
-import {COMMAND_PRIORITY} from "@/app/[locale]/(with-header)/news/editor/editor";
+import {COMMAND_PRIORITY} from "@/app/[locale]/(with-header)/admin/editor/editor";
 
 export type InsertImagePayload = Readonly<ImagePayload>;
 

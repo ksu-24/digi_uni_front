@@ -15,7 +15,7 @@ import {
     TextField
 } from "@mui/material";
 import {ChromePicker} from "react-color";
-import {useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
+import {useToolbarState} from "@/app/[locale]/(with-header)/admin/editor/toolbar";
 
 export function ColorPicker(
     {
@@ -79,24 +79,18 @@ export function ColorPicker(
                     flexShrink: 2,
                     flexDirection: "column"
                 },
-                "::after": {
-                    content: "''",
-                    borderBottom: "1px solid black",
-                    width: "100%",
-                    alignSelf: "end"
-                }
             }} className="min-h-0 h-full flex flex-col items-center justify-center gap-1 !px-0 mx-4">
                 <FormControl className="w-fit !cursor-pointer">
                     <InputLabel shrink required htmlFor="textcolor">{translations(styleProp as never)}</InputLabel>
                     <TextField sx={{
-                        ".MuiInputBase-root > *": {
+                        ".MuiInputBase-root > *:first-child": {
                             cursor: "pointer",
                             backgroundColor: current,
                             backgroundClip: "content-box",
                             padding: 0,
-                            margin: "16.5px 14px 0 14px",
+                            marginTop: "6px",
                         }
-                    }} name="textcolor" className="w-40"/>
+                    }} name="textcolor" variant="standard" className="w-40"/>
                 </FormControl>
             </AccordionSummary>
             <AccordionDetails className="w-fit h-fit">
@@ -110,9 +104,9 @@ export function ColorPicker(
                                 }
                             }
                         }}
-                        onChange={(e) => setCurrentAndUpdate(e.hex)}
+                        onChange={(e) => setCurrent(e.hex)}
                         onChangeComplete={(e) => {
-                            setPrevColors([e.hex, ...prevColors].slice(0, 7));
+                            setPrevColors([e.hex, ...prevColors].slice(0, 5));
                             setCurrentAndUpdate(e.hex)
                         }}>
                     </ChromePicker>

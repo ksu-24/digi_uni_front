@@ -11,9 +11,8 @@ import {
     REDO_COMMAND,
     UNDO_COMMAND
 } from "lexical";
-import {useEditorClasses} from "@/app/[locale]/(with-header)/news/editor/editor";
 import {Backdrop, Box, Stack} from "@mui/material";
-import {PresetButton, TextLevel} from "@/app/[locale]/(with-header)/news/editor/preset-button";
+import {PresetButton, TextLevel} from "@/app/[locale]/(with-header)/admin/editor/preset-button";
 import {
     FormatAlignCenter,
     FormatAlignJustify,
@@ -28,15 +27,15 @@ import {
     StrikethroughS,
     Undo
 } from "@mui/icons-material";
-import {AutocompleteToolbarItem} from "@/app/[locale]/(with-header)/news/editor/autocomplete-toolbarItem";
+import {AutocompleteToolbarItem} from "@/app/[locale]/(with-header)/admin/editor/autocomplete-toolbarItem";
 import fonts from "@/resources/fonts.json";
 import React from "react";
-import {clearLevel, useToolbarState} from "@/app/[locale]/(with-header)/news/editor/toolbar";
-import {ToolbarItemProps} from "@/app/[locale]/(with-header)/news/editor/toolbar-item";
+import {useToolbarState} from "@/app/[locale]/(with-header)/admin/editor/toolbar";
+import {ToolbarItemProps} from "@/app/[locale]/(with-header)/admin/editor/toolbar-item";
 import {ImageDropzone} from "@/app/_util/components/image-dropzone";
-import {INSERT_IMAGE_COMMAND} from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-plugin";
+import {INSERT_IMAGE_COMMAND} from "@/app/[locale]/(with-header)/admin/editor/_multimedia/image-plugin";
 import {$createQuoteNode, $isQuoteNode} from "@lexical/rich-text";
-import {ColorPicker} from "@/app/[locale]/(with-header)/news/editor/color-picker";
+import {ColorPicker} from "@/app/[locale]/(with-header)/admin/editor/color-picker";
 import {$isAutoLinkNode, AutoLinkNode} from "@lexical/link";
 import {$wrapNodeInElement} from "@lexical/utils";
 
@@ -64,10 +63,9 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                 {
                     __type__: "custom",
                     supplier: () => {
-                        const removeClass = useEditorClasses((state) => state.removeClass);
                         return (
                             <Stack direction="row" className="gap-4" onMouseLeave={() => {
-                                removeClass("invisible-selection");
+
                             }}>
                                 {
                                     // @ts-ignore
@@ -90,7 +88,8 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
                     },
-                    active: state.isBold
+                    active: state.isBold,
+
                 },
                 {
                     __type__: "default",
@@ -99,7 +98,8 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
                     },
-                    active: state.isItalic
+                    active: state.isItalic,
+
                 },
                 {
                     __type__: "default",
@@ -108,7 +108,8 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
                     },
-                    active: state.isUnderline
+                    active: state.isUnderline,
+
                 },
                 {
                     __type__: "default",
@@ -117,7 +118,8 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                     onClick: () => {
                         editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
                     },
-                    active: state.isStrikethrough
+                    active: state.isStrikethrough,
+
                 },
                 {
                     __type__: "default",
@@ -165,55 +167,47 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                         })
                     },
                     active: true,
-                    disablePreview: true
+
                 },
                 {
                     __type__: "default",
                     title: 'textFormating.alignLeft',
                     icon: <FormatAlignLeft fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left'),
-                    undoOnEmptySelection: true,
-                    disablePreview: true
                 },
                 {
                     __type__: "default",
                     title: 'textFormating.alignCenter',
                     icon: <FormatAlignCenter fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center'),
-                    undoOnEmptySelection: true,
-                    disablePreview: true
                 },
                 {
                     __type__: "default",
                     title: 'textFormating.alignRight',
                     icon: <FormatAlignRight fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right'),
-                    undoOnEmptySelection: true,
-                    disablePreview: true
                 },
                 {
                     __type__: "default",
                     title: 'textFormating.alignJustify',
                     icon: <FormatAlignJustify fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify'),
-                    undoOnEmptySelection: true,
-                    disablePreview: true
                 },
                 {
                     __type__: "default",
                     title: 'textFormating.undo',
                     icon: <Undo fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(UNDO_COMMAND, undefined),
-                    onMouseLeave: () => editor.dispatchCommand(REDO_COMMAND, undefined),
-                    disabled: !state.canUndo
+                    disabled: !state.canUndo,
+
                 },
                 {
                     __type__: "default",
                     title: 'textFormating.redo',
                     icon: <Redo fontSize="small"/>,
                     onClick: () => editor.dispatchCommand(REDO_COMMAND, undefined),
-                    onMouseLeave: () => editor.dispatchCommand(UNDO_COMMAND, undefined),
-                    disabled: !state.canRedo
+                    disabled: !state.canRedo,
+
                 },
                 {
                     __type__: "custom",
@@ -243,7 +237,6 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                                         })
                                     }
                                 }}
-                                undoOnEmptySelection={true}
                                 inputType="number"
                             />
                         )
@@ -280,23 +273,20 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                                     freeSolo: true,
                                     defaultValue: currentFontSize.toString(),
                                 }}
-                                afterUpdate={() => {
-                                    clearLevel(editor);
-                                }}
                                 valuePreprocessor={(value) => value + "px"}
                                 inputType="number"
                             />
                         )
                     }
                 },
-                {
-                    __type__: "custom",
-                    supplier: () => <ColorPicker styleProp="color"/>
-                },
-                {
-                    __type__: "custom",
-                    supplier: () => <ColorPicker styleProp="background-color"/>
-                }
+                // {
+                //     __type__: "custom",
+                //     supplier: () => <ColorPicker styleProp="color"/>
+                // },
+                // {
+                //     __type__: "custom",
+                //     supplier: () => <ColorPicker styleProp="background-color"/>
+                // }
             ]
         }, {
             title: "multimedia",
@@ -308,8 +298,6 @@ export const useToolbarTabs = (editor: LexicalEditor): ToolbarTabType[] => {
                     onClick: () => {
                         setOpenBackdrop(OpenBackdrop.IMAGE);
                     },
-                    undoOnEmptySelection: true,
-                    disablePreview: true,
                     appendAfter: () => {
                         return (
                             <Backdrop open={openBackdrop === OpenBackdrop.IMAGE} onClick={() => setOpenBackdrop(null)}>

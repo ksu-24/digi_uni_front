@@ -36,7 +36,7 @@ export function BaseWrapper(
     }
 
     return (
-        <Box bgcolor={bgcolor} className={"w-full h-fit " + bgs.join(" ")}>
+        <Box bgcolor={bgcolor} className={"w-full h-fit !" + bgs.join(" !")}>
             <Stack component={component ?? "div"} className={`${className}
          ${!disableGap && " max-xs:gap-[20dvw] gap-[12dvw] 2xl:gap-[10dvw] 3xl:gap-[7dvw]"} w-[84dvw] mx-auto
          max-lg:w-[90dvw]

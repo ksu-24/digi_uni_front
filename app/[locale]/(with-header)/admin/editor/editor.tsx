@@ -5,32 +5,32 @@ import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
 import {ContentEditable} from '@lexical/react/LexicalContentEditable';
 import {LexicalErrorBoundary} from '@lexical/react/LexicalErrorBoundary';
 import {Skeleton, Stack, Tab, Tabs} from "@mui/material";
-import ToolbarPlugin from "@/app/[locale]/(with-header)/news/editor/toolbar";
+import ToolbarPlugin from "@/app/[locale]/(with-header)/admin/editor/toolbar";
 import {HeadingNode, QuoteNode} from "@lexical/rich-text";
 import StyledQuoteNode, {
     $createStyledQuoteNode
-} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/styled-quote-node";
+} from "@/app/[locale]/(with-header)/admin/editor/_generic-nodes/styled-quote-node";
 import themeObj from "@/app/_theme/theme-obj";
 import {create} from "zustand";
 import ClassnameTextNode, {
     $creatClassnameTextNode
-} from "@/app/[locale]/(with-header)/news/editor/_generic-nodes/classname-text-node";
+} from "@/app/[locale]/(with-header)/admin/editor/_generic-nodes/classname-text-node";
 import {TextNode} from "lexical";
-import HistoryPlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/history-plugin";
 import {AutoLinkNode} from "@lexical/link";
 import {AutoLinkPlugin, createLinkMatcherWithRegExp} from "@lexical/react/LexicalAutoLinkPlugin";
 import {ClearEditorPlugin} from "@lexical/react/LexicalClearEditorPlugin";
-import ImagePlugin from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-plugin";
-import ImageNode from "@/app/[locale]/(with-header)/news/editor/_multimedia/image-node";
-import SavePlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/save-plugin";
-import SaveProgressPlugin from "@/app/[locale]/(with-header)/news/editor/_plugins/save-state-plugin";
-import PreviewForm from "@/app/[locale]/(with-header)/news/editor/preview-form";
+import ImagePlugin from "@/app/[locale]/(with-header)/admin/editor/_multimedia/image-plugin";
+import ImageNode from "@/app/[locale]/(with-header)/admin/editor/_multimedia/image-node";
+import SavePlugin from "@/app/[locale]/(with-header)/admin/editor/_plugins/save-plugin";
+import SaveProgressPlugin from "@/app/[locale]/(with-header)/admin/editor/_plugins/save-state-plugin";
+import PreviewForm from "@/app/[locale]/(with-header)/admin/editor/preview-form";
 import ClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
 import React, {useEffect} from "react";
 import {locales} from "@/app/_localization/i18n";
-import GalleryInput from "@/app/[locale]/(with-header)/news/editor/gallery-input";
+import GalleryInput from "@/app/[locale]/(with-header)/admin/editor/gallery-input";
 import {useLexicalIsTextContentEmpty} from "@lexical/react/useLexicalIsTextContentEmpty";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
+import {HistoryPlugin} from "@lexical/react/LexicalHistoryPlugin";
 
 const theme: InitialConfigType = {
     // @ts-ignore

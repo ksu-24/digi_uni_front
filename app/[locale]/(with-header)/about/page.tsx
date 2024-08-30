@@ -9,7 +9,6 @@ import Partners from "@/app/[locale]/(with-header)/about/partners";
 import ProjectTimeline from "@/app/[locale]/(with-header)/about/project-timeline";
 import {Banner} from "@/app/[locale]/(with-header)/about/banner";
 import {Box} from "@mui/material";
-import {locales} from "@/app/_localization/i18n";
 
 export default async function AboutPage(
     {
@@ -35,12 +34,4 @@ export default async function AboutPage(
             <ProjectTimeline/>
         </Box>
     )
-}
-
-export async function generateStaticParams() {
-    return locales.map(locale => ({
-        params: {
-            locale
-        }
-    }));
 }
