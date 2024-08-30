@@ -56,7 +56,11 @@ export default function Nav(
                         }
                         <EnterAnimation direction="left" duration={1000} delay={index * 100} offset={20} key={index}
                                         className={!tight ? "h-8" : undefined}>
-                            <Link href={link[1]} className="h-full flex items-center">
+                            <Link href={link[1]} className="h-full flex items-center" onClick={(e) => {
+                                if (link[1] === path) {
+                                    e.preventDefault();
+                                }
+                            }}>
                                 <Typography variant="h6"
                                             fontSize={fontSize}
                                             fontWeight={fontWeight}

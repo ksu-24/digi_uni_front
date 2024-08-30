@@ -6,11 +6,9 @@ import {Box} from "@mui/material";
 import {BwTiles} from "@/app/_util/components/tiles";
 import ConditionalFooter from "@/app/[locale]/(with-header)/conditional-footer";
 
-export default async function WithHeaderLayout({children, params}: {
+export default async function WithHeaderLayout({children}: {
     children: React.ReactNode,
-    params: { locale: string }
 }) {
-    unstable_setRequestLocale(params.locale);
     return (
         <>
             <Header/>
