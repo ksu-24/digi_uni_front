@@ -5,13 +5,15 @@ import colors from "@/resources/colors.json";
 export function PrimaryButton(
     {
         children,
-        props = {}
+        props = {},
+        ...rest
     }: {
         children?: ReactNode,
         props?: ButtonProps
-    }) {
+    } & ButtonProps
+) {
     return (
-        <Button {...props}
+        <Button {...props} {...rest}
                 className={`${props?.className ?? ""} !bg-button-primary 
                 !capitalize hover:!bg-button-hover-primary 
                 [&>*]:!text-white 

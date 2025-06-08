@@ -12,7 +12,7 @@ import {
     Stack,
     Typography
 } from "@mui/material";
-import {Partner, Person} from "@/app/[locale]/_partners/partner-details";
+import {PartnerLocalizationResponse, Person} from "@/app/[locale]/_partners/partner-details";
 import {Link} from "@/app/_localization/navigation";
 import colors from "@/resources/colors.json"
 
@@ -32,13 +32,12 @@ export default function PartnerDropdown(
         partner,
     }: {
         index: number;
-        partner: Partner;
+        partner: PartnerLocalizationResponse;
     }
 ) {
     const [expanded, setExpanded] = React.useState(false);
-    const translations = useTranslations("partners");
     const countryTranslations = useTranslations("countries");
-    const nameSplit = translations(partner.translationKey + '.title' as never).split(/(named)|(імені)/);
+    const nameSplit = partner.name.split(/(named)|(імені)/);
     return (
         <ListItem className="flex-row flex justify-stretch w-full h-fit !p-0">
             <Accordion expanded={expanded} elevation={0} sx={{
@@ -73,7 +72,7 @@ export default function PartnerDropdown(
                                 {
                                     `${nameSplit[0].toUpperCase()
                                     + (nameSplit.length > 1 ?
-                                        (/(named)|(імені)/.exec(translations(partner.translationKey + '.title' as never))![0] + nameSplit[3])
+                                        (/(named)|(імені)/.exec(partner.name)![0] + nameSplit[3])
                                         : "")}, ${countryTranslations(partner.country as never)}`
                                 }
                             </Typography>
@@ -102,18 +101,17 @@ export default function PartnerDropdown(
                            2xl:pt-[2rem]
                            3xl:pt-[2rem] 3xl:pb-[2.5rem] 3xl:pl-[3rem] 3xl:gap-[1dvw]
                            ">
-                        <Link href={partner.link}>
-                            <Typography variant="body2" className="text-[#012AFF]">{partner.link}</Typography>
+                        <Link href={partner.url}>
+                            <Typography variant="body2" className="text-[#012AFF]">{partner.url}</Typography>
                         </Link>
                         <Stack className="w-full justify-start xs:!flex-row
                         max-xs:!gap-[12dvw]
                         " style={{
-                            gap: partner.people.length == 2 ? "18dvw" : "3dvw"
+                            gap: partner.team.length == 2 ? "18dvw" : "3dvw"
                         }}>
                             {
-                                partner.people ? partner.people.map((person, index) => (
-                                        <PersonInfo key={index} person={person}
-                                                    partnerTranslationKey={partner.translationKey}/>
+                                partner.team ? partner.team.map((person, index) => (
+                                        <PersonInfo key={index} person={person}/>
                                     ))
                                     : <>
                                         <PersonPlaceholder/> <PersonPlaceholder/>
@@ -130,29 +128,22 @@ export default function PartnerDropdown(
 function PersonInfo(
     {
         person,
-        partnerTranslationKey,
     }: {
         person: Person
-        partnerTranslationKey: string
     }
 ) {
-    const translations = useTranslations(`partners.${partnerTranslationKey}` as never);
     const miscTranslations = useTranslations("misc");
     return (
         <Stack className="gap-1.5">
             <Typography variant="body2" className="w-fit" fontWeight={500} letterSpacing={0}>
-                {translations(`people.${person.translationKey}.role` as never)}
+                {person.title}
             </Typography>
             <Typography variant="body2" fontWeight={500} className="mt-2.5 w-fit
             max-xs:text-[19px]
             ">
-                {translations(`people.${person.translationKey}.name` as never)}
+                {person.name}
             </Typography>
-            <Typography variant="body2">{
-                miscTranslations(person.email as never).startsWith("misc.") ?
-                    person.email :
-                    miscTranslations(person.email as never)
-            }</Typography>
+            <Typography variant="body2">{person.email ? person.email : miscTranslations("Information will appear soon")}</Typography>
         </Stack>
     )
 }

@@ -32,6 +32,15 @@ export class NewsPreview {
     }
 }
 
+type NewsPreviewResponse = {
+    previews: (Omit<NewsPreview, "image"> & {
+        image: {
+            image: string
+        }
+    })[],
+    pagesLeft: number
+}
+
 export async function getNewsPreview(pageSize: number, pageNumber: number): Promise<NewsPreview[]> {
     const locale = await getLocale();
     const response = await get(`/publications/previews`, {
@@ -48,11 +57,7 @@ export async function getNewsPreview(pageSize: number, pageNumber: number): Prom
         return [];
     }
 
-    const data = await response.json() as (Omit<NewsPreview, "image"> & {
-        image: {
-            image: string
-        }
-    })[];
+    const data = await response.json() as NewsPreviewResponse;
 
-    return data.map((news: any) => new NewsPreview(news.id, news.title, news.createdAt, news.summary, news.image.image));
+    return data.previews.map((news: any) => new NewsPreview(news.id, news.title, news.createdAt, news.summary, news.image.image));
 }

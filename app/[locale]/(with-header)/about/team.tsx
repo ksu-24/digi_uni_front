@@ -2,12 +2,19 @@ import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 import {Box, Stack, Typography} from "@mui/material";
 import {getTranslations} from "next-intl/server";
 import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";
-import team from "@/resources/team.json";
 import screens from "@/resources/screens.json";
 import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
+import {get} from "@/app/_util/fetching";
+import {TeamMemberLocalization} from "@/app/[locale]/(with-header)/admin/team-members/page";
 
 export default async function Team() {
     const translations = await getTranslations("about.team");
+
+    const response = await get("/partners/teamMembers", { language: "EN" });
+    const teamMembersData = await response.json() as TeamMemberLocalization[];
+
+    const coordinators = teamMembersData.filter((member: any) => member.isMain === true);
+
     return (
         <section id="team">
             <Stack className="max-xs:gap-[12dvw]">
@@ -35,7 +42,7 @@ export default async function Team() {
                                    `
                                }}>
                     {
-                        team.coordinators.map(({key: coordinator}, index) => (
+                        coordinators.map((coordinator, index: number) => (
                             <InfoContainerItem
                                 className="p-[3dvw]
                                     max-xs:!px-0 max-xs:!pb-[5dvw]
@@ -55,7 +62,9 @@ export default async function Team() {
                                         3xl:w-[14dvw]
                                         ">
                                         <img
-                                            src={`/images/about/${translations(`coordinators.list.${coordinator}.photo` as never)}`}
+                                            src={coordinator.photo?.image || (coordinator.gender === "male" ? 
+                                                "/images/about/man_placeholder.jpg" : 
+                                                "/images/about/woman_placeholder.jpg")}
                                             alt="photo" width="100%"/>
                                     </Box>
                                     <Stack className="gap-[2dvw]
@@ -74,21 +83,21 @@ export default async function Team() {
                                                 3xl:!text-[30px]
                                                 "
                                             >
-                                                {translations(`coordinators.list.${coordinator}.name` as never)}
+                                                {coordinator.name}
                                             </Typography>
                                             <Typography
                                                 variant="body1" fontSize={16}>
-                                                {translations(`coordinators.list.${coordinator}.role` as never)}
+                                                {coordinator.title}
                                             </Typography>
                                         </Stack>
                                         <Stack className="gap-[1dvw]
                                             max-xs:gap-[4dvw]
                                             ">
                                             <Typography variant="body2" letterSpacing={0}>
-                                                {translations(`coordinators.list.${coordinator}.description` as never)}
+                                                {coordinator.experience}
                                             </Typography>
                                             <Typography variant="body2" fontSize={14} letterSpacing={0}>
-                                                {translations(`coordinators.list.${coordinator}.experience` as never)}
+                                                {coordinator.degree}
                                             </Typography>
                                         </Stack>
                                     </Stack>
@@ -120,7 +129,9 @@ export default async function Team() {
                             margin: "0"
                         }
                     }}>
-                        {team.all.map((teamMember, index) => (
+                        {teamMembersData
+                            .toSorted((a, b) => b.priority - a.priority)
+                            .map((teamMember, index) => (
                             <Stack key={index} sx={{
                                 [`@media (max-width: ${screens.xs})`]: {
                                     padding: "0"
@@ -129,16 +140,16 @@ export default async function Team() {
                                 <Stack className="gap-[2dvw]
                                     max-xs:gap-[8dvw]
                                     ">
-                                    <img src={teamMember.gender === "M" ?
+                                    <img src={teamMember.photo?.image || (teamMember.gender === "male" ?
                                         "/images/about/man_placeholder.jpg" :
                                         "/images/about/woman_placeholder.jpg"
-                                    } alt="photo" width="100%" className="aspect-square w-[20dvw]
+                                    )} alt="photo" width="100%" className="aspect-square w-[20dvw]
                                             max-xs:!w-full
                                             max-lg:w-auto
                                             "/>
-                                    <Stack className="gap-[1.5dvw]
-                                        max-xs:gap-[6dvw]
-                                        3xl:gap-[1dvw]
+                                    <Stack className="gap-[1dvw]
+                                        max-xs:gap-[2dvw]
+                                        3xl:gap-[0.5dvw]
                                         " sx={{
                                         "&.MuiStack-root > .MuiTypography-root:first-letter": {
                                             textTransform: "uppercase"
@@ -156,24 +167,16 @@ export default async function Team() {
                                                     max-xs:!text-[26px]
                                                     "
                                             >
-                                                {
-                                                    translations(`list.${teamMember.key}.name` as never)
-                                                    + (translations(`list.${teamMember.key}.degree` as never) !== `about.team.list.${teamMember.key}.degree` ?
-                                                        `, ${translations(`list.${teamMember.key}.degree` as never)}`
-                                                        : "")
-                                                }
-                                            </Typography>
-                                            <Typography variant="body1" fontSize={16} sx={{
-                                                "&:first-letter": {
-                                                    textTransform: "uppercase"
-                                                }
-                                            }}>
-                                                {translations(`list.${teamMember.key}.position` as never)}
+                                                {teamMember.name}
                                             </Typography>
                                         </Stack>
+                                        <Typography variant="body2" className="xs:!text-[16px]"
+                                                    lineHeight={1.5} letterSpacing={0}>
+                                            {teamMember.institution}
+                                        </Typography>
                                         <Typography variant="body2" className="xs:!text-[14px]"
                                                     lineHeight={1.5} letterSpacing={0}>
-                                            {translations(`list.${teamMember.key}.institution` as never)}
+                                            {teamMember.degree}
                                         </Typography>
                                     </Stack>
                                 </Stack>

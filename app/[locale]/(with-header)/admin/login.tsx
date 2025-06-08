@@ -24,7 +24,7 @@ export default function Login() {
 
                 if (process.env.NODE_ENV === "development") {
                     const token = await response.text();
-                    localStorage.setItem("token", token);
+                    localStorage.setItem("token", `${token};${Date.now() + 1000 * 60 * 60 * 24}`);
                 }
 
                 router.refresh();

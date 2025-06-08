@@ -249,7 +249,7 @@ const themeObj = {
             })).reduce((acc, val) => ({...acc, ...val}), {}) as Record<Breakpoint, number>
         }
     }
-}
+} as const
 
 
 export default themeObj;

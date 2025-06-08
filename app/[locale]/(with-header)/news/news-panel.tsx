@@ -41,11 +41,11 @@ export function useNewsPreview(pageSize: number, pageNumber: number): NewsPrevie
         return [];
     }
 
-    if (response.data.length < pageSize) {
-        indicateExhaustion(response.data.length > 0 ? pageNumber : pageNumber - 1);
+    if (response.data.pagesLeft === 0) {
+        indicateExhaustion(response.data.previews.length > 0 ? pageNumber : pageNumber - 1);
     }
 
-    return response.data.map((news: any) => new NewsPreview(news.id, news.title, news.createdAt, news.summary, news.image.image));
+    return response.data.previews.map((news: any) => new NewsPreview(news.id, news.title, news.createdAt, news.summary, news.image.image));
 }
 
 function NewsListItem(

@@ -1,10 +1,10 @@
 import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 import {Box, Stack} from "@mui/material";
-import {getTranslations} from "next-intl/server";
-import partners from "@/resources/partners.json"
+import {getLocale, getTranslations} from "next-intl/server";
 import {Link} from "@/app/_localization/navigation";
 import {InfoContainer} from "@/app/_util/components/info-container";
 import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
+import {get} from "@/app/_util/fetching";
 
 const logoClasses = [
     "max-xs:!w-[21dvw] max-md:w-[12dvw] w-[10dvw] xl:w-[7dvw] 3xl:w-[5dvw]",
@@ -15,7 +15,11 @@ const logoClasses = [
 
 export default async function Partners() {
     const translations = await getTranslations("about.partners");
-    const partnerTranslations = await getTranslations("partners");
+
+    const language = (await getLocale()).toUpperCase();
+    const response = await get(`/partners?language=${language}`);
+    const partnersData = await response.json();
+
     return (
         <section id="partners">
             <BaseWrapper withPadding disableAfter className="!p-0 !w-full">
@@ -40,8 +44,8 @@ export default async function Partners() {
                         xl:grid-cols-5
                         ">
                             {
-                                Object.values(partners).map((partner, index) => (
-                                    <Box component="li" key={index}>
+                                partnersData.map((partner: any, index: number) => (
+                                    <Box component="li" key={partner.id || index}>
                                         <Stack
                                             className="border-[1px] border-collapse border-info -ml-px -mt-px h-[18dvw]
                                             items-center justify-center
@@ -54,11 +58,11 @@ export default async function Partners() {
                                             <Link
                                                 className={
                                                     "flex items-center justify-center " +
-                                                    logoClasses[parseInt(partner.logoType) - 1]
+                                                    logoClasses[parseInt(String(partner.logo?.logoType || 1)) - 1]
                                                 }
-                                                href={partner.link}>
-                                                <img src={partner.logo}
-                                                     alt={partnerTranslations(partner.translationKey as never)}
+                                                href={partner.url}>
+                                                <img src={partner.logo?.url}
+                                                     alt={partner.name}
                                                      className="w-full"/>
                                             </Link>
                                         </Stack>
