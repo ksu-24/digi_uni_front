@@ -46,7 +46,7 @@ export async function getNewsPreview(pageSize: number, pageNumber: number): Prom
     const response = await get(`/publications/previews`, {
         size: pageSize,
         page: pageNumber,
-        sort: "createdAt",
+        sort: "createdAt,desc",
         desc: true,
         language: locale.toUpperCase(),
         type: "NEWS"
