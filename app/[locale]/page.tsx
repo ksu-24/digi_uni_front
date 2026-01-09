@@ -22,7 +22,7 @@ export default async function Main(params: { locale: string }) {
                 </section>
                 <SecondaryTiles/>
                 <section id="erasmus">
-                    <Erasmus/>
+                    <Erasmus />
                 </section>
                 <section id="mission">
                     <Mission/>

@@ -30,6 +30,7 @@ export default async function Text() {
                 gap-[2dvw]
                 ">
                 <Typography variant="body2" className="whitespace-pre-wrap">{translations("content")}</Typography>
+                <a href="https://erasmusplus.org.ua/?s=digiuni" target="_blank" style={{textDecoration: "underline", color: "blue"}}>{translations("contentErasmusLink")}</a>
             </Stack>
         </ContentWrapper>
     );
