@@ -54,7 +54,9 @@
         "Germany": "Germany",
         "Poland": "Poland",
         "Czech Republic": "Czech Republic",
-        "France": "France"
+        "France": "France",
+        "Spain": "Spain",
+        "Belgium": "Belgium"
     },
     "feedbackForm": {
         "title": "Send your questions or suggestions to the main project administrator:",
