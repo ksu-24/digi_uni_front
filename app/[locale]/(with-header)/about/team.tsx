@@ -1,6 +1,6 @@
 import {BaseWrapper, ContentWrapper} from "@/app/_util/components/wrappers";
 import {Box, Stack, Typography} from "@mui/material";
-import {getTranslations} from "next-intl/server";
+import {getLocale, getTranslations} from "next-intl/server";
 import {InfoContainer, InfoContainerItem} from "@/app/_util/components/info-container";
 import screens from "@/resources/screens.json";
 import {SectionHeading, SectionTitle} from "@/app/_util/components/text-templates";
@@ -10,7 +10,8 @@ import {TeamMemberLocalization} from "@/app/[locale]/(with-header)/admin/team-me
 export default async function Team() {
     const translations = await getTranslations("about.team");
 
-    const response = await get("/partners/teamMembers", { language: "EN" });
+    const locale = (await getLocale()).toUpperCase();
+    const response = await get("/partners/teamMembers", { language: locale });
     const teamMembersData = await response.json() as TeamMemberLocalization[];
 
     const coordinators = teamMembersData.filter((member: any) => member.isMain === true);
