@@ -62,7 +62,7 @@ async function Caption(
             </EnterAnimation>
             <EnterAnimation delay={200} fadeDuration={400} duration={1000} offset={20} direction="up">
                 <Stack className="gap-10 items-start">
-                    <OrganizerInfo name={translations("kseniia")} email="email_name@kpi.kharkov.ua"/>
+                    <OrganizerInfo name={translations("kseniia")} email="liudmyla_zagoruiko@knu.ua"/>
                     <Social direction="row" size={24} className="!gap-5"/>
                 </Stack>
             </EnterAnimation>
