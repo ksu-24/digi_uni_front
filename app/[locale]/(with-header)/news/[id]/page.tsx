@@ -11,6 +11,7 @@ import {Gallery} from "@/app/[locale]/(with-header)/admin/editor/gallery";
 import screens from "@/resources/screens.json";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import EnterAnimation from "@/app/_util/components/enter-animation";
+import ShareButtons from "@/app/[locale]/(with-header)/news/share-buttons";
 
 export default async function NewsPage({params}: {
     params: {
@@ -186,25 +187,5 @@ async function OtherRecent(
 
 async function Share() {
     const translations = await getTranslations("news");
-    return (
-        <Stack className="py-[2.5dvw] mb-[2.5dvw] px-[3dvw] justify-between xs:!bg-themed-light-gray
-        max-xs:gap-[22px] max-xs:py-[6dvw]
-        max-md:mt-[12dvw]
-        max-lg:!px-0
-        3xl:p-[2dvw] 3xl:mb-[2dvw]
-        " direction="row">
-            <Typography variant="h5" letterSpacing={"-0.01rem"} lineHeight={1.4}>{translations("share")}:</Typography>
-            <Stack className="gap-[2dvw] justify-start
-            max-xs:gap-[7dvw]
-            3xl:gap-[1dvw]
-            " direction="row">
-                <Link href={"#"} className="transition-opacity duration-200 hover:opacity-[0.8]">
-                    <img src="/images/commons/X.svg" alt="X"/>
-                </Link>
-                <Link href={"#"} className="transition-opacity duration-200 hover:opacity-[0.8]">
-                    <img src="/images/commons/facebook-2.svg" alt="X"/>
-                </Link>
-            </Stack>
-        </Stack>
-    )
+    return <ShareButtons shareLabel={translations("share")} />;
 }
