@@ -110,7 +110,9 @@ export default async function NewsPage({params}: {
                                     <ReadOnlyEditor editorStateJson={response.content}/>
                                 </Stack>
                             </EnterAnimation>
-                            {response.gallery && <Gallery images={response.gallery.map(img => img.image)}/>}
+                            {response.gallery && response.gallery.length > 0 &&
+                                <Gallery images={response.gallery.map(img => img.image)}/>
+                            }
                             <Share/>
                         </Stack>
                         <OtherRecent excludeId={response.id}/>
