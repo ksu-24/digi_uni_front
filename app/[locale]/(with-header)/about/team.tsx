@@ -131,6 +131,7 @@ export default async function Team() {
                         }
                     }}>
                         {teamMembersData
+                            .filter(teamMember => !teamMember.isMain)
                             .toSorted((a, b) => b.priority - a.priority)
                             .map((teamMember, index) => (
                             <Stack key={index} sx={{
