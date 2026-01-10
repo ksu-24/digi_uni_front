@@ -99,7 +99,7 @@ export function Gallery(
             3xl:mb-[6dvw] 3xl:gap-[1dvw]
             ">
                 <button onClick={() => setBackdropOpen(true)} className="w-full">
-                    <img src={images[currentImage]} alt="selected gallery image" width="100%" className="aspect-video"/>
+                    <img src={images[currentImage]} alt="selected gallery image" width="100%" className="aspect-video object-contain"/>
                 </button>
                 <Stack className="items-center relative" direction="row" ref={wheelRef}>
                     {
@@ -186,7 +186,7 @@ function FullscreenBackdrop(
                     max-lg:w-16
                     "/>
                 </IconButton>
-                <img src={image} alt="selected gallery image" className="aspect-video w-[50%] max-xs:!w-full"/>
+                    <img src={image} alt="selected gallery image" className="aspect-video w-[50%] max-xs:!w-full"/>
                 <IconButton onClick={(e) => {
                     e.stopPropagation();
                     selectNext();
