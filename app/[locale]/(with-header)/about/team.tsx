@@ -169,16 +169,24 @@ export default async function Team() {
                                                     max-xs:!text-[26px]
                                                     "
                                             >
-                                                {teamMember.name}
+                                                {`${teamMember.name}, ${teamMember.title}`}
                                             </Typography>
                                         </Stack>
-                                        <Typography variant="body2" className="xs:!text-[16px]"
-                                                    lineHeight={1.5} letterSpacing={0}>
+                                        <Typography
+                                            variant="body1"
+                                            className="xs:!text-[16px]"
+                                            lineHeight={1.5}
+                                            letterSpacing={0}
+                                        >
                                             {teamMember.institution}
                                         </Typography>
-                                        <Typography variant="body2" className="xs:!text-[14px]"
-                                                    lineHeight={1.5} letterSpacing={0}>
-                                            {teamMember.degree}
+                                        <Typography
+                                            variant="body2"
+                                            className="xs:!text-[14px]"
+                                            lineHeight={1.5}
+                                            letterSpacing={0}    
+                                        >
+                                            {teamMember.experience}
                                         </Typography>
                                     </Stack>
                                 </Stack>
