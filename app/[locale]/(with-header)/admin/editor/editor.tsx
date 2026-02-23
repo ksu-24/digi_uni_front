@@ -74,7 +74,10 @@ export type Localization = {
         title: string,
         image: string
     },
-    gallery: (string | null)[],
+    gallery: ({
+        image: string,
+        alt: string | null
+    } | null)[],
     content: string
 }
 
@@ -131,7 +134,9 @@ export default function Editor(
                     title: initialState?.get(locale)?.preview.title ?? "",
                     image: initialState?.get(locale)?.preview.image ?? ""
                 },
-                gallery: galleries.get(locale)!,
+                gallery: galleries.get(locale)!.map(item =>
+                    item !== null ? { image: item, alt: null } : null
+                ),
                 content: initialState?.get(locale)?.content ?? ""
             }]
         )));
@@ -143,7 +148,9 @@ export default function Editor(
                     title: initialState?.get(locale)?.preview.title ?? "",
                     image: initialState?.get(locale)?.preview.image ?? ""
                 },
-                gallery: galleries.get(locale)!,
+                gallery: galleries.get(locale)!.map(item =>
+                    item !== null ? { image: item, alt: null } : null
+                ),
                 content: initialState?.get(locale)?.content ?? ""
             }]
         )));
