@@ -92,7 +92,38 @@ function defaultNewMember(): TeamMemberForm {
     };
 }
 
-function mapToUpsertTeamMember(data: TeamMemberForm) {
+function fillMissingLocalizations(data: TeamMemberForm, sourceLang: string): TeamMemberForm {
+    const filled: TeamMemberForm = { localizations: { ...data.localizations } };
+
+    const source = filled.localizations[sourceLang] || filled.localizations.EN;
+    if (!source) return filled;
+
+    const fieldsToCopy: (keyof TeamMemberLocalization)[] = [
+        'name', 'title', 'experience', 'degree', 'institution', 'caption', 'photo', 'email', 'partnerId', 'priority'
+    ];
+
+    Object.keys(filled.localizations).forEach((lang) => {
+        if (lang === sourceLang) return;
+        const target = { ...filled.localizations[lang] } as TeamMemberLocalization;
+
+        fieldsToCopy.forEach((field) => {
+            const t = (target as any)[field];
+            const s = (source as any)[field];
+            const isEmpty = t === undefined || t === null || t === '' || (field === 'photo' && !(t && (t as any).image));
+            if (isEmpty && s !== undefined && s !== null && !(s === '')) {
+                (target as any)[field] = s;
+            }
+        });
+
+        filled.localizations[lang] = target;
+    });
+
+    return filled;
+}
+
+function mapToUpsertTeamMember(data: TeamMemberForm, sourceLang: string = 'EN') {
+    const source = data.localizations[sourceLang] || data.localizations.EN || Object.values(data.localizations)[0];
+
     return {
         localizations: Object.values(data.localizations).map(localization => ({
             language: localization.language,
@@ -103,12 +134,12 @@ function mapToUpsertTeamMember(data: TeamMemberForm) {
             institution: localization.institution,
             caption: localization.caption,
         })),
-        photo: data.localizations.EN.photo?.image,
-        gender: data.localizations.EN.gender === "male",
-        email: data.localizations.EN.email,
-        isMain: data.localizations.EN.isMain,
-        partnerId: data.localizations.EN.partnerId,
-        priority: data.localizations.EN.priority
+        photo: source?.photo?.image,
+        gender: source?.gender === "male",
+        email: source?.email,
+        isMain: source?.isMain,
+        partnerId: source?.partnerId,
+        priority: source?.priority
     };
 }
 
@@ -227,7 +258,8 @@ export default function TeamMembersAdmin() {
         }
 
         try {
-            const response = await post(`/partners/${formMemberMember.localizations[formLanguage].partnerId}/teamMembers`, mapToUpsertTeamMember(formMemberMember));
+            const filled = fillMissingLocalizations(formMemberMember, formLanguage);
+            const response = await post(`/partners/${filled.localizations[formLanguage].partnerId}/teamMembers`, mapToUpsertTeamMember(filled, formLanguage));
             if (!response.ok) {
                 setError("Failed to create team member");
                 return;
@@ -258,7 +290,8 @@ export default function TeamMembersAdmin() {
         if (!editingMember) return;
 
         try {
-            const response = await patch(`/partners/teamMembers/${editingMember.id}`, mapToUpsertTeamMember(formMemberMember));
+            const filled = fillMissingLocalizations(formMemberMember, formLanguage);
+            const response = await patch(`/partners/teamMembers/${editingMember.id}`, mapToUpsertTeamMember(filled, formLanguage));
             if (!response.ok) {
                 setError("Failed to update team member");
                 return;
