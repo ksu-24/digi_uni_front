@@ -77,6 +77,19 @@ export default async function Title() {
                                 <Typography variant="h3"
                                             className="!text-[24px] !leading-[1.4]">{translations("biggestProject")}</Typography>
                             </EnterAnimation>
+                            <EnterAnimation direction="up" offset={20} delay={400} duration={1000} fadeDuration={400}>
+                                <img
+                                    src="/images/main/slogan/funded-by-eu.png"
+                                    alt="Co-funded by the European Union"
+                                    className="h-[3.6dvw] w-auto
+                                    max-xs:h-[9.6dvw]
+                                    max-md:h-[6dvw]
+                                    max-lg:h-[4.8dvw]
+                                    xl:h-[3dvw]
+                                    3xl:h-[2.4dvw]
+                                    "
+                                />
+                            </EnterAnimation>
                         </Stack>
                     </HeadingWrapper>
                 </Stack>
