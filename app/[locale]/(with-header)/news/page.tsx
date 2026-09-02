@@ -7,6 +7,23 @@ import EnterAnimation from "@/app/_util/components/enter-animation";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import React from "react";
 import screens from "@/resources/screens.json";
+import type {Metadata} from "next";
+import {buildAlternates} from "@/app/_util/seo";
+
+export async function generateMetadata(
+    {
+        params: {locale}
+    }: {
+        params: { locale: string }
+    }
+): Promise<Metadata> {
+    const translations = await getTranslations({locale, namespace: "meta"});
+    return {
+        title: translations("newsTitle"),
+        description: translations("newsDescription"),
+        alternates: buildAlternates(locale, "/news")
+    };
+}
 
 export default async function News(
     {

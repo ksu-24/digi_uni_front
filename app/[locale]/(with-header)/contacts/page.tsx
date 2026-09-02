@@ -4,7 +4,24 @@ import screens from "@/resources/screens.json";
 import {Stack} from "@mui/material";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import {locales} from "@/app/_localization/i18n";
-import {unstable_setRequestLocale} from "next-intl/server";
+import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
+import type {Metadata} from "next";
+import {buildAlternates} from "@/app/_util/seo";
+
+export async function generateMetadata(
+    {
+        params: {locale}
+    }: {
+        params: { locale: string }
+    }
+): Promise<Metadata> {
+    const translations = await getTranslations({locale, namespace: "meta"});
+    return {
+        title: translations("contactsTitle"),
+        description: translations("contactsDescription"),
+        alternates: buildAlternates(locale, "/contacts")
+    };
+}
 
 export default function ContactsPage(
     {

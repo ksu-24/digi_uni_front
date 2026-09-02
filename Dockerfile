@@ -18,11 +18,15 @@ COPY . .
 # 5. Declare build-time arguments
 ARG NEXT_PUBLIC_API_URL
 ARG SERVER_API_URL
+ARG NEXT_PUBLIC_SITE_URL=https://digiuni.org
+ARG NEXT_PUBLIC_GA_ID=G-YQXG71QKH1
 
 # 6. Expose them as build-time environment variables
 #    so that `next build` will bake them into the output
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 ENV SERVER_API_URL=${SERVER_API_URL}
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+ENV NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}
 
 # 7. Build the Next.js application
 RUN npm run build

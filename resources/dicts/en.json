@@ -625,6 +625,16 @@
                 }
             }
         }
+    },
+    "meta": {
+        "siteTitle": "DigiUni — Digital University",
+        "description": "DigiUni is the Erasmus+ CBHE project \"Digital University — Open Ukrainian Initiative\". We are building an open digital educational environment for Ukrainian universities.",
+        "newsTitle": "News and events",
+        "newsDescription": "Latest news and events of the DigiUni project: digitalization of higher education in Ukraine, partnerships, conferences and achievements.",
+        "aboutTitle": "About us",
+        "aboutDescription": "About the DigiUni project: mission, goals, team and partners of the initiative building a digital ecosystem for Ukrainian universities.",
+        "contactsTitle": "Contacts",
+        "contactsDescription": "Get in touch with the DigiUni project team — contact information and feedback form."
     }
 }
 

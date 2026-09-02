@@ -1,5 +1,22 @@
 import Title from "@/app/[locale]/(with-header)/about/title";
-import {unstable_setRequestLocale} from "next-intl/server";
+import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
+import type {Metadata} from "next";
+import {buildAlternates} from "@/app/_util/seo";
+
+export async function generateMetadata(
+    {
+        params: {locale}
+    }: {
+        params: { locale: string }
+    }
+): Promise<Metadata> {
+    const translations = await getTranslations({locale, namespace: "meta"});
+    return {
+        title: translations("aboutTitle"),
+        description: translations("aboutDescription"),
+        alternates: buildAlternates(locale, "/about")
+    };
+}
 import AboutProject from "@/app/[locale]/(with-header)/about/about-project";
 import Goal from "@/app/[locale]/(with-header)/about/goal";
 import ConcreteGoals from "@/app/[locale]/(with-header)/about/concrete-goals";

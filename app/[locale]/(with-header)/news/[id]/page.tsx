@@ -12,6 +12,77 @@ import screens from "@/resources/screens.json";
 import Breadcrumbs from "@/app/_util/components/breadcrumbs";
 import EnterAnimation from "@/app/_util/components/enter-animation";
 import ShareButtons from "@/app/[locale]/(with-header)/news/share-buttons";
+import NewsViewTracker from "@/app/_util/analytics/news-view-tracker";
+import {buildAlternates, extractTextFromEditorState, SITE_NAME, SITE_URL} from "@/app/_util/seo";
+import type {Metadata} from "next";
+
+type Publication = {
+    id: number,
+    content: string,
+    preview: {
+        title: string,
+        summary?: string | null,
+        createdAt: string,
+        image: {
+            image: string,
+            alt?: string | null
+        }
+    },
+    gallery?: {
+        image: string
+    }[]
+};
+
+async function fetchPublication(id: string, locale: string): Promise<Publication | null> {
+    const response = await get(`/publications/${id}?language=${locale.toUpperCase()}`);
+    if (!response.ok) {
+        console.error(response.status + " " + await response.text());
+        return null;
+    }
+    return await response.json() as Publication;
+}
+
+export async function generateMetadata({params}: {
+    params: {
+        id: string,
+        locale: string
+    }
+}): Promise<Metadata> {
+    const news = await fetchPublication(params.id, params.locale);
+    if (!news) return {};
+
+    const description = news.preview.summary
+        ?? extractTextFromEditorState(news.content)
+        ?? "";
+    const url = `${SITE_URL}/${params.locale}/news/${params.id}`;
+
+    return {
+        title: news.preview.title,
+        description: description,
+        alternates: buildAlternates(params.locale, `/news/${params.id}`),
+        openGraph: {
+            type: "article",
+            siteName: SITE_NAME,
+            title: news.preview.title,
+            description: description,
+            url: url,
+            publishedTime: news.preview.createdAt,
+            locale: params.locale === "uk" ? "uk_UA" : "en_US",
+            images: [
+                {
+                    url: news.preview.image.image,
+                    alt: news.preview.image.alt ?? news.preview.title
+                }
+            ]
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: news.preview.title,
+            description: description,
+            images: [news.preview.image.image]
+        }
+    };
+}
 
 export default async function NewsPage({params}: {
     params: {
@@ -41,8 +112,28 @@ export default async function NewsPage({params}: {
         }[]
     };
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        headline: response.preview.title,
+        image: [response.preview.image.image],
+        datePublished: response.preview.createdAt,
+        inLanguage: params.locale,
+        mainEntityOfPage: `${SITE_URL}/${params.locale}/news/${response.id}`,
+        publisher: {
+            "@type": "Organization",
+            name: SITE_NAME,
+            url: SITE_URL
+        }
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+            />
+            <NewsViewTracker newsId={response.id} title={response.preview.title} locale={params.locale}/>
             <PageTopWrapper className="justify-between !mb-0 !pb-0">
                 <Stack className="max-xs:gap-[4dvw]">
                     <Stack className="gap-6
