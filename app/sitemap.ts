@@ -57,3 +57,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...news.flatMap(item => localizedEntry(`/news/${item.id}`, new Date(item.createdAt)))
     ];
 }
+
+export const dynamic = 'force-dynamic';
